@@ -1,0 +1,19 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2016-06-24 09:52:05 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so' - /opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2016-06-24 09:52:14 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so' - /opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2016-06-24 10:23:59 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so' - /opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2016-06-24 10:48:28 --> Severity: Notice --> Undefined variable: resp /opt/lampp/htdocs/church-cms/application/modules/api/controllers/Groups.php 232
+ERROR - 2016-06-24 10:48:28 --> Severity: Error --> Unsupported operand types /opt/lampp/htdocs/church-cms/application/modules/api/controllers/Groups.php 232
+ERROR - 2016-06-24 11:06:22 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so' - /opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2016-06-24 12:48:55 --> Severity: Notice --> Undefined index: calendar_embed_code /opt/lampp/htdocs/church-cms/application/modules/admin/views/edit-group.php 98
+ERROR - 2016-06-24 12:49:23 --> Severity: Notice --> Undefined index: calendar_embed_code /opt/lampp/htdocs/church-cms/application/modules/admin/views/edit-group.php 98
+ERROR - 2016-06-24 12:49:56 --> Severity: Notice --> Undefined index: calendar_embed_code /opt/lampp/htdocs/church-cms/application/modules/admin/views/edit-group.php 98
+ERROR - 2016-06-24 13:52:20 --> Severity: Error --> Call to undefined function validation_error() /opt/lampp/htdocs/church-cms/application/modules/admin/views/manage-group-leaders.php 21
+ERROR - 2016-06-24 13:52:36 --> Severity: Error --> Call to undefined function validations_error() /opt/lampp/htdocs/church-cms/application/modules/admin/views/manage-group-leaders.php 21
+ERROR - 2016-06-24 13:52:46 --> Severity: Error --> Call to undefined function validation_error() /opt/lampp/htdocs/church-cms/application/modules/admin/views/manage-group-leaders.php 25
+ERROR - 2016-06-24 13:53:07 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so' - /opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2016-06-24 14:58:38 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so' - /opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2016-06-24 15:02:15 --> Severity: Notice --> Undefined index: calendar_embed_code /opt/lampp/htdocs/church-cms/application/modules/admin/views/edit-group.php 98
+ERROR - 2016-06-24 15:02:36 --> Severity: Notice --> Undefined index: calendar_embed_code /opt/lampp/htdocs/church-cms/application/modules/admin/views/edit-group.php 98
+ERROR - 2016-06-24 15:03:15 --> Severity: Notice --> Undefined index: calendar_embed_code /opt/lampp/htdocs/church-cms/application/modules/admin/views/edit-group.php 98

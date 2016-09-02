@@ -1,0 +1,158 @@
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000085 : 0.000000]: Starting new request from 192.168.1.1 to /timthumb/timthumb.php?src=http%3A%2F%2Fchurchcms.sid.mwdemoserver.com%2Fcms-panel%2Fuploads%2Fusers%2F14663278247.jpg&zc=1&a=t&w=52&h=52?time=1468650156/
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000203 : 0.000100]: Doc root is: /home/sidmwdemoserver/public_html/studymetro
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000235 : 0.000028]: Salt is: 1468584155-4600209
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000264 : 0.000029]: cleanCache() called
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000285 : 0.000020]: Cache was cleaned less than 864000 seconds ago so no cleaning needed.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000337 : 0.000051]: Is a request for an external URL: http://churchcms.sid.mwdemoserver.com/cms-panel/uploads/users/14663278247.jpg
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000355 : 0.000016]: Fetching from all external sites is enabled.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000382 : 0.000027]: Cache file is: cache/timthumb_ext_4ede3cbdd0d6851dea998c55d1a872ee
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000402 : 0.000019]: Trying server cache
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000421 : 0.000019]: Got request for external image. Starting serveExternalImage.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000433 : 0.000011]: webshot is NOT set so we're going to try to fetch a regular image.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000500 : 0.000068]: Fetching external image into temporary file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbQtW8UC
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000518 : 0.000016]: Scheduling file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbQtW8UC to delete on destruct.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000545 : 0.000027]: Curl is installed so using it to fetch URL.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000586 : 0.000041]: Fetching url with curl: http://churchcms.sid.mwdemoserver.com/cms-panel/uploads/users/14663278247.jpg
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000071 : 0.000000]: Starting new request from 192.168.1.1 to /timthumb/timthumb.php?src=http%3A%2F%2Fchurchcms.com%2Fuploads%2Fusers%2F14666845451162506392-0-siddharth21-avatar.png&zc=1&a=t&w=52&h=52?time=1468650156/
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000143 : 0.000056]: Doc root is: /home/sidmwdemoserver/public_html/studymetro
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000171 : 0.000025]: Salt is: 1468584155-4600209
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000196 : 0.000024]: cleanCache() called
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000215 : 0.000018]: Cache was cleaned less than 864000 seconds ago so no cleaning needed.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000262 : 0.000047]: Is a request for an external URL: http://churchcms.com/uploads/users/14666845451162506392-0-siddharth21-avatar.png
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000279 : 0.000015]: Fetching from all external sites is enabled.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000305 : 0.000025]: Cache file is: cache/timthumb_ext_4e495d92719810725a072eca9c25a2a5
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000324 : 0.000018]: Trying server cache
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000343 : 0.000017]: Got request for external image. Starting serveExternalImage.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000355 : 0.000011]: webshot is NOT set so we're going to try to fetch a regular image.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000411 : 0.000056]: Fetching external image into temporary file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbBdDU4C
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000427 : 0.000014]: Scheduling file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbBdDU4C to delete on destruct.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000459 : 0.000032]: Curl is installed so using it to fetch URL.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000498 : 0.000039]: Fetching url with curl: http://churchcms.com/uploads/users/14666845451162506392-0-siddharth21-avatar.png
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000073 : 0.000000]: Starting new request from 192.168.1.1 to /timthumb/timthumb.php?src=http%3A%2F%2Fchurchcms.sid.mwdemoserver.com%2Fcms-panel%2Fuploads%2Fusers%2F14663275964.jpg&zc=1&a=t&w=52&h=52?time=1468650156/
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000149 : 0.000060]: Doc root is: /home/sidmwdemoserver/public_html/studymetro
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000178 : 0.000027]: Salt is: 1468584155-4600209
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000206 : 0.000027]: cleanCache() called
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000226 : 0.000019]: Cache was cleaned less than 864000 seconds ago so no cleaning needed.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000274 : 0.000047]: Is a request for an external URL: http://churchcms.sid.mwdemoserver.com/cms-panel/uploads/users/14663275964.jpg
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000292 : 0.000016]: Fetching from all external sites is enabled.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000317 : 0.000025]: Cache file is: cache/timthumb_ext_339b6884927edcdcb1a43f7992385692
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000337 : 0.000019]: Trying server cache
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000357 : 0.000019]: Got request for external image. Starting serveExternalImage.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000369 : 0.000011]: webshot is NOT set so we're going to try to fetch a regular image.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000430 : 0.000062]: Fetching external image into temporary file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumb7duCOD
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000447 : 0.000014]: Scheduling file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumb7duCOD to delete on destruct.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000472 : 0.000025]: Curl is installed so using it to fetch URL.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000515 : 0.000044]: Fetching url with curl: http://churchcms.sid.mwdemoserver.com/cms-panel/uploads/users/14663275964.jpg
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000068 : 0.000000]: Starting new request from 192.168.1.1 to /timthumb/timthumb.php?src=http%3A%2F%2Fchurchcms.sid.mwdemoserver.com%2Fcms-panel%2Fuploads%2Fusers%2F14664286211353762179_krishna-normal.jpg&zc=1&a=t&w=52&h=52?time=1468650156/
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000139 : 0.000056]: Doc root is: /home/sidmwdemoserver/public_html/studymetro
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000165 : 0.000024]: Salt is: 1468584155-4600209
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000191 : 0.000025]: cleanCache() called
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000209 : 0.000017]: Cache was cleaned less than 864000 seconds ago so no cleaning needed.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000254 : 0.000045]: Is a request for an external URL: http://churchcms.sid.mwdemoserver.com/cms-panel/uploads/users/14664286211353762179_krishna-normal.jpg
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000268 : 0.000013]: Fetching from all external sites is enabled.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000292 : 0.000024]: Cache file is: cache/timthumb_ext_fd2b562da34341597cc1c42d0fc5df1d
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000309 : 0.000016]: Trying server cache
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000327 : 0.000017]: Got request for external image. Starting serveExternalImage.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000346 : 0.000017]: webshot is NOT set so we're going to try to fetch a regular image.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000402 : 0.000057]: Fetching external image into temporary file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbhdGnBD
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000418 : 0.000013]: Scheduling file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbhdGnBD to delete on destruct.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000441 : 0.000023]: Curl is installed so using it to fetch URL.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000477 : 0.000036]: Fetching url with curl: http://churchcms.sid.mwdemoserver.com/cms-panel/uploads/users/14664286211353762179_krishna-normal.jpg
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000051 : 0.000000]: Starting new request from 192.168.1.1 to /timthumb/timthumb.php?src=http%3A%2F%2Fchurchcms.sid.mwdemoserver.com%2Fcms-panel%2Fuploads%2Fusers%2F14663232159.jpg&zc=1&a=t&w=52&h=52?time=1468650156/
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000125 : 0.000049]: Doc root is: /home/sidmwdemoserver/public_html/studymetro
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000143 : 0.000016]: Salt is: 1468584155-4600209
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000162 : 0.000019]: cleanCache() called
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000175 : 0.000012]: Cache was cleaned less than 864000 seconds ago so no cleaning needed.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000205 : 0.000030]: Is a request for an external URL: http://churchcms.sid.mwdemoserver.com/cms-panel/uploads/users/14663232159.jpg
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000215 : 0.000009]: Fetching from all external sites is enabled.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000232 : 0.000016]: Cache file is: cache/timthumb_ext_5e1fd8741306867408cca514ed06474b
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000243 : 0.000011]: Trying server cache
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000256 : 0.000012]: Got request for external image. Starting serveExternalImage.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000264 : 0.000006]: webshot is NOT set so we're going to try to fetch a regular image.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000308 : 0.000045]: Fetching external image into temporary file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbK4HzwO
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000318 : 0.000008]: Scheduling file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbK4HzwO to delete on destruct.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000334 : 0.000016]: Curl is installed so using it to fetch URL.
+[16-Jul-2016 06:22:36 UTC] TimThumb Debug line 1143 [0.000360 : 0.000025]: Fetching url with curl: http://churchcms.sid.mwdemoserver.com/cms-panel/uploads/users/14663232159.jpg
+[16-Jul-2016 06:22:37 UTC] TimThumb Debug line 1143 [0.000050 : 0.000000]: Starting new request from 192.168.1.1 to /timthumb/timthumb.php?src=http%3A%2F%2Fchurchcms.sid.mwdemoserver.com%2Fcms-panel%2Fuploads%2Fusers%2F14663229778.jpg&zc=1&a=t&w=52&h=52?time=1468650156/
+[16-Jul-2016 06:22:37 UTC] TimThumb Debug line 1143 [0.000105 : 0.000042]: Doc root is: /home/sidmwdemoserver/public_html/studymetro
+[16-Jul-2016 06:22:37 UTC] TimThumb Debug line 1143 [0.000124 : 0.000017]: Salt is: 1468584155-4600209
+[16-Jul-2016 06:22:37 UTC] TimThumb Debug line 1143 [0.000143 : 0.000019]: cleanCache() called
+[16-Jul-2016 06:22:37 UTC] TimThumb Debug line 1143 [0.000156 : 0.000013]: Cache was cleaned less than 864000 seconds ago so no cleaning needed.
+[16-Jul-2016 06:22:37 UTC] TimThumb Debug line 1143 [0.000187 : 0.000032]: Is a request for an external URL: http://churchcms.sid.mwdemoserver.com/cms-panel/uploads/users/14663229778.jpg
+[16-Jul-2016 06:22:37 UTC] TimThumb Debug line 1143 [0.000198 : 0.000010]: Fetching from all external sites is enabled.
+[16-Jul-2016 06:22:37 UTC] TimThumb Debug line 1143 [0.000222 : 0.000023]: Cache file is: cache/timthumb_ext_c105e84a1a628ece81edf99c07a2cb0a
+[16-Jul-2016 06:22:37 UTC] TimThumb Debug line 1143 [0.000234 : 0.000012]: Trying server cache
+[16-Jul-2016 06:22:37 UTC] TimThumb Debug line 1143 [0.000248 : 0.000014]: Got request for external image. Starting serveExternalImage.
+[16-Jul-2016 06:22:37 UTC] TimThumb Debug line 1143 [0.000255 : 0.000007]: webshot is NOT set so we're going to try to fetch a regular image.
+[16-Jul-2016 06:22:37 UTC] TimThumb Debug line 1143 [0.000300 : 0.000045]: Fetching external image into temporary file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbGrnUoS
+[16-Jul-2016 06:22:37 UTC] TimThumb Debug line 1143 [0.000310 : 0.000009]: Scheduling file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbGrnUoS to delete on destruct.
+[16-Jul-2016 06:22:37 UTC] TimThumb Debug line 1143 [0.000327 : 0.000016]: Curl is installed so using it to fetch URL.
+[16-Jul-2016 06:22:37 UTC] TimThumb Debug line 1143 [0.000354 : 0.000028]: Fetching url with curl: http://churchcms.sid.mwdemoserver.com/cms-panel/uploads/users/14663229778.jpg
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.752885 : 2.752373]: Mime type of image is image/jpeg
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.752975 : 0.000083]: Not adjusting memory size because the current setting is 32M and our size of 30M is smaller.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.757005 : 2.756421]: Mime type of image is image/jpeg
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.757059 : 0.000050]: Not adjusting memory size because the current setting is 32M and our size of 30M is smaller.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.759084 : 0.002026]: Rewriting image with security header.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.759201 : 0.000115]: Locking and replacing cache file.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.759277 : 0.000075]: Done image replace with security header. Cleaning up and running cleanCache()
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.759302 : 0.000024]: Image processed succesfully. Serving from cache
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.759311 : 0.000008]: Serving cache/timthumb_ext_4ede3cbdd0d6851dea998c55d1a872ee
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.755349 : 0.002376]: Rewriting image with security header.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.759377 : 0.000066]: Browser caching is enabled
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.759424 : 0.000046]: Deleting temp file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbQtW8UC
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.755465 : 0.000113]: Locking and replacing cache file.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.755543 : 0.000077]: Done image replace with security header. Cleaning up and running cleanCache()
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.755569 : 0.000024]: Image processed succesfully. Serving from cache
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.755578 : 0.000008]: Serving cache/timthumb_ext_339b6884927edcdcb1a43f7992385692
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.755637 : 0.000059]: Browser caching is enabled
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.637475 : 2.637117]: Mime type of image is image/jpeg
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.637544 : 0.000066]: Not adjusting memory size because the current setting is 32M and our size of 30M is smaller.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.639965 : 0.002422]: Rewriting image with security header.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [1.641489 : 1.641137]: Mime type of image is image/jpeg
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.640140 : 0.000173]: Locking and replacing cache file.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [1.641543 : 0.000050]: Not adjusting memory size because the current setting is 32M and our size of 30M is smaller.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.640216 : 0.000074]: Done image replace with security header. Cleaning up and running cleanCache()
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.640241 : 0.000023]: Image processed succesfully. Serving from cache
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.640250 : 0.000009]: Serving cache/timthumb_ext_5e1fd8741306867408cca514ed06474b
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.640330 : 0.000080]: Browser caching is enabled
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.640376 : 0.000045]: Deleting temp file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbK4HzwO
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [1.643794 : 0.002253]: Rewriting image with security header.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [1.643910 : 0.000113]: Locking and replacing cache file.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [1.643984 : 0.000072]: Done image replace with security header. Cleaning up and running cleanCache()
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [1.644009 : 0.000023]: Image processed succesfully. Serving from cache
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [1.644018 : 0.000008]: Serving cache/timthumb_ext_c105e84a1a628ece81edf99c07a2cb0a
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [1.644080 : 0.000063]: Browser caching is enabled
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [1.644126 : 0.000046]: Deleting temp file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbGrnUoS
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.761325 : 0.005690]: Deleting temp file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumb7duCOD
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.766294 : 2.765821]: Mime type of image is image/jpeg
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.766369 : 0.000069]: Not adjusting memory size because the current setting is 32M and our size of 30M is smaller.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.000050 : 0.000000]: Starting new request from 192.168.1.1 to /timthumb/timthumb.php?src=http%3A%2F%2Fstudymetro.sid.mwdemoserver.com%2Fuploads%2Fsite%2F14685844811162506392-0-siddharth21-avatar.png&zc=1&a=t&w=52&h=52?time=1468650156/
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.000101 : 0.000039]: Doc root is: /home/sidmwdemoserver/public_html/studymetro
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.000120 : 0.000018]: Salt is: 1468584155-4600209
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.000139 : 0.000019]: cleanCache() called
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.000153 : 0.000013]: Cache was cleaned less than 864000 seconds ago so no cleaning needed.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.000201 : 0.000049]: Is a request for an internal file: /uploads/site/14685844811162506392-0-siddharth21-avatar.png
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.000221 : 0.000019]: Found file as /home/sidmwdemoserver/public_html/studymetro/uploads/site/14685844811162506392-0-siddharth21-avatar.png
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.000254 : 0.000033]: Local image path is /home/sidmwdemoserver/public_html/studymetro/uploads/site/14685844811162506392-0-siddharth21-avatar.png
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.000268 : 0.000013]: Cache file is: cache/timthumb_int_6e64fd9734276ca2e1bd94cbb16ced31
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.000280 : 0.000012]: Trying server cache
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.000293 : 0.000012]: Got request for internal image. Starting serveInternalImage()
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.000300 : 0.000007]: Local image path is /home/sidmwdemoserver/public_html/studymetro/uploads/site/14685844811162506392-0-siddharth21-avatar.png
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.000307 : 0.000007]: Calling processImageAndWriteToCache() for local image.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.000337 : 0.000031]: Mime type of image is image/png
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.000371 : 0.000034]: Not adjusting memory size because the current setting is 32M and our size of 30M is smaller.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.004501 : 0.004131]: Rewriting image with security header.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.004657 : 0.000155]: Locking and replacing cache file.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.004730 : 0.000072]: Done image replace with security header. Cleaning up and running cleanCache()
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.004753 : 0.000022]: Serving cache/timthumb_int_6e64fd9734276ca2e1bd94cbb16ced31
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [0.004813 : 0.000060]: Browser caching is enabled
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.778486 : 0.012122]: Rewriting image with security header.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.778656 : 0.000164]: Locking and replacing cache file.
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.778729 : 0.000072]: Done image replace with security header. Cleaning up and running cleanCache()
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.778829 : 0.000103]: Image processed succesfully. Serving from cache
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.778844 : 0.000010]: Serving cache/timthumb_ext_fd2b562da34341597cc1c42d0fc5df1d
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.778909 : 0.000064]: Browser caching is enabled
+[16-Jul-2016 06:22:39 UTC] TimThumb Debug line 1143 [2.778963 : 0.000054]: Deleting temp file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbhdGnBD
+[16-Jul-2016 06:22:43 UTC] TimThumb Debug line 1143 [7.578259 : 7.577766]: Remote file has invalid mime type: 
+[16-Jul-2016 06:22:43 UTC] TimThumb Debug line 1143 [7.578346 : 0.000081]: Adding error message: The remote file is not a valid image. Mimetype = ''/home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbBdDU4C
+[16-Jul-2016 06:22:43 UTC] TimThumb Debug line 1143 [7.578409 : 0.000062]: Deleting temp file /home/sidmwdemoserver/public_html/studymetro/timthumb/cache/timthumbBdDU4C
