@@ -279,6 +279,8 @@
   <script src="<?php echo base_url(); ?>assets/js/plugin.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/jquery.bootstrap.wizard.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/sweetalert2.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/featherlight.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/featherlight.gallery.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
   <script type="text/javascript">
     jQuery(document).ready(function ( $ ) {
@@ -298,6 +300,20 @@
           } 
         }
       );
+      $('.gallery').featherlightGallery({
+          gallery: {
+            fadeIn: 300,
+            fadeOut: 300
+          },
+          openSpeed:    300,
+          closeSpeed:   300
+      });
+      /*$.featherlight({
+        iframe: 'editor.html',
+        iframeMaxWidth: '80%',
+        iframeWidth: 500,
+        iframeHeight: 300
+      });*/
     });
   </script>
 <script type="text/javascript">

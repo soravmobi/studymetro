@@ -181,5 +181,21 @@ function countries()
 	return $list;
 }
 
+function getCountryFlag($country)
+{
+	$list = array(
+				'Australia'   => 'aus_flag.png',
+				'Canada'      => 'canada_flag.png',
+				'China'       => 'china.gif',
+				'France'      => 'Flag_of_France.png',
+				'Ireland'     => 'Ireland_flag.png',
+				'Medical'     => 'university_top_img.png',
+				'New Zealand' => 'New_zealand_flag.png',
+				'USA'         => 'usa_flag.png',
+				'UK'          => 'uk_flag_thumb.png'
+		);
+	return $list[$country];
+}
+
 /* End of file admin_helper.php */
 /* Location: ./system/application/helpers/admin_helper.php */

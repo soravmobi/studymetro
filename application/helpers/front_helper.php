@@ -153,7 +153,7 @@ if(!function_exists('getPhotosGallery')) {
 		$html = '';
 		$html .= '<section class="gallery_wrap"><div class="container"><div class="common_head footer_head"><h2>Photo Gallery</h2><div class="head_border"><span><i class="fa fa-ioxhost" aria-hidden="true"></i></span></div></div><div class="gallery_content clearfix"><div id="my-gallery-container" class="">';
 		foreach(getphotogallery() as $p) {
-			$html .= '<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding"><div class="item"><a href="javascript:void(0);"> <img src="'.$p['name'].'"></a></div></div>';
+			$html .= '<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 padding"><div class="item"><a href="'.$p['name'].'" class="gallery"> <img src="'.$p['name'].'"></a></div></div>';
 		}
 		$html .= '</div></div></div></section>';
 		return $html;
@@ -190,7 +190,7 @@ if(!function_exists('getVideoGallerySection')) {
 		$html = '';
 		$html .= '<section class="home_video_sec"><div class="container"><div id="home_video">';
 		foreach(getvideogallery() as $v) { 
-			$html .= '<div class="item"><div class="video_box"><iframe width="100%" height="200" frameborder="0" allowfullscreen="" src="'.$v['name'].'"></iframe></div></div>';
+			$html .= '<div class="item"><div class="video_box"><iframe width="100%" height="200" frameborder="0" allowfullscreen="" id="video'.$v['id'].'" src="'.$v['name'].'"></iframe><div class="more_video_box"><a class="more_photo more_video" href="javascript:void(0);" data-featherlight="#video'.$v['id'].'">Watch Now </a></div></div></div>';
 		}
 		$html .= '</div></div></section>';
 		return $html;

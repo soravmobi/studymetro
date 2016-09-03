@@ -116,6 +116,7 @@ $route['user/profile'] = 'front/user/profile';
 
 $route['(:any)'] = 'front/home/pages/$1';
 $route['faqs/(:any)'] = 'front/home/faqs/$1';
+$route['university/details/(:any)'] = 'front/university/details/$1';
 
 /*
 | -------------------------------------------------------------------------

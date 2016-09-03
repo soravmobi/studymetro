@@ -13,6 +13,8 @@
       <link href="<?php echo base_url(); ?>assets/css/sweetalert2.min.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>assets/css/plugin.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet">
+      <link href="<?php echo base_url(); ?>assets/css/featherlight.css" rel="stylesheet">
+      <link href="<?php echo base_url(); ?>assets/css/featherlight.gallery.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>assets/css/custom.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>assets/css/responsive.css" rel="stylesheet">
       <script src="<?php echo base_url(); ?>assets/js/modernizr-custom.js"></script>

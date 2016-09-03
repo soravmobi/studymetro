@@ -31,10 +31,22 @@ class Home extends CI_Controller {
             $data['meta_keywords'] = $data['details']['meta_keywords'];
             $data['meta_description'] = $data['details']['meta_description'];
             $page_name = strtolower(str_replace(' ', '-', getPageName($data['details']['page_no'])));
+            if($page_name == 'university'){
+                $data['universities'] = $this->getUniversities((isset($_GET['country']) && !empty($_GET['country'])) ? $_GET['country'] : 'Canada');
+            }
             load_front_view('pages/'.$page_name, $data);
         }else{
             redirect("/");
         }
+    }
+
+    public function getUniversities($country = '')
+    {
+        if(empty($country)){
+            $country = 'Canada';
+        }
+        $universities = $this->common_model->getAllRecordsOrderById(UNIVERSITIES,'name','ASC',array('country' => $country));
+        return $universities;
     }
 
     public function faqs($country){

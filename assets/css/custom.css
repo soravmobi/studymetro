@@ -1001,6 +1001,7 @@ border-bottom: 1px solid #004c9c; right: 0px; content: ""; width: 80%;
   box-shadow: 0 0 2px #d3d4d6;
   margin-bottom: 15px;
   text-align: center;
+  min-height: 460px;
 }
 .head_university .form-group {
   display: inline-block;
@@ -1011,12 +1012,14 @@ border-bottom: 1px solid #004c9c; right: 0px; content: ""; width: 80%;
 }
 .img_ub {
   padding: 48px 20px;
-  background-image: url(../images/university_top_img.png);
+  /*background-image: url(../images/university_top_img.png);*/
   background-repeat: no-repeat;
   background-position: 5px 5px;
 }
 .img_ub img {
   display: inline-block;
+  max-height: 150px;
+  min-height: 150px;
 }
 .head_ub {
   border-bottom: 1px solid #d0d1d3;
@@ -1025,6 +1028,7 @@ border-bottom: 1px solid #004c9c; right: 0px; content: ""; width: 80%;
   font-size: 18px;
   padding: 5px;
   font-family: 'SourceSansProSemibold';
+  min-height: 65px;
 }
 .description_ub > span {
   color: #a8a9ab;
@@ -1035,7 +1039,8 @@ border-bottom: 1px solid #004c9c; right: 0px; content: ""; width: 80%;
 }
 .description_ub {
   color: #383838;
-  padding: 10px 31px;
+  padding: 10px 25px;
+  word-wrap: break-word;
 }
 .head_university {
   border-bottom: 1px solid #d4d9dc;
@@ -2713,5 +2718,26 @@ span.error_form {color: #ff0000;font-family: sourcesansprobold;}
   margin: 0 auto;
   max-width: 700px;
 }
-
+.university_wrap .dropdown {
+    margin-top: 10px;
+}
+.country_flag {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    float: left;
+    padding: 5px;
+}
+select option {
+    color: #000;
+}
+.google-plus {
+    background-color: #E53935 !important;
+}
+.youtube {
+    background-color: #ED1F23 !important;
+}
+.instagram {
+    background-color: #3897F0 !important;
+}
 /*css for profile page end*/
