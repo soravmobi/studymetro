@@ -189,6 +189,9 @@ define('TESTIMONIALS', 'testimonials');
 define('SERVICES', 'services');
 define('EVENTS', 'events');
 define('FAQS', 'faqs');
+define('COUNTRY', 'country');
+define('DOCUMENTS', 'documents');
+define('ENQUIRIES', 'enquiries');
 
 /* Rest Api constants */
 define('SUCCESS', '100');
@@ -202,3 +205,5 @@ define('SERVER_MSG', 'SERVER_ERROR');
 define('FROM_EMAIL', 'studymetro@studymetro.com');
 define('SITE_NAME', 'Study Metro');
 define('DEFAULT_IMG', 'default-148.png');
+define('CRM_ACCESS_KEY', 'u$r5f9d994f80d8e0629cafc38bb0e0446b');
+define('CRM_SECRET_KEY', 'abcc73f9e7a9c54d754dc87bb9e124cfe45c0bcf');

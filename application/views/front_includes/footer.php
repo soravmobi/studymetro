@@ -273,7 +273,7 @@
 
   </main>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
+  
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/plugin.js"></script>
@@ -281,6 +281,7 @@
   <script src="<?php echo base_url(); ?>assets/js/sweetalert2.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/featherlight.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/featherlight.gallery.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
   <script type="text/javascript">
     jQuery(document).ready(function ( $ ) {
@@ -393,7 +394,7 @@ $("body").on('click','.login-btn',function() {
           if(resp.type == "success"){
             showToaster('success',resp.msg);
             setTimeout(function(){
-                window.location.href= "<?php echo base_url(); ?>home";
+                window.location.href= "<?php echo base_url(); ?>user/dashboard";
             },1000);
            }
            else{

@@ -209,6 +209,21 @@
           </li>
         </ul>
       </li>
+       <!-- Enquiries -->
+      <li class="treeview <?php tree_active_class('enquiries', array('addNew', 'edit','viewAll')); ?>">
+        <a href="javascript:void(0);" title="Enquiries">
+          <i class="fa fa-phone"></i> 
+          <span>Enquiries</span> 
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<?php add_active_class('faqs', 'viewAll'); ?>">
+            <a href="<?php cms_url('admin/enquiries/view-all'); ?>" title="View All Enquiries">
+              <i class="fa fa-eye"></i> View All Enquiries
+            </a>
+          </li>
+        </ul>
+      </li>
       <!-- Menu -->
       <!-- <li class="treeview <?php tree_active_class('menu', array('addNew', 'edit', 'viewAll', 'manageLocation')); ?>">
         <a href="javascript:void(0);" title="Menu">

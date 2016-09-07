@@ -52,7 +52,7 @@
 		                <?php if($page['media'] == 0){ ?>
 	                            <img src="<?php echo base_url(); ?>uploads/pages/<?php echo $page['media_file']; ?>" class="viewAdminLogo img-responsive thumbnail">
 	                    <?php }else{ ?>
-	                            <video controls autoplay loop id="bg_video" style="width:330px">
+	                            <video controls autoplay muted loop id="bg_video" style="width:330px">
 						          <source src="<?php echo base_url(); ?>uploads/pages/<?php echo $page['media_file']; ?>" type="video/mp4">
 						          <source src="<?php echo base_url(); ?>uploads/pages/<?php echo str_replace("mp4", "ogg", $page['media_file']); ?>" type="video/ogg"> Your browser does not support HTML5 video.
 						        </video>

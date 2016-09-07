@@ -25,6 +25,7 @@ class Front extends CI_Controller {
 		{
 			redirect('/home');
 		}
+		$data['details'] = $this->common_model->getSingleRecordById(STATIC_PAGE,array('page_no' => '1'));
 		$this->load->view(FRONT_INCLUDES.'header', $data);
 		load_admin_view('front', $data, false, false, false);
 		$this->load->view(FRONT_INCLUDES.'footer', $data);
@@ -57,6 +58,7 @@ class Front extends CI_Controller {
 			if($this->form_validation->run()==TRUE){
 				unset($data['confm_pswd']);
 				$data['password'] = md5($data['password']);
+				$data['username'] = $data['first_name'].$data['last_name'];
 				$data['user_type']  = $data['user_type'];
 				$data['is_blocked'] = 0;
 				$data['is_email_verified'] = 1;

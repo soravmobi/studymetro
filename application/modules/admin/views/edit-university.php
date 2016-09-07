@@ -45,14 +45,14 @@
 		            	<div class="col-md-6">
 			                <div class="form-group">
 			                  <label for="logo">Logo</label>
-			                  <input type="file" name="logo" onchange="readURL(this,'png','')" class="form-control" id="logo" value="<?php echo $details['logo']; ?>" />
+			                  <input type="file" name="logo" onchange="readURL(this,'png|jpg|tif|gif','')" class="form-control" id="logo" value="<?php echo $details['logo']; ?>" />
 			                  <img src="<?php echo $details['logo']; ?>" class="viewAdminLogo img-responsive thumbnail">
 			                </div>
 			            </div>
 			            <div class="col-md-6">
 			                <div class="form-group">
 			                  <label for="image">Backgroud Image</label>
-			                  <input type="file" name="image" onchange="readURL(this,'jpg|jpeg|gif|png','')" class="form-control" id="image" value="<?php echo $details['image']; ?>" />
+			                  <input type="file" name="image" onchange="readURL(this,'png|jpg|tif|gif','')" class="form-control" id="image" value="<?php echo $details['image']; ?>" />
 			                  <img src="<?php echo $details['image']; ?>" class="viewAdminLogo img-responsive thumbnail">
 			                </div>
 			            </div>
@@ -158,13 +158,13 @@
 		            	<div class="col-md-6">
 			                <div class="form-group">
 			                  <label for="tution_fee">Tution Fees</label>
-			                  <input type="number" min="0" name="tution_fee" class="form-control" id="tution_fee" placeholder="Enter Tution Fees" value="<?php echo $details['tution_fee']; ?>"/>
+			                  <input type="text" name="tution_fee" class="form-control" id="tution_fee" placeholder="Enter Tution Fees" value="<?php echo $details['tution_fee']; ?>"/>
 			                </div>
 			            </div>
 			            <div class="col-md-6">
 			                <div class="form-group">
 			                  <label for="application_fee">Application Fees</label>
-			                  <input type="number" min="0" name="application_fee" class="form-control" id="application_fee" placeholder="Enter Application Fees" value="<?php echo $details['application_fee']; ?>"/>
+			                  <input type="text" name="application_fee" class="form-control" id="application_fee" placeholder="Enter Application Fees" value="<?php echo $details['application_fee']; ?>"/>
 			                </div>
 			            </div>
 		            </div>

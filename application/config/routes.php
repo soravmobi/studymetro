@@ -108,11 +108,15 @@ $route['admin/faqs/add-new'] = 'admin/faqs/addNew';
 $route['admin/faqs/view-all'] = 'admin/faqs/viewAll';
 $route['admin/faqs/view-all/(:any)'] = 'admin/faqs/viewAll/$1';
 
+$route['admin/enquiries/view-all'] = 'admin/enquiries/viewAll';
+
 /* Front custom Routing */
 
 $route['home']         = 'front/Home';
 $route['universities'] = 'front/Home/universities';
 $route['user/profile'] = 'front/user/profile';
+$route['user/dashboard'] = 'front/user/dashboard';
+$route['student/upload_documents'] = 'front/student/upload_documents';
 
 $route['(:any)'] = 'front/home/pages/$1';
 $route['faqs/(:any)'] = 'front/home/faqs/$1';

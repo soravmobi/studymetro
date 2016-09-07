@@ -5,7 +5,7 @@ class User extends CI_Controller {
 
 	public function __construct() {
         parent::__construct();
-        checkUserSession();
+        checkUserSession(array('2','3','4','5','6'));
         $this->uid = $this->session->userdata("user_id");
         $this->module = $this->router->fetch_module();
         $this->class = $this->router->fetch_class();
@@ -78,7 +78,8 @@ class User extends CI_Controller {
     public function profile() {
         $data = array();
         $data['meta_title'] = 'My Profile';
-        $data['detail'] = $this->common_model->getAllRecordsById('users',array('id' => $this->uid));
+        $data['parent'] = 'profile';
+        $data['detail'] = $this->common_model->getAllRecordsById(USER,array('id' => $this->uid));
         load_front_view('profile', $data);
     }
 
@@ -109,6 +110,15 @@ class User extends CI_Controller {
         $this->common_model->updateRecords('users',$data,array('id' => $this->uid));
         $this->session->set_flashdata('success','Profile successfully updated !');
         redirect('user/profile');
+    }
+
+    public function dashboard()
+    {
+        $data = array();
+        $data['meta_title'] = 'dashboard';
+        $data['parent'] = 'dashboard';
+        $data['detail'] = $this->common_model->getAllRecordsById('users',array('id' => $this->uid));
+        load_front_view('user/dashboard', $data);
     }
 
 }

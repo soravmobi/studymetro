@@ -1,10 +1,10 @@
 <?php
 
 if(!function_exists('checkUserSession')) {
-	function checkUserSession()
+	function checkUserSession($types)
 	{
 		$ci =&get_instance();
-	    if ($ci->session->userdata('user_id')==TRUE)
+	    if ($ci->session->userdata('user_id')==TRUE && in_array($ci->session->userdata('user_type'), $types))
 	    {
 	        $ci->session->set_userdata('user_activity',time());
 	    }
@@ -47,6 +47,15 @@ if(!function_exists('getmenus')) {
 	}
 }
 
+if(!function_exists('getUserDetails')) {
+	function getUserDetails()
+	{
+		$ci =&get_instance();
+	    $results = $ci->common_model->getAllRecordsById(USER,array('id' => $ci->session->userdata('user_id')));
+	    return $results;
+	}
+}
+
 if(!function_exists('getphotogallery')) {
 	function getphotogallery()
 	{
@@ -80,6 +89,39 @@ if(!function_exists('getevents')) {
 		$ci =&get_instance();
 	    $results = $ci->common_model->getAllRecordsOrderById(EVENTS,'id','DESC',array('status' => 0));
 	    return $results;
+	}
+}
+
+if(!function_exists('getCountries')) {
+	function getCountries()
+	{
+		$ci =&get_instance();
+	    $results = $ci->common_model->getAllRecordsOrderById(COUNTRY,'nicename','ASC');
+	    return $results;
+	}
+}
+
+if(!function_exists('getEducationLevels')) {
+	function getEducationLevels()
+	{
+		$education = array('Pre-High School','Secondary (in progress)','Secondary (completed)','Associates or Equivalent (in progress)','Associates or Equivalent (completed)','Bachelors or Equivalent (in progress)','Bachelors or Equivalent (completed)','Masters or Equivalent (in progress)','Masters or Equivalent (completed)','PhD (in progress)','PhD (completed)');
+	    return $education;
+	}
+}
+
+if(!function_exists('getProfession')) {
+	function getProfession()
+	{
+		$profession = array('Administration/Clerical','Agronomist','Computers/Technology','Customer Service','Dentist','Design','Education','Engineering/Architecture','Executive','Finance/Accounting/Banking','Fine Arts','Human Resources','Information Technology','Law and Law Enforcement','Manufacturing','Marketing','Medical/Pharmaceutical','Other','Psychologist','Public work','Retail','Sciences','Security','Social Work','Student','Transportation','Unemployed','Veterinarian');
+	    return $profession;
+	}
+}
+
+if(!function_exists('documents')) {
+	function documents()
+	{
+		$documents = array('Passport/ID','Transcript','Certificate/Diploma','Resume/CV','Financial Support','GMAT/GRE/SAT Scores','Other');
+	    return $documents;
 	}
 }
 
@@ -120,15 +162,18 @@ if(!function_exists('getSideBarEvents')) {
 	function getSideBarEvents()
 	{
 		$html = '';
-		$html .= '<div class="left_video_bar"><div class="head_left_video "> Event <a href="javascript:void(0);" class="pull-right"><i class="fa fa-flag" aria-hidden="true"></i></a> </div>';
+		$html .= '
+		<div class="left_video_bar"><div class="head_left_video "> Event <a href="javascript:void(0);" class="pull-right"><i class="fa fa-flag" aria-hidden="true">
+		</i></a> </div> <div id="events_slider" class="owl-carousel">';
+		
 		foreach(getevents() as $e)
 		{
 			$dateArr = explode("-", $e['date']);
-			$html .= '<div class="head_left_video_content event" style="background-image:url(assets/images/event_bg.jpg);">';
+			$html .= '<div class="item"><div class="head_left_video_content event" style="background-image:url(assets/images/event_bg.jpg);">';
 			$html .= '<div class="event_left"><div class="date_box"><div class="date_box_top"> '.$dateArr[2].' </div><div class="date_box_bottom"> '.$dateArr[1].' <span>'.$dateArr[0].'</span> </div></div><span>Posted in: '.$e['posted_in'].'</span></div>';
-			$html .= '<div class="event_right"><div class="head_event_right"> Upcoming Event </div><p title="'.$e['content'].'">'.substr($e['content'],0,80).'</p></div></div>';
+			$html .= '<div class="event_right"><div class="head_event_right"> Upcoming Event </div><p title="'.$e['content'].'">'.substr($e['content'],0,80).'</p></div></div></div>';
 		}
-		$html .= '</div>';
+		$html .= '</div></div>';
 		return $html;
 	}
 }
@@ -166,7 +211,7 @@ if(!function_exists('getScholarshipForm')) {
 		$html = '';
 		$html .= '<section class="apply_sec"><div class="apply_bg" style="background-image:url('.base_url().'assets/images/apply_bg.jpg);"><div class="container"><div class="row"><div class="col-md-12 col-sm-12"><div class="apply_form"><div class="row"><div class="col-md-6 col-sm-6"><div class="our_program"><div class="head_program">Top Programs in <span>Abroad!</span></div><div class="content_program"><ul>';
 		$html .= '<li><a href="javascript:void(0);"><i class="fa fa-check"> </i> Work and Study program in USA</a></li><li><a href="javascript:void(0);"><i class="fa fa-check"> </i>Co-Op Program in Canada with Paid Internship</a></li><li><a href="javascript:void(0);"><i class="fa fa-check"> </i>Free Education in Germany </a></li><li><a href="javascript:void(0);"><i class="fa fa-check"> </i> Paid Internship in France</a></li><li><a href="javascript:void(0);"><i class="fa fa-check"> </i> SVP Visa process in Australia</a></li><li><a href="javascript:void(0);"><i class="fa fa-check"> </i> Study in New Zealand With Paid Internship</a></li><li><a href="javascript:void(0);"><i class="fa fa-check"> </i> Study Abroad Program</a></li><li><a href="javascript:void(0);"><i class="fa fa-check"> </i>Study in Ireland with Internship</a></li><li><a href="javascript:void(0);"><i class="fa fa-check"> </i>Study in Europe at Indian Cost</a></li><li><a href="javascript:void(0);"><i class="fa fa-check"> </i> Unique Programs Available</a></li><li><a href="javascript:void(0);"><i class="fa fa-check"> </i> Study in UK- Worlds Best Education System</a></li><li><a href="javascript:void(0);"><i class="fa fa-check"> </i> Study-Work-Settle in Ireland</a></li><li><a href="javascript:void(0);"><i class="fa fa-check"> </i> Study in Malaysia at Indian Cost</a></li><li><a href="javascript:void(0);"><i class="fa fa-check"> </i> Study and Work Singapore </a></li>';
-		$html .= '</ul></div></div></div><div class="col-md-6 col-sm-6"> <form class="form_apply"> <div class="head_program "> <span>Apply for Scholarship Today</span> </div><div class="form-apply_content"> <div class="form-group"> <input type="text" class="form-control" id="FirstName" placeholder="First Name"> </div><div class="form-group"> <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"> </div><div class="form-group"> <input type="text" class="form-control" id="PhoneNumber" placeholder="Phone Number"> </div><div class="form-group"> <input type="text" class="form-control" id="InterestedCountry" placeholder="Interested Country"> </div><div class="form-group"> <button type="submit" class="apply_btn">Apply Now</button> </div></div></form> </div></div></div></div></div></div></div><div class="apply_row"><a href="javascript:void(0);"> Apply today and Talk to Advisor at 8088-867-867</a></div></section>';
+		$html .= '</ul></div></div></div><div class="col-md-6 col-sm-6"><form class="form_apply" method="post" action="'.base_url().'front/home/doEnquiry"> <div class="head_program "> <span>Apply for Scholarship Today</span> </div><div class="form-apply_content"> <div class="form-group"> <input type="text" class="form-control" id="Name" placeholder="Name" name="name" required> </div><div class="form-group"> <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email" required> </div><div class="form-group"> <input type="text" class="form-control" id="PhoneNumber" placeholder="Phone Number" name="phone" required> </div><div class="form-group"> <input type="text" class="form-control" id="City" placeholder="City" name="city" required> </div><div class="form-group"> <input type="text" class="form-control" id="InterestedCountry" placeholder="Interested Country" name="country" required> </div><div class="form-group"> <button type="submit" class="apply_btn">Apply Now</button> </div></div></form></div></div></div></div></div></div></div><div class="apply_row"><a href="javascript:void(0);"> Apply today and Talk to Advisor at 8088-867-867</a></div></section>';
 		return $html;
 	}
 }
@@ -179,7 +224,7 @@ if(!function_exists('getTestimonails')) {
 		foreach(gettestimonials() as $t) {
 			$html .= '<div class="item"><div class="item_img"><img src="'.$t['image'].'" alt="'.$t['given_by'].'"></div><div class="item_data"><p>'.$t['content'].'</p><span class="meta_slider">'.$t['given_by'].'</span></div></div>';
 		}
-		$html .= '</div></div></div></div></div></div><div class="newsletter"> <div class="container"> <form> <label>Newsletter Signup</label> <div class="form-group"> <input type="email" placeholder="email" class="form-control"> <i class="fa fa-envelope"></i> </div><div class="form-group"> <input type="text" placeholder="mobile" class="form-control"> <i class="fa fa-mobile" aria-hidden="true"></i> </div><div class="form-group"> <button type="submit" class="submit_btn">Submit</button> </div></form> </div></div></section>';
+		$html .= '</div></div></div></div></div></div><div class="newsletter"> <div class="container"> <form method="post" action="'.base_url().'front/home/doEnquiry"> <label>Newsletter Signup</label> <div class="form-group"> <input type="email" placeholder="email" class="form-control" required name="email"> <i class="fa fa-envelope"></i> </div><div class="form-group"> <input type="text" placeholder="mobile" class="form-control" required name="phone"> <i class="fa fa-mobile" aria-hidden="true"></i> </div><div class="form-group"> <button type="submit" class="submit_btn">Submit</button> </div></form> </div></div></section>';
 		return $html;
 	}
 }

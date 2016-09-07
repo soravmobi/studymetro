@@ -2,7 +2,7 @@
 
 <section class="banner" <?php if($details['media'] == 0) echo"style='background-image:url(uploads/pages/".$details['media_file'].");'" ?>>
     <?php if($details['media'] == 1){ ?>
-        <video controls autoplay loop id="bg_video">
+        <video controls autoplay loop id="bg_video" muted>
           <source src="<?php echo base_url(); ?>uploads/pages/<?php echo $details['media_file']; ?>" type="video/mp4">
           <source src="<?php echo base_url(); ?>uploads/pages/<?php echo str_replace("mp4", "ogg", $details['media_file']); ?>" type="video/ogg"> Your browser does not support HTML5 video.
         </video>
@@ -14,15 +14,15 @@
 
 <div class="col-md-12 col-sm-12">
 <div class="university_wrap">
-    <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><?php echo (isset($_GET['country'])) ? str_replace('%20', ' ', $_GET['country']) : 'Canada'; ?>
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-            <?php foreach(countries() as $c) { ?>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo base_url(); ?>university?country=<?php echo $c; ?>" title="<?php echo $c; ?>"><?php echo $c; ?></a></li>
-                <li role="presentation" class="divider"></li>
-            <?php } ?>
-        </ul>
+    <br/>
+    <div class="head_university">
+        <label>Filter:</label>
+        <div class="form-group">
+        <?php foreach(countries() as $c) { ?>
+            <input id="<?php echo $c; ?>" name="country" value="<?php echo $c; ?>" class="BSswitch select_country" type="radio" data-off-text="False" data-on-text="True" <?php if(isset($_GET['country']) && $_GET['country'] == $c) { echo "checked"; } else if(!isset($_GET['country']) && $c == 'USA') { echo "checked"; } ?>>
+            <label for="<?php echo $c; ?>"><?php echo $c; ?></label>
+        <?php } ?>
+        </div>
     </div>
     <div class="university_wrap_content">
         <div class="row">
@@ -30,10 +30,10 @@
             <div class="col-md-3 col-sm-3">
                 <div class="university_box">
                     <div class="country_flag">
-                        <img src="<?php echo base_url(); ?>assets/images/<?php echo getCountryFlag($u['country']); ?>" class="img-responsive">
+                        <a href="<?php echo base_url(); ?>university/details/<?php echo encode($u['id']); ?>"><img src="<?php echo base_url(); ?>assets/images/<?php echo getCountryFlag($u['country']); ?>" class="img-responsive"></a>
                     </div>
                     <div class="img_ub">
-                        <img src="<?php echo (!empty($u['logo'])) ? $u['logo'] : base_url().'assets/images/not-available.jpg'; ?>" class="img-responsive">
+                        <a href="<?php echo base_url(); ?>university/details/<?php echo encode($u['id']); ?>"><img src="<?php echo (!empty($u['logo'])) ? $u['logo'] : base_url().'assets/images/not-available.jpg'; ?>" class="img-responsive"></a>
                     </div>
                     <div class="head_ub"><a href="<?php echo base_url(); ?>university/details/<?php echo encode($u['id']); ?>"><?php echo $u['name']; ?></a></div>
                     <div class="description_ub">
@@ -86,4 +86,12 @@
 
 </div>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.select_country').on('switchChange.bootstrapSwitch', function (event, state) {
+            var country = $(this).val();
+            window.location.href = "<?php echo base_url(); ?>university?country="+country;
+        })
+    });
+</script>
 
