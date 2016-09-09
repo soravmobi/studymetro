@@ -31,7 +31,7 @@ class University extends CI_Controller {
 		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'add_new_university');
 		$data['session_data'] = admin_session_data();
 		$data['user_info'] = get_user($data['session_data']['user_id']);
-		load_admin_view('add-new-university', $data);
+		load_admin_view('universities/add-new-university', $data);
     }
 
     /**
@@ -46,7 +46,7 @@ class University extends CI_Controller {
 		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'import_university');
 		$data['session_data'] = admin_session_data();
 		$data['user_info'] = get_user($data['session_data']['user_id']);
-		load_admin_view('import-universities', $data);
+		load_admin_view('universities/import-universities', $data);
     }
 
     public function importData(){
@@ -327,7 +327,7 @@ class University extends CI_Controller {
 	    }
 
 		/* Load admin view */
-		load_admin_view('view-all-universities', $data);
+		load_admin_view('universities/view-all-universities', $data);
     }
 
     /**
@@ -363,7 +363,7 @@ class University extends CI_Controller {
 			$data['session_data'] = admin_session_data();
 			$data['user_info'] = get_user($data['session_data']['user_id']);
 			$data['details'] = $this->common_model->getSingleRecordById(UNIVERSITIES, array('id' => $uId));
-			load_admin_view('edit-university', $data);
+			load_admin_view('universities/edit-university', $data);
 		} else {
 			$this->session->set_flashdata('invalid_item', INVALID_ITEM);
             redirect($this->url.'/view-all');

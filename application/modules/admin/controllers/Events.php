@@ -31,7 +31,7 @@ class Events extends CI_Controller {
 		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'add_new_testimonial');
 		$data['session_data'] = admin_session_data();
 		$data['user_info'] = get_user($data['session_data']['user_id']);
-		load_admin_view('add-new-event', $data);
+		load_admin_view('events/add-new-event', $data);
     }
 
     public function addEvents()
@@ -74,7 +74,7 @@ class Events extends CI_Controller {
 	    }
 
 		/* Load admin view */
-		load_admin_view('view-all-events', $data);
+		load_admin_view('events/view-all-events', $data);
     }
 
     /**

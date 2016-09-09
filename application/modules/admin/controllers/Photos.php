@@ -31,7 +31,7 @@ class Photos extends CI_Controller {
 		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'add_new_university');
 		$data['session_data'] = admin_session_data();
 		$data['user_info'] = get_user($data['session_data']['user_id']);
-		load_admin_view('add-new-photo', $data);
+		load_admin_view('photos/add-new-photo', $data);
     }
 
     public function addphotos()
@@ -101,7 +101,7 @@ class Photos extends CI_Controller {
 	    }
 
 		/* Load admin view */
-		load_admin_view('view-all-photo', $data);
+		load_admin_view('photos/view-all-photo', $data);
     }
 
     /**

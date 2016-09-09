@@ -31,7 +31,7 @@ class Videos extends CI_Controller {
 		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'add_new_video');
 		$data['session_data'] = admin_session_data();
 		$data['user_info'] = get_user($data['session_data']['user_id']);
-		load_admin_view('add-new-video', $data);
+		load_admin_view('videos/add-new-video', $data);
     }
 
     public function addVideos()
@@ -79,7 +79,7 @@ class Videos extends CI_Controller {
 	    }
 
 		/* Load admin view */
-		load_admin_view('view-all-video', $data);
+		load_admin_view('videos/view-all-video', $data);
     }
 
     /**

@@ -12,62 +12,40 @@ class Student extends CI_Controller {
         $this->url = $this->module.'/'.$this->class;
     }
 
-    public function upload_documents() {
+    public function getquote()
+    {
         $data = array();
-        $data['meta_title'] = 'Upload Documents';
-        $data['parent']     = 'upload_documents';
-        $data['documents']  = $this->common_model->getAllRecordsOrderById(DOCUMENTS,'id','DESC',array('user_id' => $this->uid));
-        load_front_view('student/upload_documents', $data);
+        $data['meta_title'] = 'Get Quote';
+        $data['parent'] = 'quote';
+        load_front_view('student/getquote', $data);
     }
 
-    public function doUploadDocuments(){
+    public function submitQuote()
+    {
         $data = $this->input->post();
-        $this->form_validation->set_rules('document','Document','required');
-        if (empty($_FILES['file']['name']))
-        {
-            $this->form_validation->set_rules('file', 'Document File', 'required');
-        }
+        $this->form_validation->set_rules('quote','Quotation','trim|required');
         if($this->form_validation->run()==TRUE){
-        if(!empty($_FILES['file']['name'])){
-            $document = imgUpload('file','documents','png|jpg|tif|gif');
-            if(isset($document['error'])){
-                $this->session->set_flashdata('error', $document['error']);
-                $data['meta_title'] = 'Upload Documents';
-                $data['parent']     = 'upload_documents';
-                load_front_view('student/upload_documents', $data);
+        	$user = getUserDetails();
+        	$data['name']  = $user[0]['first_name']." ".$user[0]['last_name'];
+        	$data['email'] = $user[0]['email'];
+        	$data['phone'] = $user[0]['phone_number'];
+            $data['added_date'] = datetime();
+            $lid = $this->common_model->addRecords(QUOTATIONS,$data);
+            if(!empty($lid)){
+                $this->session->set_flashdata('success','Your message has been sent successfully');
+                redirect('student/getquote');
             }else{
-                $data['file'] = base_url().'uploads/documents/'.$document['upload_data']['file_name'];
-                $data['user_id'] = $this->uid;
-                $data['added_date'] = datetime();
-                $this->common_model->addRecords(DOCUMENTS, $data);
-                $this->session->set_flashdata('success', sprintf(ITEM_ADD_SUCCESS, 'Documents'));
-                redirect('student/upload_documents');
+                $this->session->set_flashdata('error', 'Failed please try again !!');
+                redirect('student/getquote');
             }
         }else{
-            $this->session->set_flashdata('error', 'Please select image file !!');
-            $data['meta_title'] = 'Upload Documents';
-            $data['parent']     = 'upload_documents';
-            load_front_view('student/upload_documents', $data);
-        }
-        }else{
-            $data['meta_title'] = 'Upload Documents';
-            $data['parent']     = 'upload_documents';
-            load_front_view('student/upload_documents', $data);
+            $data['meta_title'] = 'Get Quote';
+	        $data['parent']     = 'quote';
+	        load_front_view('student/getquote', $data);
         }
     }
 
-    public function deleteDocument($id) {
-        $id = decode($id);
-        if($id) {
-            $this->common_model->deleteRecords(DOCUMENTS, 'id', $id);
-            $this->session->set_flashdata('success', sprintf(ITEM_DELETE_SUCCESS, 'Document'));
-            redirect('student/upload_documents');
-        } else {
-            $this->session->set_flashdata('error', INVALID_ITEM);
-            redirect('student/upload_documents');
-        }
-    }
-
+    
 }
 
 ?>

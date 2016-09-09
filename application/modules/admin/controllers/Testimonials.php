@@ -31,7 +31,7 @@ class Testimonials extends CI_Controller {
 		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'add_new_testimonial');
 		$data['session_data'] = admin_session_data();
 		$data['user_info'] = get_user($data['session_data']['user_id']);
-		load_admin_view('add-new-testimonial', $data);
+		load_admin_view('testimonials/add-new-testimonial', $data);
     }
 
     public function addTestimonial()
@@ -90,7 +90,7 @@ class Testimonials extends CI_Controller {
 	    }
 
 		/* Load admin view */
-		load_admin_view('view-all-testimonial', $data);
+		load_admin_view('testimonials/view-all-testimonial', $data);
     }
 
     /**

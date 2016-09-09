@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Enquiries extends CI_Controller {
+class Feedbacks extends CI_Controller {
 
 	public function __construct() {
         parent::__construct();
@@ -11,7 +11,7 @@ class Enquiries extends CI_Controller {
     }
 
 	/**
-	* enquiries index method
+	* feedbacks index method
 	*/
 	public function index() {
     	is_logged_in($this->url.'/view-all');
@@ -19,15 +19,15 @@ class Enquiries extends CI_Controller {
     	exit();
     }
     /**
-	* View all enquiries
-	* @return Array of all enquiries
+	* View all feedbacks
+	* @return Array of all feedbacks
     */
     public function viewAll() {
     	is_logged_in($this->url.'/view-all');
 		$data = array();
 		$data['meta_title'] = 'View All';
-		$data['small_text'] = 'Enquiries';
-		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'view_all_enquiries');
+		$data['small_text'] = 'Feedbacks';
+		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'view_all_feedbacks');
 		$data['session_data'] = admin_session_data();
 		$data['user_info'] = get_user($data['session_data']['user_id']);
 
@@ -38,18 +38,18 @@ class Enquiries extends CI_Controller {
 	    }
 
 	    $data['offset'] = $offset;
-	    $data['enquiries'] = '';
+	    $data['feedbacks'] = '';
 	    $data['pagination'] = '';
-	    $data['enquiries'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(ENQUIRIES, (isset($_GET['s'])) ? array('name','email','phone') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'DESC', RESULT_PER_PAGE, $offset, '');
-	    if(count($data['enquiries']) > 0) {
+	    $data['feedbacks'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(FEEDBACKS, (isset($_GET['s'])) ? array('name','email','phone') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'DESC', RESULT_PER_PAGE, $offset, '');
+	    if(count($data['feedbacks']) > 0) {
 	    	/* Pagination records */
 	        $url = get_cms_url().$this->url.'/view-all';
-	        $total_records = $this->common_model->getTotalPaginateRecordsByOrderByLikeCondition(ENQUIRIES, (isset($_GET['s'])) ? array('name','email','phone') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR','');
+	        $total_records = $this->common_model->getTotalPaginateRecordsByOrderByLikeCondition(FEEDBACKS, (isset($_GET['s'])) ? array('name','email','phone') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR','');
 	        $data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right');
 	    }
 
 		/* Load admin view */
-		load_admin_view('enquiries/view-all-enquiries', $data);
+		load_admin_view('feedbacks/view-all-feedbacks', $data);
     }
 
 

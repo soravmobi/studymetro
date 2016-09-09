@@ -14,10 +14,10 @@
                     <div class="row">
                     <?php $this->load->view('sidebar'); ?>
                         <div class="col-md-9 col-sm-9">
-                      <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>front/student/doUploadDocuments" enctype="multipart/form-data">
+                      <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>front/user/doUploadDocuments" enctype="multipart/form-data">
                        <div class="profile_sec">
                          <div class="top_row">
-                             <h3>Additional Documents</h3>
+                             <h2>Additional Documents</h2>
                            
                           </div> 
                           <div class="profile_content">
@@ -50,7 +50,7 @@
                         <div class="profile_sec">
                         <?php if(!empty($documents)) { foreach($documents as $d) { ?>
                           <div class="box_doc">
-                            <a class="cross_btn" href="<?php echo base_url(); ?>front/student/deleteDocument/<?php echo encode($d['id']); ?>" onclick="return confirm('Are you sure ?');" title="Click Here To Delete Document"><i class="fa fa-close"></i></a>
+                            <a class="cross_btn" href="<?php echo base_url(); ?>front/user/deleteDocument/<?php echo encode($d['id']); ?>" onclick="return confirm('Are you sure ?');" title="Click Here To Delete Document"><i class="fa fa-close"></i></a>
                             <a href="<?php echo $d['file']; ?>" class="img_doc gallery"><img src="<?php echo $d['file']; ?>"></a>
                             <div class="doc_meta">
                               <p><?php echo date('F d, Y', strtotime($d['added_date'])); ?> <span><?php echo $d['document']; ?></span></p>

@@ -1,0 +1,9 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2016-09-09 16:12:07 --> Severity: Notice --> Undefined variable: detail /opt/lampp/htdocs/study_metro/application/modules/front/views/user/feedback.php 24
+ERROR - 2016-09-09 16:12:30 --> Severity: Parsing Error --> syntax error, unexpected '=', expecting ',' or ';' /opt/lampp/htdocs/study_metro/application/modules/front/views/sidebar.php 3
+ERROR - 2016-09-09 16:34:00 --> Severity: Parsing Error --> syntax error, unexpected '}', expecting ',' or ';' /opt/lampp/htdocs/study_metro/application/modules/front/views/user/feedback.php 30
+ERROR - 2016-09-09 16:34:07 --> Severity: Parsing Error --> syntax error, unexpected '}', expecting ',' or ';' /opt/lampp/htdocs/study_metro/application/modules/front/views/user/feedback.php 30
+ERROR - 2016-09-09 19:37:36 --> Query error: Column 'phone' cannot be null - Invalid query: INSERT INTO `quotations` (`quote`, `name`, `email`, `phone`, `added_date`) VALUES ('Get courses and package quote and advice from our experts!\r\nWelcome to the online advisor system at studymetro.com. Let our team of experienced advisors help you navigate the search process and all your options.\r\nOur advisors are not working on commission nor paid to recommend any specific programs. Our only goal is to find the best programs that fit your education/skills.\r\nWe will forward your request to our members who will get back to you shortly with the information you have requested.', 'sorav garg', 'soravgarg123@gmail.com', NULL, '2016-09-09 19:37:36')
+ERROR - 2016-09-09 21:16:47 --> Severity: Parsing Error --> syntax error, unexpected ')' /opt/lampp/htdocs/study_metro/application/modules/admin/controllers/Referrals.php 43
+ERROR - 2016-09-09 21:17:01 --> Severity: Parsing Error --> syntax error, unexpected end of file /opt/lampp/htdocs/study_metro/application/modules/admin/views/referrals/set-earning.php 65

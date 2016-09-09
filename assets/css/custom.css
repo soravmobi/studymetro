@@ -2654,7 +2654,7 @@ span.error_form {color: #ff0000;font-family: sourcesansprobold;}
   padding: 20px;
 }
 .top_row {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 .file_btn {
   border: 1px solid #dddddd;
@@ -3066,4 +3066,7 @@ a.cross_btn {
 }
 .error_form {
     color: red;
+}
+.content_tooltip {
+    color: #484545;
 }

@@ -50,7 +50,7 @@ class Pages extends CI_Controller {
 	    }
 
 		/* Load admin view */
-		load_admin_view('view-all-pages', $data);
+		load_admin_view('pages/view-all-pages', $data);
     }
 
     /**
@@ -137,7 +137,7 @@ class Pages extends CI_Controller {
 		}
 
 		/* Load admin view */
-		load_admin_view('add-new-page', $data);
+		load_admin_view('pages/add-new-page', $data);
     }
 
     /**
@@ -199,7 +199,7 @@ class Pages extends CI_Controller {
 			}
 
 			/* Load admin view */
-			load_admin_view('edit-page', $data);
+			load_admin_view('pages/edit-page', $data);
 		} else {
 			$this->session->set_flashdata('invalid_item', INVALID_ITEM);
             redirect($this->url.'/view-all');

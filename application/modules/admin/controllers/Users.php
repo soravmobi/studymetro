@@ -102,7 +102,7 @@ class Users extends CI_Controller {
             }
         }
         /* Load admin view */
-        load_admin_view('add-new-user', $data);
+        load_admin_view('users/add-new-user', $data);
     }
 
     /**
@@ -135,7 +135,7 @@ class Users extends CI_Controller {
         }
 
         /* Load admin view */
-        load_admin_view('view-all-users', $data);
+        load_admin_view('users/view-all-users', $data);
     }
 
     /**
@@ -226,7 +226,7 @@ class Users extends CI_Controller {
             }
 
             /* Load admin view */
-            load_admin_view('edit-user', $data);
+            load_admin_view('users/edit-user', $data);
         } else {
             $this->session->set_flashdata('invalid_item', INVALID_ITEM);
             redirect($this->url.'/view-all');

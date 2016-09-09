@@ -31,7 +31,7 @@ class Faqs extends CI_Controller {
 		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'add_new_faq');
 		$data['session_data'] = admin_session_data();
 		$data['user_info'] = get_user($data['session_data']['user_id']);
-		load_admin_view('add-new-faq', $data);
+		load_admin_view('faqs/add-new-faq', $data);
     }
 
     public function addFaqs()
@@ -74,7 +74,7 @@ class Faqs extends CI_Controller {
 	    }
 
 		/* Load admin view */
-		load_admin_view('view-all-faqs', $data);
+		load_admin_view('faqs/view-all-faqs', $data);
     }
 
     /**

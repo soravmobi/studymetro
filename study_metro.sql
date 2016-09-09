@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 07, 2016 at 09:07 PM
+-- Generation Time: Sep 09, 2016 at 09:22 PM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -294,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `documents` (
   `user_id` int(11) NOT NULL,
   `status` smallint(6) NOT NULL,
   `added_date` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `documents`
@@ -382,6 +382,28 @@ INSERT INTO `faqs` (`id`, `country`, `question`, `answer`, `status`, `added_date
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `feedbacks`
+--
+
+CREATE TABLE IF NOT EXISTS `feedbacks` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(150) NOT NULL,
+  `suggestion` text NOT NULL,
+  `added_date` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feedbacks`
+--
+
+INSERT INTO `feedbacks` (`id`, `name`, `email`, `phone`, `suggestion`, `added_date`) VALUES
+(1, 'Sorav Garg', 'sourav@mobiwebtech.com', '9074939905', 'Thanks for stopping by! We''re here to help, please don''t hesitate to reach out.', '2016-09-01 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `menus`
 --
 
@@ -393,6 +415,26 @@ CREATE TABLE IF NOT EXISTS `menus` (
   `is_primary` int(11) NOT NULL,
   `date_created` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notes`
+--
+
+CREATE TABLE IF NOT EXISTS `notes` (
+  `id` bigint(20) NOT NULL,
+  `notes` text NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `added_date` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notes`
+--
+
+INSERT INTO `notes` (`id`, `notes`, `user_id`, `added_date`) VALUES
+(2, 'Below are the latest posts from your network. Below are the latest posts from your network. Below are the latest posts from your network. Below are the latest posts from your network.', 12, '2016-09-09 20:46:03');
 
 -- --------------------------------------------------------
 
@@ -425,6 +467,28 @@ INSERT INTO `photos` (`id`, `name`, `types`, `status`, `added_date`) VALUES
 (10, 'https://www.youtube.com/embed/SMGc8rWrjl0', 1, 0, '2016-08-29 17:23:10'),
 (11, 'https://player.vimeo.com/video/33110953', 1, 0, '2016-08-29 17:23:10'),
 (12, 'https://www.youtube.com/embed/B_SPU6EuV8A', 1, 0, '2016-08-29 17:23:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quotations`
+--
+
+CREATE TABLE IF NOT EXISTS `quotations` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(150) DEFAULT NULL,
+  `quote` text NOT NULL,
+  `added_date` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `quotations`
+--
+
+INSERT INTO `quotations` (`id`, `name`, `email`, `phone`, `quote`, `added_date`) VALUES
+(1, 'sorav garg', 'soravgarg123@gmail.com', NULL, 'Get courses and package quote and advice from our experts!\r\nWelcome to the online advisor system at studymetro.com. Let our team of experienced advisors help you navigate the search process and all your options.\r\nOur advisors are not working on commission nor paid to recommend any specific programs. Our only goal is to find the best programs that fit your education/skills.\r\nWe will forward your request to our members who will get back to you shortly with the information you have requested.', '2016-09-09 19:37:54');
 
 -- --------------------------------------------------------
 
@@ -531,7 +595,7 @@ CREATE TABLE IF NOT EXISTS `system_preferences` (
   `id` bigint(20) NOT NULL,
   `preference_key` varchar(255) CHARACTER SET utf8 NOT NULL,
   `preference_value` text CHARACTER SET utf8
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `system_preferences`
@@ -566,7 +630,9 @@ INSERT INTO `system_preferences` (`id`, `preference_key`, `preference_value`) VA
 (26, 'meta_separator', '-'),
 (27, 'meta_description', 'Earn Your MS in the US to find employment in the USA! Or, study and work in Canada! We are the world''s premiere overseas education consultants.'),
 (28, 'meta_keywords', 'Overseas Education Consultants, Study Abroad Student Services, Abroad Education Consultancy Firm, Study Metro, Education Counselor, Study Abroad Programs, Graduation in Abroad, MS in USA'),
-(29, 'meta_title', 'Get Your MS in the US-Employment in the USA-Study and Work in Canada');
+(29, 'meta_title', 'Get Your MS in the US-Employment in the USA-Study and Work in Canada'),
+(30, 'user_earning', '100'),
+(31, 'friend_earning', '50');
 
 -- --------------------------------------------------------
 
@@ -1277,15 +1343,33 @@ ALTER TABLE `faqs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `feedbacks`
+--
+ALTER TABLE `feedbacks`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `menus`
 --
 ALTER TABLE `menus`
   ADD PRIMARY KEY (`menu_id`);
 
 --
+-- Indexes for table `notes`
+--
+ALTER TABLE `notes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `photos`
 --
 ALTER TABLE `photos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `quotations`
+--
+ALTER TABLE `quotations`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1349,7 +1433,7 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `enquiries`
 --
@@ -1366,15 +1450,30 @@ ALTER TABLE `events`
 ALTER TABLE `faqs`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT for table `feedbacks`
+--
+ALTER TABLE `feedbacks`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
   MODIFY `menu_id` bigint(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `notes`
+--
+ALTER TABLE `notes`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `photos`
 --
 ALTER TABLE `photos`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `quotations`
+--
+ALTER TABLE `quotations`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `services`
 --
@@ -1394,7 +1493,7 @@ ALTER TABLE `static_pages`
 -- AUTO_INCREMENT for table `system_preferences`
 --
 ALTER TABLE `system_preferences`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `testimonials`
 --

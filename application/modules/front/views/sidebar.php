@@ -1,6 +1,7 @@
  <div class="col-md-3 col-sm-3">
             <?php
               $detail = getUserDetails();
+              $user_type = $this->session->userdata('user_type');
             ?>
                         <div class="left_dashboard">
                         <form class="form-horizontal" id="img-form" enctype="multipart/form-data" method="post">
@@ -35,7 +36,24 @@
                                 <li><a href="#">Find Schools <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <li><a href="#">Find Agents <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <li <?php if(isset($parent) && $parent == 'profile') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/profile">My Profile <i class="fa fa-chevron-right pull-right"></i></a></li>
-                                <li <?php if(isset($parent) && $parent == 'upload_documents') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>student/upload_documents">Upload Documents <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php if(in_array($user_type, array('2','3'))) { ?>
+                                  <li <?php if(isset($parent) && $parent == 'upload_documents') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/upload_documents">Upload Documents <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php } ?>
+                                <?php if(in_array($user_type, array('2','3','5'))) { ?>
+                                  <li><a href="https://live.vcita.com/site/33412ea9518e6493/online-scheduling?staff=4b97eb70eb924ade" target="_blank">Online Schedule Meeting <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php } ?>
+                                <?php if(in_array($user_type, array('2','5'))) { ?>
+                                  <li <?php if(isset($parent) && $parent == 'feedback') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/feedback">Feedback <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php } ?>
+                                <?php if(in_array($user_type, array('2','3'))) { ?>
+                                  <li><a href="<?php echo base_url(); ?>faqs">Visa Guidance <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php } ?>
+                                <?php if(in_array($user_type, array('2'))) { ?>
+                                  <li <?php if(isset($parent) && $parent == 'quote') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>student/getquote">Get Quote <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php } ?>
+                                <?php if(in_array($user_type, array('2','3'))) { ?>
+                                <li <?php if(isset($parent) && $parent == 'notes') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/notes">Notes <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>

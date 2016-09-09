@@ -441,3 +441,32 @@ function readURL(input,ext,size){
 function cancelAction(){
   window.history.back();
 }
+
+function currentDate()
+{
+    var today = new Date();
+    var dd = (today.getDate() >= 10) ? today.getDate() : "0"+today.getDate();
+    var mm = (today.getMonth()+1 >= 10) ? today.getMonth()+1 : "0"+(today.getMonth()+1);
+    var yyyy = today.getFullYear();
+    var date = yyyy+'-'+mm+'-'+dd;
+    return date;
+}
+
+function validateNumbers(event)
+{
+  var key = window.event ? event.keyCode : event.which;
+  if (event.keyCode == 46){
+    return false;
+  }
+  if (event.keyCode == 9 || event.keyCode == 8 || event.keyCode == 46) {
+      return true;
+  }
+  else if ( key < 48 || key > 57 ) {
+      return false;
+  }
+  else return true;
+}
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});

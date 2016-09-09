@@ -109,14 +109,21 @@ $route['admin/faqs/view-all'] = 'admin/faqs/viewAll';
 $route['admin/faqs/view-all/(:any)'] = 'admin/faqs/viewAll/$1';
 
 $route['admin/enquiries/view-all'] = 'admin/enquiries/viewAll';
+$route['admin/feedbacks/view-all'] = 'admin/feedbacks/viewAll';
+$route['admin/quotes/view-all'] = 'admin/quotes/viewAll';
+
+$route['admin/referrals/set-earning'] = 'admin/referrals/setEarning';
 
 /* Front custom Routing */
 
 $route['home']         = 'front/Home';
 $route['universities'] = 'front/Home/universities';
 $route['user/profile'] = 'front/user/profile';
+$route['user/feedback'] = 'front/user/feedback';
 $route['user/dashboard'] = 'front/user/dashboard';
-$route['student/upload_documents'] = 'front/student/upload_documents';
+$route['user/upload_documents'] = 'front/user/upload_documents';
+$route['user/notes'] = 'front/user/notes';
+$route['student/getquote'] = 'front/student/getquote';
 
 $route['(:any)'] = 'front/home/pages/$1';
 $route['faqs/(:any)'] = 'front/home/faqs/$1';

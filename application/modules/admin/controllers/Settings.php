@@ -90,7 +90,7 @@ class Settings extends CI_Controller {
 		}
 
 		/* Load admin view */
-		load_admin_view('general-settings', $data);
+		load_admin_view('settings/general-settings', $data);
     }
 
     /**
@@ -170,7 +170,7 @@ class Settings extends CI_Controller {
 		}
 
 		/* Load admin view */
-		load_admin_view('profile', $data);
+		load_admin_view('settings/profile', $data);
 	}
 
 	/**
@@ -211,7 +211,7 @@ class Settings extends CI_Controller {
 		}
 
 		/* Load admin view */
-		load_admin_view('seo-settings', $data);
+		load_admin_view('settings/seo-settings', $data);
     }
 
     /**
@@ -240,7 +240,7 @@ class Settings extends CI_Controller {
 		}
 
 		/* Load admin view */
-		load_admin_view('system-preferences', $data);
+		load_admin_view('settings/system-preferences', $data);
     }
 
     /**

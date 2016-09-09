@@ -5,7 +5,6 @@ class User extends CI_Controller {
 
 	public function __construct() {
         parent::__construct();
-        checkUserSession(array('2','3','4','5','6'));
         $this->uid = $this->session->userdata("user_id");
         $this->module = $this->router->fetch_module();
         $this->class = $this->router->fetch_class();
@@ -14,6 +13,7 @@ class User extends CI_Controller {
 
     public function logout()
 	{
+        checkUserSession(array('2','3','4','5','6'));
 		$this->session->sess_destroy();
 		delete_cookie("study_metro");
 		redirect('/');
@@ -21,6 +21,7 @@ class User extends CI_Controller {
 
     public function callback_pswd_check($pswd)
     {
+        checkUserSession(array('2','3','4','5','6'));
         $where  = array('id' => $this->uid, 'password' => md5($pswd));
         $result = $this->common_model->getSingleRecordById('users',$where);
         if(empty($result)){
@@ -32,6 +33,7 @@ class User extends CI_Controller {
 
     public function regex_check($str)
     {
+        checkUserSession(array('2','3','4','5','6'));
         if (1 !== preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/", $str))
         {
             $this->form_validation->set_message('regex_check', 'Password must contain at least 6 characters, including UPPER/lower case & numbers');
@@ -45,6 +47,7 @@ class User extends CI_Controller {
 
     public function doChangePassword()
     {
+        checkUserSession(array('2','3','4','5','6'));
         if($this->input->is_ajax_request())
         {
             $this->form_validation->set_rules('current_password','Current Password','trim|required');
@@ -76,6 +79,7 @@ class User extends CI_Controller {
     }
 
     public function profile() {
+        checkUserSession(array('2','3','4','5','6'));
         $data = array();
         $data['meta_title'] = 'My Profile';
         $data['parent'] = 'profile';
@@ -87,6 +91,7 @@ class User extends CI_Controller {
     {
         if($this->input->is_ajax_request())
         {
+            checkUserSession(array('2','3','4','5','6'));
             $imgArr = imgUpload('userfile','users','gif|jpg|png|jpeg');
             if(isset($imgArr['error'])){
                 echo json_encode(array('type' => 'error', 'msg' => $imgArr['error']));die;
@@ -106,6 +111,7 @@ class User extends CI_Controller {
 
     public function updateProfile()
     {
+        checkUserSession(array('2','3','4','5','6'));
         $data = $this->input->post();
         $this->common_model->updateRecords('users',$data,array('id' => $this->uid));
         $this->session->set_flashdata('success','Profile successfully updated !');
@@ -114,12 +120,167 @@ class User extends CI_Controller {
 
     public function dashboard()
     {
+        checkUserSession(array('2','3','4','5','6'));
         $data = array();
         $data['meta_title'] = 'dashboard';
         $data['parent'] = 'dashboard';
         $data['detail'] = $this->common_model->getAllRecordsById('users',array('id' => $this->uid));
         load_front_view('user/dashboard', $data);
     }
+
+    public function feedback()
+    {
+        checkUserSession(array('2','5'));
+        $data = array();
+        $data['meta_title'] = 'Feedback';
+        $data['parent'] = 'feedback';
+        load_front_view('user/feedback', $data);
+    }
+
+    public function submitFeedback()
+    {
+        checkUserSession(array('2','5'));
+        $data = $this->input->post();
+        $this->form_validation->set_rules('name','Name','required');
+        $this->form_validation->set_rules('email','Email','required|valid_email');
+        $this->form_validation->set_rules('phone','Phone','required|numeric');
+        $this->form_validation->set_rules('suggestion','Suggestion','required');
+        if($this->form_validation->run()==TRUE){
+            $data['added_date'] = datetime();
+            $lid = $this->common_model->addRecords(FEEDBACKS,$data);
+            if(!empty($lid)){
+                $message  = "";
+                $message .= "<img style='width:90px' src='".base_url()."assets/img/logo.png' class='img-responsive'></br></br>";
+                $message .= "<br><br> Hello, <br/><br/>";
+                $message .= $data['name']."  has provided a feedback, please follow below details.<br/><br/>";
+                $message .= '<html><head><title>Feedback</title></head><body><p>User Details</p><ul>';
+                $message .= '<li><b>Name:</b> '.$data['name'].'</li>';
+                $message .= '<li><b>Email:</b> '.$data['email'].'</li>';
+                $message .= '<li><b>Phone:</b> '.$data['phone'].'</li>';
+                $message .= '<li><b>Suggestion:</b> '.$data['suggestion'].'</li>';
+                $message .= '</ul></body></html>';
+                send_mail($message,'New Feedback',FEEDBACK_EMAIL,$data['email']);
+                $this->session->set_flashdata('success','Thanks for your valuable feedback !!');
+                redirect('user/feedback');
+            }else{
+                $this->session->set_flashdata('error', 'Failed please try again !!');
+                redirect('user/feedback');
+            }
+        }else{
+            $data['meta_title'] = 'feedback';
+            $data['parent'] = 'feedback';
+            load_front_view('user/feedback', $data);
+        }
+    }
+
+    public function upload_documents() {
+        checkUserSession(array('2','3'));
+        $data = array();
+        $data['meta_title'] = 'Upload Documents';
+        $data['parent']     = 'upload_documents';
+        $data['documents']  = $this->common_model->getAllRecordsOrderById(DOCUMENTS,'id','DESC',array('user_id' => $this->uid));
+        load_front_view('user/upload_documents', $data);
+    }
+
+    public function doUploadDocuments(){
+        checkUserSession(array('2','3'));
+        $data = $this->input->post();
+        $this->form_validation->set_rules('document','Document','required');
+        if (empty($_FILES['file']['name']))
+        {
+            $this->form_validation->set_rules('file', 'Document File', 'required');
+        }
+        if($this->form_validation->run()==TRUE){
+        if(!empty($_FILES['file']['name'])){
+            $document = imgUpload('file','documents','png|jpg|tif|gif');
+            if(isset($document['error'])){
+                $this->session->set_flashdata('error', $document['error']);
+                $data['meta_title'] = 'Upload Documents';
+                $data['parent']     = 'upload_documents';
+                load_front_view('user/upload_documents', $data);
+            }else{
+                $data['file'] = base_url().'uploads/documents/'.$document['upload_data']['file_name'];
+                $data['user_id'] = $this->uid;
+                $data['added_date'] = datetime();
+                $this->common_model->addRecords(DOCUMENTS, $data);
+                $this->session->set_flashdata('success', sprintf(ITEM_ADD_SUCCESS, 'Documents'));
+                redirect('user/upload_documents');
+            }
+        }else{
+            $this->session->set_flashdata('error', 'Please select image file !!');
+            $data['meta_title'] = 'Upload Documents';
+            $data['parent']     = 'upload_documents';
+            load_front_view('user/upload_documents', $data);
+        }
+        }else{
+            $data['meta_title'] = 'Upload Documents';
+            $data['parent']     = 'upload_documents';
+            load_front_view('user/upload_documents', $data);
+        }
+    }
+
+    public function deleteDocument($id) {
+        checkUserSession(array('2','3'));
+        $id = decode($id);
+        if($id) {
+            $this->common_model->deleteRecords(DOCUMENTS, 'id', $id);
+            $this->session->set_flashdata('success', sprintf(ITEM_DELETE_SUCCESS, 'Document'));
+            redirect('user/upload_documents');
+        } else {
+            $this->session->set_flashdata('error', INVALID_ITEM);
+            redirect('user/upload_documents');
+        }
+    }
+
+    public function notes()
+    {
+        checkUserSession(array('2','3'));
+        $data = array();
+        $data['meta_title'] = 'Notes';
+        $data['parent']     = 'notes';
+        $data['notes']  = $this->common_model->getAllRecordsOrderById(NOTES,'id','DESC',array('user_id' => $this->uid));
+        load_front_view('user/notes', $data);
+    }
+
+    public function notesmgmt()
+    {
+        checkUserSession(array('2','3'));
+        $data = $this->input->post();
+        $this->form_validation->set_rules('notes','Note','trim|required');
+        if($this->form_validation->run()==TRUE){
+            $data['user_id'] = $this->uid;
+            $data['added_date'] = datetime();
+            unset($data['id']);
+            $lid = $this->common_model->addRecords(NOTES,$data);
+            if(!empty($lid)){
+                $this->session->set_flashdata('success','Note successfully added');
+                redirect('user/notes');
+            }else{
+                $this->session->set_flashdata('error', 'Failed please try again !!');
+                redirect('user/notes');
+            }
+        }else{
+            $data['meta_title'] = 'Notes';
+            $data['parent']     = 'notes';
+            $data['notes']  = $this->common_model->getAllRecordsOrderById(NOTES,'id','DESC',array('user_id' => $this->uid));
+            load_front_view('user/notes', $data);
+        }
+    }
+
+    public function deletenotes($id)
+    {
+        checkUserSession(array('2','3'));
+        $id = decode($id);
+        if($id) {
+            $this->common_model->deleteRecords(NOTES, 'id', $id);
+            $this->session->set_flashdata('success', sprintf(ITEM_DELETE_SUCCESS, 'Note'));
+            redirect('user/notes');
+        } else {
+            $this->session->set_flashdata('error', INVALID_ITEM);
+            redirect('user/notes');
+        }
+    }
+
 
 }
 ?>

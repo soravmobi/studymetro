@@ -39,6 +39,8 @@ $(document).ready(function () {
         singleItem: true
     });
 
+    $('[data-toggle="tooltip"]').tooltip();
+
     $("#testimonial_slider").owlCarousel({
         navigation: true, 
         slideSpeed: 200,

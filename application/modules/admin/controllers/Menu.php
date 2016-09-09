@@ -49,7 +49,7 @@ class Menu extends CI_Controller {
         }
 
         /* Load admin view */
-        load_admin_view('add-new-menu', $data);
+        load_admin_view('menus/add-new-menu', $data);
     }
 
     /**
@@ -168,7 +168,7 @@ class Menu extends CI_Controller {
         }
 
         /* Load admin view */
-        load_admin_view('view-all-menus', $data);
+        load_admin_view('menus/view-all-menus', $data);
     }
 
     /**
@@ -197,7 +197,7 @@ class Menu extends CI_Controller {
             }
         }
         /* Load admin view */
-        load_admin_view('manage-menu-location', $data);
+        load_admin_view('menus/manage-menu-location', $data);
     }
 
     /**
@@ -251,7 +251,7 @@ class Menu extends CI_Controller {
             }
 
             /* Load admin view */
-            load_admin_view('edit-menu', $data);
+            load_admin_view('menus/edit-menu', $data);
         } else {
             $this->session->set_flashdata('invalid_item', INVALID_ITEM);
             redirect($this->url.'/view-all');

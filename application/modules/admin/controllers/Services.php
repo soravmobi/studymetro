@@ -31,7 +31,7 @@ class Services extends CI_Controller {
 		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'add_new_testimonial');
 		$data['session_data'] = admin_session_data();
 		$data['user_info'] = get_user($data['session_data']['user_id']);
-		load_admin_view('add-new-service', $data);
+		load_admin_view('services/add-new-service', $data);
     }
 
     public function addServices()
@@ -79,7 +79,7 @@ class Services extends CI_Controller {
 	    }
 
 		/* Load admin view */
-		load_admin_view('view-all-services', $data);
+		load_admin_view('services/view-all-services', $data);
     }
 
     /**

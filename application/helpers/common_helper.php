@@ -13,12 +13,16 @@
 * @return true OR false
 */
 if (!function_exists('send_mail')) {
-	function send_mail($message, $subject, $email_address) {
+	function send_mail($message, $subject, $email_address,$from="") {
 	    $ci =&get_instance();
 		$ci->load->library('email');
 		$config['mailtype'] = 'html';
-		$ci->email->initialize($config);	
-		$ci->email->from(get_option('site_email'));
+		$ci->email->initialize($config);
+		if(!empty($from)){
+			$ci->email->from($from);
+		}else{
+			$ci->email->from(get_option('site_email'));
+		}	
 		$ci->email->to($email_address);
 		$ci->email->subject($subject);
         $ci->email->message($message);

@@ -65,7 +65,7 @@
         </ul>
       </li>
       <!-- University -->
-      <li class="treeview <?php tree_active_class('university', array('addNew', 'edit','viewAll')); ?>">
+      <li class="treeview <?php tree_active_class('university', array('addNew', 'edit','viewAll','import')); ?>">
         <a href="javascript:void(0);" title="University">
           <i class="fa fa-university"></i> 
           <span>Universities</span> 
@@ -209,7 +209,7 @@
           </li>
         </ul>
       </li>
-       <!-- Enquiries -->
+      <!-- Enquiries -->
       <li class="treeview <?php tree_active_class('enquiries', array('addNew', 'edit','viewAll')); ?>">
         <a href="javascript:void(0);" title="Enquiries">
           <i class="fa fa-phone"></i> 
@@ -217,9 +217,54 @@
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li class="<?php add_active_class('faqs', 'viewAll'); ?>">
+          <li class="<?php add_active_class('enquiries', 'viewAll'); ?>">
             <a href="<?php cms_url('admin/enquiries/view-all'); ?>" title="View All Enquiries">
               <i class="fa fa-eye"></i> View All Enquiries
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- Feedbacks -->
+      <li class="treeview <?php tree_active_class('feedbacks', array('addNew', 'edit','viewAll')); ?>">
+        <a href="javascript:void(0);" title="Feedbacks">
+          <i class="fa fa-comments-o"></i> 
+          <span>Feedbacks</span> 
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<?php add_active_class('feedbacks', 'viewAll'); ?>">
+            <a href="<?php cms_url('admin/feedbacks/view-all'); ?>" title="View All Feedbacks">
+              <i class="fa fa-eye"></i> View All Feedbacks
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- Quotes -->
+      <li class="treeview <?php tree_active_class('quotes', array('addNew', 'edit','viewAll')); ?>">
+        <a href="javascript:void(0);" title="Quotes">
+          <i class="fa fa-quote-left"></i> 
+          <span>Quotes</span> 
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<?php add_active_class('quotes', 'viewAll'); ?>">
+            <a href="<?php cms_url('admin/quotes/view-all'); ?>" title="View All Quotes">
+              <i class="fa fa-eye"></i> View All Quotes
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- Referrals -->
+      <li class="treeview <?php tree_active_class('referrals', array('addNew', 'edit','viewAll','setEarning')); ?>">
+        <a href="javascript:void(0);" title="Referrals">
+          <i class="fa fa-gift"></i> 
+          <span>Referrals</span> 
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<?php add_active_class('referrals', 'setEarning'); ?>">
+            <a href="<?php cms_url('admin/referrals/set-earning'); ?>" title="Set Earning Amount">
+              <i class="fa fa-cog"></i> Set Earning Amount
             </a>
           </li>
         </ul>
