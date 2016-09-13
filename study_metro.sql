@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 09, 2016 at 09:22 PM
+-- Generation Time: Sep 13, 2016 at 08:54 PM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -294,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `documents` (
   `user_id` int(11) NOT NULL,
   `status` smallint(6) NOT NULL,
   `added_date` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `documents`
@@ -303,6 +303,31 @@ CREATE TABLE IF NOT EXISTS `documents` (
 INSERT INTO `documents` (`id`, `document`, `file`, `user_id`, `status`, `added_date`) VALUES
 (3, 'Certificate/Diploma', 'http://localhost/study_metro/uploads/documents/Screenshot_from_2016-01-23_15:17:13.png', 12, 0, '2016-09-07 18:34:12'),
 (6, 'Transcript', 'http://localhost/study_metro/uploads/documents/Child-Girl-with-Sunflowers-Images.jpg', 12, 0, '2016-09-07 18:45:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emails`
+--
+
+CREATE TABLE IF NOT EXISTS `emails` (
+  `id` bigint(20) NOT NULL,
+  `message` text NOT NULL,
+  `to_email` varchar(150) NOT NULL,
+  `from_email` varchar(150) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `status` smallint(6) NOT NULL COMMENT '0 = unread, 1 = read',
+  `added_date` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `emails`
+--
+
+INSERT INTO `emails` (`id`, `message`, `to_email`, `from_email`, `subject`, `status`, `added_date`) VALUES
+(1, 'Hello Gaurav,\n\nThis is email testing.\n\nThanks\nSorav Garg\nSoftware Developer', 'gaurav@gmail.com', 'soravgarg123@gmail.com', 'Demo', 0, '2016-09-13 14:48:36'),
+(2, 'huob', 'soravgarg123@gmail.com', 'gaurav@gmail.com', 'hg', 0, '2016-09-13 14:50:03'),
+(3, 'Thank you for your interest in John Jay College of Criminal Justice. A John Jay education challenges, inspires and prepares students for a lifetime of meaningful contribution. Our students develop reasoning and analytical skills and cultivate leadership abilities. Our undergraduate curriculum offers approximately twenty-one fields of study including a wide array of liberal arts majors, minors and concentrations.\r\n\r\nOur leading-edge course material is designed to help students learn in and out of the classroom. Students partner with their Professors to expand the body of knowledge in their fields of study, and also use that knowledge to solve real-world problems. \r\n\r\nYou will study in the heart of New York City, minutes away from Times Square and steps away from Central Park. Our residence hall at 34th street offers students the unique experience of living in the center of Midtown Manhattan, close to museums, restaurants, shopping and other exciting cultural events. Because John Jay College is committed to international education, we offer scholarships for international students. The International Student Scholarship, The Brean Murphy Scholarship, and induction into our Honors Program are just a few ways international students can succeed.\r\n\r\nYou can begin your application to John Jay College here.\r\n\r\nIf you have any questions about the application process, or studying at John Jay College please do not hesitate to reach out to me. I look forward to working with you!\r\n\r\nBest,\r\nMarta Chavez', 'padam@gmail.com', 'soravgarg123@gmail.com', 'Hello', 0, '2016-09-13 18:36:56');
 
 -- --------------------------------------------------------
 
@@ -471,6 +496,35 @@ INSERT INTO `photos` (`id`, `name`, `types`, `status`, `added_date`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `programs`
+--
+
+CREATE TABLE IF NOT EXISTS `programs` (
+  `id` bigint(20) NOT NULL,
+  `university` varchar(250) NOT NULL,
+  `location` varchar(150) DEFAULT NULL,
+  `undergraduate_courses` text,
+  `graduate_courses` text,
+  `doctoral` varchar(250) DEFAULT NULL,
+  `diploma` text,
+  `ielts_toefl_pte` text,
+  `gre_sat` text,
+  `criteria` varchar(150) DEFAULT NULL,
+  `bank_statement` text,
+  `duration` varchar(250) DEFAULT NULL,
+  `cost` varchar(250) DEFAULT NULL,
+  `tution_fee` varchar(150) DEFAULT NULL,
+  `website_lnik` text,
+  `study_metro_scholarship` varchar(150) DEFAULT NULL,
+  `intake_date` varchar(150) DEFAULT NULL,
+  `country` varchar(150) NOT NULL,
+  `status` smallint(6) NOT NULL,
+  `added_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `quotations`
 --
 
@@ -489,6 +543,21 @@ CREATE TABLE IF NOT EXISTS `quotations` (
 
 INSERT INTO `quotations` (`id`, `name`, `email`, `phone`, `quote`, `added_date`) VALUES
 (1, 'sorav garg', 'soravgarg123@gmail.com', NULL, 'Get courses and package quote and advice from our experts!\r\nWelcome to the online advisor system at studymetro.com. Let our team of experienced advisors help you navigate the search process and all your options.\r\nOur advisors are not working on commission nor paid to recommend any specific programs. Our only goal is to find the best programs that fit your education/skills.\r\nWe will forward your request to our members who will get back to you shortly with the information you have requested.', '2016-09-09 19:37:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `referrals`
+--
+
+CREATE TABLE IF NOT EXISTS `referrals` (
+  `id` bigint(20) NOT NULL,
+  `user_email` varchar(250) NOT NULL,
+  `friend_email` varchar(250) NOT NULL,
+  `user_amount` double NOT NULL,
+  `friend_amount` double NOT NULL,
+  `added_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1084,6 +1153,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `education` varchar(150) DEFAULT NULL,
   `profession` varchar(150) DEFAULT NULL,
   `citizenship` varchar(100) DEFAULT NULL,
+  `referral_earning` double NOT NULL,
   `native_lang` varchar(100) DEFAULT NULL,
   `is_blocked` int(11) NOT NULL DEFAULT '0' COMMENT '1 = yes, 0 = No',
   `date_created` datetime NOT NULL
@@ -1093,13 +1163,13 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `email`, `photo`, `password`, `verification_key`, `phone_number`, `user_type`, `user_status`, `is_email_verified`, `is_phone_verified`, `online_status`, `dob`, `gender`, `country`, `city`, `phone_code`, `phone`, `education`, `profession`, `citizenship`, `native_lang`, `is_blocked`, `date_created`) VALUES
-(1, '', '', 'studymetro1', 'sid@mobiwebtech.com', '', '97431358378969ee56f2195493564010', NULL, NULL, 1, 1, 1, 1, 1, '', '', '', '', '', '', '', '', '', '', 0, '2016-06-19 04:20:33'),
-(6, '', '', 'johndeo6', 'johndeo@mailinator.com', '', 'e10adc3949ba59abbe56e057f20f883e', NULL, '7894561233', 2, 1, 1, 1, 1, '', '', '', '', '', '', '', '', '', '', 0, '2016-06-19 09:15:10'),
-(12, 'sorav', 'garg', 'soravgarg', 'soravgarg123@gmail.com', 'programmer.jpg', '217baaa6d1519b704db106824452cbfa', NULL, NULL, 2, 0, 1, 0, 0, '30-August-2016', 'Male', 'India', 'Indore', '91', '9074939905', 'Bachelors or Equivalent (completed)', 'Computers/Technology', '', '', 0, '2016-08-03 17:36:35'),
-(13, 'gaurav', 'garg', '', 'gaurav@gmail.com', 'body_bg.jpg', 'a1b9d05b2f18f98cde2b90881af39faf', NULL, NULL, 2, 0, 1, 0, 0, '', '', '', '', '', '', '', '', '', '', 0, '2016-08-22 16:14:38'),
-(14, 'padam', 'garg', '', 'padam@gmail.com', '', '64ba89e06c142166ac29267bd908c5ff', NULL, NULL, 4, 0, 1, 0, 0, '', '', '', '', '', '', '', '', '', '', 0, '2016-08-23 21:04:24'),
-(15, 'sorav', 'garg', '', 'soravgarg12345@gmail.com', '', '217baaa6d1519b704db106824452cbfa', NULL, NULL, 2, 0, 1, 0, 0, '', '', '', '', '', '', '', '', '', '', 0, '2016-09-05 12:47:22');
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `email`, `photo`, `password`, `verification_key`, `phone_number`, `user_type`, `user_status`, `is_email_verified`, `is_phone_verified`, `online_status`, `dob`, `gender`, `country`, `city`, `phone_code`, `phone`, `education`, `profession`, `citizenship`, `referral_earning`, `native_lang`, `is_blocked`, `date_created`) VALUES
+(1, '', '', 'studymetro1', 'sid@mobiwebtech.com', '', '97431358378969ee56f2195493564010', NULL, NULL, 1, 1, 1, 1, 1, '', '', '', '', '', '', '', '', '', 0, '', 0, '2016-06-19 04:20:33'),
+(6, '', '', 'johndeo6', 'johndeo@mailinator.com', '', 'e10adc3949ba59abbe56e057f20f883e', NULL, '7894561233', 2, 1, 1, 1, 1, '', '', '', '', '', '', '', '', '', 0, '', 0, '2016-06-19 09:15:10'),
+(12, 'sorav', 'garg', 'soravgarg', 'soravgarg123@gmail.com', 'dispatcher-field-service-manager(1).jpg', '217baaa6d1519b704db106824452cbfa', NULL, NULL, 2, 0, 1, 0, 0, '30-August-2016', 'Male', 'India', 'Indore', '91', '9074939905', 'Bachelors or Equivalent (completed)', 'Computers/Technology', '', 0, '', 0, '2016-08-03 17:36:35'),
+(13, 'gaurav', 'garg', '', 'gaurav@gmail.com', 'body_bg.jpg', 'a1b9d05b2f18f98cde2b90881af39faf', NULL, NULL, 2, 0, 1, 0, 0, '', '', '', '', '', '', '', '', '', 0, '', 0, '2016-08-22 16:14:38'),
+(14, 'padam', 'garg', '', 'padam@gmail.com', '', '64ba89e06c142166ac29267bd908c5ff', NULL, NULL, 4, 0, 1, 0, 0, '', '', '', '', '', '', '', '', '', 0, '', 0, '2016-08-23 21:04:24'),
+(15, 'sorav', 'garg', '', 'soravgarg12345@gmail.com', '', '217baaa6d1519b704db106824452cbfa', NULL, NULL, 2, 0, 1, 0, 0, '', '', '', '', '', '', '', '', '', 0, '', 0, '2016-09-05 12:47:22');
 
 -- --------------------------------------------------------
 
@@ -1325,6 +1395,12 @@ ALTER TABLE `documents`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `emails`
+--
+ALTER TABLE `emails`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `enquiries`
 --
 ALTER TABLE `enquiries`
@@ -1367,9 +1443,21 @@ ALTER TABLE `photos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `programs`
+--
+ALTER TABLE `programs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `quotations`
 --
 ALTER TABLE `quotations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `referrals`
+--
+ALTER TABLE `referrals`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1433,7 +1521,12 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `emails`
+--
+ALTER TABLE `emails`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `enquiries`
 --
@@ -1470,10 +1563,20 @@ ALTER TABLE `notes`
 ALTER TABLE `photos`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
+-- AUTO_INCREMENT for table `programs`
+--
+ALTER TABLE `programs`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `quotations`
 --
 ALTER TABLE `quotations`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `referrals`
+--
+ALTER TABLE `referrals`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `services`
 --

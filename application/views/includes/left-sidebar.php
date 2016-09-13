@@ -89,6 +89,26 @@
           </li>
         </ul>
       </li>
+      <!-- Programs -->
+      <li class="treeview <?php tree_active_class('programs', array('addNew', 'edit','viewAll','import')); ?>">
+        <a href="javascript:void(0);" title="Programs">
+          <i class="fa fa-graduation-cap"></i> 
+          <span>Programs</span> 
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<?php add_active_class('programs', 'viewAll'); ?>">
+            <a href="<?php cms_url('admin/programs/view-all'); ?>" title="View All Programs">
+              <i class="fa fa-eye"></i> View All Programs
+            </a>
+          </li>
+          <li class="<?php add_active_class('programs', 'import'); ?>">
+            <a href="<?php cms_url('admin/programs/import'); ?>" title="Import Programs">
+              <i class="fa fa-upload"></i> Import Programs
+            </a>
+          </li>
+        </ul>
+      </li>
       <!-- Photo gallery -->
       <li class="treeview <?php tree_active_class('photos', array('addNew', 'edit','viewAll')); ?>">
         <a href="javascript:void(0);" title="University">

@@ -3070,3 +3070,163 @@ a.cross_btn {
 .content_tooltip {
     color: #484545;
 }
+/*css start for dashboard message*/
+.tool_bar_left .checkbox {
+  display: inline-block;
+  margin: 0;
+  vertical-align: top;
+}
+.drop_down {
+  display: inline-block;
+  vertical-align: top;
+}
+.tool_bar_left {
+  background-color: #ccc;
+  border-radius: 0 4px 4px 0;
+  display: inline-block;
+  padding: 8px 15px 5px;
+}
+.tool_bar_right {
+  float: right;
+}
+.tool_bar_right > button {
+  background-color: #0b5ea6;
+  border: medium none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+}
+.tool_bar_right i{margin-left: 8px;}
+.photo_frame > img {
+  max-width: 100%;
+}
+.photo_frame {
+  display: inline-block;
+  width: 100px;
+}
+.message_sub {
+  display: inline-block;
+  vertical-align: middle;
+}
+.message_box .table > tbody > tr > td {
+  border: 1px solid #ddd;
+  vertical-align: middle;
+  border-top: none;
+}
+.message_box .table > tbody > tr > td:first-child {
+  text-align: center;
+  width: 50px;
+}
+.message_sub > h4 {
+  color: #999;
+  cursor: pointer;
+  font-family: "SourceSansProBold";
+  font-size: 16px;
+}
+.message_sub img {
+  margin-right: 6px;
+}
+.message_sub p {
+  color: #666;
+}
+.photo_frame {
+  box-shadow: 0 0 5px #ccc;
+  display: inline-block;
+  height: 50px;
+  margin: 4px 10px 0;
+  padding-top: 11px;
+  vertical-align: top;
+  width: 50px;
+}
+.message_label {
+  background-color: #0b5ea6;
+  color: #fff;
+  display: inline-block;
+  font-size: 12px;
+  margin-top: 2px;
+  padding: 0 7px;
+}
+.message_box {
+  margin-top: 30px;
+}
+.send_btn {
+  background-color: #0b5ea6;
+  border: medium none;
+  border-radius: 4px;
+  color: #fff;
+  float: right;
+  font-size: 16px;
+  margin-right: 8px;
+  margin-top: 8px;
+  padding: 5px 20px;
+  text-transform: capitalize;
+}
+#message h4 {
+  color: #666;
+  font-size: 12px;
+}
+#myModalLabel > span {
+  color: #333;
+  display: block;
+  font-size: 20px;
+}
+#message .close {
+  background-color: #0b5ea6 !important;
+  border-radius: 50%;
+  color: #fff;
+  height: 30px;
+  opacity: 1;
+  position: absolute;
+  right: -15px;
+  top: -15px;
+  width: 30px;
+}
+#message .form-control {
+  border: 1px solid #ddd;
+  border-radius: 0;
+  resize: none;
+}
+.input-group-addon{
+  border-right: none;
+  background-color: inherit;
+  border: 1px solid #ddd;
+  }
+ #message .input-group .form-control {
+   border-left: none;
+   }
+   #message .form-control:focus{box-shadow: none;}
+
+.head_box {
+  color: #0b5ea6;
+  font-size: 24px;
+  padding-bottom: 10px;
+}
+.head_box > span {
+  float: right;
+}
+#title .modal-body > p {
+  font-size: 14px;
+  line-height: 26px;
+}
+.head_box span {
+  color: #666;
+  font-size: 14px;
+}
+#title .close {
+  background-color: #0b5ea6 !important;
+  border-radius: 50%;
+  color: #fff;
+  height: 30px;
+  opacity: 1;
+  position: absolute;
+  right: -15px;
+  top: -15px;
+  width: 30px;
+}
+
+#title .message_sub > h4 {
+  padding-top: 18px;
+}
+
+/*css end for dashboard message page*/

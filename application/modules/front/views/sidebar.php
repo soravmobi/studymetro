@@ -54,6 +54,57 @@
                                 <?php if(in_array($user_type, array('2','3'))) { ?>
                                 <li <?php if(isset($parent) && $parent == 'notes') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/notes">Notes <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>
+                                 <?php if(in_array($user_type, array('2','3','4','5','6'))) { ?>
+                                <li <?php if(isset($parent) && $parent == 'emails') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/emails">Emails <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('body').on('change','#edit_pic',function(){
+        var file_name = $(this).val();
+        var fileObj = this.files[0];
+        var calculatedSize = fileObj.size/(1024*1024);
+        var split_extension = file_name.split(".").pop();
+        var ext = [ "jpg", "gif", "png", "jpeg" ];
+        if($.inArray(split_extension.toLowerCase(), ext ) == -1)
+        {
+          $('#edit_pic').val(fileObj.value = null);
+          showToaster('error','You Can Upload Only .jpg, gif, jpeg, png files !');
+          return false;
+        }
+        else if(calculatedSize > 5)
+        {
+          $('#edit_pic').val(fileObj.value = null);
+          showToaster('error','File size should be less than 5 MB !');
+          return false;
+        }
+        if($.inArray(split_extension.toLowerCase(), ext ) != -1 && calculatedSize < 5)
+        {
+          var data = new FormData($('#img-form')[0]);
+          $.ajax({
+                type: "POST",
+                url : "<?php echo base_url(); ?>front/user/updateProfileImage",
+                data: data,
+                dataType : "JSON",
+                contentType: false,
+                processData: false,
+                success: function(resp){
+                  if(resp.type == 'error'){
+                    showToaster('error',resp.msg);
+                  }else{
+                    $('.show_img1').attr('src',resp.path);
+                    showToaster('success',resp.msg);
+                  }
+                },
+                error:function(error)
+                {
+                  showToaster('error','Internal server error !');  
+                }
+            });
+          
+        }
+      });
+      });
+    </script>                    

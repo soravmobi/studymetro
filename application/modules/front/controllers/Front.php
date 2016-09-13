@@ -169,6 +169,7 @@ class Front extends CI_Controller {
 					$this->session->set_userdata('last_name',$result['last_name']);
 					$this->session->set_userdata('user_type',$result['user_type']);
 					$this->session->set_userdata('email',$result['email']);die;
+					$this->session->set_userdata('earning',$result['referral_earning']);die;
 				}
 			}
 		}else{

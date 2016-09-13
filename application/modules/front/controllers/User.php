@@ -281,6 +281,77 @@ class User extends CI_Controller {
         }
     }
 
+    public function emails()
+    {
+        checkUserSession(array('2','3','4','5','6'));
+        $data = array();
+        $data['meta_title']  = 'Emails';
+        $data['parent']      = 'emails';
+        $data['inbox_email']  = $this->common_model->getAllRecordsOrderById(EMAILS,'id','DESC',array('to_email' => $this->session->userdata('email')));
+        $data['sent_email']  = $this->common_model->getAllRecordsOrderById(EMAILS,'id','DESC',array('from_email' => $this->session->userdata('email')));
+        load_front_view('user/emails', $data);
+    }
+
+    public function sendemail()
+    {
+        checkUserSession(array('2','3','4','5','6'));
+        if($this->input->is_ajax_request())
+        {
+            $this->form_validation->set_rules('to_email','To Email','trim|required|valid_email');
+            $this->form_validation->set_rules('subject','Subject','trim|required');
+            $this->form_validation->set_rules('message','Message','trim|required');
+            if($this->form_validation->run()==TRUE){
+                $data = $this->input->post();
+                $result = $this->common_model->getSingleRecordById(USER,array('email' => $data['to_email']));
+                if(empty($result)){
+                    echo json_encode(array('type' => 'failed', 'msg' => 'We could not find the user '.$data['to_email']));exit;
+                }
+                $data['from_email'] = $this->session->userdata('email');
+                $data['added_date'] = datetime();
+                $lid = $this->common_model->addRecords(EMAILS,$data);
+                if(!empty($lid)){
+                    send_mail($data['message'],$data['subject'],$data['to_email'],$data['from_email']);
+                    echo json_encode(array('type' => 'success', 'msg' => 'Email send successfully'));exit;
+                }else{
+                    echo json_encode(array('type' => 'failed', 'msg' => GENERAL_ERROR));exit;
+                }
+            }else{
+                $error = array(
+                    'to_email' => form_error('to_email'),
+                    'subject'  => form_error('subject'),
+                    'message'  => form_error('message')
+                ); 
+                echo json_encode(array('type' => 'validation_err','msg' => $error));exit;
+            }
+        }
+    }
+
+    public function getmail()
+    {
+        checkUserSession(array('2','3','4','5','6'));
+        if($this->input->is_ajax_request())
+        {
+            $id   = decode($this->input->post('mail'));
+            $type = $this->input->post('type');
+            $result = $this->common_model->getSingleRecordById(EMAILS,array('id' => $id));
+            if(!empty($result)){
+                if($type == 'inbox'){
+                    $user_details = getUserDetailsBy('email',$result['from_email']);
+                }else{
+                    $user_details = getUserDetailsBy('email',$result['to_email']);
+                }
+                if(empty($user_details[0]['photo'])){
+                  $file = base_url().'uploads/users/default.jpg';
+                }else{
+                  $file = base_url().'uploads/users/'.$user_details[0]['photo'];
+                }
+                echo json_encode(array('type' => 'success', 'mail' => $result, 'username' => $user_details[0]['first_name']." ".$user_details[0]['last_name'],'userimg' => $file,'datetime' => date('d M, Y',strtotime($result['added_date']))));exit;
+            }else{
+                echo json_encode(array('type' => 'failed', 'msg' => GENERAL_ERROR));exit;
+            }
+        }
+    }
+
 
 }
 ?>

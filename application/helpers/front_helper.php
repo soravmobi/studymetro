@@ -56,6 +56,15 @@ if(!function_exists('getUserDetails')) {
 	}
 }
 
+if(!function_exists('getUserDetailsBy')) {
+	function getUserDetailsBy($column,$value)
+	{
+		$ci =&get_instance();
+	    $results = $ci->common_model->getAllRecordsById(USER,array($column => $value));
+	    return $results;
+	}
+}
+
 if(!function_exists('getphotogallery')) {
 	function getphotogallery()
 	{

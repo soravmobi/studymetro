@@ -114,6 +114,9 @@ $route['admin/quotes/view-all'] = 'admin/quotes/viewAll';
 
 $route['admin/referrals/set-earning'] = 'admin/referrals/setEarning';
 
+$route['admin/programs/import']   = 'admin/programs/import';
+$route['admin/programs/view-all'] = 'admin/programs/viewAll';
+
 /* Front custom Routing */
 
 $route['home']         = 'front/Home';
@@ -123,6 +126,7 @@ $route['user/feedback'] = 'front/user/feedback';
 $route['user/dashboard'] = 'front/user/dashboard';
 $route['user/upload_documents'] = 'front/user/upload_documents';
 $route['user/notes'] = 'front/user/notes';
+$route['user/emails'] = 'front/user/emails';
 $route['student/getquote'] = 'front/student/getquote';
 
 $route['(:any)'] = 'front/home/pages/$1';

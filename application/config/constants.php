@@ -195,6 +195,9 @@ define('ENQUIRIES', 'enquiries');
 define('FEEDBACKS', 'feedbacks');
 define('QUOTATIONS', 'quotations');
 define('NOTES', 'notes');
+define('PROGRAMS', 'programs');
+define('EMAILS', 'emails');
+define('REFERRALS', 'referrals');
 
 /* Rest Api constants */
 define('SUCCESS', '100');
