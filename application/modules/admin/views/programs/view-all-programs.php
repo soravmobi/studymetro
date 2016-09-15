@@ -40,9 +40,10 @@
 	              <th>ID</th>
 	              <th>University</th>
 	              <th>Location</th>
+	              <th>Country</th>
 	              <th>Duration</th>
 	              <th>Tution Fee</th>
-	              <th>Study Metro Scholarship</th>
+	              <th>Application Fee</th>
 	              <th>Action</th>
 	            </tr>
 	            <?php
@@ -54,9 +55,10 @@
 		              <td><?php echo $offset++; ?></td>
 		              <td><?php echo $val['university']; ?></td>
 		              <td><?php echo $val['location']; ?></td>
+		              <td><?php echo $val['country']; ?></td>
 		              <td><?php echo $val['duration']; ?></td>
 		              <td><?php echo $val['tution_fee']; ?></td>
-		              <td><?php echo $val['study_metro_scholarship']; ?></td>
+		              <td>$<?php echo $val['application_fee']; ?></td>
 		              <td>
 		              	<a href="<?php cms_url('admin/programs/delete/'.$val['id']); ?>" title="Delete Program" onclick="if(!confirm('Are you sure you want to delete this program?')) return false;">
 		              		<i class="fa fa-trash"></i> Delete

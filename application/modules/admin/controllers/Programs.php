@@ -35,8 +35,12 @@ class Programs extends CI_Controller {
     }
 
     public function importData(){
+    	ini_set('memory_limit', '-1'); 
     	set_include_path(get_include_path() . PATH_SEPARATOR . 'Classes/');
     	require_once APPPATH.'third_party/PHPExcel/IOFactory.php';
+    	$cacheMethod = PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
+	    $cacheSettings = array('memoryCacheSize' => '5000MB', 'cacheTime' => '1000'); 
+	    PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
 		$file_tmp_name = $_FILES["file"]["tmp_name"];
 		try {
 		    $objPHPExcel = PHPExcel_IOFactory::load($file_tmp_name);
@@ -47,46 +51,31 @@ class Programs extends CI_Controller {
 		unset($sheetData[1]);
 		foreach(array_values($sheetData) as $s)
 		{
-			$photosArr = array($s['AB'],$s['AC'],$s['AD'],$s['AE'],$s['AF'],$s['AG'],$s['AH'],$s['AI'],$s['AJ'],$s['AK']);
 			$dataArr = array(
-					'name'    => $s['A'],
-					'founded' => $s['B'],
-					'country' => $this->input->post('country'),
-					'logo'    => $s['C'],
-					'image'   => $s['D'],
-					'location'=> $s['E'],
-					'address' => $s['F'],
-					'accreditation' => $s['G'],
-					'requirement'    => $s['H'],
-					'institution'    => $s['I'],
-					'estimated_cost' => $s['J'],
-					'programs'       => $s['K'],
-					'president' 	 => $s['L'],
-					'total_students' => $s['M'],
-					'international_students' => $s['N'],
-					'institution_number' => $s['O'],
-					'accommodation' => $s['P'],
-					'phone'         => $s['R'],
-					'email' 		=> $s['S'],
-					'tution_fee'    => @$s['AO'],
-					'application_fee' => @$s['AP'],
-					'admission_start_month' => @$s['AQ'],
-					'website'         => $s['T'],
-					'facebook_link'   => $s['U'],
-					'twitter_link'    => $s['V'],
-					'google_plus_link'=> $s['W'],
-					'linkedin_link'   => $s['X'],
-					'instagram_link'  => $s['Y'],
-					'youtube_link'    => $s['Z'],
-					'youtube_video'   => $s['AA'],
-					'photos'          => json_encode($photosArr),
-					'quotes_title'   => $s['AL'],
-					'quotes_content' => $s['AM'],
-					'content'        => $s['AN'],
+					'university'    => $s['B'],
+					'location'      => $s['C'],
+					'undergraduate_courses' => $s['D'],
+					'graduate_courses'    => $s['E'],
+					'doctoral'   => $s['F'],
+					'diploma'=> $s['G'],
+					'ielts_toefl_pte' => $s['H'],
+					'esl_program' => $s['I'],
+					'gre_sat'    => $s['J'],
+					'application_fee'    => $s['K'],
+					'criteria' => $s['L'],
+					'bank_statement'       => $s['N'],
+					'duration' 	 => $s['O'],
+					'university_scholarship' => $s['Q'],
+					'tution_fee' => $s['P'],
+					'website_lnik' => $s['R'],
+					'study_metro_scholarship' => $s['S'],
+					'intake_date'         => $s['M'],
+					'country' 		=> $this->input->post('country'),
+					'added_date'    => datetime()
 				);
-			$this->common_model->addRecords(UNIVERSITIES, $dataArr);
+			$this->common_model->addRecords(PROGRAMS, $dataArr);
 		}
-		$this->session->set_flashdata('item_success', sprintf(ITEM_ADD_SUCCESS, 'University'));
+		$this->session->set_flashdata('item_success', sprintf(ITEM_ADD_SUCCESS, 'Programs'));
         redirect($this->url.'/view-all');
     }
 
@@ -112,14 +101,13 @@ class Programs extends CI_Controller {
 	    $data['offset'] = $offset;
 	    $data['programs'] = '';
 	    $data['pagination'] = '';
-	    $data['programs'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(PROGRAMS, (isset($_GET['s'])) ? array('location', 'undergraduate_courses', 'graduate_courses', 'scholarship') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'DESC', RESULT_PER_PAGE, $offset, '');
+	    $data['programs'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(PROGRAMS, (isset($_GET['s'])) ? array('location', 'undergraduate_courses', 'graduate_courses', 'study_metro_scholarship','country') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'DESC', RESULT_PER_PAGE, $offset, '');
 	    if(count($data['programs']) > 0) {
 	    	/* Pagination records */
 	        $url = get_cms_url().$this->url.'/view-all';
-	        $total_records = $this->common_model->getTotalPaginateRecordsByOrderByLikeCondition(PROGRAMS, (isset($_GET['s'])) ? array('location', 'undergraduate_courses', 'graduate_courses', 'scholarship') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', '');
+	        $total_records = $this->common_model->getTotalPaginateRecordsByOrderByLikeCondition(PROGRAMS, (isset($_GET['s'])) ? array('location', 'undergraduate_courses', 'graduate_courses', 'study_metro_scholarship','country') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', '');
 	        $data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right');
 	    }
-
 		/* Load admin view */
 		load_admin_view('programs/view-all-programs', $data);
     }

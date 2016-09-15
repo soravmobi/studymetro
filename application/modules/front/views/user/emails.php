@@ -264,7 +264,7 @@ $('body').on('click','.view-mail',function(){
         success: function(resp){
            if(resp.type == "success"){
             var mail_data = resp.mail;
-            $('.mail-content').text(mail_data.message);
+            $('.mail-content').html(mail_data.message);
             $('.user-name').text(resp.username);
             $('.user-img-show').attr('src',resp.userimg);
             $('.mail-subject-time').html(mail_data.subject+' <span>'+resp.datetime+'</span>');

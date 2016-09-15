@@ -116,6 +116,7 @@ $route['admin/referrals/set-earning'] = 'admin/referrals/setEarning';
 
 $route['admin/programs/import']   = 'admin/programs/import';
 $route['admin/programs/view-all'] = 'admin/programs/viewAll';
+$route['admin/programs/view-all/(:any)'] = 'admin/programs/viewAll/$1';
 
 /* Front custom Routing */
 

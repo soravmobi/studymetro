@@ -302,6 +302,16 @@ class User extends CI_Controller {
             $this->form_validation->set_rules('message','Message','trim|required');
             if($this->form_validation->run()==TRUE){
                 $data = $this->input->post();
+                $html = '';
+                $msgArr = explode(PHP_EOL, $data['message']);
+                foreach($msgArr as $m){
+                    if(!empty($m)){
+                        $html .= $m;
+                    }else{
+                        $html .= '<div class="m-msz-text">'.$m.'</div>';
+                    }
+                }
+                $data['message'] = $html;
                 $result = $this->common_model->getSingleRecordById(USER,array('email' => $data['to_email']));
                 if(empty($result)){
                     echo json_encode(array('type' => 'failed', 'msg' => 'We could not find the user '.$data['to_email']));exit;
