@@ -1,4 +1,6 @@
-        <div class="head_dash">
+        <!--Main container sec start-->
+        <div class="main_container">
+            <div class="head_dash">
               <div class="container">
                  <div class="row">
                  <div class="col-md-12 col-sm-12">
@@ -7,14 +9,12 @@
                  </div>
               </div>
             </div>
-        <!--Main container sec start-->
-        <div class="main_container">
-       
-            <div class="container">
-                <div class="row">
-                   <?php $this->load->view('sidebar'); ?>
-                    <div class="col-md-9 col-sm-9">
-                        <div class="right_dashboard">
+            <section class="video_sec blog_wrap">
+                <div class="container">
+                    <div class="row">
+                    <?php $this->load->view('sidebar'); ?>
+                        <div class="col-md-9 col-sm-9">
+                      <div class="right_dashboard">
                             <div class="tool_bar">
                                 <!-- <div class="tool_bar_left">
                                     <div class="checkbox">
@@ -124,17 +124,19 @@
                             </div>
                             </div>
                         </div>
+                   </div> 
+                   
+                </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+        </div>
+        </section>
 
 
         </div>
-
         <!--Main container sec end-->
 
-
-    </main>
 
         <!-- Modal  for message-->
         <div class="modal fade" id="message" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -206,7 +208,9 @@
             </div>
         </div>
 
-        <!-- Modal  for title end-->
+        <!-- Modal  for title end-->        
+
+
 <script>
 $(document).ready(function(){
 

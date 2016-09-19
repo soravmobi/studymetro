@@ -57,6 +57,9 @@
                                  <?php if(in_array($user_type, array('2','3','4','5','6'))) { ?>
                                 <li <?php if(isset($parent) && $parent == 'emails') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/emails">Emails <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>
+                                <?php if(in_array($user_type, array('2'))) { ?>
+                                  <li <?php if(isset($parent) && $parent == 'portfolio') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>student/portfolio">E-portfolio <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>

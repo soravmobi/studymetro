@@ -198,6 +198,10 @@ define('NOTES', 'notes');
 define('PROGRAMS', 'programs');
 define('EMAILS', 'emails');
 define('REFERRALS', 'referrals');
+define('CERTIFICATIONS', 'certifications');
+define('EDUCATION', 'education');
+define('INTERESTS', 'interests');
+define('VOLUNTEERS', 'volunteers');
 
 /* Rest Api constants */
 define('SUCCESS', '100');

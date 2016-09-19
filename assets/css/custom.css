@@ -3231,3 +3231,101 @@ a.cross_btn {
 
 /*css end for dashboard message page*/
 .m-msz-text { padding: 2px 0; color: #666666; }
+
+/*css for education page start*/
+.content_edu > a {
+  font-size: 20px;
+}
+.descrip {
+  font-size: 16px;
+}
+.descrip > span {
+  color: #666;
+  display: block;
+  font-size: 14px;
+  line-height: 15px;
+}
+.content_edu > p {
+  font-size: 15px;
+  margin-top: 10px;
+}
+.content_edu label {
+  font-weight: normal;
+}
+.content_edu span {
+  color: #666;
+}
+.describ_box {
+  background-color: #f4f4f4;
+}
+.describ_box h1 {
+  border-bottom: 1px solid #e3e3e3;
+  font-size: 22px;
+  padding: 15px 15px 10px;
+  text-transform: capitalize;
+}
+.describ_box {
+  background-color: #f4f4f4;
+  border: 1px solid #e3e3e3;
+  margin-bottom: 30px;
+}
+.content_edu {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin: 15px;
+  padding: 10px;
+}
+.dates .form-control {
+  display: inline-block;
+  width: 200px;
+}
+.dates label {
+  display:block;
+
+}
+.custom_model .close {
+  background-color: #0b5ea6 !important;
+  border-radius: 50%;
+  color: #fff;
+  height: 30px;
+  opacity: 1;
+  position: absolute;
+  right: -15px;
+  top: -15px;
+  width: 30px;
+}
+.custom_model label {
+  color: #666;
+  font-weight: normal;
+   font-family: 'SourceSansProSemibold';
+}
+.custom_model h4{font-size: 28px;}
+.list_volunteer > li {
+  list-style: inside  disc;
+  padding-left: 10px;
+  color: #666;
+}
+.content_edu h3 {
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+.switch {
+  font-size: 11px;
+}
+.Interests_list li{display: inline-block;}
+.modal-body .form-group p {
+  color: #999;
+}
+.describ_box h1 i {
+  padding-right: 10px;
+}
+.content_edu label {
+  text-align: left !important;
+}
+.content_edu .checkbox {
+  margin-bottom: 10px;
+}
+/*css for education page end*/
+.error_form p {
+  color: red !important;
+}

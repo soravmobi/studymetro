@@ -456,5 +456,12 @@ if(!function_exists('decode_request')) {
 		}
 	}
 }
+
+function getMonths(){
+  $monthArr = array('January','February','March','April','May','June','July','August','September','October','November','December');
+  return $monthArr ;
+}
+
+
 /* End of file common_helper.php */
 /* Location: ./system/application/helpers/common_helper.php */

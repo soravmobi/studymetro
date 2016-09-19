@@ -122,7 +122,7 @@ class User extends CI_Controller {
     {
         checkUserSession(array('2','3','4','5','6'));
         $data = array();
-        $data['meta_title'] = 'dashboard';
+        $data['meta_title'] = 'Dashboard';
         $data['parent'] = 'dashboard';
         $data['detail'] = $this->common_model->getAllRecordsById('users',array('id' => $this->uid));
         load_front_view('user/dashboard', $data);

@@ -129,6 +129,7 @@ $route['user/upload_documents'] = 'front/user/upload_documents';
 $route['user/notes'] = 'front/user/notes';
 $route['user/emails'] = 'front/user/emails';
 $route['student/getquote'] = 'front/student/getquote';
+$route['student/portfolio'] = 'front/student/portfolio';
 
 $route['(:any)'] = 'front/home/pages/$1';
 $route['faqs/(:any)'] = 'front/home/faqs/$1';
