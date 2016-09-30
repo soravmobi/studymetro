@@ -159,7 +159,7 @@ class User extends CI_Controller {
                 $message .= '<li><b>Phone:</b> '.$data['phone'].'</li>';
                 $message .= '<li><b>Suggestion:</b> '.$data['suggestion'].'</li>';
                 $message .= '</ul></body></html>';
-                send_mail($message,'New Feedback',FEEDBACK_EMAIL,$data['email']);
+                send_mail($message,'New Feedback',SUPPORT_EMAIL,$data['email']);
                 $this->session->set_flashdata('success','Thanks for your valuable feedback !!');
                 redirect('user/feedback');
             }else{
@@ -358,6 +358,58 @@ class User extends CI_Controller {
                 echo json_encode(array('type' => 'success', 'mail' => $result, 'username' => $user_details[0]['first_name']." ".$user_details[0]['last_name'],'userimg' => $file,'datetime' => date('d M, Y',strtotime($result['added_date']))));exit;
             }else{
                 echo json_encode(array('type' => 'failed', 'msg' => GENERAL_ERROR));exit;
+            }
+        }
+    }
+
+    public function myvideos()
+    {
+        checkUserSession(array('5','6'));
+        $data = array();
+        $data['meta_title'] = 'My Videos';
+        $data['parent']     = 'myvideos';
+        $data['videos']     = $this->common_model->getAllRecordsOrderById(MY_VIDEOS,'id','DESC',array('user_id' => $this->uid));
+        load_front_view('user/myvideos', $data);
+    }
+
+    public function regex_url_check($url)
+    {
+        checkUserSession(array('5','6'));
+        if (1 !== preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $url))
+        {
+            $this->form_validation->set_message('live_video_url', 'Please Enter Valid Youtube Video URL');
+            return FALSE;
+        }
+        else
+        {
+            return TRUE;
+        }
+    }
+
+    public function uploadVideo()
+    {
+        checkUserSession(array('5','6'));
+        if($this->input->is_ajax_request())
+        {
+            $this->load->helper('security');
+            $this->form_validation->set_rules('title','Title','trim|required');
+            $this->form_validation->set_rules('live_video_url','Video URL','trim|required');
+            if($this->form_validation->run()==TRUE){
+                $data = $this->input->post();
+                $data['user_id'] = $this->uid;
+                $data['added_date'] = datetime();
+                $lid = $this->common_model->addRecords(MY_VIDEOS,$data);
+                if(!empty($lid)){
+                    echo json_encode(array('type' => 'success', 'msg' => 'Video added successfully'));exit;
+                }else{
+                    echo json_encode(array('type' => 'failed', 'msg' => GENERAL_ERROR));exit;
+                }
+            }else{
+                $error = array(
+                    'title'      => form_error('title'),
+                    'live_video_url'  => form_error('live_video_url'),
+                ); 
+                echo json_encode(array('type' => 'validation_err','msg' => $error));exit;
             }
         }
     }

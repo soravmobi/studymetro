@@ -35,6 +35,7 @@ class Programs extends CI_Controller {
     }
 
     public function importData(){
+    	$data = $this->input->post();
     	ini_set('memory_limit', '-1'); 
     	set_include_path(get_include_path() . PATH_SEPARATOR . 'Classes/');
     	require_once APPPATH.'third_party/PHPExcel/IOFactory.php';
@@ -52,24 +53,22 @@ class Programs extends CI_Controller {
 		foreach(array_values($sheetData) as $s)
 		{
 			$dataArr = array(
-					'university'    => $s['B'],
-					'location'      => $s['C'],
-					'undergraduate_courses' => $s['D'],
-					'graduate_courses'    => $s['E'],
-					'doctoral'   => $s['F'],
-					'diploma'=> $s['G'],
-					'ielts_toefl_pte' => $s['H'],
-					'esl_program' => $s['I'],
-					'gre_sat'    => $s['J'],
-					'application_fee'    => $s['K'],
-					'criteria' => $s['L'],
-					'bank_statement'       => $s['N'],
-					'duration' 	 => $s['O'],
-					'university_scholarship' => $s['Q'],
-					'tution_fee' => $s['P'],
-					'website_lnik' => $s['R'],
-					'study_metro_scholarship' => $s['S'],
-					'intake_date'         => $s['M'],
+					'university_id' => $data['university_id'],
+					'program_name'  => $s['A'],
+					'location'      => $s['B'],
+					'course_type'   => $s['C'],
+					'ielts_toefl_pte' => $s['D'],
+					'esl_program' => $s['E'],
+					'gre_sat'    => $s['F'],
+					'application_fee'    => $s['G'],
+					'criteria' => $s['H'],
+					'intake_date'  => $s['I'],
+					'bank_statement' => $s['J'],
+					'duration' 	 => $s['K'],
+					'tution_fee' => $s['L'],
+					'university_scholarship' => $s['M'],
+					'website_lnik' => $s['N'],
+					'study_metro_scholarship' => $s['O'],
 					'country' 		=> $this->input->post('country'),
 					'added_date'    => datetime()
 				);
@@ -128,6 +127,13 @@ class Programs extends CI_Controller {
             $this->session->set_flashdata('invalid_item', INVALID_ITEM);
             redirect($this->url.'/view-all');
         }
+    }
+
+    public function getUniversities()
+    {
+    	$country = $this->input->post('country');
+    	$result  = $this->common_model->getAllRecordsOrderById(UNIVERSITIES,'name','ASC',array('country' => $country));
+    	echo json_encode($result);
     }
 
 	

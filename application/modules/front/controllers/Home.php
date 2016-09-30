@@ -32,7 +32,13 @@ class Home extends CI_Controller {
             $data['meta_description'] = $data['details']['meta_description'];
             $page_name = strtolower(str_replace(' ', '-', getPageName($data['details']['page_no'])));
             if($page_name == 'university'){
-                $data['universities'] = $this->getUniversities((isset($_GET['country']) && !empty($_GET['country'])) ? $_GET['country'] : 'USA');
+                $country = (isset($_GET['country']) && !empty($_GET['country'])) ? $_GET['country'] : 'USA';
+                $data['universities'] = $this->getUniversities($country);
+                $result  = $this->common_model->getTotalRecordsByCondition(UNIVERSITIES,array('country' => $country));
+                $data['total_count'] = round($result/16);
+            }
+            if($page_name == 'search-programs'){
+                $data['programs'] = $this->getPrograms((isset($_GET['country']) && !empty($_GET['country'])) ? $_GET['country'] : 'USA');
             }
             load_front_view('pages/'.$page_name, $data);
         }else{
@@ -45,8 +51,38 @@ class Home extends CI_Controller {
         if(empty($country)){
             $country = 'USA';
         }
-        $universities = $this->common_model->getAllRecordsOrderById(UNIVERSITIES,'name','ASC',array('country' => $country));
+        $universities = $this->common_model->getAllRecordsOrderById(UNIVERSITIES,'name','ASC',array('country' => $country),16);
         return $universities;
+    }
+
+    public function getNextUniversities()
+    {
+        $page    = $this->input->post('page');
+        $country = $this->input->post('country');
+        $offset  = (int) $page * 16 - 16;
+        $query   = $this->db->query(" SELECT * FROM `universities` WHERE `country` LIKE '".$country."' LIMIT 16 OFFSET  ".$offset);
+        $results = $query->result_array();
+        $final_arr = array();
+        foreach($results as $r){
+            $row['detail'] = base_url().'university/details/'.encode($r['id']);
+            $row['country_flag'] = base_url().'assets/images/'.getCountryFlag($r['country']);
+            $row['logo'] = (!empty($r['logo'])) ? $r['logo'] : base_url().'assets/images/not-available.jpg';
+            $row['name'] = $r['name'];
+            $row['location'] = $r['location'];
+            $row['country'] = $r['country'];
+            $row['estimated_cost'] = $r['estimated_cost'];
+            array_push($final_arr, $row);
+        }
+        echo json_encode($final_arr);
+    }
+
+    public function getPrograms($country = '')
+    {
+        if(empty($country)){
+            $country = 'USA';
+        }
+        $programs = $this->common_model->getAllRecordsOrderById(PROGRAMS,'id','ASC',array('country' => $country));
+        return $programs;
     }
 
     public function faqs($country){

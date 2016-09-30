@@ -54,6 +54,13 @@ $(document).ready(function () {
 
     $('.BSswitch').bootstrapSwitch('state', false);
 
+    $('.toggler').on('click', function(event) {
+        event.preventDefault();
+        var target = $(this).data('target'),
+            relatedtarget = $(this).data('relatedtarget');
+        toggler(target, relatedtarget);
+    });
+
     $('#CheckBoxValue').text($("#TheCheckBox").bootstrapSwitch('state'));
 
     $('#TheCheckBox').on('switchChange.bootstrapSwitch', function () {
@@ -231,6 +238,11 @@ $(document).ready(function () {
           return false;
       }
       else return true;
+    }
+
+    function toggler(target, relatedtarget) {
+        $(target).toggleClass('hidden');
+        $(relatedtarget).addClass('hidden');
     }
 
 

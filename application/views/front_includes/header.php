@@ -18,8 +18,10 @@
       <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>assets/css/custom.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>assets/css/responsive.css" rel="stylesheet">
+      <link href="<?php echo base_url(); ?>assets/css/chosen.min.css" rel="stylesheet">
       <script src="<?php echo base_url(); ?>assets/js/modernizr-custom.js"></script>
       <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
+      <script src="<?php echo base_url(); ?>assets/js/chosen.jquery.min.js"></script>
       <!-- begin olark code -->
       <script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
 

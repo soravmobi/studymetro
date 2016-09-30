@@ -282,6 +282,7 @@
   <script src="<?php echo base_url(); ?>assets/js/featherlight.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/featherlight.gallery.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/jquery.twbsPagination.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
   <script type="text/javascript">
     jQuery(document).ready(function ( $ ) {

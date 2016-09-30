@@ -198,6 +198,7 @@ class Student extends CI_Controller {
         redirect('student/portfolio');
     }
     
+    
 }
 
 ?>

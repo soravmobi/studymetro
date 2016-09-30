@@ -65,6 +65,25 @@ if(!function_exists('getUserDetailsBy')) {
 	}
 }
 
+if(!function_exists('getUniversity')) {
+	function getUniversity($id="")
+	{
+		$ci =&get_instance();
+	    $results = $ci->common_model->getAllRecordsByOrder(UNIVERSITIES,'name','ASC');
+	    if(empty($id)){
+	    	return $results;
+	    }else{
+	    	$univesities = array();
+	    	foreach($results as $r){
+	    		$row[$r['id']] = $r['name'];
+	    		array_push($univesities, $row);
+	    	}
+	    	$universities = end($univesities);
+	    	return $universities[$id];
+	    }
+	}
+}
+
 if(!function_exists('getphotogallery')) {
 	function getphotogallery()
 	{
@@ -131,6 +150,30 @@ if(!function_exists('documents')) {
 	{
 		$documents = array('Passport/ID','Transcript','Certificate/Diploma','Resume/CV','Financial Support','GMAT/GRE/SAT Scores','Other');
 	    return $documents;
+	}
+}
+
+if(!function_exists('profile_types')) {
+	function profile_types()
+	{
+		$profile_types = array('Language Courses','Undergraduate/Community College/Technical','Secondary','Extension / Certificate / Diploma','Graduate/Postgraduate','MBA Program','Online Distance Learning','Vocational/ Career / Technical');
+	    return $profile_types;
+	}
+}
+
+if(!function_exists('program_types')) {
+	function program_types()
+	{
+		$program_types = array('Language','Secondary','Undergrad','Postgrad','MBA','Short-Term','Vocational','Online');
+	    return $program_types;
+	}
+}
+
+if(!function_exists('top_degrees')) {
+	function top_degrees()
+	{
+		$top_degrees = array('Associates','Bachelors','Masters','Doctorals','Post Doctorals');
+	    return $top_degrees;
 	}
 }
 

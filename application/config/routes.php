@@ -128,8 +128,15 @@ $route['user/dashboard'] = 'front/user/dashboard';
 $route['user/upload_documents'] = 'front/user/upload_documents';
 $route['user/notes'] = 'front/user/notes';
 $route['user/emails'] = 'front/user/emails';
+$route['user/my-videos'] = 'front/user/myvideos';
 $route['student/getquote'] = 'front/student/getquote';
 $route['student/portfolio'] = 'front/student/portfolio';
+$route['university/profile_types'] = 'front/university/profile_types';
+$route['university/post_grad'] = 'front/university/post_grad';
+$route['university/mba'] = 'front/university/mba';
+$route['university/short_term'] = 'front/university/short_term';
+$route['university/online'] = 'front/university/online';
+$route['university/international_partnerships'] = 'front/university/international_partnerships';
 
 $route['(:any)'] = 'front/home/pages/$1';
 $route['faqs/(:any)'] = 'front/home/faqs/$1';

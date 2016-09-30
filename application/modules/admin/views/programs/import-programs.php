@@ -31,10 +31,22 @@
 		            	<div class="col-md-6">
 			                <div class="form-group photo_1">
 			                  <label for="photos">Select Country</label>
-			                  <select name="country" required class="form-control" id="country">
+			                  <select name="country" required class="form-control select_country" id="country">
+			                  <option value="">Select Country</option>
 						      <?php foreach(countries() as $c) { ?>
 						      	<option value="<?php echo $c; ?>"><?php echo $c; ?></option>
 						      <?php } ?>
+						      </select>
+			                </div>
+			            </div>
+		            </div>
+
+		            <div class="col-md-12">
+		            	<div class="col-md-6">
+			                <div class="form-group photo_1">
+			                  <label for="photos">Select University</label>
+			                  <select name="university_id" required class="form-control select_university" id="university_id">
+			                  	<option value="">Select University</option>
 						      </select>
 			                </div>
 			            </div>
@@ -61,3 +73,48 @@
     </div><!-- .row -->
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+
+  /**************** Get Subcategories Start ***************/
+
+  $('body').on('change','.select_country',function(){
+    var country = $(this).val();
+    var appendHTML = '<option value="">Select University</option>';
+    if(country == ''){
+      $('.select_university').html(appendHTML);
+      return false;
+    }else{
+       $.ajax({
+        url :"<?php echo base_url(); ?>admin/programs/getUniversities",
+        type:"POST",
+        data:{country:country},
+        dataType:"JSON",
+        beforeSend: function() {
+          ajaxindicatorstart();
+        }, 
+        success: function(resp)
+        {
+          if(resp != ''){
+            for (var i = 0; i < resp.length; i++) {
+              appendHTML += '<option value="'+resp[i]['id']+'">'+resp[i]['name']+'</option>';
+            }
+          }
+          $('.select_university').html(appendHTML);
+          ajaxindicatorstop();
+        },
+        error:function(error)
+        {
+          ajaxindicatorstop();
+        }
+      });
+    }
+  }); 
+
+  /**************** Get Subcategories End *****************/
+
+});
+
+</script>

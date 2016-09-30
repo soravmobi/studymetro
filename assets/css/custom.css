@@ -1016,7 +1016,7 @@ border-bottom: 1px solid #004c9c; right: 0px; content: ""; width: 80%;
   box-shadow: 0 0 2px #d3d4d6;
   margin-bottom: 15px;
   text-align: center;
-  min-height: 460px;
+  min-height: 478px;
 }
 .head_university .form-group {
   display: inline-block;
@@ -1608,7 +1608,7 @@ background-repeat: no-repeat;
 }
 .univ_logo {
   display: inline-block;
-  width: 300px;
+  width: 400px;
   vertical-align: middle;
   text-align: center;
 }
@@ -1666,13 +1666,14 @@ background-repeat: no-repeat;
   vertical-align: top;
 } 
 .appy_btn {
-  background-color: #0b5ea6;
-  color: #fff;
-  display: inline-block;
-  font-size: 18px;
-  margin-right: 15px;
-  padding: 8px 50px;
-  text-transform: capitalize;
+    background-color: #0b5ea6;
+    color: #fff;
+    display: block;
+    font-size: 18px;
+    margin-right: 15px;
+    padding: 8px 50px;
+    text-transform: capitalize;
+    margin-bottom: 8px;
 }
 .search_pro .search_form_content {
   padding-top: 0px;
@@ -3025,7 +3026,7 @@ select option {
 }
 .list_dash li:last-child a{border-bottom: none;}
 .list_dash .dropdown-menu li a{border-bottom:1px solid #ddd; padding: 8px 20px 8px 30px;}
-.list_dash .dropdown-menu li.active a{ background-color: #ccc;}
+.list_dash .dropdown-menu li.active a{ background-color: #000;}
 /*.list_dash .dropdown-menu li:last-child a{border-bottom: inherit;}*/
 /*css end for dashboard page*/
 .sweet-alert {
@@ -3232,6 +3233,7 @@ a.cross_btn {
 /*css end for dashboard message page*/
 .m-msz-text { padding: 2px 0; color: #666666; }
 
+
 /*css for education page start*/
 .content_edu > a {
   font-size: 20px;
@@ -3325,7 +3327,265 @@ a.cross_btn {
 .content_edu .checkbox {
   margin-bottom: 10px;
 }
+
+.read-more-state {
+  display: none;
+}
+
+.read-more-target {
+  opacity: 0;
+  max-height: 0;
+  font-size: 0;
+  transition: .25s ease;
+}
+
+.read-more-state:checked ~ .read-more-wrap .read-more-target {
+  opacity: 1;
+  font-size: inherit;
+  max-height: 999em;
+}
+
+.read-more-state ~ .read-more-trigger::before {
+  content: "More Info";
+  font-size: 18px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: -5px;
+
+}
+
+.read-more-state:checked ~ .read-more-trigger:before {
+  content: 'Less Info';
+
+}
+
+.read-more-trigger {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 .5em;
+  color: #666;
+  font-size: .9em;
+  line-height: 2;
+
+}
+.more_info {
+  position: relative;
+}
+.read_more_info {
+    display: inline-block;
+    vertical-align: top;
+    width: 27%;
+    margin-right: 50px;
+    padding-left: 22px;
+    margin-top: 20px;
+}
+span.new_price {
+    color: red;
+}
+.search_box .head_university{border: none;}
+.course_detail .univ_meta {
+  padding-left: 30px;
+  position: relative;
+  text-align: left;
+}
+.course_detail .univ_logo{
+    margin-right: 100px;
+}
+.apply_now_wrap .appy_btn:nth-child(2){
+  background-color: #339966;
+}
+.apply_now_wrap .appy_btn:nth-child(3){
+  background-color: #663333;
+}
 /*css for education page end*/
+
+/*css for my application page start*/
+.my_application .table tr td img {
+  max-width: 175px;
+}
+.pending {
+  background: #f8ac59 none repeat scroll 0 0;
+  border-radius: 2px;
+  color: #fff;
+  display: block;
+  font-size: 12px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  width: 130px;
+}
+.my_application .table tr td {
+  font-size: 16px;
+  vertical-align: middle;
+}
+.my_application .table tr td:last-child {
+  width:100px;
+  text-align: center;
+}
+.my_application .table th:nth-child(5) {
+  width:112px;
+ 
+}
+.my_application .table tr:hover {
+ background-color: #f4f4f4;
+}
+.my_application .table tr:nth-child(2n) td{
+  color: #999;
+}
+.edit_tab {
+  display: inline-block;
+  font-size: 20px;
+  width: 50px;
+}
+.delete_tab {
+  display: inline-block;
+  font-size: 20px;
+  width: 20px;
+}
+.txt_center {
+  display: block;
+  text-align: center;
+}
+.my_application {
+  border: 1px solid #ddd;
+}
+.star {
+  color: #ccc;
+  cursor: pointer;
+  font-size: 20px;
+  position: absolute;
+  right: 28px;
+  top: 2px;
+}
+.clicked{ color: #0b5ea6;}
+
+
+/*css for my application page end*/
 .error_form p {
   color: red !important;
 }
+
+/*css for my application page start*/
+.my_application .table tr td img {
+  max-width: 175px;
+}
+.pending {
+  background: #f8ac59 none repeat scroll 0 0;
+  border-radius: 2px;
+  color: #fff;
+  display: block;
+  font-size: 12px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  width: 130px;
+}
+.my_application .table tr td {
+  font-size: 16px;
+  vertical-align: middle;
+}
+.my_application .table tr td:last-child {
+  width:100px;
+  text-align: center;
+}
+.my_application .table th:nth-child(5) {
+  width:112px;
+ 
+}
+.my_application .table tr:hover {
+ background-color: #f4f4f4;
+}
+.my_application .table tr:nth-child(2n) td{
+  color: #999;
+}
+.edit_tab {
+  display: inline-block;
+  font-size: 20px;
+  width: 50px;
+}
+.delete_tab {
+  display: inline-block;
+  font-size: 20px;
+  width: 20px;
+}
+.txt_center {
+  display: block;
+  text-align: center;
+}
+.my_application {
+  border: 1px solid #ddd;
+}
+.star {
+  color: #ccc;
+  cursor: pointer;
+  font-size: 20px;
+  position: absolute;
+  right: 28px;
+  top: 2px;
+}
+.clicked{ color: #0b5ea6;}
+
+.search_box .head_university {
+    border: none;
+}
+.head_university label {
+    color: #383838;
+    font-size: 18px;
+    font-weight: normal;
+    font-family: 'SourceSansProSemibold';
+}
+.search_box_top {
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+.left_edu {
+    display: inline-block;
+    width: 85%;
+}
+.left_edu h3{color:#2e6da4; }
+.rbtn_remove {
+    background-color: #2e6da4;
+    border: none;
+    color: #fff;
+    padding: 5px 18px;
+    border-radius: 4px;
+}
+.inside-btn{
+  margin-top: -8px !important;
+}
+.right_dashboard .profile_content .form-group {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.profile_content .chosen-container.chosen-container-multi {
+    width: 100% !important;
+}
+.view-section .left_edu {
+    display: inline-block;
+    width: 100%;
+}
+/*css for my application page end*/
+.video_content {
+    padding: 20px;
+}
+.video_box_content {
+    display: inline-block;
+    width: 32%;
+    margin-bottom: 20px;
+    vertical-align: top;
+}
+.video_top {
+    background-color: #333;
+    padding: 5px 17px 5px 5px;
+    text-align: right;
+}
+.video_top a {
+    color: #fff;
+    font-size: 20px;
+    display: inline-block;
+}
+.video_box_content iframe{border: none;margin: 0px; padding: 0px;}

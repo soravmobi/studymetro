@@ -53,12 +53,12 @@
 	            ?>
 	            	<tr>
 		              <td><?php echo $offset++; ?></td>
-		              <td><?php echo $val['university']; ?></td>
+		              <td><?php echo getUniversity($val['university_id']); ?></td>
 		              <td><?php echo $val['location']; ?></td>
 		              <td><?php echo $val['country']; ?></td>
 		              <td><?php echo $val['duration']; ?></td>
 		              <td><?php echo $val['tution_fee']; ?></td>
-		              <td>$<?php echo $val['application_fee']; ?></td>
+		              <td>$<?php echo (empty($val['application_fee'])) ? '0' : $val['application_fee']; ?></td>
 		              <td>
 		              	<a href="<?php cms_url('admin/programs/delete/'.$val['id']); ?>" title="Delete Program" onclick="if(!confirm('Are you sure you want to delete this program?')) return false;">
 		              		<i class="fa fa-trash"></i> Delete

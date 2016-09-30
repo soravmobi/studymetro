@@ -25,17 +25,23 @@
                             </form>
                             <ul class="list_dash">
                                 <li <?php if(isset($parent) && $parent == 'dashboard') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/dashboard">Global Wall <i class="fa fa-chevron-right pull-right"></i></a></li>
-                                <!-- <li class="dropdown"><a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Get a Quote <i class="fa fa-chevron-right pull-right"></i></a>
-                                 <ul class="dropdown-menu">
-                                            <li class="active"><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
-                                           
-                                    </ul>
-                                </li> -->
                                 <li><a href="#">Find Schools <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <li><a href="#">Find Agents <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <li <?php if(isset($parent) && $parent == 'profile') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/profile">My Profile <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php if(in_array($user_type, array('5'))) { ?>
+                                    <li <?php if(isset($parent) && $parent == 'international_partnerships') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/international_partnerships">International Partnerships <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php } ?>
+                                <?php if(in_array($user_type, array('5'))) { ?>
+                                <!-- <li class="dropdown <?php if(isset($parent) && $parent == 'profile_types') echo "open"; ?>"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Edit Profile Types <i class="fa fa-chevron-right pull-right"></i></a>
+                                    <ul class="dropdown-menu">
+                                      <li <?php if(isset($child) && $child == 'profile_types') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/profile_types">Edit Profile Types</a></li>
+                                      <li <?php if(isset($child) && $child == 'post_grad') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/post_grad">Postgrad</a></li>
+                                      <li <?php if(isset($child) && $child == 'mba') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/mba">MBA</a></li>
+                                      <li <?php if(isset($child) && $child == 'short_term') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/short_term">Short-Term</a></li>
+                                      <li <?php if(isset($child) && $child == 'online') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/online">Online</a></li>
+                                    </ul>
+                                </li>  -->
+                                <?php } ?>
                                 <?php if(in_array($user_type, array('2','3'))) { ?>
                                   <li <?php if(isset($parent) && $parent == 'upload_documents') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/upload_documents">Upload Documents <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>
@@ -59,6 +65,12 @@
                                 <?php } ?>
                                 <?php if(in_array($user_type, array('2'))) { ?>
                                   <li <?php if(isset($parent) && $parent == 'portfolio') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>student/portfolio">E-portfolio <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php } ?>
+                                <?php if(in_array($user_type, array('2','3'))) { ?>
+                                  <li <?php if(isset($parent) && $parent == 'searchProgram') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>search-programs">Search Programs <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php } ?>
+                                <?php if(in_array($user_type, array('5','6'))) { ?>
+                                  <li <?php if(isset($parent) && $parent == 'myvideos') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/my-videos">My Videos <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>
                             </ul>
                         </div>

@@ -202,6 +202,8 @@ define('CERTIFICATIONS', 'certifications');
 define('EDUCATION', 'education');
 define('INTERESTS', 'interests');
 define('VOLUNTEERS', 'volunteers');
+define('INTERNATIONAL', 'international_partnership');
+define('MY_VIDEOS', 'my_videos');
 
 /* Rest Api constants */
 define('SUCCESS', '100');
@@ -213,7 +215,7 @@ define('ERROR_MSG', 'ERROR');
 define('SERVER_MSG', 'SERVER_ERROR');
 
 define('FROM_EMAIL', 'studymetro@studymetro.com');
-define('FEEDBACK_EMAIL', 'support@studymetro.com');
+define('SUPPORT_EMAIL', 'support@studymetro.com');
 define('SITE_NAME', 'Study Metro');
 define('DEFAULT_IMG', 'default-148.png');
 define('CRM_ACCESS_KEY', 'u$r5f9d994f80d8e0629cafc38bb0e0446b');
