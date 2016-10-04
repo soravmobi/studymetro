@@ -39,7 +39,7 @@
 	            <tr>
 	              <th>ID</th>
 	              <th>University</th>
-	              <th>Location</th>
+	              <th>Program</th>
 	              <th>Country</th>
 	              <th>Duration</th>
 	              <th>Tution Fee</th>
@@ -54,7 +54,7 @@
 	            	<tr>
 		              <td><?php echo $offset++; ?></td>
 		              <td><?php echo getUniversity($val['university_id']); ?></td>
-		              <td><?php echo $val['location']; ?></td>
+		              <td><?php echo $val['program_name']; ?></td>
 		              <td><?php echo $val['country']; ?></td>
 		              <td><?php echo $val['duration']; ?></td>
 		              <td><?php echo $val['tution_fee']; ?></td>

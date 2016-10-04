@@ -93,6 +93,15 @@ if(!function_exists('getphotogallery')) {
 	}
 }
 
+if(!function_exists('getProgramsBy')) {
+	function getProgramsBy($column,$value)
+	{
+		$ci =&get_instance();
+	    $results = $ci->common_model->getAllRecordsOrderById(PROGRAMS,'program_name','ASC',array($column => $value));
+	    return $results;
+	}
+}
+
 if(!function_exists('getvideogallery')) {
 	function getvideogallery()
 	{

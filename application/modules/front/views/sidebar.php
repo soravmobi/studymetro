@@ -72,6 +72,9 @@
                                 <?php if(in_array($user_type, array('5','6'))) { ?>
                                   <li <?php if(isset($parent) && $parent == 'myvideos') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/my-videos">My Videos <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>
+                                <?php if(in_array($user_type, array('5'))) { ?>
+                                  <li <?php if(isset($parent) && $parent == 'locations') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/locations">Locations <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>

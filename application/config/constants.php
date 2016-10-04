@@ -204,6 +204,7 @@ define('INTERESTS', 'interests');
 define('VOLUNTEERS', 'volunteers');
 define('INTERNATIONAL', 'international_partnership');
 define('MY_VIDEOS', 'my_videos');
+define('LOCATIONS', 'locations');
 
 /* Rest Api constants */
 define('SUCCESS', '100');

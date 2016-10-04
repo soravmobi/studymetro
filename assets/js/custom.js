@@ -245,6 +245,24 @@ $(document).ready(function () {
         $(relatedtarget).addClass('hidden');
     }
 
+    document.write("\<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCz7Bo_xQIywAxLvk5BRR5xz70VY2VhLPk&libraries=places&callback=initMap' type='text/javascript'>\<\/script>");
+
+    var autocomplete;
+    function initMap() {
+        var check_class = $('input').hasClass('google_autocomplete');
+        if(check_class == true){   
+          autocomplete = new google.maps.places.Autocomplete(
+              /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+              { types: ['geocode'] });
+          google.maps.event.addListener(autocomplete, 'place_changed', function() {
+          });
+        }
+    }
+
+    window.onload = function() {
+      initMap();
+    };
+
 
 
 

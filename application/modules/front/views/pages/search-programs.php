@@ -27,221 +27,51 @@
                                         <?php } ?>
                                     </div>
                                 </div>
-                                <div class="search_box_content" style="margin-top:0px;">
-                                    <div class="univer_box">
-                                        <div class="univ_logo">
-                                            <a href="#"> <img src="<?php echo base_url(); ?>assets/images/univ_logo.png"></a>
-                                            <div class="univ_meta">
-                                                <span class="univ_name"><a href="#">university name</a></span>
-                                                <p><i class="fa fa-map-marker"></i> Regina, Saskatchewan, Canada </p>
+                                <?php if(!empty($programs)) { $i = 1; foreach($programs as $p){ ?>
+                                    <div class="search_box_content" <?php if($i == 1) echo "style='margin-top:0px;'"; ?>>
+                                        <div class="univer_box">
+                                            <div class="univ_logo">
+                                                <a href="<?php echo base_url(); ?>university/details/<?php echo encode($p['id']); ?>"> <img src="<?php echo $p['logo']; ?>" class="img-responsive"></a>
+                                                <div class="univ_meta">
+                                                    <span class="univ_name"><a href="<?php echo base_url(); ?>university/details/<?php echo encode($p['id']); ?>"><?php echo $p['name']; ?></a></span>
+                                                    <p><i class="fa fa-map-marker"></i> <?php echo $p['location']; ?>, <?php echo $p['country']; ?> </p>
+                                                </div>
                                             </div>
+                                            <ul class="univ_info">
+                                                <li><span> <i class="fa fa-university" aria-hidden="true"></i>  Founded in : </span><?php echo $p['founded']; ?></li>
+                                                <li> <span> <i class="fa fa-university" aria-hidden="true"></i> Institution Type :</span><?php echo $p['institution']; ?> </li>
+                                                <li> <span> <i class="fa fa-money" aria-hidden="true"></i> Estimated Cost of living :</span><?php echo $p['estimated_cost']; ?> </li>
+                                                <li> <span> <i class="fa fa-money" aria-hidden="true"></i> Tuition Fee : </span>$<?php echo $p['tution_fee']; ?></li>
+                                            </ul>
                                         </div>
-                                        <ul class="univ_info">
-                                            <li><span> <i class="fa fa-university" aria-hidden="true"></i>  Founded in : </span>                                                2000</li>
-                                            <li> <span> <i class="fa fa-university" aria-hidden="true"></i> Institution Type :</span>                                                Public </li>
-                                            <li> <span> <i class="fa fa-money" aria-hidden="true"></i> Estimated Cost of living :</span>                                                $10334.0 USD per year </li>
-                                            <li> <span> <i class="fa fa-money" aria-hidden="true"></i> Tuition Fee : </span> $10012.0
-                                                USD - $18380.0 USD per year</li>
-                                        </ul>
-                                    </div>
-                                    <div class="univer_box course_detail">
-                                        <div class="univ_logo">
-                                            <div class="univ_meta">
-                                                <a href="#"> 
-                                                 Bachlor of Arts - Anthropology (Biological Anthropology)
-
-                                                 <span class="course_meta"> 4 year bachelor degree</span>       
-                                                </a>
-                                                <i class="fa fa-star star"></i>
-                                            </div>
-                                        </div>
-                                        <ul class="univ_info">
-                                            <li>$18212.0 USD/year</li>
-                                        </ul>
-                                        <div class="apply_now_wrap pull-right">
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="more_info">
-                                            <input type="checkbox" class="read-more-state" id="post-1" />
-                                            <label for="post-1" class="read-more-trigger"></label>
-                                            
-                                            <div class="read-more-wrap">
-                                                <div class="read-more-target">
-                                                     <div class="read_more_info">
-                                                         Length: <b>2 year graduate certificate including 1 semester (4 months) of paid co-op.       </b>
-                                                     </div>
-                                                      <div class="read_more_info">
-                                                         Tuition: <b> $11,368 CAD/year</b>
-                                                         <p>Application Fee: </p>
-                                                         <p> <span class="new_price">$80.75 CAD</span></p>
-                                                     </div>
-                                                     <div class="read_more_info">
-                                                         Average processing time: <b>30 days</b>        
-                                                     </div>
+                                        <?php 
+                                            $programs_list = getProgramsBy('university_id',$p['id']);
+                                            if(!empty($programs_list)){ foreach($programs_list as $pl){ ?>
+                                            <div class="univer_box course_detail">
+                                                <div class="univ_logo">
+                                                    <div class="univ_meta">
+                                                        <a href="javascript:void(0)"> 
+                                                        <?php echo $pl['program_name']; ?>
+                                                         <span class="course_meta"> <?php echo $pl['location']; ?></span>       
+                                                        </a>
+                                                         <i class="fa fa-star star"></i>
                                                     </div>
                                                 </div>
-                                            </div>     
-                                        </div>
-                                    </div>
-                                    <div class="univer_box course_detail">
-                                        <div class="univ_logo">
-                                            <div class="univ_meta">
-                                                <a href="#"> 
-                                                 Bachlor of Human Resource
-                                                 <span class="course_meta"> 4 year bachelor degree</span>       
-                                                </a>
-                                                 <i class="fa fa-star star"></i>
+                                                <ul class="univ_info">
+                                                    <li>$<?php echo $pl['application_fee']; ?> USD/year</li>
+                                                </ul>
+                                                <div class="apply_now_wrap pull-right">
+                                                   <a href="#" class="appy_btn">apply to this program</a>
+                                                    <a href="#" class="appy_btn">apply to this program</a>
+                                                    <a href="#" class="appy_btn">apply to this program</a>
+                                                </div>
+                                                <div class="clearfix"></div>
                                             </div>
-                                        </div>
-                                        <ul class="univ_info">
-                                            <li>$18212.0 USD/year</li>
-                                        </ul>
-                                        <div class="apply_now_wrap pull-right">
-                                           <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                        </div>
-                                        <div class="clearfix"></div>
+                                        <?php } } ?>
                                     </div>
-                                    <div class="univer_box course_detail">
-                                        <div class="univ_logo">
-                                            <div class="univ_meta">
-                                                <a href="#"> 
-                                                 Bachlor of Arts 
-                                                 <span class="course_meta"> 4 year bachelor degree</span>       
-                                                </a>
-                                                 <i class="fa fa-star star"></i>
-                                            </div>
-                                        </div>
-                                        <ul class="univ_info">
-                                            <li>$18212.0 USD/year</li>
-                                        </ul>
-                                        <div class="apply_now_wrap pull-right">
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="univer_box course_detail">
-                                        <div class="univ_logo">
-                                            <div class="univ_meta">
-                                                <a href="#"> 
-                                                 Bachlor of commerce
-                                                 <span class="course_meta"> 4 year bachelor degree</span>       
-                                                </a>
-                                                 <i class="fa fa-star star"></i>
-                                            </div>
-                                        </div>
-                                        <ul class="univ_info">
-                                            <li>$18212.0 USD/year</li>
-                                        </ul>
-                                        <div class="apply_now_wrap pull-right">
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                                <div class="search_box_content">
-                                    <div class="univer_box">
-                                        <div class="univ_logo">
-                                            <a href="#"> <img src="<?php echo base_url(); ?>assets/images/univ_logo1.png"></a>
-                                            <div class="univ_meta">
-                                                <span class="univ_name"><a href="#">Rice university</a></span>
-                                                <p><i class="fa fa-map-marker"></i> Newyork, USA </p>
-                                            </div>
-                                        </div>
-                                        <ul class="univ_info">
-                                            <li><span> <i class="fa fa-university" aria-hidden="true"></i>  Founded in : </span>                                                2000</li>
-                                            <li> <span> <i class="fa fa-university" aria-hidden="true"></i> Institution Type :</span>                                                Public </li>
-                                            <li> <span> <i class="fa fa-money" aria-hidden="true"></i> Estimated Cost of living :</span>                                                $10334.0 USD per year </li>
-                                            <li> <span> <i class="fa fa-money" aria-hidden="true"></i> Tuition Fee : </span> $10012.0
-                                                USD - $18380.0 USD per year</li>
-                                        </ul>
-                                    </div>
-                                    <div class="univer_box course_detail">
-                                        <div class="univ_logo">
-                                            <div class="univ_meta">
-                                                <a href="#"> 
-                                                Master of science
-                                                 <span class="course_meta"> 4 year bachelor degree</span>       
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <ul class="univ_info">
-                                            <li>$18212.0 USD/year</li>
-                                        </ul>
-                                        <div class="apply_now_wrap pull-right">
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="univer_box course_detail">
-                                        <div class="univ_logo">
-                                            <div class="univ_meta">
-                                                <a href="#"> 
-                                                 Bachelor of Science - Geology
-                                                 <span class="course_meta"> 4 year bachelor degree</span>       
-                                                </a>
-                                                 <i class="fa fa-star star"></i>
-                                            </div>
-                                        </div>
-                                        <ul class="univ_info">
-                                            <li>$18212.0 USD/year</li>
-                                        </ul>
-                                        <div class="apply_now_wrap pull-right">
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="univer_box course_detail">
-                                        <div class="univ_logo">
-                                            <div class="univ_meta">
-                                                <a href="#"> 
-                                                 Bachelor of Science - Geology
-                                                 <span class="course_meta"> 4 year bachelor degree</span>       
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <ul class="univ_info">
-                                            <li>$18212.0 USD/year</li>
-                                        </ul>
-                                        <div class="apply_now_wrap pull-right">
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="univer_box course_detail">
-                                        <div class="univ_logo">
-                                            <div class="univ_meta">
-                                                <a href="#"> 
-                                                 Bachelor of Engineering
-                                                 <span class="course_meta"> 4 year bachelor degree</span>       
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <ul class="univ_info">
-                                            <li>$18212.0 USD/year</li>
-                                        </ul>
-                                        <div class="apply_now_wrap pull-right">
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                            <a href="#" class="appy_btn">apply to this program</a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
+                                    <?php $i++; } } else{ ?>
+                                        <div class="well text-center">Programs not found</div>
+                                    <?php } ?>
                                 <br/>
                             </div>
     </div>

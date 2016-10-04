@@ -137,6 +137,7 @@ $route['university/mba'] = 'front/university/mba';
 $route['university/short_term'] = 'front/university/short_term';
 $route['university/online'] = 'front/university/online';
 $route['university/international_partnerships'] = 'front/university/international_partnerships';
+$route['university/locations'] = 'front/university/locations';
 
 $route['(:any)'] = 'front/home/pages/$1';
 $route['faqs/(:any)'] = 'front/home/faqs/$1';

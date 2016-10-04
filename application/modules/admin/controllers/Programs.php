@@ -52,6 +52,7 @@ class Programs extends CI_Controller {
 		unset($sheetData[1]);
 		foreach(array_values($sheetData) as $s)
 		{
+			if(!empty($s['A'])){
 			$dataArr = array(
 					'university_id' => $data['university_id'],
 					'program_name'  => $s['A'],
@@ -73,6 +74,7 @@ class Programs extends CI_Controller {
 					'added_date'    => datetime()
 				);
 			$this->common_model->addRecords(PROGRAMS, $dataArr);
+		   }
 		}
 		$this->session->set_flashdata('item_success', sprintf(ITEM_ADD_SUCCESS, 'Programs'));
         redirect($this->url.'/view-all');

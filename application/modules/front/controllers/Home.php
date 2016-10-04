@@ -81,8 +81,16 @@ class Home extends CI_Controller {
         if(empty($country)){
             $country = 'USA';
         }
-        $programs = $this->common_model->getAllRecordsOrderById(PROGRAMS,'id','ASC',array('country' => $country));
-        return $programs;
+        $query   = $this->db->query(" SELECT `university_id` FROM ".PROGRAMS." WHERE `country` LIKE '".$country."' GROUP BY `university_id` ");
+        $results = $query->result_array();
+        $university_ids = array_column($results, 'university_id');
+        if(!empty($university_ids)){
+            $query1   = $this->db->query(" SELECT * FROM `universities` WHERE `country` LIKE '".$country."' AND `id` IN (".implode(",", $university_ids).") ORDER BY `name` ASC LIMIT 8 ");
+            $results1 = $query1->result_array();
+            return $results1;
+        }else{
+            return array();
+        }
     }
 
     public function faqs($country){

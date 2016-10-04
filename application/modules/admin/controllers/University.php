@@ -59,9 +59,12 @@ class University extends CI_Controller {
 		    die('Error loading file :' . $e->getMessage());
 		}
 		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+		// p($sheetData);die;
 		unset($sheetData[1]);
 		foreach(array_values($sheetData) as $s)
 		{
+			if(!empty($s['A']))
+			{
 			$photosArr = array($s['AB'],$s['AC'],$s['AD'],$s['AE'],$s['AF'],$s['AG'],$s['AH'],$s['AI'],$s['AJ'],$s['AK']);
 			$dataArr = array(
 					'name'    => $s['A'],
@@ -100,6 +103,7 @@ class University extends CI_Controller {
 					'content'        => $s['AN'],
 				);
 			$this->common_model->addRecords(UNIVERSITIES, $dataArr);
+		  }
 		}
 		$this->session->set_flashdata('item_success', sprintf(ITEM_ADD_SUCCESS, 'University'));
         redirect($this->url.'/view-all');

@@ -144,6 +144,58 @@ class University extends CI_Controller {
         redirect('university/international_partnerships');
     }
 
+    public function locations()
+    {
+        $data = array();
+        $data['meta_title'] = 'Locations';
+        $data['parent']     = 'locations';
+        $data['locations']  = $this->common_model->getAllRecordsOrderById(LOCATIONS,'id','DESC',array('user_id' => $this->uid));
+        load_front_view('university/locations', $data);
+    }
+
+    public function addlocations()
+    {
+        if($this->input->is_ajax_request())
+        {
+            $this->form_validation->set_rules('profile_type','Profile Type','trim|required');
+            $this->form_validation->set_rules('campus_name','Campus Name','trim|required');
+            $this->form_validation->set_rules('address','Address','trim|required');
+            $this->form_validation->set_rules('city_location','City/Location','trim|required');
+            $this->form_validation->set_rules('website','Website','trim|required');
+            if($this->form_validation->run()==TRUE){
+                $data = $this->input->post();
+                $data['user_id'] = $this->uid;
+                $data['added_date'] = datetime();
+                $lid = $this->common_model->addRecords(LOCATIONS,$data);
+                if(!empty($lid)){
+                    echo json_encode(array('type' => 'success', 'msg' => 'Location added successfully'));exit;
+                }else{
+                    echo json_encode(array('type' => 'failed', 'msg' => GENERAL_ERROR));exit;
+                }
+            }else{
+                $error = array(
+                    'profile_type'      => form_error('profile_type'),
+                    'campus_name'       => form_error('campus_name'),
+                    'address'           => form_error('address'),
+                    'city_location'     => form_error('city_location'),
+                    'website'           => form_error('website'),
+                ); 
+                echo json_encode(array('type' => 'validation_err','msg' => $error));exit;
+            }
+        }
+    }
+
+    public function deleteLocation($id)
+    {
+        $id = decode($id);
+        if($this->common_model->deleteRecord(LOCATIONS,array('id' => $id))){
+            $this->session->set_flashdata('success','Location deleted successfully');
+        }else{
+            $this->session->set_flashdata('error','Failed please try again !!');
+        }
+        redirect('university/locations');
+    }
+
 }
 
 ?>

@@ -27,18 +27,8 @@
                                     <iframe width="100%" height="100%" src="<?php echo str_replace('watch?v=', 'embed/', $v['live_video_url']); ?>"></iframe>
                                 <?php } ?>
                                 </div>
-                                <div class="video_box_content">
-                                 <div class="video_top"><a href="#"><i class="fa fa-trash"></i></a></div>
-                                <?php foreach($videos as $v) { ?>
-                                    <iframe width="100%" height="100%" src="<?php echo str_replace('watch?v=', 'embed/', $v['live_video_url']); ?>"></iframe>
-                                <?php } ?>
-                                </div>
-                                <div class="video_box_content">
-                                 <div class="video_top"><a href="#"><i class="fa fa-trash"></i></a></div>
-                                <?php foreach($videos as $v) { ?>
-                                    <iframe width="100%" height="100%" src="<?php echo str_replace('watch?v=', 'embed/', $v['live_video_url']); ?>"></iframe>
-                                <?php } ?>
-                                </div>
+                                
+                               
                                 </div>
 
                             </div>
