@@ -50,8 +50,8 @@
                                             <div class="univer_box course_detail">
                                                 <div class="univ_logo">
                                                     <div class="univ_meta">
-                                                        <a href="javascript:void(0)"> 
-                                                        <?php echo $pl['program_name']; ?>
+                                                        <a href="javascript:void(0)" title="<?php echo $pl['program_name']; ?>"> 
+                                                        <?php echo substr($pl['program_name'], 0,40); ?>
                                                          <span class="course_meta"> <?php echo $pl['location']; ?></span>       
                                                         </a>
                                                          <i class="fa fa-star star"></i>
@@ -61,14 +61,17 @@
                                                     <li>$<?php echo $pl['application_fee']; ?> USD/year</li>
                                                 </ul>
                                                 <div class="apply_now_wrap pull-right">
-                                                   <a href="#" class="appy_btn">apply to this program</a>
-                                                    <a href="#" class="appy_btn">apply to this program</a>
-                                                    <a href="#" class="appy_btn">apply to this program</a>
+                                                   <a href="javascript:void(0);" class="appy_btn">apply to this program</a>
+                                                    <!-- <a href="#" class="appy_btn">apply to this program</a> -->
+                                                    <!-- <a href="#" class="appy_btn">apply to this program</a> -->
                                                 </div>
                                                 <div class="clearfix"></div>
                                             </div>
                                         <?php } } ?>
                                     </div>
+                                    <!-- <div class="search_box_top">
+                                        <ul id="pagination-demo" class="pagination-sm"></ul>
+                                    </div> -->
                                     <?php $i++; } } else{ ?>
                                         <div class="well text-center">Programs not found</div>
                                     <?php } ?>
@@ -108,6 +111,13 @@ $(document).ready(function(){
     })
     $('.star').click(function(){
         $(this).toggleClass('clicked');
+    });
+    $('.pagination-sm').twbsPagination({
+        totalPages: 25,
+        visiblePages: 5,
+        onPageClick: function (event, page) {
+            
+        }
     });
 });
 </script>

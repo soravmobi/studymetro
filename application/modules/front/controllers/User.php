@@ -414,6 +414,17 @@ class User extends CI_Controller {
         }
     }
 
+    public function deleteVideo($id)
+    {
+        $id = decode($id);
+        if($this->common_model->deleteRecord(MY_VIDEOS,array('id' => $id))){
+            $this->session->set_flashdata('success','Video deleted successfully');
+        }else{
+            $this->session->set_flashdata('error','Failed please try again !!');
+        }
+        redirect('user/my-videos');
+    }
+
 
 }
 ?>

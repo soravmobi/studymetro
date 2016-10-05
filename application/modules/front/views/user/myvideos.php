@@ -21,12 +21,12 @@
                             
                                 <h1> My Videos <button type="button" data-toggle="modal" data-target="#my_videos" data-backdrop="static" data-keyboard="false" class="btn btn-primary pull-right inside-btn">Upload Video <i class="fa fa-upload"></i></button></h1>
                                  <div class="video_content">
-                                 <div class="video_box_content">
-                                 <div class="video_top"><a href="#"><i class="fa fa-trash"></i></a></div>
-                                <?php foreach($videos as $v) { ?>
+                                 <?php foreach($videos as $v) { ?>
+                                  <div class="video_box_content">
+                                    <div class="video_top"><a href="<?php echo base_url(); ?>front/user/deleteVideo/<?php echo encode($v['id']); ?>" onclick="return confirm('Are you sure ?')"><i class="fa fa-trash"></i></a></div>
                                     <iframe width="100%" height="100%" src="<?php echo str_replace('watch?v=', 'embed/', $v['live_video_url']); ?>"></iframe>
-                                <?php } ?>
-                                </div>
+                                  </div>
+                                  <?php } ?>
                                 
                                
                                 </div>

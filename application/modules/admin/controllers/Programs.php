@@ -102,7 +102,7 @@ class Programs extends CI_Controller {
 	    $data['offset'] = $offset;
 	    $data['programs'] = '';
 	    $data['pagination'] = '';
-	    $data['programs'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(PROGRAMS, (isset($_GET['s'])) ? array('location', 'undergraduate_courses', 'graduate_courses', 'study_metro_scholarship','country') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'DESC', RESULT_PER_PAGE, $offset, '');
+	    $data['programs'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(PROGRAMS, (isset($_GET['s'])) ? array('location', 'undergraduate_courses', 'graduate_courses', 'study_metro_scholarship','country') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'ASC', RESULT_PER_PAGE, $offset, '');
 	    if(count($data['programs']) > 0) {
 	    	/* Pagination records */
 	        $url = get_cms_url().$this->url.'/view-all';
