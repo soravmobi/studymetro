@@ -47,6 +47,15 @@ if(!function_exists('getmenus')) {
 	}
 }
 
+if(!function_exists('getQualifiedUniversity')) {
+	function getQualifiedUniversity()
+	{
+		$ci = &get_instance();
+		$results = $ci->common_model->getCustomSqlResult('SELECT `name`,`id` FROM `universities` ORDER BY rand() LIMIT 32');
+	    return $results;
+	}
+}
+
 if(!function_exists('getUserDetails')) {
 	function getUserDetails()
 	{
@@ -198,8 +207,24 @@ if(!function_exists('getservices')) {
 if(!function_exists('getSeacrhStudyPrograms')) {
 	function getSeacrhStudyPrograms()
 	{
-		$html = '<div class="banner_search_wrap about_page"> <div class="container"> <div class="row"> <div class="col-md-12 col-sm-12"> <form class="search_form"> <div class="head_search"> <div class="txt_search"> Find your ideal study program </div></div><div class="search_form_content about_content"> <div class="form-group"> <div class="select_box"> <select class="form-control"> <option>Choose a country</option> <option>2</option> </select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="select_box"> <select class="form-control"> <option>Choose a area</option> <option>1</option> </select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="select_box"> <select class="form-control"> <option>Choose a level</option> <option>3</option> </select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="button_box"> <button type="submit">Search </button> </div></div></div></form> </div></div></div></div>';
+		$html = '<div class="banner_search_wrap about_page"> <div class="container"> <div class="row"> <div class="col-md-12 col-sm-12"> <form class="search_form" method="post"> <div class="head_search"> <div class="txt_search"> Find your ideal study program </div></div><div class="search_form_content about_content"> <div class="form-group"> <div class="select_box"> <select class="form-control select_program_country" name="country" required> <option value="">Choose a country</option>';
+		foreach(countries() as $c) {
+			$html .= '<option value="'.$c.'">'.$c.'</option>';
+		}
+		$html .= '</select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="select_box"> <select class="form-control select_program_area" name="program" required> <option value="">Choose a area</option> </select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="select_box"> <select class="form-control" name="course" required> <option value="">Choose a level</option>';
+		foreach(getCourseTypes() as $ct) {
+			$html .= '<option value="'.$ct.'">'.$ct.'</option>';
+		}
+		$html .= '</select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="button_box"> <button type="submit">Search </button> </div></div></div></form> </div></div></div></div>';
 		return $html;
+	}
+}
+
+if(!function_exists('getCourseTypes')) {
+	function getCourseTypes()
+	{
+		$courses = array('Associate Degree','Bachelor','Certificate/Diploma','Undergraduate','Post Graduate Diploma','Pathway','Post Bacculerate Diploma','Language Course');
+		return $courses;
 	}
 }
 

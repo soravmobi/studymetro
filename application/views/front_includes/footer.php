@@ -182,50 +182,13 @@
               </div>
               <div class="footer_middle_content">
                 <div class="row">
+                <?php foreach(getQualifiedUniversity() as $qu){ ?>
                   <div class="col-md-3 col-sm-3">
                     <ul class="ftr_list">
-                      <li><a href="#">Ada, Ohio</a></li>
-                      <li><a href="#">Allendale, Michigan</a></li>
-                      <li><a href="#">Alamosa, Colorado</a></li>
-                      <li><a href="#">Alfred (village), New York</a></li>
-                      <li><a href="#">Ames, Iowa</a></li>
-                      <li><a href="#">Amherst, Massachusetts</a></li>
-                      <li><a href="#">Ann Arbor, Michigan</a></li>
+                      <li><a href="<?php echo base_url(); ?>university/details/<?php echo encode($qu['id']); ?>"><?php echo $qu['name']; ?></a></li>
                     </ul>
                   </div>
-                  <div class="col-md-3 col-sm-3">
-                    <ul class="ftr_list">
-                      <li><a href="#">Ada, Ohio</a></li>
-                      <li><a href="#">Allendale, Michigan</a></li>
-                      <li><a href="#">Alamosa, Colorado</a></li>
-                      <li><a href="#">Alfred (village), New York</a></li>
-                      <li><a href="#">Ames, Iowa</a></li>
-                      <li><a href="#">Amherst, Massachusetts</a></li>
-                      <li><a href="#">Ann Arbor, Michigan</a></li>
-                    </ul>
-                  </div>
-                  <div class="col-md-3 col-sm-3">
-                    <ul class="ftr_list">
-                      <li><a href="#">Ada, Ohio</a></li>
-                      <li><a href="#">Allendale, Michigan</a></li>
-                      <li><a href="#">Alamosa, Colorado</a></li>
-                      <li><a href="#">Alfred (village), New York</a></li>
-                      <li><a href="#">Ames, Iowa</a></li>
-                      <li><a href="#">Amherst, Massachusetts</a></li>
-                      <li><a href="#">Ann Arbor, Michigan</a></li>
-                    </ul>
-                  </div>
-                  <div class="col-md-3 col-sm-3">
-                    <ul class="ftr_list">
-                      <li><a href="#">Ada, Ohio</a></li>
-                      <li><a href="#">Allendale, Michigan</a></li>
-                      <li><a href="#">Alamosa, Colorado</a></li>
-                      <li><a href="#">Alfred (village), New York</a></li>
-                      <li><a href="#">Ames, Iowa</a></li>
-                      <li><a href="#">Amherst, Massachusetts</a></li>
-                      <li><a href="#">Ann Arbor, Michigan</a></li>
-                    </ul>
-                  </div>
+                <?php } ?>
                 </div>
               </div>
             </div>
@@ -235,11 +198,11 @@
       <div class="footer_bottom">
         <div class="social_media">
           <ul>
-            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i>
+            <li><a href="https://www.facebook.com/studymetro.abroad"><i class="fa fa-facebook" aria-hidden="true"></i>
  </a></li>
-            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i>
+            <li><a href="https://twitter.com/gujstudymetro"><i class="fa fa-twitter" aria-hidden="true"></i>
  </a></li>
-            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i>
+            <li><a href="https://plus.google.com/+HTIRIndiaBangalore"><i class="fa fa-google-plus" aria-hidden="true"></i>
  </a></li>
           </ul>
         </div>
