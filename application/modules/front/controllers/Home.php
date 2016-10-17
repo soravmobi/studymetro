@@ -102,6 +102,12 @@ class Home extends CI_Controller {
         load_front_view('pages/faq_detail', $data);
     }
 
+    public function contactus(){
+        $data = array();
+        $data['meta_title'] = 'Contact US';
+        load_front_view('pages/contact-us', $data);
+    }
+
     public function doEnquiry(){
         $data = $this->input->post();
         $email = $data['email'];

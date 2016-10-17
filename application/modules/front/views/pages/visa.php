@@ -19,8 +19,8 @@
                                 <div class="video_visa_wrap">
                                     <div class="video_visa_box">
                                         <iframe width="420" height="315" src="https://www.youtube.com/embed/mRe7IEOCYgc" frameborder="0" allowfullscreen></iframe>
-                                        <div class="video_bottom"><span class="price">150 $</span>
-                                            <button type="button" class="enroll_btn" data-toggle="modal" data-target="#model_visa"><i class="fa fa-shopping-cart"></i> Enroll Now</button></div>
+                                        <div class="video_bottom"><span class="price">$150</span>
+                                            <button type="button" class="enroll_btn"><i class="fa fa-shopping-cart"></i> Enroll Now</button></div>
                                     </div>
                                     <div class="highlight_box">
                                         <h3>Highlights</h3>
@@ -755,23 +755,7 @@
                 </div>
             </div>
         </section>
-<section class="video_sec">
-<div class="container">
-    <div class="row">
-        <div class="col-md-3 col-sm-3">
-            <?php 
-                echo getSideBarVideos();
-                echo getSideBarEvents();
-            ?>
-        </div>
-        <div class="col-md-9 col-sm-9">
-            <div class="about_content">
-                <?php echo $details['content']; ?>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
+
 
 <?php if($details['is_services'] == 0) { 
     echo getOurServices();
@@ -795,161 +779,13 @@
 
 </div>
 
-  <!-- Modal -->
-<div class="modal fade" id="model_visa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">
-             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#Register" aria-controls="Register" role="tab" data-toggle="tab"><span class="number">1</span>Register</a></li>
-                <li role="presentation"><a href="#payment" aria-controls="payment" role="tab" data-toggle="tab"><span class="number">2</span> Order and payment</a></li>
-                <li role="presentation"><a href="#checkout" aria-controls="checkout" role="tab" data-toggle="tab"><span class="number">3</span> Finish checkout</a></li>
-  
-            </ul>
-         </h4>
-      </div>
-      <div class="modal-body">
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="Register">
-                <div class="sign_in">
-                    <h3>Sign In</h3>
-                    <form>
-                    <div class="form-group ">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" placeholder="Email " id="exampleInputEmail1 " class="form-control ">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1 ">Password</label>
-                        <input type="password" placeholder="Password " id="exampleInputPassword1 " class="form-control ">
-                    </div>
 
-                    <div class="checkbox">
-                        <label>
-                        <input type="checkbox"> Remember me
-                    </label>
-                        <span class="pull-right"><a href="#">Forgot your password </a></span>
-                    </div>
-                    <div class="login_button">
-                        <button class="btn btn-default" type="submit">sign in and continue</button>
-                    </div>
-
-                    </form>
-                </div>
-                <div class="register">
-                    <h3>New Member</h3>
-                    <form>
-                    <div class="row ">
-                        <div class="col-md-6 cosl-sm-6 ">
-                        <div class="form-group">
-                            <label for="firstname ">first name</label>
-                            <input type="text " placeholder=" " id="firstname " class="form-control ">
-                        </div>
-                        </div>
-                        <div class="col-md-6 cosl-sm-6 ">
-                        <div class="form-group ">
-                            <label for="last name">last name</label>
-                            <input type="text " placeholder=" " id="lastname " class="form-control ">
-                        </div>
-                        </div>
-
-                        <div class="col-md-6 cosl-sm-6">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1 ">Email address</label>
-                            <input type="email" placeholder=" " id="exampleInputEmail1 " class="form-control">
-                        </div>
-                        </div>
-                        <div class="col-md-6 cosl-sm-6 ">
-                        <div class="form-group ">
-                            <label for="Password">Password</label>
-                            <input type="password" placeholder=" " id="password" class="form-control">
-                        </div>
-                        </div>
-                        <div class="col-md-6 cosl-sm-6">
-                        <div class="form-group">
-                            <label for="Passwordconfirm ">confirm Password</label>
-                            <input type="password" placeholder=" " id="Passwordconfirm " class="form-control">
-                        </div>
-                        </div>
-                        <div class="col-md-12 cosl-sm-12">
-                        <div class="login_button">
-                            <button class="btn btn-default" type="submit">Resister and continue </button>
-                        </div>
-                        </div>
-                    </div>
-                    </form>
-                </div>
-             </div>
-            <div role="tabpanel" class="tab-pane" id="payment">
-                <div class="row ">
-                    <div class="col-md-4 col-sm-4">
-                        <div class="checkout_left">
-                            <div class="chkl_img">
-                               <a href="#"> <img src="<?php echo base_url(); ?>assets/images/us.png "></a>
-                               <a href="#" class="education ">Education</a>
-                            </div>
-                            <div class="chkl_data">
-                                <a href="#">F1 USA E-VISA TRAINING </a>
-                                <div class="author_name">
-                                    By <a href="#">Abhisheak</a>
-                                </div>
-                            </div>
-                            <div class="chkl_ftr">
-                                <div class="star_rating ">
-                                    <i class="fa fa-star "></i>
-                                    <i class="fa fa-star "></i>
-                                    <i class="fa fa-star "></i>
-                                    <i class="fa fa-star "></i>
-                                </div>
-                                <div class="rate_price ">$150</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-8 col-sm-8">
-                        <div class="check_out_right">
-                            <form>
-                                <div class="form_coupnecode paypal coupne ">
-                                    <label>Coupon code</label>
-                                    <input type="text" placeholder="Enter coupon code " id="coupne_paypal ">
-                                    <button class="btn btn_appy ">Apply</button>
-                                </div>
-                                <div class="total_payment ">Total Payment <span class="price ">$150</span></div>
-                                <table class="table table_pay">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Price($)</th>
-                                            <th>Duration</th>
-                                            <th>Access Type</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="radio" id="radio1"></td>
-                                            <td>$ 150.00</td>
-                                            <td>15 days</td>
-                                            <td>Unlimited</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="paypal_bg">
-                                    <img src="<?php echo base_url(); ?>assets/images/paypal_bg.jpg ">
-                                </div>
-                                <button type="submit " class="btn_course ">Buy Course</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-           </div>
-            <div role="tabpanel" class="tab-pane" id="checkout">...</div>
-           
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</div>
-<!-- Modal enroll end -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('body').on('click','.enroll_btn',function(){
+            window.location.href="http://elearning.studymetro.com/lms/course/3146-F1-USA-VISA-TRAINING-by-US-Immigration-Lawyer#";
+        });
+    });
+</script>
 
 

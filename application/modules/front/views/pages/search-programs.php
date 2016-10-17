@@ -60,13 +60,15 @@
                                                 <ul class="univ_info">
                                                     <li>$<?php echo $pl['application_fee']; ?> USD/year</li>
                                                 </ul>
+                                                <div class="unive_data"><?php echo $pl['course_type']; ?></div>
                                                 <div class="apply_now_wrap pull-right">
                                                    <a href="javascript:void(0);" class="appy_btn">apply to this program</a>
                                                     <!-- <a href="#" class="appy_btn">apply to this program</a> -->
                                                     <!-- <a href="#" class="appy_btn">apply to this program</a> -->
                                                 </div>
-                                                <div class="clearfix"></div>
+                                                
                                             </div>
+                                            <div class="clearfix"></div>
                                         <?php } } ?>
                                     </div>
                                     <!-- <div class="search_box_top">

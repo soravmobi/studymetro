@@ -190,8 +190,8 @@ a{ -webkit-transition: all 0.4s ease-in-out 0; -moz-transition: all 0.4s ease-in
 ******************************************************************************/
 .banner {
   background-repeat: no-repeat;
-  background-size: 100% auto;
-  height: 583px;
+  background-size:cover;
+  height: 400px;
   position: relative;
   overflow: hidden;
 }
@@ -1233,7 +1233,7 @@ box-shadow: 0px -64px 1px #fff inset;
   color: #999;
   line-height: 24px;
   padding: 15px;
-   min-height: 420px;
+  min-height: 175px;
 }
 .address_box_describe span{ color: #000001;
   font-family: 'SourceSansProSemibold';
@@ -3644,3 +3644,14 @@ span.new_price {
     margin-right: 10px;
 }
 /*css start for location page end*/
+.list_program li a {
+    text-align: center;
+    display: block;
+}
+.unive_data {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    width: 21%;
+    color: #666;
+}

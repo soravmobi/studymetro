@@ -66,10 +66,10 @@
                     <select class="form-control" name="user_type">
                       <option value="">Register as</option>
                       <option value="2">As Student</option>
-                      <option value="3">As Agency</option>
-                      <option value="4">As Trainer</option>
+                      <!-- <option value="3">As Agency</option> -->
+                      <!-- <option value="4">As Trainer</option> -->
                       <option value="5">As University</option>
-                      <option value="6">As Frainchsee</option>
+                      <!-- <option value="6">As Frainchsee</option> -->
                     </select>
                     <span class="error_form user_type"></span>
                   </div>
@@ -219,13 +219,13 @@
                   <li><a href="#">University Of Findlay </a></li>
                 </ul>
               </div>
-              <div class="col-md-4 col-sm-4">
+              <!-- <div class="col-md-4 col-sm-4">
                 <ul class="list_term">
                   <li><a href="javascript:void(0);">© <?php echo date('Y'); ?>&nbsp; studymetro.com </a></li>
                   <li><a href="#">Terms of Service </a></li>
                   <li><a href="#"> Privacy Policy </a></li>
                 </ul>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

@@ -268,7 +268,7 @@
                 <?php } ?>
                   <li><a href="<?php echo base_url(); ?>blogs">Blog </a></li>
                   <li><a href="<?php echo base_url(); ?>faqs">FAQs  </a></li>
-                  <li><a href="#"> Contact us</a></li>
+                  <li><a href="<?php echo base_url(); ?>contact-us"> Contact us</a></li>
                 </ul>
               </div>
               <div class="clearfix"></div>
@@ -302,7 +302,7 @@
                   <ul class="nav navbar-nav">
                     <?php 
                     $slug = $this->uri->segment(1);
-                    $i = 1; foreach(getmenus() as $m){ if($m['page_no'] != 10 && $m['page_no'] != 11) { ?>
+                    $i = 1; foreach(getmenus() as $m){ if($m['page_no'] != 10 && $m['page_no'] != 11 && $m['page_no'] != 12) { ?>
                       <li <?php if($slug == $m['slug']) echo "class='active'"; ?>><a href="<?php echo base_url(); ?><?php echo $m['slug']; ?>"><?php echo $m['title']; ?></a></li>
                     <?php $i++; } } ?>
                   </ul>
@@ -321,7 +321,7 @@
             </div>
             <div class="col-md-4 col-sm-4">
               <div class="appy_now">
-                <a href="#">Apply Now <i class="fa fa-check"></i></a>
+                <a href="javascript:void(0);">Apply Now <i class="fa fa-check"></i></a>
               </div>
             </div>
           </div>
