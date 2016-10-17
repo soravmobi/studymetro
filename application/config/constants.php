@@ -165,7 +165,7 @@ define('NORMAL_USER_TYPE', 2);
 define('ADMIN_FIRST_NAME', 'Site');
 define('ADMIN_LAST_NAME', 'Admin');
 define('ADMIN_AVATAR_IMAGE', 'dist/img/malecostume-512.png');
-define('RESULT_PER_PAGE', 10);
+define('RESULT_PER_PAGE', 25);
 define('API_TOKEN_LENGTH', 80);
 
 /* Define uploads directory */
