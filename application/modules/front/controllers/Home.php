@@ -38,7 +38,15 @@ class Home extends CI_Controller {
                 $data['total_count'] = round($result/16);
             }
             if($page_name == 'search-programs'){
-                $data['programs'] = $this->getPrograms((isset($_GET['country']) && !empty($_GET['country'])) ? $_GET['country'] : 'USA');
+                if($this->input->post()){
+                    $arr_data = $this->input->post();
+                    unset($arr_data['course']);
+                    $data['programs'] = $this->common_model->getAllRecordsById(UNIVERSITIES,$arr_data);
+                }else{
+                    $data['programs'] = $this->getPrograms((isset($_GET['country']) && !empty($_GET['country'])) ? $_GET['country'] : 'USA',8);
+                }
+                $result  = $this->getPrograms((isset($_GET['country']) && !empty($_GET['country'])) ? $_GET['country'] : 'USA');
+                $data['total_count'] = round(count($result)/8);
             }
             load_front_view('pages/'.$page_name, $data);
         }else{
@@ -55,12 +63,19 @@ class Home extends CI_Controller {
         return $universities;
     }
 
+    public function getCountryUniversities()
+    {
+        $country = $this->input->post('country');
+        $result  = $this->common_model->getAllRecordsOrderById(UNIVERSITIES,'name','ASC',array('country' => $country));
+        echo json_encode($result);
+    }
+
     public function getNextUniversities()
     {
         $page    = $this->input->post('page');
         $country = $this->input->post('country');
         $offset  = (int) $page * 16 - 16;
-        $query   = $this->db->query(" SELECT * FROM `universities` WHERE `country` LIKE '".$country."' LIMIT 16 OFFSET  ".$offset);
+        $query   = $this->db->query(" SELECT * FROM ".UNIVERSITIES." WHERE `country` LIKE '".$country."' LIMIT 16 OFFSET  ".$offset);
         $results = $query->result_array();
         $final_arr = array();
         foreach($results as $r){
@@ -76,7 +91,7 @@ class Home extends CI_Controller {
         echo json_encode($final_arr);
     }
 
-    public function getPrograms($country = '')
+    public function getPrograms($country = '',$limit='',$offset='')
     {
         if(empty($country)){
             $country = 'USA';
@@ -85,12 +100,46 @@ class Home extends CI_Controller {
         $results = $query->result_array();
         $university_ids = array_column($results, 'university_id');
         if(!empty($university_ids)){
-            $query1   = $this->db->query(" SELECT * FROM `universities` WHERE `country` LIKE '".$country."' AND `id` IN (".implode(",", $university_ids).") ORDER BY `name` ASC LIMIT 8 ");
+            $limit_cond = '';
+            if(!empty($limit)){
+                $limit_cond = 'LIMIT '.$limit;
+            }
+            $offset_cond = '';
+            if(!empty($offset)){
+                $offset_cond = 'OFFSET '.$offset;
+            }
+            $query1   = $this->db->query(" SELECT * FROM ".UNIVERSITIES." WHERE `country` LIKE '".$country."' AND `id` IN (".implode(",", $university_ids).") ORDER BY `name` ASC ".$limit_cond." ".$offset_cond);
             $results1 = $query1->result_array();
             return $results1;
         }else{
             return array();
         }
+    }
+
+    public function getNextPrograms()
+    {
+        $page    = $this->input->post('page');
+        $country = $this->input->post('country');
+        $offset  = (int) $page * 8 - 8;
+        $results = $this->getPrograms($country,8,$offset);
+        $final_arr = array();
+        if(!empty($results)){
+            foreach($results as $r){
+                $row['detail'] = base_url().'university/details/'.encode($r['id']);
+                $row['logo'] = (!empty($r['logo'])) ? $r['logo'] : base_url().'assets/images/not-available.jpg';
+                $row['name'] = $r['name'];
+                $row['id'] = $r['id'];
+                $row['location'] = $r['location'];
+                $row['country']  = $r['country'];
+                $row['founded'] = $r['founded'];
+                $row['institution'] = $r['institution'];
+                $row['estimated_cost'] = $r['estimated_cost'];
+                $row['tution_fee'] = $r['tution_fee'];
+                $row['programs'] = getProgramsBy('university_id',$r['id']);
+                array_push($final_arr, $row);
+            }
+        }
+        echo json_encode(array('universities' => $final_arr, 'courses' => getCourseTypes()));
     }
 
     public function faqs($country){
@@ -111,32 +160,52 @@ class Home extends CI_Controller {
     public function doEnquiry(){
         $data = $this->input->post();
         $email = $data['email'];
-        /*$fields = array(
+        $fields = array(
                     array('Attribute' => 'EmailAddress', 'Value' => $data['email']),
-                    array('Attribute' => 'mx_Intrested_Country', 'Value' => $data['country']),
+                    array('Attribute' => 'mx_Country', 'Value' => $data['country']),
                     array('Attribute' => 'mx_City', 'Value' => $data['city']),
                     array('Attribute' => 'Phone', 'Value' => $data['phone']),
                     array('Attribute' => 'FirstName', 'Value' => $data['name']),
+                    array('Attribute' => 'SearchBy', 'Value' => 'EmailAddress'),
                 );
-        $fields = json_encode($fields);
-        $crmurl = "https://api.leadsquared.com/v2/LeadManagement.svc/Lead.CreateOrUpdate?postUpdatedLead=false&accessKey=".CRM_ACCESS_KEY."&secretKey=".CRM_SECRET_KEY;
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $crmurl);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_HEADER, FALSE);
-        curl_setopt($ch, CURLOPT_POST, TRUE);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-        $response = curl_exec($ch);
-        curl_close($ch);*/
-        $result = $this->common_model->getSingleRecordById(ENQUIRIES,array('email' => $email));
-        if(!empty($result)){
-            $this->common_model->updateRecords(ENQUIRIES, $data,array('email' => $email));
-        }else{
-            $data['added_date'] = datetime();
-            $this->common_model->addRecords(ENQUIRIES, $data);
-        }
+        feedCRMDetails($fields);
         $this->session->set_flashdata('success', 'Thanks for enquiry !! we will contact you soon');
+        if($this->session->userdata('user_id')){
+            redirect('/home');
+        }else{
+            redirect('/');
+        }
+    }
+
+    public function doSummerProgramEnquiry(){
+        $data = $this->input->post();
+        $fields = array(
+                    array('Attribute' => 'EmailAddress', 'Value' => $data['email']),
+                    array('Attribute' => 'mx_City', 'Value' => $data['city']),
+                    array('Attribute' => 'SkypeId', 'Value' => $data['SkypeId']),
+                    array('Attribute' => 'Phone', 'Value' => $data['phone']),
+                    array('Attribute' => 'FirstName', 'Value' => $data['name']),
+                    array('Attribute' => 'SearchBy', 'Value' => 'EmailAddress'),
+                );
+        feedCRMDetails($fields);
+        $this->session->set_flashdata('success', 'Thanks for enquiry !! we will contact you soon');
+        if($this->session->userdata('user_id')){
+            redirect('/home');
+        }else{
+            redirect('/');
+        }
+    }
+
+    public function docontactus(){
+        $data = $this->input->post();
+        $fields = array(
+                    array('Attribute' => 'EmailAddress', 'Value' => $data['email']),
+                    array('Attribute' => 'Phone', 'Value' => $data['phone']),
+                    array('Attribute' => 'FirstName', 'Value' => $data['name']),
+                    array('Attribute' => 'SearchBy', 'Value' => 'EmailAddress'),
+                );
+        feedCRMDetails($fields);
+        $this->session->set_flashdata('success', 'Thanks for contact us !! we will contact you soon');
         if($this->session->userdata('user_id')){
             redirect('/home');
         }else{

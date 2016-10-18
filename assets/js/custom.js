@@ -52,6 +52,48 @@ $(document).ready(function () {
         singleItem: true
     });
 
+    $('body').on('change','.select_country',function(){
+        var country = $(this).val();
+        var appendHTML = '<option value="">Choose a university</option>';
+        if(country == ''){
+          $('.select_university').html(appendHTML);
+          return false;
+        }else{
+           $.ajax({
+            url :base_url() + "front/home/getCountryUniversities",
+            type:"POST",
+            data:{country:country},
+            dataType:"JSON",
+            beforeSend: function() {
+              ajaxindicatorstart();
+            }, 
+            success: function(resp)
+            {
+              if(resp != ''){
+                for (var i = 0; i < resp.length; i++) {
+                  appendHTML += '<option value="'+resp[i]['id']+'">'+resp[i]['name']+'</option>';
+                }
+              }
+              $('.select_university').html(appendHTML);
+              ajaxindicatorstop();
+            },
+            error:function(error)
+            {
+              ajaxindicatorstop();
+            }
+          });
+        }
+    }); 
+
+    
+    /*$("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
+      var id = $(e.target).attr("href").substr(1);
+      window.location.hash = id;
+    });
+
+    var hash = window.location.hash;
+    $('ul.nav-tabs a[href="' + hash + '"]').tab('show');*/
+
     $('.BSswitch').bootstrapSwitch('state', false);
 
     $('.toggler').on('click', function(event) {
@@ -262,6 +304,8 @@ $(document).ready(function () {
     window.onload = function() {
       initMap();
     };
+
+
 
 
 

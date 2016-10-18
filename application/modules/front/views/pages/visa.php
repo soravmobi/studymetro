@@ -783,7 +783,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('body').on('click','.enroll_btn',function(){
-            window.location.href="http://elearning.studymetro.com/lms/course/3146-F1-USA-VISA-TRAINING-by-US-Immigration-Lawyer#";
+            window.location.href="http://elearning.studymetro.com/lms/course/3145-F1-USA-Visa-Training";
         });
     });
 </script>

@@ -47,6 +47,32 @@ if(!function_exists('getmenus')) {
 	}
 }
 
+if(!function_exists('feedCRMDetails')) {
+	function feedCRMDetails($fields)
+	{
+		$ci = &get_instance();
+	    $fields_1 = json_encode($fields);
+        $crmurl = "https://api.leadsquared.com/v2/LeadManagement.svc/Lead.CreateOrUpdate?postUpdatedLead=false&accessKey=".CRM_ACCESS_KEY."&secretKey=".CRM_SECRET_KEY;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $crmurl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $result = $ci->common_model->getSingleRecordById(ENQUIRIES,array('email' => $email));
+        if(!empty($result)){
+            $ci->common_model->updateRecords(ENQUIRIES, $data,array('email' => $email));
+        }else{
+            $data['added_date'] = datetime();
+            $ci->common_model->addRecords(ENQUIRIES, $data);
+        }
+	}
+}
+
 if(!function_exists('getQualifiedUniversity')) {
 	function getQualifiedUniversity()
 	{
@@ -207,11 +233,11 @@ if(!function_exists('getservices')) {
 if(!function_exists('getSeacrhStudyPrograms')) {
 	function getSeacrhStudyPrograms()
 	{
-		$html = '<div class="banner_search_wrap about_page"> <div class="container"> <div class="row"> <div class="col-md-12 col-sm-12"> <form class="search_form" method="post"> <div class="head_search"> <div class="txt_search"> Find your ideal study program </div></div><div class="search_form_content about_content"> <div class="form-group"> <div class="select_box"> <select class="form-control select_program_country" name="country" required> <option value="">Choose a country</option>';
+		$html = '<div class="banner_search_wrap about_page"> <div class="container"> <div class="row"> <div class="col-md-12 col-sm-12"> <form class="search_form" method="post" action="'.base_url().'search-programs"> <div class="head_search"> <div class="txt_search"> Find your ideal study program </div></div><div class="search_form_content about_content"> <div class="form-group"> <div class="select_box"> <select class="form-control select_country" name="country" required> <option value="">Choose a country</option>';
 		foreach(countries() as $c) {
 			$html .= '<option value="'.$c.'">'.$c.'</option>';
 		}
-		$html .= '</select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="select_box"> <select class="form-control select_program_area" name="program" required> <option value="">Choose a area</option> </select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="select_box"> <select class="form-control" name="course" required> <option value="">Choose a level</option>';
+		$html .= '</select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="select_box"> <select class="form-control select_university" name="id" required> <option value="">Choose a university</option> </select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="select_box"> <select class="form-control" name="course" required> <option value="">Choose a level</option>';
 		foreach(getCourseTypes() as $ct) {
 			$html .= '<option value="'.$ct.'">'.$ct.'</option>';
 		}
@@ -223,7 +249,7 @@ if(!function_exists('getSeacrhStudyPrograms')) {
 if(!function_exists('getCourseTypes')) {
 	function getCourseTypes()
 	{
-		$courses = array('Associate Degree','Bachelor','Certificate/Diploma','Undergraduate','Post Graduate Diploma','Pathway','Post Bacculerate Diploma','Language Course');
+		$courses = array('Associate Degree','Bachelor','Certificates / DIPLOMA','Doctoral','Graduate Courses','Masters','Post Graduate Diploma','Pathway','Post Bacculerate Diploma','Language Course','Undergraduate courses');
 		return $courses;
 	}
 }

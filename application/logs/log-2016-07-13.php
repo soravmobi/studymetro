@@ -1,6 +1,0 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-
-ERROR - 2016-07-13 10:25:40 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so' - /opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so: cannot open shared object file: No such file or directory Unknown 0
-ERROR - 2016-07-13 10:28:27 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so' - /opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so: cannot open shared object file: No such file or directory Unknown 0
-ERROR - 2016-07-13 10:30:49 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so' - /opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so: cannot open shared object file: No such file or directory Unknown 0
-ERROR - 2016-07-13 10:31:00 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so' - /opt/lampp/lib/php/extensions/no-debug-non-zts-20131226/php_sqlite.so: cannot open shared object file: No such file or directory Unknown 0

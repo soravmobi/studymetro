@@ -157,19 +157,22 @@
               </div>
               <ul class="brand_list">
                 <li>
-                  <a href="#"><img src="<?php echo base_url(); ?>assets/images/brand_img.png"></a>
+                  <a href="javascript:void(0);"><img class="accreditation-img" src="<?php echo base_url(); ?>assets/images/EAIE.png"></a>
                 </li>
                 <li>
-                  <a href="#"><img src="<?php echo base_url(); ?>assets/images/brand_img.png"></a>
+                  <a href="javascript:void(0);"><img class="accreditation-img" src="<?php echo base_url(); ?>assets/images/ICEF.png"></a>
                 </li>
                 <li>
-                  <a href="#"><img src="<?php echo base_url(); ?>assets/images/brand_img.png"></a>
+                  <a href="javascript:void(0);"><img class="accreditation-img" src="<?php echo base_url(); ?>assets/images/NAFSA.png"></a>
                 </li>
                 <li>
-                  <a href="#"><img src="<?php echo base_url(); ?>assets/images/brand_img.png"></a>
+                  <a href="javascript:void(0);"><img class="accreditation-img" src="<?php echo base_url(); ?>assets/images/QISAN.jpeg"></a>
                 </li>
                 <li>
-                  <a href="#"><img src="<?php echo base_url(); ?>assets/images/brand_img.png"></a>
+                  <a href="javascript:void(0);"><img class="accreditation-img" src="<?php echo base_url(); ?>assets/images/AIRC.png"></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);"><img class="accreditation-img" src="<?php echo base_url(); ?>assets/images/AIEA.png"></a>
                 </li>
               </ul>
             </div>

@@ -10,7 +10,7 @@
               </video>
         <?php } ?>
 
-        <div class="banner_search_wrap">
+        <!-- <div class="banner_search_wrap">
           <div class="container">
             <div class="row">
               <div class="col-md-12 col-sm-12">
@@ -186,7 +186,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </section>
 
       <section class="why_us">

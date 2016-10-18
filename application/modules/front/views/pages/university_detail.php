@@ -18,29 +18,42 @@
                     <iframe width="560" height="315" frameborder="0" allowfullscreen="" src="<?php echo str_replace('watch?v=', 'embed/', $details['youtube_video']); ?>" data-original-title=""
                         title=""></iframe>
                 </div>
-                <?php } 
-                if(!empty($programs)){ foreach($programs as $pl) { ?>
-                    <div class="univer_box course_detail course_detail1">
-                        <div class="univ_logo">
-                            <div class="univ_meta">
-                                <a href="javascript:void(0)" title="<?php echo $pl['program_name']; ?>"> 
-                                <?php echo substr($pl['program_name'], 0,40); ?>
-                                 <span class="course_meta"> <?php echo $pl['location']; ?></span>       
-                                </a>
-                                 <i class="fa fa-star star"></i>
-                            </div>
-                        </div>
-                        <ul class="univ_info">
-                            <li>$<?php echo $pl['application_fee']; ?> USD/year</li>
-                        </ul>
-                        <div class="apply_now_wrap pull-right">
-                           <a href="javascript:void(0);" class="appy_btn">apply to this program</a>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                <?php } } else{ ?>
-                    <div class="well text-center">Programs not found</div>
                 <?php } ?>
+                <ul class="nav nav-tabs course-types-tabs-university">
+                    <?php $i = 1; foreach(getCourseTypes() as $ct) { ?>
+                        <li <?php if($i == 1) echo 'class="active"'; ?>><a data-toggle="tab" href="#<?php echo strtolower(str_replace(array('/', ' '), array('-', '-'), $ct)); ?>"><?php echo $ct; ?></a></li>
+                    <?php $i++; } ?>
+                </ul>
+                <div class="tab-content">
+                <?php 
+                $j = 1; foreach(getCourseTypes() as $ct) { ?>
+                    <div id="<?php echo strtolower(str_replace(array('/', ' '), array('-', '-'), $ct)); ?>" class="tab-pane fade <?php if($j == 1) echo 'in active'; ?>">
+                        <?php 
+                            if(!empty($programs)){ foreach($programs as $pl){ if($pl['course_type'] == $ct) { ?>
+                            <div class="univer_box course_detail">
+                                <div class="univ_logo">
+                                    <div class="univ_meta">
+                                        <a href="javascript:void(0)" title="<?php echo $pl['program_name']; ?>"> 
+                                        <?php echo substr($pl['program_name'], 0,40); ?>
+                                         <span class="course_meta"> <?php echo $pl['location']; ?></span>       
+                                        </a>
+                                         <i class="fa fa-star star"></i>
+                                    </div>
+                                </div>
+                                <ul class="univ_info">
+                                    <li>$<?php echo $pl['application_fee']; ?> USD/year</li>
+                                </ul>
+                                <div class="apply_now_wrap pull-right">
+                                   <a href="javascript:void(0);" class="appy_btn">apply to this program</a>
+                                    <!-- <a href="#" class="appy_btn">apply to this program</a> -->
+                                    <!-- <a href="#" class="appy_btn">apply to this program</a> -->
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        <?php } } } ?>
+                    </div>
+                <?php $j++; } ?>
+            </div>
             </div>
             <div class="col-md-4 col-sm-4">
 
