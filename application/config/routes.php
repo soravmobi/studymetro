@@ -54,6 +54,7 @@ $route['404_override'] = 'error/error_404';
 $route['translate_uri_dashes'] = FALSE;
 
 /* custom Routing */
+$route['admin'] = 'admin/index';
 $route['admin/forgot-password'] = 'admin/forgotPassword';
 $route['admin/change-password'] = 'admin/changePassword';
 
