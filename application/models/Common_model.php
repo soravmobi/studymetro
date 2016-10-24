@@ -37,7 +37,7 @@ class Common_model extends CI_Model
 	{
 	   $this->db->order_by($field, $short);
 	   if(!empty($limit)){
-	   	$this->db->limit($limit);
+	   		$this->db->limit($limit);
 	   }
 	   $query = $this->db->get_where($table,$conditions);
 	   return $query->result_array();

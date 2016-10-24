@@ -839,13 +839,13 @@ border-bottom: 1px solid #004c9c; right: 0px; content: ""; width: 80%;
 .social_media {
   border-bottom: 1px solid #dadcdd;
   padding-bottom: 20px;
-  text-align: center;
+  text-align: right;
 }
 .footer_bottom {
   border-bottom: 1px solid #dadcdd;
   border-top: 1px solid #dadcdd;
   margin-top: 40px;
-  padding: 20px 0;
+  padding: 20px 0 0px;
 }
 .social_media li {
   display: inline-block;
@@ -3662,4 +3662,31 @@ ul.nav.nav-tabs.course-types-tabs {
 img.accreditation-img {
     width: 135px;
     height: 85px;
+}
+.footer_adress_list{margin-top: 20px;}
+.footer_adress_list li.address_box {
+    display: inline-block;
+    width: 23%;
+    vertical-align: top;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: none;
+}
+.footer_adress_list .address_box h2 {
+    border: none;
+    color: #383838;
+    font-family: sourcesansprosemibold;
+    font-size: 15px;
+    padding: 5px 10px;
+}
+.footer_adress_list .address_box_describe {
+   
+    border-image: none;
+    border: none;
+    border-top: inherit;
+    color: #999;
+    line-height: 18px;
+    padding: 0px 10px;
+    font-size: 12px;
+    min-height:inherit; 
 }
