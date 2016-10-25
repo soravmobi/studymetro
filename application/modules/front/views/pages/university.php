@@ -27,15 +27,16 @@
     <div class="university_wrap_content">
         <div class="row universities_data">
         <?php foreach($universities as $u) { ?>
+            <?php $url = getUniversityUrl($u['id']); ?>
             <div class="col-md-3 col-sm-3">
                 <div class="university_box">
                     <div class="country_flag">
-                        <a href="<?php echo base_url(); ?>university/details/<?php echo encode($u['id']); ?>"><img src="<?php echo base_url(); ?>assets/images/<?php echo getCountryFlag($u['country']); ?>" class="img-responsive"></a>
+                        <a href="<?php echo $url; ?>"><img src="<?php echo base_url(); ?>assets/images/<?php echo getCountryFlag($u['country']); ?>" class="img-responsive"></a>
                     </div>
                     <div class="img_ub">
-                        <a href="<?php echo base_url(); ?>university/details/<?php echo encode($u['id']); ?>"><img src="<?php echo (!empty($u['logo'])) ? $u['logo'] : base_url().'assets/images/not-available.jpg'; ?>" class="img-responsive"></a>
+                        <a href="<?php echo $url; ?>"><img src="<?php echo (!empty($u['logo'])) ? $u['logo'] : base_url().'assets/images/not-available.jpg'; ?>" class="img-responsive"></a>
                     </div>
-                    <div class="head_ub"><a href="<?php echo base_url(); ?>university/details/<?php echo encode($u['id']); ?>"><?php echo $u['name']; ?></a></div>
+                    <div class="head_ub"><a href="<?php echo $url; ?>"><?php echo $u['name']; ?></a></div>
                     <div class="description_ub">
                         <span><i class="fa fa-map-marker" aria-hidden="true"></i></span> <?php echo $u['location']; ?>
                         <?php echo $u['country']; ?> Cost of living: <?php echo $u['estimated_cost']; ?> CAD/year</div>

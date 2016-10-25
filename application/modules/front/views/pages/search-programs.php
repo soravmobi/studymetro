@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 <?php foreach(countries() as $c) { ?>
                                     <input id="<?php echo $c; ?>" name="country" value="<?php echo $c; ?>" class="BSswitch select_country" type="radio" data-off-text="False"
-                                    data-on-text="True" <?php if(isset($_GET[ 'country']) && $_GET[ 'country']==$ c) { echo
+                                    data-on-text="True" <?php if(isset($_GET[ 'country']) && $_GET[ 'country']==$c) { echo
                                     "checked"; } else if(!isset($_GET[ 'country']) && $c=='USA' ) { echo "checked"; } ?>>
                                     <label for="<?php echo $c; ?>">
                                         <?php echo $c; ?>

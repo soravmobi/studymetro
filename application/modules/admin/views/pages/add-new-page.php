@@ -139,6 +139,15 @@
 							</div>
 							</div>
 		                </div>
+		                <div class="form-group">
+		                  <label for="media_file">Show On Menu</label>
+		                    <div class="checkbox">
+							  <div class="radio">
+								  <label><input type="radio" name="show_on_menu" value="0" <?php echo  set_radio('show_on_menu', '0', TRUE); ?> checked>No</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								  <label><input type="radio" name="show_on_menu" value="1" <?php echo  set_radio('show_on_menu', '1'); ?>>Yes</label>
+							</div>
+							</div>
+		                </div>
 	              	</div><!-- .col-md-6 -->
 	            </div><!-- .box-body -->	
 

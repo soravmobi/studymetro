@@ -76,7 +76,7 @@ class Pages extends CI_Controller {
         $data['added_pages'] = $pages_arr;
 		if($this->input->post('submit')) {
             $this->form_validation->set_rules('title', 'Title', 'trim|required');
-            $this->form_validation->set_rules('content', 'Content', 'trim|required');
+            //$this->form_validation->set_rules('content', 'Content', 'trim|required');
             $this->form_validation->set_rules('meta_title', 'Meta Title', 'trim|required');
             $this->form_validation->set_rules('meta_description', 'Meta Description', 'trim|required');
             $this->form_validation->set_rules('meta_keywords', 'Meta Keywords', 'trim|required');

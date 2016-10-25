@@ -13,7 +13,7 @@ class University extends CI_Controller {
 
     public function details($id)
     {
-    	$uid = decode($id);
+    	$uid = $id;
         $data = array();
         $data['details']  = $this->common_model->getSingleRecordById(UNIVERSITIES,array('id' => $uid));
     	$data['programs'] = getProgramsBy('university_id',$uid);

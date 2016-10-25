@@ -321,7 +321,7 @@
             </div>
             <div class="col-md-4 col-sm-4">
               <div class="appy_now">
-                <a href="javascript:void(0);">Apply Now <i class="fa fa-check"></i></a>
+                <a href="<?php cms_url('apply-now'); ?>">Apply Now <i class="fa fa-check"></i></a>
               </div>
             </div>
           </div>

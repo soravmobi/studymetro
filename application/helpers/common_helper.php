@@ -463,5 +463,18 @@ function getMonths(){
 }
 
 
+function strReplaceAttr() {
+	return array(" ", '_', '.', '`', ':', ';', '+', '@', '(', ')', '{', '}', '*');
+}
+
+function getUniversityUrl($id) {
+	$ci =&get_instance();
+	$universityData = $ci->common_model->getSingleRecordById(UNIVERSITIES, array('id' => $id));
+	if(!empty($universityData)) {
+		$slug = strtolower(str_replace(strReplaceAttr(), '-', $universityData['name']));
+		return base_url().'university/details/'.$id.'/'.$slug;
+	}
+}
+
 /* End of file common_helper.php */
 /* Location: ./system/application/helpers/common_helper.php */

@@ -143,7 +143,7 @@ $route['university/locations'] = 'front/university/locations';
 $route['(:any)'] = 'front/home/pages/$1';
 $route['faqs/(:any)'] = 'front/home/faqs/$1';
 $route['contact-us'] = 'front/home/contactus';
-$route['university/details/(:any)'] = 'front/university/details/$1';
+$route['university/details/(:any)/(:any)'] = 'front/university/details/$1/$1';
 
 /*
 | -------------------------------------------------------------------------

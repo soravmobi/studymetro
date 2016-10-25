@@ -42,7 +42,7 @@ if(!function_exists('getmenus')) {
 	function getmenus()
 	{
 		$ci =&get_instance();
-	    $results = $ci->common_model->getAllRecordsOrderById(STATIC_PAGE,'page_no','ASC',array('status' => 1));
+	    $results = $ci->common_model->getAllRecordsOrderById(STATIC_PAGE,'page_no','ASC',array('status' => 1, 'show_on_menu' => 1));
 	    return $results;
 	}
 }

@@ -41,6 +41,7 @@
 	              <th>ID</th>
 	              <th>Title</th>
 	              <th>Status</th>
+	              <th>On Menu</th>
 	              <th>Date</th>
 	              <th>Action</th>
 	            </tr>
@@ -59,6 +60,13 @@
 		              		<span class="label label-danger">Disable</span>
 		              	<?php } ?>
 		              </td>
+		              <td>
+		              	<?php if($val['show_on_menu'] == 1) { ?>
+		              		<span class="label label-success">Yes</span>
+		              	<?php } else { ?>
+		              		<span class="label label-danger">No</span>
+		              	<?php } ?>
+		              </td>
 		              <td><?php echo date('m-d-Y', strtotime($val['date_created'])); ?></td>
 		              <td>
 		              	<a href="<?php cms_url('admin/pages/edit/'.$val['id']); ?>" title="Edit Page">
@@ -73,7 +81,7 @@
 	            <?php } /* End foreach */ ?>
 	            <?php } else { ?>
 	            	<tr>
-	            		<td colspan="5" align="center"><?php echo sprintf(NO_RECORDS_FOUND, 'pages') ?></td>
+	            		<td colspan="6" align="center"><?php echo sprintf(NO_RECORDS_FOUND, 'pages') ?></td>
 	            	</tr>
 	            <?php } ?>
 	          </table>
