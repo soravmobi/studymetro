@@ -201,6 +201,22 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12">
+              <div class="quick_link">
+                <label>Quick Links</label>
+                <ul>
+                  <li><a href="study_abroad.html">Study Abroad</a></li>
+                  <li><a href="#">Selection of University</a></li>
+                  <li><a href="#">Career Counseling</a></li>
+                  <li><a href="#">Admission Guidance</a></li>
+                  <li><a href="#">Admission Documentation</a></li>
+                  <li><a href="#">Pre-Requisite Tests</a></li>
+                  <li><a href="#">Mission, Vision and Values</a></li>
+                </ul>
+              </div>
+            </div>
+          </div><!-- .row -->
         </div>
       </section>
       <section class="video_sec">

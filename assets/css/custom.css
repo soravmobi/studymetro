@@ -916,7 +916,7 @@ border-bottom: 1px solid #004c9c; right: 0px; content: ""; width: 80%;
 /*css start for about us page */
 
 .about_content .form-group {
-  width: 28%;
+  width: 21%;
 }
 .about_content .form-group:last-child {
   width: 9%;
@@ -3689,4 +3689,30 @@ img.accreditation-img {
     padding: 0px 10px;
     font-size: 12px;
     min-height:inherit; 
+}
+.about_content.applyNowIframe {
+    height: 2300px;
+  
+}
+.applyNowIframe iframe {
+    position: absolute;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+}
+.item_img img {
+    width: 100%;
+}
+.search_form input[type="text"] {
+    background: none;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid #fff;
+}
+.search_form input[type="text"]:focus {
+  box-shadow: none;
+}
+.search_form input[type="text"]::-webkit-input-placeholder {
+  color: #ffffff;
 }

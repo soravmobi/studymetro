@@ -306,4 +306,24 @@ class Common_model extends CI_Model
 	function updateCustomSql($sql) {
 		 $this->db->query($sql);
 	}
+
+	function searchPrograms($data) {
+		$sql = 'SELECT * FROM '.PROGRAMS.'
+		 	   WHERE `country` = "'.$data['country'].'"';
+
+		if(!empty($data['id'])) {
+			$sql .= ' AND `university_id` = '.$data['id'];
+		}
+
+		if(!empty($data['program'])) {
+			$sql .= 'AND `program_name` LIKE "%'. $data['program'].'%"';
+		}
+
+		if(!empty($data['course'])) {
+			$sql .= ' AND `course_type` LIKE "%'.$data['course'].'%"';
+		}
+
+		$query = $this->db->query($sql);
+		return $query->result_array();
+	}
 }

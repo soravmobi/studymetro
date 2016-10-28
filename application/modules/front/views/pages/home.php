@@ -200,7 +200,7 @@
                 <?php echo $details['content']; ?>
               </div>
             </div>
-          </div>
+          </div><!-- .row -->
         </div>
       </section>
       <section class="video_sec">

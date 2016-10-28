@@ -147,7 +147,7 @@ $("#home_video").owlCarousel({
     items: 4,
     dots: true,
     loop: true,
-    autoplay: true,
+    autoplay: false,
     itemsDesktop: [1199, 3],
     itemsDesktopSmall: [979, 3],
     navigationText: [

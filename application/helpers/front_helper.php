@@ -237,7 +237,9 @@ if(!function_exists('getSeacrhStudyPrograms')) {
 		foreach(countries() as $c) {
 			$html .= '<option value="'.$c.'">'.$c.'</option>';
 		}
-		$html .= '</select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="select_box"> <select class="form-control select_university" name="id" required> <option value="">Choose a university</option> </select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="select_box"> <select class="form-control" name="course" required> <option value="">Choose a level</option>';
+		$html .= '</select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="select_box"> <select class="form-control select_university" name="id"> <option value="">Choose a university</option> </select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div>';
+		$html .= '<div class="form-group"><input type="text" class="form-control" name="program" placeholder="Choose Program"/></div>';
+		$html .= '<div class="form-group"> <div class="select_box"> <select class="form-control" name="course"> <option value="">Choose a level</option>';
 		foreach(getCourseTypes() as $ct) {
 			$html .= '<option value="'.$ct.'">'.$ct.'</option>';
 		}
@@ -249,7 +251,8 @@ if(!function_exists('getSeacrhStudyPrograms')) {
 if(!function_exists('getCourseTypes')) {
 	function getCourseTypes()
 	{
-		$courses = array('Associate Degree','Bachelor','Certificates / DIPLOMA','Doctoral','Graduate Courses','Masters','Post Graduate Diploma','Pathway','Post Bacculerate Diploma','Language Course','Undergraduate courses');
+		//$courses = array('Associate Degree','Bachelor','Certificates / DIPLOMA','Doctoral','Graduate Courses','Masters','Post Graduate Diploma','Pathway','Post Bacculerate Diploma','Language Course','Undergraduate courses');
+		$courses = array('Graduate Course', 'Undergraduate Course', 'Doctored', 'Certificate/Diploma', 'Pathway');
 		return $courses;
 	}
 }
@@ -371,6 +374,7 @@ if(!function_exists('getPageName')) {
 					'11' => 'FAQS',
 					'12' => 'Contact US',
 					'13' => 'Default Template',
+					'14' => 'Apply Now',
 				);
 		return $pages[$key];
 	}
