@@ -148,7 +148,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 col-sm-12">
-            <div class="footer_top">
+          <!--   <div class="footer_top">
               <div class="common_head footer_head">
                 <h2>Accreditation</h2>
                 <div class="head_border">
@@ -175,7 +175,7 @@
                   <a href="javascript:void(0);"><img class="accreditation-img" src="<?php echo base_url(); ?>assets/images/AIEA.png"></a>
                 </li>
               </ul>
-            </div>
+            </div> -->
             <div class="footer_middle">
               <div class="common_head footer_head">
                 <h2>Qualified Universities</h2>
