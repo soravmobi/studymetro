@@ -196,6 +196,7 @@ define('FEEDBACKS', 'feedbacks');
 define('QUOTATIONS', 'quotations');
 define('NOTES', 'notes');
 define('PROGRAMS', 'programs');
+define('SUMMER_PROGRAMS', 'summer_programs');
 define('EMAILS', 'emails');
 define('REFERRALS', 'referrals');
 define('CERTIFICATIONS', 'certifications');

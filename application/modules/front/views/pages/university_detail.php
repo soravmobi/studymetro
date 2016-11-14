@@ -29,7 +29,11 @@
                 $j = 1; foreach(getCourseTypes() as $ct) { ?>
                     <div id="<?php echo strtolower(str_replace(array('/', ' '), array('-', '-'), $ct)); ?>" class="tab-pane fade <?php if($j == 1) echo 'in active'; ?>">
                         <?php 
-                            if(!empty($programs)){ foreach($programs as $pl){ if($pl['course_type'] == $ct) { ?>
+                            if(!empty($programs)){ foreach($programs as $pl){
+                                $types = filter_course_types($ct);
+                                if(in_array($pl['course_type'], $types)){ 
+                                //if($pl['course_type'] == $ct) { 
+                        ?>
                             <div class="univer_box course_detail">
                                 <div class="univ_logo">
                                     <div class="univ_meta">

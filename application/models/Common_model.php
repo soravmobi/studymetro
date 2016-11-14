@@ -326,4 +326,14 @@ class Common_model extends CI_Model
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
+
+	function getFilteredPrograms($table, $key, $order, $condition, $program){
+		$this->db->where($condition);
+		if(!empty($program)) {
+			$this->db->like('program_name', $program);
+		}
+		$this->db->order_by($key, $order);
+		$query = $this->db->get($table);
+		return $query->result_array();
+	}
 }

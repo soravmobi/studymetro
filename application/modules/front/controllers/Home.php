@@ -38,10 +38,14 @@ class Home extends CI_Controller {
                 $data['total_count'] = round($result/16);
             }
             if($page_name == 'search-programs'){
-                if($this->input->post()){
-                    $arr_data = $this->input->post();
-                    unset($arr_data['course'], $arr_data['program']);
-                    $data['programs'] = $this->common_model->getAllRecordsById(UNIVERSITIES,$arr_data);
+                if($this->input->get()){
+                    $arr_data = array();
+                    $arr_data['country'] = $this->input->get('country');
+                    $id = $this->input->get('id');
+                    if(!empty($id)) {
+                        $arr_data['id'] = $this->input->get('id');
+                    }
+                    $data['programs'] = $this->common_model->getAllRecordsById(UNIVERSITIES, $arr_data);
                     //$data['programs'] = $this->common_model->searchPrograms($arr_data);
                 }else{
                     $data['programs'] = $this->getPrograms((isset($_GET['country']) && !empty($_GET['country'])) ? $_GET['country'] : 'USA',8);

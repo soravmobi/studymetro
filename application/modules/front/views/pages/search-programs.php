@@ -35,12 +35,13 @@
                         </div>
                         <div class="programs-data">
                             <?php if(!empty($programs)) { $i = 1; foreach($programs as $p){ ?>
+                                <?php $url = getUniversityUrl($p['id']); ?>
                                 <div class="search_box_content" <?php if($i==1 ) echo "style='margin-top:0px;'"; ?>>
                                     <div class="univer_box">
                                         <div class="univ_logo">
-                                            <a href="<?php echo base_url(); ?>university/details/<?php echo encode($p['id']); ?>"> <img src="<?php echo $p['logo']; ?>" class="img-responsive"></a>
+                                            <a href="<?php echo $url; ?>"> <img src="<?php echo $p['logo']; ?>" class="img-responsive"></a>
                                             <div class="univ_meta">
-                                                <span class="univ_name"><a href="<?php echo base_url(); ?>university/details/<?php echo encode($p['id']); ?>"><?php echo $p['name']; ?></a></span>
+                                                <span class="univ_name"><a href="<?php echo $url; ?>"><?php echo $p['name']; ?></a></span>
                                                 <p><i class="fa fa-map-marker"></i>
                                                     <?php echo $p['location']; ?>,
                                                         <?php echo $p['country']; ?>
@@ -65,7 +66,7 @@
                                         <br/>
                                         <ul class="nav nav-tabs course-types-tabs">
                                             <?php $i = 1; foreach(getCourseTypes() as $ct) { ?>
-                                                <li <?php if($i==1 ) echo 'class="active"'; ?>>
+                                                <li <?php if(!empty($_GET['course']) && $ct == $_GET['course']) { echo 'class="active"'; } elseif(empty($_GET['course']) && $i==1) { echo 'class="active"'; }  ?>>
                                                     <a data-toggle="tab" href="#<?php echo 'program-'.$p['id'].'-'.strtolower(str_replace(array('/', ' '), array('-', '-'), $ct)); ?>">
                                                         <?php echo $ct; ?>
                                                     </a>
@@ -75,11 +76,17 @@
                                     </div>
                                     <div class="tab-content">
                                         <?php 
-                                                $programs_list = getProgramsBy('university_id',$p['id']);
-                                                $j = 1; foreach(getCourseTypes() as $ct) { ?>
-                                            <div id="<?php echo 'program-'.$p['id'].'-'.strtolower(str_replace(array('/', ' '), array('-', '-'), $ct)); ?>" class="tab-pane fade <?php if($j == 1) echo 'in active'; ?>">
-                                                <?php 
-                                                            if(!empty($programs_list)){ foreach($programs_list as $pl){ if(trim($pl['course_type']," ") == trim($ct," ")) { ?>
+                                            $programs_list = getProgramsBy('university_id', $p['id'], (isset($_GET['program'])) ? $_GET['program'] : '');
+                                            $j = 1; 
+                                            foreach(getCourseTypes() as $ct) { 
+                                        ?>
+                                            <div id="<?php echo 'program-'.$p['id'].'-'.strtolower(str_replace(array('/', ' '), array('-', '-'), $ct)); ?>" class="tab-pane fade <?php if(!empty($_GET['course']) && $ct == $_GET['course']) { echo 'in active'; } elseif(empty($_GET['course']) && $j==1) { echo 'in active'; }  ?>">
+                                                <?php //p($programs_list);
+                                                    if(!empty($programs_list)){ 
+                                                        foreach($programs_list as $pl){
+                                                            $types = filter_course_types($ct);
+                                                            if(in_array($pl['course_type'], $types)){
+                                                ?>
                                                     <div class="univer_box course_detail">
                                                         <div class="univ_logo">
                                                             <div class="univ_meta">
@@ -117,7 +124,7 @@
                         <div class="search_box_top">
                             <ul id="pagination-demo" class="pagination-sm"></ul>
                         </div>
-                        <?php } ?>
+                    <?php } ?>
                 </div>
             </div>
     </section>
@@ -225,6 +232,9 @@
                                 $('.programs-data').html(appendHTML);
                            }
                            ajaxindicatorstop();
+                           $('html, body').animate({
+                                scrollTop: $(".video_sec").offset().top
+                            }, 1500);
                         },
                         error:function(err)
                         {
@@ -237,3 +247,18 @@
     });
 
 </script>
+<?php if(isset($_GET['country'])) { ?>
+    <script>
+        $(document).ready(function(){
+            var country = "<?php echo $_GET['country']; ?>";
+            var id = "<?php if(!empty($_GET['id'])) { echo $_GET['id']; } ?>";
+            getUniversities(country, false, id);
+        });
+    </script>
+<?php } ?>
+
+<?php if(isset($_GET['id'])) { ?>
+    <script>
+        
+    </script>
+<?php } ?>

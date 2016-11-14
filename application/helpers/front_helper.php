@@ -129,10 +129,10 @@ if(!function_exists('getphotogallery')) {
 }
 
 if(!function_exists('getProgramsBy')) {
-	function getProgramsBy($column,$value)
+	function getProgramsBy($column, $value, $program = '')
 	{
 		$ci =&get_instance();
-	    $results = $ci->common_model->getAllRecordsOrderById(PROGRAMS,'program_name','ASC',array($column => $value));
+	    $results = $ci->common_model->getFilteredPrograms(PROGRAMS,'program_name','ASC', array($column => $value), $program);
 	    return $results;
 	}
 }
@@ -233,40 +233,46 @@ if(!function_exists('getservices')) {
 if(!function_exists('getSeacrhStudyPrograms')) {
 	function getSeacrhStudyPrograms()
 	{
-		$html = '<div class="banner_search_wrap about_page"> <div class="container"> <div class="row"> <div class="col-md-12 col-sm-12"> <form class="search_form" method="post" action="'.base_url().'search-programs"> <div class="head_search"> <div class="txt_search"> Find your ideal study program </div></div><div class="search_form_content about_content"> <div class="form-group"> <div class="select_box"> <select class="form-control select_country" name="country" required> <option value="">Choose a country</option>';
+		$html = '<div class="banner_search_wrap about_page"> <div class="container"> <div class="row"> <div class="col-md-12 col-sm-12"> <form class="search_form" method="get" action="'.base_url().'search-programs"> <div class="head_search"> <div class="txt_search"> Find your ideal study program </div></div><div class="search_form_content about_content"> <div class="form-group"> <div class="select_box"> <select class="form-control select_country" name="country" required> <option value="">Choose a country</option>';
+		$selected = '';
 		foreach(countries() as $c) {
-			$html .= '<option value="'.$c.'">'.$c.'</option>';
+			if($c == $_GET['country']) {
+				$selected = 'selected="selected"';
+			}
+			$html .= '<option value="'.$c.'" '.get_show_selected($_GET['country'], $c).'>'.$c.'</option>';
 		}
 		$html .= '</select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="select_box"> <select class="form-control select_university" name="id"> <option value="">Choose a university</option> </select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div>';
-		$html .= '<div class="form-group"><input type="text" class="form-control" name="program" placeholder="Choose Program"/></div>';
+		$html .= '<div class="form-group"><input type="text" class="form-control" name="program" placeholder="Choose Program" value="'.$_GET['program'].'"/></div>';
 		$html .= '<div class="form-group"> <div class="select_box"> <select class="form-control" name="course"> <option value="">Choose a level</option>';
 		foreach(getCourseTypes() as $ct) {
-			$html .= '<option value="'.$ct.'">'.$ct.'</option>';
+			$html .= '<option value="'.$ct.'" '.get_show_selected($_GET['course'], $ct).'>'.$ct.'</option>';
 		}
 		$html .= '</select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="button_box"> <button type="submit">Search </button> </div></div></div></form> </div></div></div></div>';
 		return $html;
 	}
 }
 
-if(!function_exists('getCourseTypes')) {
-	function getCourseTypes()
-	{
-		//$courses = array('Associate Degree','Bachelor','Certificates / DIPLOMA','Doctoral','Graduate Courses','Masters','Post Graduate Diploma','Pathway','Post Bacculerate Diploma','Language Course','Undergraduate courses');
-		$courses = array('Graduate Course', 'Undergraduate Course', 'Doctored', 'Certificate/Diploma', 'Pathway');
-		return $courses;
-	}
-}
-
 if(!function_exists('getSideBarVideos')) {
 	function getSideBarVideos()
-	{
+	{	
+		$ci =&get_instance();
+	    $results = $ci->common_model->getPaginateRecordsByOrderByCondition(PHOTOS, 'id', 'DESC', 8, 0, array('types' => 1));
+
 		$html = '';
 		$html .= '<div class="left_video_bar">';
 		$html .= '<div class="head_left_video "> Videos <a href="javascript:void(0);" class="pull-right"><i class="fa fa-video-camera" aria-hidden="true"></i></a> </div>';
 		$html .= '<div class="head_left_video_content"><div id="video_slider" class="owl-carousel owl-theme">';
-		foreach(getvideogallery() as $v)
-		{
-			$html .= '<div class="item"><iframe width="100%" height="200" frameborder="0" allowfullscreen="" src="'.$v['name'].'"></iframe></div>';
+		if(!empty($results)) {
+			foreach($results as $v){
+				if(!empty($v['video_thumb'])) {
+					$img = $v['video_thumb'];
+				} else {
+					$video = parseVideos($v['name']);
+					$img = $video[0]['fullsize'];
+				}
+				$html .= '<div class="item"><a class="videoOverlapper" href="'.$v['name'].'" data-featherlight="iframe"><i class="playIcon fa fa-play-circle-o"></i><img src="'.$img.'"/></a></div>'; 
+				//$html .= '<div class="item"><iframe width="100%" height="200" frameborder="0" allowfullscreen="" src="'.$v['name'].'"></iframe></div>';
+			}
 		}
 		$html .= '</div></div></div>';
 		return $html;
@@ -349,8 +355,15 @@ if(!function_exists('getVideoGallerySection')) {
 	{
 		$html = '';
 		$html .= '<section class="home_video_sec"><div class="container"><div id="home_video">';
-		foreach(getvideogallery() as $v) { 
-			$html .= '<div class="item"><div class="video_box"><iframe width="100%" height="200" frameborder="0" allowfullscreen="" id="video'.$v['id'].'" src="'.$v['name'].'"></iframe><div class="more_video_box"><a class="more_photo more_video" href="javascript:void(0);" data-featherlight="#video'.$v['id'].'">Watch Now </a></div></div></div>';
+		foreach(getvideogallery() as $v) {
+			if(!empty($v['video_thumb'])) {
+				$img = $v['video_thumb'];
+			} else {
+				$video = parseVideos($v['name']);
+				$img = $video[0]['fullsize'];
+			}
+			$html .= '<div class="item"><div class="video_box"><a class="videoOverlapper" href="'.$v['name'].'" data-featherlight="iframe"><i class="playIcon fa fa-play-circle-o"></i><img src="'.$img.'"/></a><div class="more_video_box"><a class="more_photo more_video" href="'.$v['name'].'" data-featherlight="iframe">Watch Now </a></div></div></div>';
+			//$html .= '<div class="item"><div class="video_box"><iframe width="100%" height="200" frameborder="0" allowfullscreen="" id="video'.$v['id'].'" src="'.$v['name'].'"></iframe><div class="more_video_box"><a class="more_photo more_video" href="javascript:void(0);" data-featherlight="#video'.$v['id'].'">Watch Now </a></div></div></div>';
 		}
 		$html .= '</div></div></section>';
 		return $html;
@@ -380,6 +393,27 @@ if(!function_exists('getPageName')) {
 	}
 }
 
+if(!function_exists('getCourseTypes')) {
+	function getCourseTypes()
+	{
+		//$courses = array('Associate Degree','Bachelor','Certificates / DIPLOMA','Doctoral','Graduate Courses','Masters','Post Graduate Diploma','Pathway','Post Bacculerate Diploma','Language Course','Undergraduate courses');
+		$courses = array('Graduate Course', 'Undergraduate Course', 'Doctored', 'Certificate/Diploma', 'Pathway');
+		return $courses;
+	}
+}
+
+if(!function_exists('filter_course_types')) {
+	function filter_course_types($ct) {
+		$types = array(
+			'Graduate Course' => array('Graduate Courses', 'Post Graduate Diploma', 'Bachelor & Master', 'Bachelor & Masters', 'Diploma & Masters', 'Diploma.Bachelors & Masters', 'Master', 'Masters', 'master/bachelor'), 
+			'Undergraduate Course' => array('Associate Degree', 'Associate & Certificate', 'Associate', 'Undergraduate', 'Undergraduate courses', 'UnderGraduate/Certificate'), 
+			'Doctored' => array('Doctor', 'Doctoral', 'doctorate'), 
+			'Certificate/Diploma' => array('Certificates / DIPLOMA', 'Post Baccalaureat Diploma', 'Post Bacculerate Diploma', 'Post Baccalaureate diploma', 'Diploma', 'Diplomas', '2 Year Advanced Diploma Courses', 'Digital Design Advanced Diploma', 'Creative Communications Advanced Diploma', 'Motion Graphics & Film Advanced Diploma', 'Advance Diploma', 'Advanced diploma', 'Certificate & Diploma', 'Certificates / Diploma', 'Diploma & Certificate', 'Diploma & Masters', 'Diploma course', 'Graduate diploma', ''), 
+			'Pathway' => array('Language', 'Language course', 'Language program')
+		);
+		return $types[$ct];
+	}
+}
 
 
 ?>

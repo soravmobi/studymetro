@@ -42,6 +42,10 @@ class Videos extends CI_Controller {
 						'types'=> 1,
 						'added_date' => date('Y-m-d H:i:s')
 					);
+			$thumb = parseVideos($data['name']);
+			if(!empty($thumb)) {
+				$data['video_thumb'] = $thumb[0]['fullsize'];
+			}
 			$this->common_model->addRecords(PHOTOS, $data);
 		}
 		$this->session->set_flashdata('item_success', sprintf(ITEM_ADD_SUCCESS, 'Videos'));

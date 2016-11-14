@@ -46,41 +46,16 @@ $(document).ready(function () {
         slideSpeed: 200,
         paginationSpeed: 800,
         items: 1,
-        dots: true,
+        dots: false,
         loop: true,
         autoplay: true,
+        autoHeight:true,
         singleItem: true
     });
 
     $('body').on('change', '.select_country', function () {
         var country = $(this).val();
-        var appendHTML = '<option value="">Choose a university</option>';
-        if (country == '') {
-            $('.select_university').html(appendHTML);
-            return false;
-        } else {
-            $.ajax({
-                url: base_url() + "front/home/getCountryUniversities",
-                type: "POST",
-                data: { country: country },
-                dataType: "JSON",
-                beforeSend: function () {
-                    ajaxindicatorstart();
-                },
-                success: function (resp) {
-                    if (resp != '') {
-                        for (var i = 0; i < resp.length; i++) {
-                            appendHTML += '<option value="' + resp[i]['id'] + '">' + resp[i]['name'] + '</option>';
-                        }
-                    }
-                    $('.select_university').html(appendHTML);
-                    ajaxindicatorstop();
-                },
-                error: function (error) {
-                    ajaxindicatorstop();
-                }
-            });
-        }
+        getUniversities(country, true, '');
     }); 
 
     
@@ -297,3 +272,40 @@ function initMap() {
 window.onload = function () {
     initMap();
 };
+
+function getUniversities(country, indecator, selectedValue = '') {
+    var appendHTML = '<option value="">Choose a university</option>';
+    if (country == '') {
+        $('.select_university').html(appendHTML);
+        return false;
+    } else {
+        $.ajax({
+            url: base_url() + "front/home/getCountryUniversities",
+            type: "POST",
+            data: { country: country },
+            dataType: "JSON",
+            beforeSend: function () {
+                if(indecator == true) {
+                    ajaxindicatorstart();
+                }
+            },
+            success: function (resp) {
+                if (resp != '') {
+                    for (var i = 0; i < resp.length; i++) {
+                        if(selectedValue != '' && resp[i]['id'] == selectedValue) {
+                            var selected = 'selected="selected"';
+                        } else {
+                            var selected = '';
+                        }
+                        appendHTML += '<option value="' + resp[i]['id'] + '" '+selected+'>' + resp[i]['name'] + '</option>';
+                    }
+                }
+                $('.select_university').html(appendHTML);
+                ajaxindicatorstop();
+            },
+            error: function (error) {
+                ajaxindicatorstop();
+            }
+        });
+    }
+}
