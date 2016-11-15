@@ -176,9 +176,11 @@ define('USER_UPLOAD_PATH', 'uploads/users/');
 define('LOGIN_INCLUDES', 'login_includes/');
 define('FRONT_INCLUDES', 'front_includes/');
 define('INCLUDES', 'includes/');
+define('DEFAULT_PROGRAM_FEE', '50');
 
 /* Database Tables */
 define('MENU', 'menus');
+define('APPLIED_PROGRAMS', 'applied_programs');
 define('STATIC_PAGE', 'static_pages');
 define('SYSTEM_PREFERENCE', 'system_preferences');
 define('USER', 'users');

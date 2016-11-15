@@ -118,6 +118,25 @@ class User extends CI_Controller {
         redirect('user/profile');
     }
 
+    public function applytoprogram($pid)
+    {
+        checkUserSession(array('2','3','4','5','6'));
+        $data = array();
+        $data['meta_title'] = 'Apply to Program';
+        $data['program_id'] = $pid;
+        $data['detail']     = $this->common_model->getSingleRecordById(PROGRAMS,array('id' => $pid));
+        if(empty($data['detail'])){
+            redirect('search-programs');
+        }
+        $conditions = array('user_id' => $this->uid, 'program_id' => $pid);
+        $results = $this->common_model->getAllRecordsById(APPLIED_PROGRAMS,$conditions);
+        if(!empty($results)){
+            $this->session->set_flashdata('error','You already applied to this program !!');
+            redirect('search-programs');
+        }
+        load_front_view('user/applytoprogram', $data);
+    }
+
     public function dashboard()
     {
         checkUserSession(array('2','3','4','5','6'));
@@ -424,6 +443,72 @@ class User extends CI_Controller {
         }
         redirect('user/my-videos');
     }
+
+    public function submitApplyProgramForm()
+    {
+        if($this->input->is_ajax_request())
+        {
+            $this->form_validation->set_rules('first_name','First Name','trim|required');
+            $this->form_validation->set_rules('email','Email','trim|required|valid_email');
+            $this->form_validation->set_rules('phone_no','Phone No','trim|required');
+            $this->form_validation->set_rules('address_1','Address 1','trim|required');
+            if($this->form_validation->run()==TRUE){
+                $data = $this->input->post();
+                $conditions = array('user_id' => $this->uid, 'program_id' => $data['program_id']);
+                $results = $this->common_model->getAllRecordsById(APPLIED_PROGRAMS,$conditions);
+                if(!empty($results)){
+                    echo json_encode(array('type' => 'failed', 'msg' => 'You already applied of this program'));exit;
+                }
+                $data['user_id']    = $this->uid;
+                $data['apply_date'] = datetime();
+                /*if(!empty($_FILES['education_documents'])){
+                    $data['education_documents'] = imgUpload('education_documents','programs');
+                }*/
+                $lid = $this->common_model->addRecords(APPLIED_PROGRAMS,$data);
+                if(!empty($lid)){
+                    echo json_encode(array('type' => 'success','id' => $lid));exit;
+                }else{
+                    echo json_encode(array('type' => 'failed', 'msg' => GENERAL_ERROR));exit;
+                }
+            }else{
+                $error = array(
+                    'first_name'=> form_error('first_name'),
+                    'email'     => form_error('email'),
+                    'phone_no'  => form_error('phone_no'),
+                    'address_1' => form_error('address_1')
+                ); 
+                echo json_encode(array('type' => 'validation_err','msg' => $error));exit;
+            }
+        }
+    }
+
+    public function paypal_success()
+    {
+        if(!empty($_GET)){
+            $data               = array();
+            $data['amount']     = $_GET['amt'];
+            $data['pay_type']   = 0;
+            $data['txn_id']     = $_GET['tx'];
+            $data['pay_status'] = $_GET['st'];
+            $data['paymnet_date'] = datetime();
+            $status = $this->common_model->updateRecords(APPLIED_PROGRAMS,$data,array('id' => $_GET['cm']));
+            if($_GET['st'] == 'Completed' && $status == TRUE){
+                $this->session->set_flashdata('success','Payment successfully completed');
+            }else{
+                $this->session->set_flashdata('error','Failed please try again !!');
+            }
+        }else{
+            $this->session->set_flashdata('error','Failed please try again !!');
+        }
+        redirect('search-programs');
+    }
+
+    public function paypal_cancel()
+    {
+        $this->session->set_flashdata('error','Paymnet cancelled !!');
+        redirect('search-programs');
+    }
+
 
 
 }

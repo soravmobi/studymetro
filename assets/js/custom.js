@@ -147,6 +147,11 @@ $("#events_slider").owlCarousel({
     ]
 });
 
+$('.bs-datepicker').datepicker({
+    autoclose : true,
+    format : 'yyyy-mm-dd'
+});
+
 function ajaxindicatorstart() {
     if (jQuery('body').find('#resultLoading').attr('id') != 'resultLoading') {
         jQuery('body').append('<div id="resultLoading" style="display:none"><div><img src="' + base_url() + 'assets/img/ajax-loader.gif"><div>Loading...</div></div><div class="bg"></div></div>');

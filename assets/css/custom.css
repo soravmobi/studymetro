@@ -3744,3 +3744,7 @@ div#video_slider .item img {
 #testimonial_slider .owl-item{
   height: auto !important;
 }
+p.application-fee {
+    margin-bottom: 20px;
+    font-size: 20px;
+}

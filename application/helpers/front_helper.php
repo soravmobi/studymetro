@@ -221,6 +221,14 @@ if(!function_exists('top_degrees')) {
 	}
 }
 
+if(!function_exists('hear_about_us')) {
+	function hear_about_us()
+	{
+		$hear_about_us = array('Education Fairs / Expo / Seminar','Online Webinar','Mail Marketing','SMS Marketing','Online Marketing','Walk In','Refer by Formal Student','Refer by Agent','Refer by School','Social Media','Website');
+	    return $hear_about_us;
+	}
+}
+
 if(!function_exists('getservices')) {
 	function getservices()
 	{
@@ -236,16 +244,16 @@ if(!function_exists('getSeacrhStudyPrograms')) {
 		$html = '<div class="banner_search_wrap about_page"> <div class="container"> <div class="row"> <div class="col-md-12 col-sm-12"> <form class="search_form" method="get" action="'.base_url().'search-programs"> <div class="head_search"> <div class="txt_search"> Find your ideal study program </div></div><div class="search_form_content about_content"> <div class="form-group"> <div class="select_box"> <select class="form-control select_country" name="country" required> <option value="">Choose a country</option>';
 		$selected = '';
 		foreach(countries() as $c) {
-			if($c == $_GET['country']) {
+			if($c == @$_GET['country']) {
 				$selected = 'selected="selected"';
 			}
-			$html .= '<option value="'.$c.'" '.get_show_selected($_GET['country'], $c).'>'.$c.'</option>';
+			$html .= '<option value="'.$c.'" '.get_show_selected(@$_GET['country'], $c).'>'.$c.'</option>';
 		}
 		$html .= '</select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="select_box"> <select class="form-control select_university" name="id"> <option value="">Choose a university</option> </select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div>';
-		$html .= '<div class="form-group"><input type="text" class="form-control" name="program" placeholder="Choose Program" value="'.$_GET['program'].'"/></div>';
+		$html .= '<div class="form-group"><input type="text" class="form-control" name="program" placeholder="Choose Program" value="'.@$_GET['program'].'"/></div>';
 		$html .= '<div class="form-group"> <div class="select_box"> <select class="form-control" name="course"> <option value="">Choose a level</option>';
 		foreach(getCourseTypes() as $ct) {
-			$html .= '<option value="'.$ct.'" '.get_show_selected($_GET['course'], $ct).'>'.$ct.'</option>';
+			$html .= '<option value="'.$ct.'" '.get_show_selected(@$_GET['course'], $ct).'>'.$ct.'</option>';
 		}
 		$html .= '</select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="button_box"> <button type="submit">Search </button> </div></div></div></form> </div></div></div></div>';
 		return $html;

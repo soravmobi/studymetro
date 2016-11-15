@@ -19,6 +19,7 @@
       <link href="<?php echo base_url(); ?>assets/css/custom.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>assets/css/responsive.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>assets/css/chosen.min.css" rel="stylesheet">
+      <link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker.css" rel="stylesheet">
       <script src="<?php echo base_url(); ?>assets/js/modernizr-custom.js"></script>
       <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/js/chosen.jquery.min.js"></script>
