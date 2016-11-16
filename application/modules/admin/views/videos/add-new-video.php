@@ -31,7 +31,7 @@
 		            	<div class="col-md-6">
 			                <div class="form-group photo_1">
 			                  <label for="photos">Videos</label>
-			                  <input type="url" name="videos[]" placeholder="Add youtube link" required class="form-control margin_bottom10"/>
+			                  <input type="url" name="videos[]" placeholder="Add youtube or vimeo link" required class="form-control margin_bottom10"/>
 			                </div>
 			            </div>
 			            <div class="col-md-6 photo_2">
@@ -57,7 +57,7 @@ $(document).ready(function(){
 /****** Add More & Remove Script Start ********/
 
 $('body').on('click','.add-videos',function(){
-	var photohtml_1 = '<input type="url" name="videos[]" placeholder="Add youtube link" required class="form-control margin_bottom10"/>';
+	var photohtml_1 = '<input type="url" name="videos[]" placeholder="Add youtube or vimeo link" required class="form-control margin_bottom10"/>';
 	$('.photo_1').append(photohtml_1);
 	var photohtml_2 = '<span class="add_more"><a href="javascript:void(0);" title="Remove Video" class="btn btn-danger add-more-btn remove-video"><i class="fa fa-minus"></i></a></span>';
 	$('.photo_2').append(photohtml_2);

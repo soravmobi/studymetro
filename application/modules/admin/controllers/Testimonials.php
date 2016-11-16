@@ -60,6 +60,50 @@ class Testimonials extends CI_Controller {
     }
 
     /**
+	* Edit testimonial
+	* @param $_POST
+    */
+    public function edit() {
+    	is_logged_in($this->url.'/edit');
+    	$id = $this->uri->segment(4);
+    	if($id) {
+			$data = array();
+			$data['meta_title'] = 'Edit';
+			$data['small_text'] = 'Testimonial';
+			$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'edit_testimonial');
+			$data['session_data'] = admin_session_data();
+			$data['user_info'] = get_user($data['session_data']['user_id']);
+			$data['details'] = $this->common_model->getSingleRecordById(TESTIMONIALS, array('id' => $id));
+			/* Load admin view */
+			load_admin_view('testimonials/edit-testimonial', $data);
+		} else {
+			$this->session->set_flashdata('invalid_item', INVALID_ITEM);
+            redirect($this->url.'/edit');
+		}
+    }
+
+    public function updateTestimonial()
+    {
+		$post_data = $_POST;
+		$data = array(
+					'content'  => $post_data['content'],
+					'given_by' => $post_data['given_by'],
+				);
+		if(!empty($_FILES['image']['name'])){
+			$logo = imgUpload('image','testimonials','jpg|jpeg|png|gif');
+			if(isset($logo['error'])){
+				$this->session->set_flashdata('general_error', $logo['error']);
+            	redirect($this->url.'/add-new');
+			}else{
+				$data['image'] = base_url().'uploads/testimonials/'.$logo['upload_data']['file_name'];
+			}
+		}
+		$this->common_model->updateRecords(TESTIMONIALS, $data,array('id' => $post_data['id']));
+		$this->session->set_flashdata('item_success', sprintf(ITEM_UPDATE_SUCCESS, 'Testimonials'));
+        redirect($this->url.'/view-all');
+    }
+
+    /**
 	* View all testimonials
 	* @return Array of all testimonials
     */

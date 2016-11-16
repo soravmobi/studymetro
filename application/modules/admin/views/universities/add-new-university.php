@@ -372,10 +372,6 @@
     </div><!-- .row -->
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
-<script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('content');
-</script>
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -415,7 +411,7 @@ $('body').on('click','.remove-quotes',function(){
 
 $('body').on('click','#add-university-btn',function(){
   var form_data = new FormData($('#university_form')[0]);
-  var content = CKEDITOR.instances['content'].getData()
+  var content = tinyMCE.activeEditor.getContent();
   form_data.append('content',content);
   var error = "";
     $.ajax({

@@ -160,10 +160,6 @@
     </div><!-- .row -->
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
-<script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('content');
-</script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('body').on('change','input[name="media"]',function(){

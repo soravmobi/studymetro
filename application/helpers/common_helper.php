@@ -584,5 +584,15 @@ function parseVideos($videoString = null){
     // return array of parsed videos
     return $videos;
 }
+
+function getVimeoVideoIdFromUrl($url = '') {
+    $regs = array();
+    $id = '';
+    if (preg_match('%^https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)(?:[?]?.*)$%im', $url, $regs)) {
+        $id = $regs[3];
+    }
+    return $id;
+}
+    
 /* End of file common_helper.php */
 /* Location: ./system/application/helpers/common_helper.php */

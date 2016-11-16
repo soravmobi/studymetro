@@ -201,6 +201,22 @@
               </div>
             </div>
           </div><!-- .row -->
+           <div class="row">
+            <div class="col-md-12 col-sm-12">
+              <div class="quick_link">
+                <label>Quick Links</label>
+               <ul>
+                  <li><a href="<?php cms_url('study-abroad'); ?>">Study Abroad</a></li>
+                  <li><a href="<?php cms_url('selection-of-university'); ?>">Selection of University</a></li>
+                  <li><a href="<?php cms_url('career-counseling'); ?>">Career Counseling</a></li>
+                  <li><a href="<?php cms_url('admission-guidance'); ?>">Admission Guidance</a></li>
+                  <li><a href="<?php cms_url('admission-documentation'); ?>">Admission Documentation</a></li>
+                  <li><a href="<?php cms_url('pre-requisite-tests'); ?>">Pre-Requisite Tests</a></li>
+                  <li><a href="<?php cms_url('mission-vision-and-values'); ?>">Mission, Vision and Values</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <section class="video_sec">

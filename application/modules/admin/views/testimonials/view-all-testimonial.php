@@ -57,6 +57,9 @@
 		              <td><img style="width:100px;" src="<?php echo $val['image']; ?>" class="img-responsive thmbnail"></td>
 		              <td><?php echo convertDateTime($val['added_date']); ?></td>
 		              <td>
+		              	<a href="<?php cms_url('admin/testimonials/edit/'.$val['id']); ?>" title="Edit Testimonial">
+		              		<i class="fa fa-edit"></i> Edit
+		              	</a>
 		              	<span>&nbsp;</span>
 		              	<a href="<?php cms_url('admin/testimonials/delete/'.$val['id']); ?>" title="Delete Testimonial" onclick="if(!confirm('Are you sure you want to delete this testimonial ?')) return false;">
 		              		<i class="fa fa-trash"></i> Delete

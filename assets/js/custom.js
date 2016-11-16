@@ -122,7 +122,7 @@ $("#home_video").owlCarousel({
     items: 4,
     dots: true,
     loop: true,
-    autoplay: false,
+    autoplay: true,
     itemsDesktop: [1199, 3],
     itemsDesktopSmall: [979, 3],
     navigationText: [
@@ -146,6 +146,22 @@ $("#events_slider").owlCarousel({
         "<i class='icon-chevron-right icon-white'></i>"
     ]
 });
+
+$("#my-gallery-container").owlCarousel({
+    autoPlay: 3000,
+    navigation: true,
+    items: 4,
+    dots: true,
+    loop: true,
+    autoplay: true,
+    itemsDesktop: [1199, 3],
+    itemsDesktopSmall: [979, 3],
+    navigationText: [
+        "<i class='icon-chevron-left icon-white'></i>",
+        "<i class='icon-chevron-right icon-white'></i>"
+    ]
+});
+
 
 $('.bs-datepicker').datepicker({
     autoclose : true,

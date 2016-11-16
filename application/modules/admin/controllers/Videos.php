@@ -37,16 +37,27 @@ class Videos extends CI_Controller {
     public function addVideos()
     {
 		foreach($_POST['videos'] as $v){
-			$data = array(
-						'name' => str_replace('watch?v=', 'embed/', $v),
+			$youtube = strpos($v, 'youtube.com'); // for youtube
+			$vimeo   = strpos($v, 'vimeo.com'); // for vimeo
+			if($youtube !== FALSE){
+				$name = str_replace('watch?v=', 'embed/', $v);
+			}
+			if($vimeo !== FALSE){
+				$vid  = getVimeoVideoIdFromUrl($v);
+				$name = 'https://player.vimeo.com/video/'.$vid;
+			}
+			if($vimeo !== FALSE || $youtube !== FALSE){
+				$data = array(
+						'name' => $name,
 						'types'=> 1,
 						'added_date' => date('Y-m-d H:i:s')
 					);
-			$thumb = parseVideos($data['name']);
-			if(!empty($thumb)) {
-				$data['video_thumb'] = $thumb[0]['fullsize'];
+				$thumb = parseVideos($data['name']);
+				if(!empty($thumb)) {
+					$data['video_thumb'] = $thumb[0]['fullsize'];
+				}
+				$this->common_model->addRecords(PHOTOS, $data);
 			}
-			$this->common_model->addRecords(PHOTOS, $data);
 		}
 		$this->session->set_flashdata('item_success', sprintf(ITEM_ADD_SUCCESS, 'Videos'));
         redirect($this->url.'/view-all');
