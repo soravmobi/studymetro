@@ -357,7 +357,7 @@
 	          		<div class="col-md-12">
 					    <div class="form-group">
 					      <label for="content">Content</label>
-					      <textarea name="content" class="form-control" id="content" placeholder="Enter university content"></textarea>
+					      <textarea name="content" class="form-control mceEditor" id="content" placeholder="Enter university content"></textarea>
 					    </div>
 					</div>
 	          	</div>

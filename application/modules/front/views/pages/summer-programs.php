@@ -93,14 +93,15 @@
                                     also make friends and get experience on how life is in top universities in various countries
                                     like USA, EUROPE,CHINA , MALAYSIA, SINGAPORE and many more.</p>
                                 <p>Dial +91-78030887476 now to avail the free counselling from our expert career advisors.</p>
-                                <h4>Join TOP 5 Universities in World</h4>
+                                <h4>Join Universities in World</h4>
                                 <ul class="top_univ">
-                                    <li> <span>The Manchester United University,</span> Manchester City: Five weeks, four country
-                                        visit (UK,Czech Republic,Spain,France) cost:$4200 : Rs 277208.19 </li>
-                                    <li> <span> Le Rosey, Switzerland : </span> Around three to four week Rs 401695.72 TO Rs 803391.44</li>
-                                    <li> <span> Harvard summer school,USA: </span> Two weeks & seven week</li>
-                                    <li> <span> Yale summer, USA</span> Around three Week cost:$4100 : Rs 270607.99</li>
-                                    <li> <span> Boston university , USA</span> two to twelve week</li>
+                                <?php if(!empty(getAllSummerPrograms())) { foreach(getAllSummerPrograms() as $sp) { ?>
+                                    <li> 
+                                        <span><?php echo ucwords($sp['university']); ?>,</span>
+                                        <?php echo $sp['period']; ?>
+                                        (<?php echo $sp['location']; ?>, <?php echo $sp['country']; ?>) cost:$<?php echo $sp['dollar_fee']; ?> : Rs <?php echo $sp['inr_fee']; ?>
+                                    </li>
+                                <?php } } ?>
                                 </ul>
                             </div>
                         </div>

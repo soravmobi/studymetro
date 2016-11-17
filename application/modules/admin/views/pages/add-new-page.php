@@ -29,7 +29,7 @@
 		            <div class="col-md-12">
 		                <div class="form-group">
 		                  <label for="content">Content</label>
-		                  <textarea name="content" class="form-control" id="content" placeholder="Enter page content"><?php echo set_value('content'); ?></textarea>
+		                  <textarea name="content" class="form-control mceEditor" id="content" placeholder="Enter page content"><?php echo set_value('content'); ?></textarea>
 		                </div>
 		            </div><!-- .col-md-12 -->
 		            <div class="col-md-6">

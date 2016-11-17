@@ -53,6 +53,9 @@ class Home extends CI_Controller {
                 $result  = $this->getPrograms((isset($_GET['country']) && !empty($_GET['country'])) ? $_GET['country'] : 'USA');
                 $data['total_count'] = round(count($result)/8);
             }
+            if($page_name == 'blogs'){
+                $data['blogs'] = $this->common_model->getAllRecordsByOrder(BLOGS,'id','DESC');
+            }
             load_front_view('pages/'.$page_name, $data);
         }else{
             redirect("/");

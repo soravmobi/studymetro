@@ -2,7 +2,7 @@
 
 <section class="banner" <?php if($details['media'] == 0) echo"style='background-image:url(uploads/pages/".$details['media_file'].");'" ?>>
     <?php if($details['media'] == 1){ ?>
-        <video controls autoplay loop id="bg_video" muted>
+        <video controls autoplay muted loop id="bg_video" muted>
           <source src="<?php echo base_url(); ?>uploads/pages/<?php echo $details['media_file']; ?>" type="video/mp4">
           <source src="<?php echo base_url(); ?>uploads/pages/<?php echo str_replace("mp4", "ogg", $details['media_file']); ?>" type="video/ogg"> Your browser does not support HTML5 video.
         </video>

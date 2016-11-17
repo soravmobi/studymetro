@@ -107,6 +107,16 @@
               <i class="fa fa-upload"></i> Import Programs
             </a>
           </li>
+          <li class="<?php add_active_class('programs', 'viewAllSummerPrograms'); ?>">
+            <a href="<?php cms_url('admin/programs/view-all-summer-programs'); ?>" title="View All Summer Programs">
+              <i class="fa fa-eye"></i> View All Summer Programs
+            </a>
+          </li>
+          <li class="<?php add_active_class('programs', 'importSummerPrograms'); ?>">
+            <a href="<?php cms_url('admin/programs/import-summer-programs'); ?>" title="Import Summer Programs">
+              <i class="fa fa-upload"></i> Import Summer Programs
+            </a>
+          </li>
         </ul>
       </li>
       <!-- Photo gallery -->
@@ -165,6 +175,46 @@
           <li class="<?php add_active_class('testimonials', 'viewAll'); ?>">
             <a href="<?php cms_url('admin/testimonials/view-all'); ?>" title="View All Testimonials">
               <i class="fa fa-eye"></i> View All Testimonials
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- Offices -->
+      <li class="treeview <?php tree_active_class('offices', array('addNew', 'edit','viewAll')); ?>">
+        <a href="javascript:void(0);" title="Offices">
+          <i class="fa fa-building-o"></i> 
+          <span>Offices</span> 
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<?php add_active_class('offices', 'addNew'); ?>">
+            <a href="<?php cms_url('admin/offices/add-new'); ?>" title="Add New Office">
+              <i class="fa fa-plus"></i> Add New Office
+            </a>
+          </li>
+          <li class="<?php add_active_class('offices', 'viewAll'); ?>">
+            <a href="<?php cms_url('admin/offices/view-all'); ?>" title="View All Offices">
+              <i class="fa fa-eye"></i> View All Offices
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- Blogs -->
+      <li class="treeview <?php tree_active_class('blogs', array('addNew', 'edit','viewAll')); ?>">
+        <a href="javascript:void(0);" title="Blogs">
+          <i class="fa fa-comment"></i> 
+          <span>Blogs</span> 
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<?php add_active_class('blogs', 'addNew'); ?>">
+            <a href="<?php cms_url('admin/blogs/add-new'); ?>" title="Add New Blog">
+              <i class="fa fa-plus"></i> Add New Blog
+            </a>
+          </li>
+          <li class="<?php add_active_class('blogs', 'viewAll'); ?>">
+            <a href="<?php cms_url('admin/blogs/view-all'); ?>" title="View All Blogs">
+              <i class="fa fa-eye"></i> View All Blogs
             </a>
           </li>
         </ul>

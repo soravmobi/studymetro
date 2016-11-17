@@ -102,11 +102,11 @@ class Programs extends CI_Controller {
 	    $data['offset'] = $offset;
 	    $data['programs'] = '';
 	    $data['pagination'] = '';
-	    $data['programs'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(PROGRAMS, (isset($_GET['s'])) ? array('location', 'undergraduate_courses', 'graduate_courses', 'study_metro_scholarship','country') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'ASC', RESULT_PER_PAGE, $offset, '');
+	    $data['programs'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(PROGRAMS, (isset($_GET['s'])) ? array('location', 'program_name', 'course_type', 'study_metro_scholarship','country') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'ASC', RESULT_PER_PAGE, $offset, '');
 	    if(count($data['programs']) > 0) {
 	    	/* Pagination records */
 	        $url = get_cms_url().$this->url.'/view-all';
-	        $total_records = $this->common_model->getTotalPaginateRecordsByOrderByLikeCondition(PROGRAMS, (isset($_GET['s'])) ? array('location', 'undergraduate_courses', 'graduate_courses', 'study_metro_scholarship','country') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', '');
+	        $total_records = $this->common_model->getTotalPaginateRecordsByOrderByLikeCondition(PROGRAMS, (isset($_GET['s'])) ? array('location', 'program_name', 'course_type', 'study_metro_scholarship','country') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', '');
 	        $data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right');
 	    }
 		/* Load admin view */
@@ -136,6 +136,94 @@ class Programs extends CI_Controller {
     	$country = $this->input->post('country');
     	$result  = $this->common_model->getAllRecordsOrderById(UNIVERSITIES,'name','ASC',array('country' => $country));
     	echo json_encode($result);
+    }
+
+    /**
+	* View all summer programs
+	* @return Array of all summer programs
+    */
+    public function viewAllSummerPrograms() {
+    	is_logged_in($this->url.'/view-all-summer-programs');
+		$data = array();
+		$data['meta_title'] = 'View All';
+		$data['small_text'] = 'Summer Programs';
+		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'view_all_summer_programs');
+		$data['session_data'] = admin_session_data();
+		$data['user_info'] = get_user($data['session_data']['user_id']);
+
+		/* Fetch Data */
+        $offset = $this->uri->segment(4);
+	    if(!$offset) {
+		 	$offset = 0;
+	    }
+
+	    $data['offset'] = $offset;
+	    $data['programs'] = '';
+	    $data['pagination'] = '';
+	    $data['programs'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(SUMMER_PROGRAMS, (isset($_GET['s'])) ? array('location', 'country', 'courses', 'eligibility','period') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'ASC', RESULT_PER_PAGE, $offset, '');
+	    if(count($data['programs']) > 0) {
+	    	/* Pagination records */
+	        $url = get_cms_url().$this->url.'/view-all-summer-programs';
+	        $total_records = $this->common_model->getTotalPaginateRecordsByOrderByLikeCondition(SUMMER_PROGRAMS, (isset($_GET['s'])) ? array('location', 'country', 'courses', 'eligibility','period') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', '');
+	        $data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right');
+	    }
+		/* Load admin view */
+		load_admin_view('programs/view-all-summer-programs', $data);
+    }
+
+    /**
+	* Import summer programs
+	* @param $_POST
+    */
+    public function importSummerPrograms() {
+    	is_logged_in($this->url.'/import-summer-programs');
+		$data = array();
+		$data['meta_title'] = 'Import';
+		$data['small_text'] = 'Import';
+		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'import_summer_programs');
+		$data['session_data'] = admin_session_data();
+		$data['user_info'] = get_user($data['session_data']['user_id']);
+		load_admin_view('programs/import-summer-programs', $data);
+    }
+
+    public function importSummerProgramsData(){
+    	$data = $this->input->post();
+    	ini_set('memory_limit', '-1'); 
+    	set_include_path(get_include_path() . PATH_SEPARATOR . 'Classes/');
+    	require_once APPPATH.'third_party/PHPExcel/IOFactory.php';
+    	$cacheMethod = PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
+	    $cacheSettings = array('memoryCacheSize' => '5000MB', 'cacheTime' => '1000'); 
+	    PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
+		$file_tmp_name = $_FILES["file"]["tmp_name"];
+		try {
+		    $objPHPExcel = PHPExcel_IOFactory::load($file_tmp_name);
+		} catch(Exception $e) {
+		    die('Error loading file :' . $e->getMessage());
+		}
+		$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+		unset($sheetData[1]);
+		foreach(array_values($sheetData) as $s)
+		{
+			if(!empty($s['A'])){
+			$dataArr = array(
+					'university'         => $s['A'],
+					'location'           => $s['B'],
+					'country' 		     => $this->input->post('country'),
+					'period'             => $s['D'],
+					'dollar_fee'         => $s['E'],
+					'inr_fee'            => $s['F'],
+					'courses'    		 => $s['G'],
+					'eligibility'    	 => $s['H'],
+					'link' 				 => $s['I'],
+					'customise_programs' => $s['J'],
+					'application_fee'    => $s['K'],
+					'added_date'         => datetime()
+				);
+			$this->common_model->addRecords(SUMMER_PROGRAMS, $dataArr);
+		   }
+		}
+		$this->session->set_flashdata('item_success', sprintf(ITEM_ADD_SUCCESS, 'Summer Programs'));
+        redirect($this->url.'/view-all-summer-programs');
     }
 
 	

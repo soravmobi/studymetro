@@ -10,7 +10,14 @@ if(!function_exists('checkUserSession')) {
 	    }
 	    else
 	    {
-	        redirect('/');
+	    	$PathInfo = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : $_SERVER['ORIG_PATH_INFO'];
+	    	$RequestURI = ltrim($PathInfo,"/");
+	    	$ci->session->set_flashdata('login_error','you need to login');
+	    	if(!empty($RequestURI)){
+	    		redirect('?return_uri='.urlencode(base_url().$RequestURI));
+	    	}else{
+	    	   redirect('/');
+	    	}
 	    }
 	}
 }
@@ -81,6 +88,26 @@ if(!function_exists('getQualifiedUniversity')) {
 	    return $results;
 	}
 }
+
+if(!function_exists('getAllOffices')) {
+	function getAllOffices()
+	{
+		$ci = &get_instance();
+		$results = $ci->common_model->getAllRecordsByOrder(OFFICES,'id','DESC');
+	    return $results;
+	}
+}
+
+if(!function_exists('getAllSummerPrograms')) {
+	function getAllSummerPrograms()
+	{
+		$ci = &get_instance();
+		$results = $ci->common_model->getAllRecordsByOrder(SUMMER_PROGRAMS,'id','DESC');
+	    return $results;
+	}
+}
+
+
 
 if(!function_exists('getUserDetails')) {
 	function getUserDetails()

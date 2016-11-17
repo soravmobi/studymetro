@@ -239,121 +239,19 @@
       <div class="container">
        <div class="row">
               <div class="col-md-12 col-sm-12">
-                 <ul class="footer_adress_list">
-                    <li class="address_box">
-                                <h2>Study Metro, Bangalore</h2>
-                                <div class="address_box_describe">
-                                    <p>2nd Floor,No. 121, Wood Street, Opposite to Brigade Tower Ashoknagar Brigade Road above
-                                        IBACO Bangalore 560025 </p>
-                                    <span><a href="mailto:info@studymetro.com">info@studymetro.com</a></span>
-                                    <p>Tel: +91-8088-867-867</p>
-                                    <p>Mob: +91-7722-867-867</p>
-                                </div>
-                         </li>
-                         <li class="address_box">
-                                <h2>Study Metro, Indore</h2>
-                                <div class="address_box_describe">
-                                    <p>517, 5th Floor, Shekhar central, AB Rd, Manorama Ganj, Indore, Madhya Pradesh 452018,
-                                        India. </p>
-                                    <span><a href="mailto:support@studymetro.com">support@studymetro.com</a></span>
-                                    <p>Tel: +91-7722-867-867, </p>
-                                    <p>Mob: +91-8088-867-867</p>
-                                </div>
-                            </li>
-                            <li class="address_box">
-                                <h2>Study Metro, Gujarat</h2>
-                                <div class="address_box_describe">
-                                    <p>2nd Floor, Sigma Prime Opp UCO Bank Nr. Sardar Patel Statue V. V. Nagar - 388120, Gujarat
-                                        388120, India. </p>
-                                    <span><a href="mailto:riddhi@studymetro.com">riddhi@studymetro.com</a></span>
-                                    <p>Tel: +91 8000 66 99 22, </p>
-                                    <p>Mob: +91-9978918286, +91-8000669922</p>
-                                </div>
-                            </li>
-                            <li class="address_box">
-                                <h2>Study Metro, North Bangalore</h2>
-                                <div class="address_box_describe">
-                                    <p>1177, First Main, Ambedkar Layout Kavalbyrasandra, RT Nagar Post Bangalore- 560032 India.
-                                    </p>
-                                    <span><a href="mailto:praveen.thachillath@studymetro.com ">praveen.thachillath@studymetro.com,</a></span>
-                                    <span><a href="mailto:praveenthach@gmail.com">praveenthach@gmail.com,</a></span>
-                                    <p>Tel: +91 8000 66 99 22, </p>
-                                    <p>Mob: +91-9978918286, +91-8000669922</p>
-                                </div>
-                            </li>
-                            <li class="address_box">
-                                <h2>Study Metro, Hyderabad</h2>
-                                <div class="address_box_describe">
-                                    <p># 205, Diamond Towers, Beside Belson's Taj S D Road Secunderabad 500 003 </p>
-                                    <span><a href="mailto:info@studymetro.com">info@studymetro.com</a></span>
-                                    <p>Tel: +91-8088-867-867, </p>
-                                    <p>Mob: +91-7722-867-867, 9347244900 office no. 040 27719900 &amp; 66339594</p>
-                                   
-                                </div>
-                            </li>
-                            <li class="address_box">
-                                            <h2>Study Metro, Mumbai</h2>
-                                            <div class="address_box_describe">
-                                                <p>2nd Floor, Office No 209, Jaydeep Emphasis, Next to Dutt Mandir, Wagle Estate,
-                                                    Thane 400604 </p>
-                                                <span><a href="mailto:info@studymetro.com">info@studymetro.com</a></span>
-                                                <p>Tel: +91-8088-867-867, </p>
-                                                <p>Mob: +91-7722-867-867</p>
-                                                
-                                        </div>
-                                </li>
-                                <li class="address_box">
-                                            <h2>Study Metro, Mumbai</h2>
-                                            <div class="address_box_describe">
-                                                <p>"Floville", Opp Wellington Catholic Gym, Near Khar Subway Santacruz West
-                                                    Mumbai 400054 </p>
-                                                <span><a href="mailto:info@studymetro.com">info@studymetro.com</a></span>
-                                                <p>Tel: +91-8088-867-867</p>
-                                                <p>Mob: +91-7722-867-867</p>
-                                               
-                                            </div>
-                                 </li>
-                                 <li class="address_box">
-                                            <h2>Study Metro, COIMBATORE</h2>
-                                            <div class="address_box_describe">
-                                                <p>NO :11&amp;13 GROUND FLOOR, DAMODAR CENTRE , NEAR ANNA STATUE, ADJACENT TO SHREE
-                                                    KRISHNA SWEETS AVINASHI ROAD COIMBATORE-641018 </p>
-                                                <span><a href="mailto:info@studymetro.com">info@studymetro.com</a></span>
-                                                <p>Tel: +91-8088-867-867,</p>
-                                                <p>Mob: +91-7722-867-867</p>
-                                            </div>
-                                        </li>
-                                        <li class="address_box">
-                                            <h2>Study Metro, Bangalore</h2>
-                                            <div class="address_box_describe">
-                                                <p>No 23, 2nd Floor Canon building, opposite to pizza hut Jaynagar 3rd Block
-                                                </p>
-                                                <span><a href="mailto:info@studymetro.com">info@studymetro.com</a></span>
-                                                <p>Tel: +91-8088-867-867,</p>
-                                                <p>Mob: +91-7722-867-867</p>
-                                            </div>
-                                        </li>
-                                        <li class="address_box">
-                                            <h2>Study Metro, Pune</h2>
-                                            <div class="address_box_describe">
-                                                <p>SR Rooms and Hotel 130/2 /2 ground floor Behind Sanket-Inn Hotel WAKAD Pune
-                                                    411057 Near Bloomkar Chock</p>
-                                                <span><a href="mailto:info@studymetro.com">info@studymetro.com</a></span>
-                                                <p>Tel: +91-8088-867-867, </p>
-                                                <p>Mob: +91-7722-867-867</p>
-                                             
-                                            </div>
-                                        </li>
-                                        <li class="address_box">
-                                            <h2>Study Metro,Kentucky,USA</h2>
-                                            <div class="address_box_describe">
-                                                <p>2023 eastern pkwy #12, Louisville KY 40204 USA </p>
-                                                <span><a href="mailto:info@studymetro.com">info@studymetro.com</a></span>
-                                                <p>Tel: +91-8088-867-867,</p>
-                                                <p>Mob: +91-7722-867-867</p>
-                                            </div>
-                                        </li>
-                      </ul>
+                <ul class="footer_adress_list">
+                <?php if(!empty(getAllOffices())) { foreach(getAllOffices() as $o) { ?>
+                  <li class="address_box">
+                    <h2><?php echo $o['title']; ?></h2>
+                    <div class="address_box_describe">
+                        <p><?php echo $o['address']; ?></p>
+                        <span><a href="mailto:<?php echo $o['email']; ?>"><?php echo $o['email']; ?></a></span>
+                        <p>Tel: <?php echo $o['telephone']; ?></p>
+                        <p>Mob: <?php echo $o['mobile']; ?></p>
+                    </div>
+                  </li>
+                <?php } } ?>
+                </ul>
                </div>
          </div>
       </div>
@@ -375,7 +273,18 @@
   <script src="<?php echo base_url(); ?>assets/js/jquery.twbsPagination.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
   <script type="text/javascript">
+    function getQueryStringValue(key)
+    {  
+      return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
+    }
+
     jQuery(document).ready(function ( $ ) {
+
+      var check_login = "<?php echo $this->session->userdata('login_error'); ?>";
+      if(check_login == "you need to login"){
+        jQuery('#login').modal('show');
+        <?php echo $this->session->unset_userdata('login_error'); ?>
+      }
       $("#my-gallery-container").mpmansory(
         {
           childrenClass: 'item', // default is a div
@@ -470,6 +379,8 @@ $("body").on('click','.signup-btn',function() {
 
 $("body").on('click','.login-btn',function() {
   var form_data = new FormData($('#login-form')[0]);
+  var QueryString = getQueryStringValue('return_uri');
+  form_data.append('query_string',QueryString);
   $.ajax({
         url  : "<?php echo base_url(); ?>front/front/login",
         type : "POST",
@@ -485,7 +396,7 @@ $("body").on('click','.login-btn',function() {
           if(resp.type == "success"){
             showToaster('success',resp.msg);
             setTimeout(function(){
-                window.location.href= "<?php echo base_url(); ?>user/dashboard";
+                window.location.href= resp.redirect_url;
             },1000);
            }
            else{

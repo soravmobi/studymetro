@@ -142,6 +142,8 @@ class Front extends CI_Controller {
 		if($this->input->is_ajax_request())
 		{
 			$data = $this->input->post();
+			$query_string = $data['query_string'];
+			$redirect_url = base_url().'home';
 			$password = md5($data['password']);
 			$where  = array('password' => $password,'email' => $data['email']);
 			$result = $this->common_model->getSingleRecordById('users',$where);
@@ -163,7 +165,10 @@ class Front extends CI_Controller {
 					  );
 				  	$this->input->set_cookie($cookie);
 				  	}
-					echo json_encode(array('type' => 'success', 'msg' => 'Login successfull please wait !'));
+				  	if(!empty($query_string)){
+				  		$redirect_url = $query_string;
+				  	}
+					echo json_encode(array('type' => 'success', 'msg' => 'Login successfull please wait !','redirect_url' => $redirect_url));
 					$this->session->set_userdata('user_id',$result['id']);
 					$this->session->set_userdata('first_name',$result['first_name']);
 					$this->session->set_userdata('last_name',$result['last_name']);

@@ -177,7 +177,7 @@ function getAllPages()
 
 function countries()
 {
-	$list = array('Australia','Canada','China','France','Ireland','Medical','New Zealand','USA','UK');
+	$list = array('Australia','Asia','Canada','China','Europe','France','Ireland','Medical','New Zealand','USA','UK');
 	return $list;
 }
 
@@ -185,8 +185,10 @@ function getCountryFlag($country)
 {
 	$list = array(
 				'Australia'   => 'aus_flag.png',
+				'Asia'        => 'asia_flag.jpg',
 				'Canada'      => 'canada_flag.png',
 				'China'       => 'china.gif',
+				'Europe'      => 'europe_flag.png',
 				'France'      => 'Flag_of_France.png',
 				'Ireland'     => 'Ireland_flag.png',
 				'Medical'     => 'university_top_img.png',

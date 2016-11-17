@@ -97,6 +97,14 @@ $route['admin/testimonials/add-new'] = 'admin/testimonials/addNew';
 $route['admin/testimonials/view-all'] = 'admin/testimonials/viewAll';
 $route['admin/testimonials/view-all/(:any)'] = 'admin/testimonials/viewAll/$1';
 
+$route['admin/blogs/add-new'] = 'admin/blogs/addNew';
+$route['admin/blogs/view-all'] = 'admin/blogs/viewAll';
+$route['admin/blogs/view-all/(:any)'] = 'admin/blogs/viewAll/$1';
+
+$route['admin/offices/add-new'] = 'admin/offices/addNew';
+$route['admin/offices/view-all'] = 'admin/offices/viewAll';
+$route['admin/offices/view-all/(:any)'] = 'admin/offices/viewAll/$1';
+
 $route['admin/services/add-new'] = 'admin/services/addNew';
 $route['admin/services/view-all'] = 'admin/services/viewAll';
 $route['admin/services/view-all/(:any)'] = 'admin/services/viewAll/$1';
@@ -118,6 +126,9 @@ $route['admin/referrals/set-earning'] = 'admin/referrals/setEarning';
 $route['admin/programs/import']   = 'admin/programs/import';
 $route['admin/programs/view-all'] = 'admin/programs/viewAll';
 $route['admin/programs/view-all/(:any)'] = 'admin/programs/viewAll/$1';
+$route['admin/programs/view-all-summer-programs'] = 'admin/programs/viewAllSummerPrograms';
+$route['admin/programs/view-all-summer-programs/(:any)'] = 'admin/programs/viewAllSummerPrograms/$1';
+$route['admin/programs/import-summer-programs'] = 'admin/programs/importSummerPrograms';
 
 /* Front custom Routing */
 
