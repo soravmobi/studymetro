@@ -20,6 +20,127 @@ class Programs extends CI_Controller {
     }
 
     /**
+	* Add new program
+	* @param $_POST
+    */
+    public function addNew() {
+    	is_logged_in($this->url.'/add-new');
+		$data = array();
+		$data['meta_title'] = 'Add New';
+		$data['small_text'] = 'Program';
+		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'add_new_program');
+		$data['session_data'] = admin_session_data();
+		$data['user_info'] = get_user($data['session_data']['user_id']);
+		load_admin_view('programs/add-new-program', $data);
+    }
+
+    /**
+	* Add new summer program
+	* @param $_POST
+    */
+    public function addNewSummerProgram() {
+    	is_logged_in($this->url.'/add-new-summer-program');
+		$data = array();
+		$data['meta_title'] = 'Add New';
+		$data['small_text'] = 'Summer Program';
+		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'add_new_summer_program');
+		$data['session_data'] = admin_session_data();
+		$data['user_info'] = get_user($data['session_data']['user_id']);
+		load_admin_view('programs/add-new-summer-program', $data);
+    }
+
+    public function insertProgram(){
+    	$data = $this->input->post();
+    	$data['added_date'] = datetime();
+    	$lid = $this->common_model->addRecords(PROGRAMS, $data);
+    	if(!empty($lid)){
+			$this->session->set_flashdata('item_success', sprintf(ITEM_ADD_SUCCESS, 'Program'));
+		}else{
+			$this->session->set_flashdata('invalid_item', GENERAL_ERROR);
+		}
+        redirect($this->url.'/view-all');
+    }
+
+    public function insertSummerProgram(){
+    	$data = $this->input->post();
+    	$data['added_date'] = datetime();
+    	$lid = $this->common_model->addRecords(SUMMER_PROGRAMS, $data);
+    	if(!empty($lid)){
+			$this->session->set_flashdata('item_success', sprintf(ITEM_ADD_SUCCESS, 'Summer Program'));
+		}else{
+			$this->session->set_flashdata('invalid_item', GENERAL_ERROR);
+		}
+        redirect($this->url.'/view-all-summer-programs');
+    }
+
+    /**
+	* Edit program
+	* @param $_POST
+    */
+    public function edit() {
+    	is_logged_in($this->url.'/edit');
+    	$id = $this->uri->segment(4);
+    	if($id) {
+			$data = array();
+			$data['meta_title'] = 'Edit';
+			$data['small_text'] = 'Program';
+			$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'edit_program');
+			$data['session_data'] = admin_session_data();
+			$data['user_info'] = get_user($data['session_data']['user_id']);
+			$data['details'] = $this->common_model->getSingleRecordById(PROGRAMS, array('id' => $id));
+			$data['universities']  = $this->common_model->getAllRecordsOrderById(UNIVERSITIES,'name','ASC',array('country' => $data['details']['country']));
+			/* Load admin view */
+			load_admin_view('programs/edit-program', $data);
+		} else {
+			$this->session->set_flashdata('invalid_item', INVALID_ITEM);
+            redirect($this->url.'/edit');
+		}
+    }
+
+    /**
+	* Edit summer program
+	* @param $_POST
+    */
+    public function editSummerProgram() {
+    	is_logged_in($this->url.'/edit-summer-program');
+    	$id = $this->uri->segment(4);
+    	if($id) {
+			$data = array();
+			$data['meta_title'] = 'Edit';
+			$data['small_text'] = 'Summer Program';
+			$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'edit_summer_program');
+			$data['session_data'] = admin_session_data();
+			$data['user_info'] = get_user($data['session_data']['user_id']);
+			$data['details'] = $this->common_model->getSingleRecordById(SUMMER_PROGRAMS, array('id' => $id));
+			/* Load admin view */
+			load_admin_view('programs/edit-summer-program', $data);
+		} else {
+			$this->session->set_flashdata('invalid_item', INVALID_ITEM);
+            redirect($this->url.'/edit-summer-program');
+		}
+    }
+
+    public function updateProgram()
+    {
+		$post_data = $this->input->post();
+		$id = $post_data['id'];
+		unset($post_data['id']);
+		$this->common_model->updateRecords(PROGRAMS, $post_data,array('id' => $id));
+		$this->session->set_flashdata('item_success', sprintf(ITEM_UPDATE_SUCCESS, 'Program'));
+        redirect($this->url.'/view-all');
+    }
+
+    public function updateSummerProgram()
+    {
+		$post_data = $this->input->post();
+		$id = $post_data['id'];
+		unset($post_data['id']);
+		$this->common_model->updateRecords(SUMMER_PROGRAMS, $post_data,array('id' => $id));
+		$this->session->set_flashdata('item_success', sprintf(ITEM_UPDATE_SUCCESS, 'Summer Program'));
+        redirect($this->url.'/view-all-summer-programs');
+    }
+
+    /**
 	* Import programs
 	* @param $_POST
     */
@@ -128,6 +249,24 @@ class Programs extends CI_Controller {
         } else {
             $this->session->set_flashdata('invalid_item', INVALID_ITEM);
             redirect($this->url.'/view-all');
+        }
+    }
+
+    /**
+    * Delete summer program
+    * @param $uId
+    */
+    public function deleteSummerProgram() {
+        is_logged_in($this->url.'/view-all-summer-programs');
+        $uId = $this->uri->segment(4);
+        if($uId) {
+            /* Delete Records */
+            $this->common_model->deleteRecords(SUMMER_PROGRAMS, 'id', $uId);
+            $this->session->set_flashdata('item_success', sprintf(ITEM_DELETE_SUCCESS, 'Summer Program'));
+            redirect($this->url.'/view-all-summer-programs');
+        } else {
+            $this->session->set_flashdata('invalid_item', INVALID_ITEM);
+            redirect($this->url.'/view-all-summer-programs');
         }
     }
 

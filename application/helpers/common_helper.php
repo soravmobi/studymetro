@@ -45,6 +45,7 @@ if(!function_exists('p')) {
 		echo '<pre>';
 		print_r($array);
 		echo '</pre>';
+		die;
 	}
 }
 
@@ -479,11 +480,16 @@ function strReplaceAttr() {
 	return array(" ", '_', '.', '`', ':', ';', '+', '@', '(', ')', '{', '}', '*');
 }
 
-function getUniversityUrl($id) {
+function getUniversityUrl($id,$name = '') {
 	$ci =&get_instance();
-	$universityData = $ci->common_model->getSingleRecordById(UNIVERSITIES, array('id' => $id));
+	if(empty($name)){
+		$universityData = $ci->common_model->getSingleRecordById(UNIVERSITIES, array('id' => $id));
+		$univ_name = $universityData['name'];
+	}else{
+		$univ_name = $name;
+	}
 	if(!empty($universityData)) {
-		$slug = strtolower(str_replace(strReplaceAttr(), '-', $universityData['name']));
+		$slug = strtolower(str_replace(strReplaceAttr(), '-', $univ_name));
 		return base_url().'university/details/'.$id.'/'.$slug;
 	}
 }

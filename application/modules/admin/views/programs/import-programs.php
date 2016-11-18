@@ -78,7 +78,7 @@
 
   $(document).ready(function(){
 
-  /**************** Get Subcategories Start ***************/
+  /**************** Get University Start ***************/
 
   $('body').on('change','.select_country',function(){
     var country = $(this).val();
@@ -113,7 +113,7 @@
     }
   }); 
 
-  /**************** Get Subcategories End *****************/
+  /**************** Get University End *****************/
 
 });
 

@@ -70,13 +70,13 @@ if(!function_exists('feedCRMDetails')) {
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         $response = curl_exec($ch);
         curl_close($ch);
-        $result = $ci->common_model->getSingleRecordById(ENQUIRIES,array('email' => $email));
+        /*$result = $ci->common_model->getSingleRecordById(ENQUIRIES,array('email' => $email));
         if(!empty($result)){
             $ci->common_model->updateRecords(ENQUIRIES, $data,array('email' => $email));
         }else{
             $data['added_date'] = datetime();
             $ci->common_model->addRecords(ENQUIRIES, $data);
-        }
+        }*/
 	}
 }
 

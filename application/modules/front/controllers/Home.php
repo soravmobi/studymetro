@@ -38,20 +38,15 @@ class Home extends CI_Controller {
                 $data['total_count'] = round($result/16);
             }
             if($page_name == 'search-programs'){
+                $data['total_count'] = 0;
                 if($this->input->get()){
-                    $arr_data = array();
-                    $arr_data['country'] = $this->input->get('country');
-                    $id = $this->input->get('id');
-                    if(!empty($id)) {
-                        $arr_data['id'] = $this->input->get('id');
-                    }
-                    $data['programs'] = $this->common_model->getAllRecordsById(UNIVERSITIES, $arr_data);
-                    //$data['programs'] = $this->common_model->searchPrograms($arr_data);
+                    $arr_data = $this->input->get();
+                    $data['programs'] = $this->common_model->searchPrograms($arr_data);
                 }else{
                     $data['programs'] = $this->getPrograms((isset($_GET['country']) && !empty($_GET['country'])) ? $_GET['country'] : 'USA',8);
+                    $result  = $this->getPrograms((isset($_GET['country']) && !empty($_GET['country'])) ? $_GET['country'] : 'USA');
+                    $data['total_count'] = round(count($result)/8);
                 }
-                $result  = $this->getPrograms((isset($_GET['country']) && !empty($_GET['country'])) ? $_GET['country'] : 'USA');
-                $data['total_count'] = round(count($result)/8);
             }
             if($page_name == 'blogs'){
                 $data['blogs'] = $this->common_model->getAllRecordsByOrder(BLOGS,'id','DESC');
@@ -116,7 +111,7 @@ class Home extends CI_Controller {
             if(!empty($offset)){
                 $offset_cond = 'OFFSET '.$offset;
             }
-            $query1   = $this->db->query(" SELECT * FROM ".UNIVERSITIES." WHERE `country` LIKE '".$country."' AND `id` IN (".implode(",", $university_ids).") ORDER BY `name` ASC ".$limit_cond." ".$offset_cond);
+            $query1   = $this->db->query(" SELECT `name`,`logo`,`location`,`country`,`founded`,`institution`,`estimated_cost`,`tution_fee`,`id` AS `univ_id` FROM ".UNIVERSITIES." WHERE `country` LIKE '".$country."' AND `id` IN (".implode(",", $university_ids).") ORDER BY `name` ASC ".$limit_cond." ".$offset_cond);
             $results1 = $query1->result_array();
             return $results1;
         }else{
@@ -133,17 +128,17 @@ class Home extends CI_Controller {
         $final_arr = array();
         if(!empty($results)){
             foreach($results as $r){
-                $row['detail'] = base_url().'university/details/'.encode($r['id']);
+                $row['detail'] = base_url().'university/details/'.encode($r['univ_id']);
                 $row['logo'] = (!empty($r['logo'])) ? $r['logo'] : base_url().'assets/images/not-available.jpg';
                 $row['name'] = $r['name'];
-                $row['id'] = $r['id'];
+                $row['id'] = $r['univ_id'];
                 $row['location'] = $r['location'];
                 $row['country']  = $r['country'];
                 $row['founded'] = $r['founded'];
                 $row['institution'] = $r['institution'];
                 $row['estimated_cost'] = $r['estimated_cost'];
                 $row['tution_fee'] = $r['tution_fee'];
-                $row['programs'] = getProgramsBy('university_id',$r['id']);
+                $row['programs'] = getProgramsBy('university_id',$r['univ_id']);
                 array_push($final_arr, $row);
             }
         }

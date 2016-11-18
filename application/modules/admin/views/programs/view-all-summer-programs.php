@@ -10,6 +10,7 @@
 	      <div class="box box-primary">
 	        <div class="box-header">
 	          <h3 class="box-title"><?php echo sprintf(ALL_DATA, 'Summer Programs'); ?></h3>
+	          <a href="<?php cms_url('admin/programs/add-new-summer-program'); ?>" class="addNewAdmin" title="Add New Summer Program">Add New</a>
 	          <div class="box-tools">
 	            <div class="input-group customInputGroups" style="width: 150px;">
 	              <form action="<?php cms_url('admin/programs/view-all-summer-programs'); ?>" method="get">
@@ -43,6 +44,7 @@
 	              <th>Country</th>
 	              <th>Start Date</th>
 	              <th>Application Fee</th>
+	              <th>Action</th>
 	            </tr>
 	            <?php
 	            	if(!empty($programs)) {
@@ -56,6 +58,14 @@
 		              <td><?php echo $val['country']; ?></td>
 		              <td><?php echo $val['period']; ?></td>
 		              <td>$<?php echo $val['application_fee']; ?></td>
+		              <td>
+		              	<a href="<?php cms_url('admin/programs/edit-summer-program/'.$val['id']); ?>" title="Edit Summer Program" >
+		              		<i class="fa fa-edit"></i> Edit
+		              	</a>
+		              	<a href="<?php cms_url('admin/programs/deleteSummerProgram/'.$val['id']); ?>" title="Delete Summer Program" onclick="if(!confirm('Are you sure you want to delete this program?')) return false;">
+		              		<i class="fa fa-trash"></i> Delete
+		              	</a>
+		              </td>
 		            </tr>
 	            <?php } /* End foreach */ ?>
 	            <?php } else { ?>

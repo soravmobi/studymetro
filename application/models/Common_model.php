@@ -308,23 +308,30 @@ class Common_model extends CI_Model
 	}
 
 	function searchPrograms($data) {
-		$sql = 'SELECT * FROM '.PROGRAMS.'
-		 	   WHERE `country` = "'.$data['country'].'"';
+		$sql = 'SELECT `P`.`university_id` FROM '.PROGRAMS.' AS P  INNER JOIN '.UNIVERSITIES.' AS U
+		 	   WHERE P.country = "'.$data['country'].'"';
 
 		if(!empty($data['id'])) {
-			$sql .= ' AND `university_id` = '.$data['id'];
+			$sql .= ' AND P.university_id = '.$data['id'];
 		}
 
 		if(!empty($data['program'])) {
-			$sql .= 'AND `program_name` LIKE "%'. $data['program'].'%"';
+			$sql .= ' AND P.program_name LIKE "%'. $data['program'].'%"';
 		}
 
 		if(!empty($data['course'])) {
-			$sql .= ' AND `course_type` LIKE "%'.$data['course'].'%"';
+			$sql .= ' AND P.course_type LIKE "%'.$data['course'].'%"';
 		}
-
+		$sql .= ' GROUP BY P.university_id';
 		$query = $this->db->query($sql);
-		return $query->result_array();
+		$university_ids = $query->result_array();
+		if(!empty($university_ids)){
+			$university_ids = array_column($university_ids, 'university_id');
+			$query   = $this->db->query(" SELECT `name`,`logo`,`location`,`country`,`founded`,`institution`,`estimated_cost`,`tution_fee`,`id` AS `univ_id` FROM ".UNIVERSITIES." WHERE `id` IN (".implode(",", $university_ids).") ORDER BY `name` ASC ");
+            return $query->result_array();
+		}else{
+			return array();
+		}
 	}
 
 	function getFilteredPrograms($table, $key, $order, $condition, $program){

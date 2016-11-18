@@ -97,6 +97,11 @@
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
+          <li class="<?php add_active_class('programs', 'addNew'); ?>">
+            <a href="<?php cms_url('admin/programs/add-new'); ?>" title="Add New Program">
+              <i class="fa fa-plus"></i> Add New Program
+            </a>
+          </li>
           <li class="<?php add_active_class('programs', 'viewAll'); ?>">
             <a href="<?php cms_url('admin/programs/view-all'); ?>" title="View All Programs">
               <i class="fa fa-eye"></i> View All Programs
@@ -105,6 +110,11 @@
           <li class="<?php add_active_class('programs', 'import'); ?>">
             <a href="<?php cms_url('admin/programs/import'); ?>" title="Import Programs">
               <i class="fa fa-upload"></i> Import Programs
+            </a>
+          </li>
+          <li class="<?php add_active_class('programs', 'addNewSummerProgram'); ?>">
+            <a href="<?php cms_url('admin/programs/add-new-summer-program'); ?>" title="Add New Summer Program">
+              <i class="fa fa-plus"></i> Add New Summer Program
             </a>
           </li>
           <li class="<?php add_active_class('programs', 'viewAllSummerPrograms'); ?>">

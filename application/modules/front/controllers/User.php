@@ -466,6 +466,48 @@ class User extends CI_Controller {
                 }*/
                 $lid = $this->common_model->addRecords(APPLIED_PROGRAMS,$data);
                 if(!empty($lid)){
+                    $fields = array(
+                        array('Attribute' => 'FirstName', 'Value' => $data['first_name']),
+                        array('Attribute' => 'LastName', 'Value' => $data['last_name']),
+                        array('Attribute' => 'EmailAddress', 'Value' => $data['email']),
+                        array('Attribute' => 'Phone', 'Value' => $data['phone_no']),
+                        array('Attribute' => 'SkypeId', 'Value' => $data['skype_id']),
+                        array('Attribute' => 'mx_Gender', 'Value' => $data['gender']),
+                        array('Attribute' => 'mx_Secondary_Email', 'Value' => $data['secondary_email']),
+                        array('Attribute' => 'mx_Date_Of_Birth', 'Value' => $data['dob']),
+                        array('Attribute' => 'mx_Marital_Status', 'Value' => $data['marital_status']),
+                        array('Attribute' => 'mx_Birth_Country', 'Value' => $data['birth_country']),
+                        array('Attribute' => 'mx_Birth_Place', 'Value' => $data['birth_place']),
+                        array('Attribute' => 'mx_Nationality', 'Value' => $data['nationality']),
+                        array('Attribute' => 'mx_Occupation', 'Value' => $data['occupation']),
+                        array('Attribute' => 'mx_Passport_Number', 'Value' => $data['passport_number']),
+                        array('Attribute' => 'mx_Passport_Issue_Date', 'Value' => $data['passport_issue_date']),
+                        array('Attribute' => 'mx_Passport_Location', 'Value' => $data['passport_location']),
+                        array('Attribute' => 'mx_Passport_Expire_Date', 'Value' => $data['passport_expiry_date']),
+                        array('Attribute' => 'mx_Street1', 'Value' => $data['address_1']),
+                        array('Attribute' => 'mx_Street2', 'Value' => $data['address_2']),
+                        array('Attribute' => 'mx_Postal_Code', 'Value' => $data['postal_code']),
+                        array('Attribute' => 'mx_WhatsApp_Number', 'Value' => $data['whatsapp_number']),
+                        array('Attribute' => 'mx_Country', 'Value' => $data['country']),
+                        array('Attribute' => 'mx_State', 'Value' => $data['state']),
+                        array('Attribute' => 'mx_City', 'Value' => $data['city']),
+                        array('Attribute' => 'mx_Emergency_Person_Name', 'Value' => $data['emergency_contact_person_name']),
+                        array('Attribute' => 'mx_Emergency_Contact_Person_Number', 'Value' => $data['emergency_contact_person_no']),
+                        array('Attribute' => 'mx_Relationship', 'Value' => $data['relationship']),
+                        array('Attribute' => 'mx_Last_Education_Level', 'Value' => $data['schooling']),
+                        array('Attribute' => 'mx_Last_School_College_University_Name', 'Value' => $data['last_school']),
+                        array('Attribute' => 'mx_Program_of_Interest', 'Value' => $data['program_of_interest']),
+                        array('Attribute' => 'mx_Tests', 'Value' => $data['technical_tests']),
+                        array('Attribute' => 'mx_Technical_Test_Date_Taken_Will_be_Taken', 'Value' => $data['technical_test_taken_date']),
+                        array('Attribute' => 'mx_English_Test', 'Value' => $data['english_test']),
+                        array('Attribute' => 'mx_English_Test_Date_Taken_Will_be_Taken', 'Value' => $data['english_test_taken_date']),
+                        array('Attribute' => 'mx_Work_History_Experience', 'Value' => $data['history_experience']),
+                        array('Attribute' => 'mx_Position_Held', 'Value' => $data['position_held']),
+                        array('Attribute' => 'mx_Organization_Name', 'Value' => $data['organization_name']),
+                        array('Attribute' => 'mx_Heard_Us_From', 'Value' => $data['hear_about_us']),
+                        array('Attribute' => 'mx_Is_an_education_counsellor_helping_you', 'Value' => $data['education_counsellor']),
+                    );
+                    feedCRMDetails($fields);
                     echo json_encode(array('type' => 'success','id' => $lid));exit;
                 }else{
                     echo json_encode(array('type' => 'failed', 'msg' => GENERAL_ERROR));exit;

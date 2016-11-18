@@ -10,6 +10,7 @@
 	      <div class="box box-primary">
 	        <div class="box-header">
 	          <h3 class="box-title"><?php echo sprintf(ALL_DATA, 'Program'); ?></h3>
+	          <a href="<?php cms_url('admin/programs/add-new'); ?>" class="addNewAdmin" title="Add New Program">Add New</a>
 	          <div class="box-tools">
 	            <div class="input-group customInputGroups" style="width: 150px;">
 	              <form action="<?php cms_url('admin/programs/view-all'); ?>" method="get">
@@ -60,6 +61,9 @@
 		              <td><?php echo $val['tution_fee']; ?></td>
 		              <td>$<?php echo (empty($val['application_fee'])) ? '0' : $val['application_fee']; ?></td>
 		              <td>
+		              	<a href="<?php cms_url('admin/programs/edit/'.$val['id']); ?>" title="Edit Program" >
+		              		<i class="fa fa-edit"></i> Edit
+		              	</a>
 		              	<a href="<?php cms_url('admin/programs/delete/'.$val['id']); ?>" title="Delete Program" onclick="if(!confirm('Are you sure you want to delete this program?')) return false;">
 		              		<i class="fa fa-trash"></i> Delete
 		              	</a>

@@ -124,11 +124,14 @@ $route['admin/quotes/view-all'] = 'admin/quotes/viewAll';
 $route['admin/referrals/set-earning'] = 'admin/referrals/setEarning';
 
 $route['admin/programs/import']   = 'admin/programs/import';
+$route['admin/programs/add-new'] = 'admin/programs/addNew';
+$route['admin/programs/add-new-summer-program'] = 'admin/programs/addNewSummerProgram';
 $route['admin/programs/view-all'] = 'admin/programs/viewAll';
 $route['admin/programs/view-all/(:any)'] = 'admin/programs/viewAll/$1';
 $route['admin/programs/view-all-summer-programs'] = 'admin/programs/viewAllSummerPrograms';
 $route['admin/programs/view-all-summer-programs/(:any)'] = 'admin/programs/viewAllSummerPrograms/$1';
 $route['admin/programs/import-summer-programs'] = 'admin/programs/importSummerPrograms';
+$route['admin/programs/edit-summer-program/(:any)'] = 'admin/programs/editSummerProgram/$1';
 
 /* Front custom Routing */
 

@@ -81,44 +81,47 @@
             var country = $(this).val();
             window.location.href = "<?php echo base_url(); ?>university?country="+country;
         })
-        $('#pagination-demo').twbsPagination({
-            totalPages: <?php echo $total_count; ?>,
-            visiblePages: 5,
-            onPageClick: function (event, page) {
-                if(page != 1){
-                    var country = $('input[name="country"]:checked').val();
-                    var appendHTML = '';
-                    $.ajax({
-                        url  : "<?php echo base_url(); ?>front/home/getNextUniversities",
-                        type : "POST",
-                        data : {page:page,country:country},   
-                        dataType : "JSON",   
-                        beforeSend:function(){
-                          ajaxindicatorstart();
-                        },       
-                        success: function(resp){
-                           if(resp != ''){
-                            for (var i = 0; i < resp.length; i++) {
-                                appendHTML += '<div class="col-md-3 col-sm-3"><div class="university_box"><div class="country_flag">';
-                                appendHTML += '<a href="'+resp[i]['detail']+'"><img src="'+resp[i]['country_flag']+'" class="img-responsive"></a>';
-                                appendHTML += '</div><div class="img_ub"><a href="'+resp[i]['detail']+'"><img src="'+resp[i]['logo']+'" class="img-responsive"></a></div>';
-                                appendHTML += '<div class="head_ub"><a href="'+resp[i]['detail']+'">'+resp[i]['name']+'</a></div>';
-                                appendHTML += '<div class="description_ub"><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>';
-                                appendHTML += resp[i]['location'] + resp[i]['country'] + 'Cost of living:' + resp[i]['estimated_cost'];
-                                appendHTML += 'CAD/year</div></div></div>';
-                            };
-                            $('.universities_data').html(appendHTML);
-                           }
-                           ajaxindicatorstop();
-                        },
-                        error:function(err)
-                        {
-                            ajaxindicatorstop();
-                        }
-                    });
+        var total_counts = parseInt(<?php echo $total_count; ?>);
+        if(total_counts > 0){
+            $('#pagination-demo').twbsPagination({
+                totalPages: total_counts,
+                visiblePages: 5,
+                onPageClick: function (event, page) {
+                    if(page != 1){
+                        var country = $('input[name="country"]:checked').val();
+                        var appendHTML = '';
+                        $.ajax({
+                            url  : "<?php echo base_url(); ?>front/home/getNextUniversities",
+                            type : "POST",
+                            data : {page:page,country:country},   
+                            dataType : "JSON",   
+                            beforeSend:function(){
+                              ajaxindicatorstart();
+                            },       
+                            success: function(resp){
+                               if(resp != ''){
+                                for (var i = 0; i < resp.length; i++) {
+                                    appendHTML += '<div class="col-md-3 col-sm-3"><div class="university_box"><div class="country_flag">';
+                                    appendHTML += '<a href="'+resp[i]['detail']+'"><img src="'+resp[i]['country_flag']+'" class="img-responsive"></a>';
+                                    appendHTML += '</div><div class="img_ub"><a href="'+resp[i]['detail']+'"><img src="'+resp[i]['logo']+'" class="img-responsive"></a></div>';
+                                    appendHTML += '<div class="head_ub"><a href="'+resp[i]['detail']+'">'+resp[i]['name']+'</a></div>';
+                                    appendHTML += '<div class="description_ub"><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>';
+                                    appendHTML += resp[i]['location'] + resp[i]['country'] + 'Cost of living:' + resp[i]['estimated_cost'];
+                                    appendHTML += 'CAD/year</div></div></div>';
+                                };
+                                $('.universities_data').html(appendHTML);
+                               }
+                               ajaxindicatorstop();
+                            },
+                            error:function(err)
+                            {
+                                ajaxindicatorstop();
+                            }
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 </script>
 
