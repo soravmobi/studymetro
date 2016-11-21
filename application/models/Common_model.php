@@ -320,14 +320,54 @@ class Common_model extends CI_Model
 		}
 
 		if(!empty($data['course'])) {
-			$sql .= ' AND P.course_type LIKE "%'.$data['course'].'%"';
+			$all_courses = filter_course_types($data['course']);
+			if(!empty($all_courses)){
+				$sql .= ' AND (';
+				$i = 1;
+				foreach($all_courses as $a){
+					$opertaor = ($i != count($all_courses)) ? 'OR ': '';
+					$sql .= 'P.course_type LIKE "%'.$a.'%" '.$opertaor;
+				$i++; }
+				$sql .= ' )';
+			}else{
+				$sql .= ' AND P.course_type LIKE "%'.$data['course'].'%"';
+			}
 		}
 		$sql .= ' GROUP BY P.university_id';
 		$query = $this->db->query($sql);
 		$university_ids = $query->result_array();
 		if(!empty($university_ids)){
+			$order_type = '`studymetro_scholarship` DESC';
+			if(!empty($data['attribute']) && !empty($data['type'])){
+				switch ($data['attribute']) {
+					case 'study_metro_scholarship':
+						$order_type = '`studymetro_scholarship` '.$data['type'];
+						break;
+					case 'tution_fee':
+						$order_type = '`tution_fee` '.$data['type'];
+						break;
+					case 'application_fee':
+						$order_type = '`application_fee` '.$data['type'];
+						break;
+					case 'location':
+						$order_type = '`location` '.$data['type'];
+						break;
+					/*case 'program_name':
+						$order_type = '`studymetro_scholarship` '.$data['type'];
+						break;
+					case 'university_name':
+						$order_type = '`studymetro_scholarship` '.$data['type'];
+						break;
+					case 'intake_date':
+						$order_type = '`studymetro_scholarship` '.$data['type'];
+						break;*/
+					default:
+						$order_type = '`studymetro_scholarship` DESC';
+						break;
+				}
+			}
 			$university_ids = array_column($university_ids, 'university_id');
-			$query   = $this->db->query(" SELECT `name`,`logo`,`location`,`country`,`founded`,`institution`,`estimated_cost`,`tution_fee`,`id` AS `univ_id` FROM ".UNIVERSITIES." WHERE `id` IN (".implode(",", $university_ids).") ORDER BY `name` ASC ");
+			$query   = $this->db->query(" SELECT `name`,`logo`,`location`,`country`,`founded`,`institution`,`studymetro_scholarship`,`estimated_cost`,`tution_fee`,`id` AS `univ_id` FROM ".UNIVERSITIES." WHERE `id` IN (".implode(",", $university_ids).") ORDER BY ".$order_type);
             return $query->result_array();
 		}else{
 			return array();

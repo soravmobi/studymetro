@@ -98,8 +98,16 @@
                                 <?php if(!empty(getAllSummerPrograms())) { foreach(getAllSummerPrograms() as $sp) { ?>
                                     <li> 
                                         <span><?php echo ucwords($sp['university']); ?>,</span>
+                                        <div class="data_wrap">
                                         <?php echo $sp['period']; ?>
                                         (<?php echo $sp['location']; ?>, <?php echo $sp['country']; ?>) cost:$<?php echo $sp['dollar_fee']; ?> : Rs <?php echo $sp['inr_fee']; ?>
+                                        <?php
+                                            $uid = $this->session->userdata("user_id");
+                                            if(empty($uid)){ ?>
+                                                </div><a href="javascript:void(0);" data-toggle="modal" data-target="#login" data-keyboard="false" data-backdrop="static" class="appy_btn appy_summer">apply to this program</a>
+                                        <?php  }else{ ?>
+                                                <a href="<?php echo base_url(); ?><?php echo $sp['id']; ?>/apply-to-program?type=1" class="appy_btn appy_summer">apply to this program</a>
+                                        <?php } ?>
                                     </li>
                                 <?php } } ?>
                                 </ul>

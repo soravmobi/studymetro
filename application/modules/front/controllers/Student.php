@@ -57,6 +57,15 @@ class Student extends CI_Controller {
         load_front_view('student/portfolio', $data);
     }
 
+    public function my_applications()
+    {
+        $data = array();
+        $data['meta_title']     = 'My Applications';
+        $data['parent']         = 'my_applications';
+        $data['applications']   = $this->common_model->getAllRecordsOrderById(APPLIED_PROGRAMS,'id','DESC',array('user_id' => $this->uid));
+        load_front_view('student/my_applications', $data);
+    }
+
     public function saveEducation()
     {
         if($this->input->is_ajax_request())

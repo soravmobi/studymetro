@@ -107,7 +107,15 @@ if(!function_exists('getAllSummerPrograms')) {
 	}
 }
 
-
+if(!function_exists('getDetailsBy')) {
+	function getDetailsBy($table,$column,$value,$get_column)
+	{
+		$ci = &get_instance();
+		$conditions = array($column => $value);
+		$results = $ci->common_model->getSingleRecordById($table,$conditions);
+	    return $results[$get_column];
+	}
+}
 
 if(!function_exists('getUserDetails')) {
 	function getUserDetails()
@@ -277,7 +285,7 @@ if(!function_exists('getSeacrhStudyPrograms')) {
 			$html .= '<option value="'.$c.'" '.get_show_selected(@$_GET['country'], $c).'>'.$c.'</option>';
 		}
 		$html .= '</select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div><div class="form-group"> <div class="select_box"> <select class="form-control select_university" name="id"> <option value="">Choose a university</option> </select> <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i> </div></div>';
-		$html .= '<div class="form-group"> <div class="select_box"> <select class="form-control" name="course"> <option value="">Choose a level</option>';
+		$html .= '<div class="form-group"> <div class="select_box"> <select class="form-control" name="course" required> <option value="">Choose a level</option>';
 		foreach(getCourseTypes() as $ct) {
 			$html .= '<option value="'.$ct.'" '.get_show_selected(@$_GET['course'], $ct).'>'.$ct.'</option>';
 		}

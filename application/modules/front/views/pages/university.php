@@ -27,7 +27,7 @@
     <div class="university_wrap_content">
         <div class="row universities_data">
         <?php foreach($universities as $u) { ?>
-            <?php $url = getUniversityUrl($u['id']); ?>
+            <?php $url = getUniversityUrl($u['id'],$u['name']); ?>
             <div class="col-md-3 col-sm-3">
                 <div class="university_box">
                     <div class="country_flag">

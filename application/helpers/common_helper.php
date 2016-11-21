@@ -477,7 +477,7 @@ function getMonths(){
 
 
 function strReplaceAttr() {
-	return array(" ", '_', '.', '`', ':', ';', '+', '@', '(', ')', '{', '}', '*');
+	return array(" ", '_', '.', '`', ':', ';', '+', '@', '(', ')', '{', '}', '*',',');
 }
 
 function getUniversityUrl($id,$name = '') {
@@ -488,10 +488,9 @@ function getUniversityUrl($id,$name = '') {
 	}else{
 		$univ_name = $name;
 	}
-	if(!empty($universityData)) {
-		$slug = strtolower(str_replace(strReplaceAttr(), '-', $univ_name));
-		return base_url().'university/details/'.$id.'/'.$slug;
-	}
+	$slug = strtolower(str_replace(strReplaceAttr(), '-', $univ_name));
+	$slug = @rtrim(str_replace('--', '-', $slug),'-');
+	return base_url().'university/details/'.$id.'/'.$slug;
 }
 
 function parseVideos($videoString = null){

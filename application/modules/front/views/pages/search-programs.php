@@ -21,7 +21,7 @@
                     <div class="search_box">
 
                         <div class="head_university">
-                            <label>Filter:</label>
+                            <label>Filter By Country:</label>
                             <div class="form-group">
                                 <?php foreach(countries() as $c) { ?>
                                     <input id="<?php echo $c; ?>" name="country" value="<?php echo $c; ?>" class="BSswitch select_country" type="radio" data-off-text="False"
@@ -33,6 +33,74 @@
                                     <?php } ?>
                             </div>
                         </div>
+                        <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                        <div class="switch_main">
+                          <div class="question">
+                           Study Metro Scholarship
+                          </div>
+                          <div class="switch">
+                            <input id="StudyMetroScholarship" main="study_metro_scholarship" <?php if(!isset($_GET['attribute']) && empty($_GET['attribute'])) echo "checked"; ?> class="cmn-toggle cmn-toggle-yes-no flip-my" type="checkbox">
+                            <label for="StudyMetroScholarship" data-on="ASC" data-off="DESC"></label>
+                          </div>
+                          </div>
+                          <div class="switch_main">
+                          <div class="question">
+                           Tuition Fees
+                          </div>
+                          <div class="switch">
+                            <input id="TuitionFees" main="tution_fee" <?php if(isset($_GET['attribute']) && $_GET['attribute'] == 'tution_fee' && $_GET['type'] == 'ASC') echo "checked"; ?> class="cmn-toggle cmn-toggle-yes-no flip-my" type="checkbox">
+                            <label for="TuitionFees" data-on="ASC" data-off="DESC"></label>
+                          </div>
+                          </div>
+                          <div class="switch_main">
+                          <div class="question">
+                           Application Fee
+                          </div>
+                          <div class="switch">
+                            <input id="ApplicationFee" main="application_fee" <?php if(isset($_GET['attribute']) && $_GET['attribute'] == 'application_fee' && $_GET['type'] == 'ASC') echo "checked"; ?> class="cmn-toggle cmn-toggle-yes-no flip-my" type="checkbox">
+                            <label for="ApplicationFee" data-on="ASC" data-off="DESC"></label>
+                          </div>
+                          </div>
+                          <div class="switch_main">
+                          <div class="question">
+                           Location
+                          </div>
+                          <div class="switch">
+                            <input id="Location" main="location" <?php if(isset($_GET['attribute']) && $_GET['attribute'] == 'location' && $_GET['type'] == 'ASC') echo "checked"; ?> class="cmn-toggle cmn-toggle-yes-no flip-my" type="checkbox">
+                            <label for="Location" data-on="ASC" data-off="DESC"></label>
+                          </div>
+                          </div>
+                          <div class="switch_main">
+                          <div class="question">
+                           Program Name
+                          </div>
+                          <div class="switch">
+                            <input id="ProgramName" main="program_name" <?php if(isset($_GET['attribute']) && $_GET['attribute'] == 'program_name' && $_GET['type'] == 'ASC') echo "checked"; ?> class="cmn-toggle cmn-toggle-yes-no flip-my" type="checkbox">
+                            <label for="ProgramName" data-on="ASC" data-off="DESC"></label>
+                          </div>
+                          </div>
+                          <div class="switch_main">
+                          <div class="question">
+                           University Name
+                          </div>
+                          <div class="switch">
+                            <input id="UniversityName" main="university_name" <?php if(isset($_GET['attribute']) && $_GET['attribute'] == 'university_name' && $_GET['type'] == 'ASC') echo "checked"; ?> class="cmn-toggle cmn-toggle-yes-no flip-my" type="checkbox">
+                            <label for="UniversityName" data-on="ASC" data-off="DESC"></label>
+                          </div>
+                          </div>
+                          <div class="switch_main">
+                          <div class="question">
+                           Intake Date
+                          </div>
+                          <div class="switch">
+                            <input id="IntakeDate" main="intake_date" <?php if(isset($_GET['attribute']) && $_GET['attribute'] == 'intake_date' && $_GET['type'] == 'ASC') echo "checked"; ?> class="cmn-toggle cmn-toggle-yes-no flip-my" type="checkbox">
+                            <label for="IntakeDate" data-on="ASC" data-off="DESC"></label>
+                          </div>
+                          </div>
+                          </div>
+                        </div><!-- /row -->
+
                         <div class="programs-data">
                             <?php if(!empty($programs)) { $i = 1; foreach($programs as $p){ ?>
                                 <?php $url = getUniversityUrl($p['univ_id'],$p['name']); ?>
@@ -61,6 +129,9 @@
                                             <li> <span> <i class="fa fa-money" aria-hidden="true"></i> Tuition Fee : </span>
                                                 <?php echo $p['tution_fee']; ?>
                                             </li>
+                                            <li> <span> <i class="fa fa-money" aria-hidden="true"></i> Study Metro Scholarship : </span>
+                                                $<?php echo $p['studymetro_scholarship']; ?>
+                                            </li>
                                         </ul>
                                         <br/>
                                         <br/>
@@ -81,7 +152,7 @@
                                             foreach(getCourseTypes() as $ct) { 
                                         ?>
                                             <div id="<?php echo 'program-'.$p['univ_id'].'-'.strtolower(str_replace(array('/', ' '), array('-', '-'), $ct)); ?>" class="tab-pane fade <?php if(!empty($_GET['course']) && $ct == $_GET['course']) { echo 'in active'; } elseif(empty($_GET['course']) && $j==1) { echo 'in active'; }  ?>">
-                                                <?php //p($programs_list);
+                                                <?php 
                                                     if(!empty($programs_list)){ 
                                                         foreach($programs_list as $pl){
                                                             $types = filter_course_types($ct);
@@ -110,7 +181,7 @@
                                                             if(empty($uid)){ ?>
                                                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#login" data-keyboard="false" data-backdrop="static" class="appy_btn">apply to this program</a>
                                                         <?php  }else{ ?>
-                                                                <a href="<?php echo base_url(); ?><?php echo $pl['id']; ?>/apply-to-program" class="appy_btn">apply to this program</a>
+                                                                <a href="<?php echo base_url(); ?><?php echo $pl['id']; ?>/apply-to-program?type=0" class="appy_btn">apply to this program</a>
                                                         <?php } ?>
                                                         </div>
                                                     </div>
@@ -159,7 +230,22 @@
     $(document).ready(function(){
         $('.select_country').on('switchChange.bootstrapSwitch', function (event, state) {
             var country = $(this).val();
-            window.location.href = "<?php echo base_url(); ?>search-programs?country="+country;
+            var attr = $('input.flip-my:checked').attr('main');
+            var sort_filter = '';
+            if(attr != ''){
+              sort_filter = '&attribute='+attr+'&type=ASC';
+            }
+            window.location.href = "<?php echo base_url(); ?>search-programs?country="+country+sort_filter;
+        })
+         $('body').on('change','.flip-my', function () {
+            var attr = $(this).attr('main');
+            if($(this).is(':checked')){
+              var order_type = 'ASC';
+            }else{
+              var order_type = 'DESC';
+            }
+            var country = $('input.select_country:checked').val();
+            window.location.href = "<?php echo base_url(); ?>search-programs?country="+country+"&attribute="+attr+"&type="+order_type;
         })
         $('.star').click(function(){
             $(this).toggleClass('clicked');

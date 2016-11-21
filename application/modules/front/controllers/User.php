@@ -120,11 +120,18 @@ class User extends CI_Controller {
 
     public function applytoprogram($pid)
     {
-        checkUserSession(array('2','3','4','5','6'));
+       if(!in_array($_GET['type'], array('0','1'))){
+        redirect('/');
+       }
+        checkUserSession(array('2'));
         $data = array();
         $data['meta_title'] = 'Apply to Program';
         $data['program_id'] = $pid;
-        $data['detail']     = $this->common_model->getSingleRecordById(PROGRAMS,array('id' => $pid));
+        if($_GET['type'] == 0){
+            $data['detail'] = $this->common_model->getSingleRecordById(PROGRAMS,array('id' => $pid));
+        }else{
+            $data['detail'] = $this->common_model->getSingleRecordById(SUMMER_PROGRAMS,array('id' => $pid));
+        }
         if(empty($data['detail'])){
             redirect('search-programs');
         }

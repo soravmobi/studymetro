@@ -65,6 +65,7 @@
                                 <?php } ?>
                                 <?php if(in_array($user_type, array('2'))) { ?>
                                   <li <?php if(isset($parent) && $parent == 'portfolio') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>student/portfolio">E-portfolio <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                  <li <?php if(isset($parent) && $parent == 'my_applications') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>student/my-applications">My Applications <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>
                                 <?php if(in_array($user_type, array('2','3'))) { ?>
                                   <li <?php if(isset($parent) && $parent == 'searchProgram') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>search-programs">Search Programs <i class="fa fa-chevron-right pull-right"></i></a></li>

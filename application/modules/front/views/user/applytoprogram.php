@@ -15,9 +15,17 @@
                     <?php // $this->load->view('sidebar'); ?>
                     <div class="col-md-12 col-sm-12">
                         <div class="right_dashboard">
+                        <?php
+                          $univ_name = '';
+                          if(isset($_GET['type']) && $_GET['type'] == 0){
+                            $univ_name =  getDetailsBy(UNIVERSITIES,'id',$detail['university_id'],'name');
+                          }else{
+                            $univ_name = $detail['university'];
+                          }
+                        ?>
+                          <center><h2><?php echo ucwords($univ_name); ?></h2></center>
                             <div class="top_wrap">
                                 <h3> Student information <div class="clearfix"></div></h3>
-                                    
                             </div>
                             <div class="add-location">
                               <form class="form-horizontal" id="apply-program-form" method="post" enctype="multipart/form-data">
@@ -43,6 +51,7 @@
                                       <div class="error_form email"></div>
                                     </div>
                                   </div>
+                                  <input type="hidden" name="program_type" value="<?php echo $_GET['type']; ?>">
                                   <div class="form-group">
                                     <label for="name" class="col-sm-3 control-label"> Phone no * </label>
                                     <div class="col-sm-9">

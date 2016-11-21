@@ -14,7 +14,7 @@
                     <?php echo $details['content']; ?>
                 </div>
                 <?php if(!empty($details['youtube_video'])){ ?>
-                <div class="video_box">
+                <div class="video_box hidden">
                     <iframe width="560" height="315" frameborder="0" allowfullscreen="" src="<?php echo str_replace('watch?v=', 'embed/', $details['youtube_video']); ?>" data-original-title=""
                         title=""></iframe>
                 </div>

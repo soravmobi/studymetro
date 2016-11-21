@@ -197,6 +197,14 @@
 						    </div>
 			            </div>
 		            </div>
+		            <div class="col-md-12">
+		            	<div class="col-md-6">
+			                <div class="form-group">
+			                  <label for="tution_fee">Study Metro Scholarship</label>
+			                  <input type="number" min="0" name="studymetro_scholarship" class="form-control" id="tution_fee" placeholder="Study Metro Scholarship"/>
+			                </div>
+			            </div>
+		            </div>
 		            
 		            
 	            </div><!-- .box-body -->	

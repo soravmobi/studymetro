@@ -113,9 +113,23 @@
     <script src="<?php admin_assets(); ?>dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="<?php admin_assets(); ?>dist/js/demo.js"></script>
+
+
+
     <!-- bootstrap color picker -->
     <script src="<?php admin_assets(); ?>plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
     <!-- bootstrap time picker -->
     <script src="<?php admin_assets(); ?>plugins/timepicker/bootstrap-timepicker.min.js"></script>
+
+    <script src="<?php admin_assets(); ?>datatables/jquery.dataTables.js"></script>
+
+    <script src="<?php admin_assets(); ?>datatables/dataTables.bootstrap.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var data5 = $('#dataTables-example').DataTable();
+        console.log('data',data5);
+      });
+    </script>
   </body>
 </html>

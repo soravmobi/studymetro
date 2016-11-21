@@ -146,6 +146,7 @@ $route['user/emails'] = 'front/user/emails';
 $route['user/my-videos'] = 'front/user/myvideos';
 $route['student/getquote'] = 'front/student/getquote';
 $route['student/portfolio'] = 'front/student/portfolio';
+$route['student/my-applications'] = 'front/student/my_applications';
 $route['university/profile_types'] = 'front/university/profile_types';
 $route['university/post_grad'] = 'front/university/post_grad';
 $route['university/mba'] = 'front/university/mba';

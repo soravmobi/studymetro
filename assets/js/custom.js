@@ -66,8 +66,39 @@ $(document).ready(function () {
 
     var hash = window.location.hash;
     $('ul.nav-tabs a[href="' + hash + '"]').tab('show');*/
+   // js for bootstrap switches
+    $('.BSSorting').bootstrapSwitch('state', false);
+
+
+    $('#CheckBoxValue').text($("#TheCheckBox").bootstrapSwitch('state'));
+
+    $('#TheCheckBox').on('switchChange.bootstrapSwitch', function () {
+
+        $("#CheckBoxValue").text($('#TheCheckBox').bootstrapSwitch('state'));
+    });
+
+    $('.probeProbe').bootstrapSwitch('state', true);
+
+    $('.probeProbe').on('switchChange.bootstrapSwitch', function (event, state) {
+
+        alert(this);
+        alert(event);
+        alert(state);
+    });
+
+    $('#toggleSwitches ').click(function () {
+        $('.BSSorting').bootstrapSwitch('toggleDisabled');
+        if ($('.BSSorting').attr('disabled')) {
+            $(this).text('Enable All Switches ');
+        } else {
+            $(this).text('Disable All Switches ');
+        }
+    });
+    // js for switches end
+
 
     $('.BSswitch').bootstrapSwitch('state', false);
+
 
     $('.toggler').on('click', function (event) {
         event.preventDefault();

@@ -37,6 +37,9 @@
     <link rel="stylesheet" href="<?php admin_assets(); ?>plugins/timepicker/bootstrap-timepicker.min.css"/>
     <!-- Select2 -->
     <link rel="stylesheet" href="<?php admin_assets(); ?>plugins/select2/select2.min.css"/>
+
+    <link href="<?php admin_assets(); ?>datatables/dataTables.bootstrap.css" rel="stylesheet" />
+
     <!-- nestable Menu -->
     <link rel="stylesheet" href="<?php admin_assets(); ?>css/jquery-nestable.css"/>
     <link rel="stylesheet" href="<?php admin_assets(); ?>css/chosen.css"/>
