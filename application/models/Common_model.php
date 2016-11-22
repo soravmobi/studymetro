@@ -367,7 +367,7 @@ class Common_model extends CI_Model
 				}
 			}
 			$university_ids = array_column($university_ids, 'university_id');
-			$query   = $this->db->query(" SELECT `name`,`logo`,`location`,`country`,`founded`,`institution`,`studymetro_scholarship`,`estimated_cost`,`tution_fee`,`id` AS `univ_id` FROM ".UNIVERSITIES." WHERE `id` IN (".implode(",", $university_ids).") ORDER BY ".$order_type);
+			$query   = $this->db->query(" SELECT `name`,`logo`,`location`,`country`,`founded`,`institution`,`studymetro_scholarship`,`application_fee`,`estimated_cost`,`tution_fee`,`id` AS `univ_id` FROM ".UNIVERSITIES." WHERE `id` IN (".implode(",", $university_ids).") ORDER BY ".$order_type);
             return $query->result_array();
 		}else{
 			return array();

@@ -104,7 +104,9 @@
                                         <?php
                                             $uid = $this->session->userdata("user_id");
                                             if(empty($uid)){ ?>
-                                                </div><a href="javascript:void(0);" data-toggle="modal" data-target="#login" data-keyboard="false" data-backdrop="static" class="appy_btn appy_summer">apply to this program</a>
+                                                </div>
+                                                <!-- <a href="javascript:void(0);" data-toggle="modal" data-target="#login" data-keyboard="false" data-backdrop="static" class="appy_btn appy_summer">apply to this program</a> -->
+                                                <a href="<?php echo base_url(); ?><?php echo $sp['id']; ?>/apply-to-program?type=1" class="appy_btn appy_summer">apply to this program</a>
                                         <?php  }else{ ?>
                                                 <a href="<?php echo base_url(); ?><?php echo $sp['id']; ?>/apply-to-program?type=1" class="appy_btn appy_summer">apply to this program</a>
                                         <?php } ?>

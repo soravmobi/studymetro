@@ -62,7 +62,7 @@ class Home extends CI_Controller {
         if(empty($country)){
             $country = 'USA';
         }
-        $universities = $this->common_model->getAllRecordsOrderById(UNIVERSITIES,'studymetro_scholarship','DESC',array('country' => $country),16);
+        $universities = $this->common_model->getAllRecordsOrderById(UNIVERSITIES,'name','ASC',array('country' => $country),16);
         return $universities;
     }
 
@@ -111,7 +111,7 @@ class Home extends CI_Controller {
             if(!empty($offset)){
                 $offset_cond = 'OFFSET '.$offset;
             }
-            $query1   = $this->db->query(" SELECT `name`,`logo`,`location`,`country`,`founded`,`studymetro_scholarship`,`institution`,`estimated_cost`,`tution_fee`,`id` AS `univ_id` FROM ".UNIVERSITIES." WHERE `country` LIKE '".$country."' AND `id` IN (".implode(",", $university_ids).") ORDER BY `studymetro_scholarship` DESC ".$limit_cond." ".$offset_cond);
+            $query1   = $this->db->query(" SELECT `name`,`logo`,`location`,`country`,`founded`,`application_fee`,`studymetro_scholarship`,`institution`,`estimated_cost`,`tution_fee`,`id` AS `univ_id` FROM ".UNIVERSITIES." WHERE `country` LIKE '".$country."' AND `id` IN (".implode(",", $university_ids).") ORDER BY `studymetro_scholarship` DESC ".$limit_cond." ".$offset_cond);
             $results1 = $query1->result_array();
             return $results1;
         }else{

@@ -549,7 +549,7 @@ class User extends CI_Controller {
         }else{
             $this->session->set_flashdata('error','Failed please try again !!');
         }
-        redirect('search-programs');
+        redirect('student/my-applications');
     }
 
     public function paypal_cancel()

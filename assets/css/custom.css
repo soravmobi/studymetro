@@ -93,7 +93,7 @@ a{ -webkit-transition: all 0.4s ease-in-out 0; -moz-transition: all 0.4s ease-in
   padding-right: 10px;
 }
 .contact_list a {
-  color: #a6abab;
+  color: #000000;
 }
 .contact_list a i {
   font-size: 18px;
@@ -109,7 +109,7 @@ a{ -webkit-transition: all 0.4s ease-in-out 0; -moz-transition: all 0.4s ease-in
   margin-right: 0;
 }
 .login_wrap li:first-child a {
- color: #a6abab;
+ color: #000000;
 }
 .login_wrap {
   line-height: 29px;
@@ -155,7 +155,7 @@ a{ -webkit-transition: all 0.4s ease-in-out 0; -moz-transition: all 0.4s ease-in
   padding: 8px 0;
 }
 .head_bottom_bar p {
-  color: #a6abab;
+  color: #000000;
 }
 .appy_now{text-align: right;}
 .appy_now a {

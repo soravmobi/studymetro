@@ -13,12 +13,6 @@
                     <h2>About <?php echo $details['name']; ?></h2>
                     <?php echo $details['content']; ?>
                 </div>
-                <?php if(!empty($details['youtube_video'])){ ?>
-                <div class="video_box hidden">
-                    <iframe width="560" height="315" frameborder="0" allowfullscreen="" src="<?php echo str_replace('watch?v=', 'embed/', $details['youtube_video']); ?>" data-original-title=""
-                        title=""></iframe>
-                </div>
-                <?php } ?>
                 <ul class="nav nav-tabs course-types-tabs-university">
                     <?php $i = 1; foreach(getCourseTypes() as $ct) { ?>
                         <li <?php if($i == 1) echo 'class="active"'; ?>><a data-toggle="tab" href="#<?php echo strtolower(str_replace(array('/', ' '), array('-', '-'), $ct)); ?>"><?php echo $ct; ?></a></li>

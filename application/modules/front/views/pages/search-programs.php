@@ -129,7 +129,10 @@
                                             <li> <span> <i class="fa fa-money" aria-hidden="true"></i> Tuition Fee : </span>
                                                 <?php echo $p['tution_fee']; ?>
                                             </li>
-                                            <li> <span> <i class="fa fa-money" aria-hidden="true"></i> Study Metro Scholarship : </span>
+                                            <li> <span> <i class="fa fa-money" aria-hidden="true"></i> Application Fee : </span>
+                                                <?php echo $p['application_fee']; ?>
+                                            </li>
+                                            <li> <span> <i class="fa fa-money" aria-hidden="true"></i>Cashback : </span>
                                                 $<?php echo $p['studymetro_scholarship']; ?>
                                             </li>
                                         </ul>
@@ -179,7 +182,8 @@
                                                         <?php
                                                             $uid = $this->session->userdata("user_id");
                                                             if(empty($uid)){ ?>
-                                                                <a href="javascript:void(0);" data-toggle="modal" data-target="#login" data-keyboard="false" data-backdrop="static" class="appy_btn">apply to this program</a>
+                                                                <!-- <a href="javascript:void(0);" data-toggle="modal" data-target="#login" data-keyboard="false" data-backdrop="static" class="appy_btn">apply to this program</a> -->
+                                                                <a href="<?php echo base_url(); ?><?php echo $pl['id']; ?>/apply-to-program?type=0" class="appy_btn">apply to this program</a>
                                                         <?php  }else{ ?>
                                                                 <a href="<?php echo base_url(); ?><?php echo $pl['id']; ?>/apply-to-program?type=0" class="appy_btn">apply to this program</a>
                                                         <?php } ?>

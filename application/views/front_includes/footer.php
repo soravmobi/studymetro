@@ -24,7 +24,7 @@
                 <label>
                 <input type="checkbox" checked value="1" name="remeber_me"> Remember me
               </label>
-                <span class="pull-right"><a href="javascript:void(0);">Forgot your password ?</a></span>
+                <span class="pull-right"><a href="javascript:void(0);" data-dismiss="modal" data-toggle="modal" data-target="#register" data-keyboard="false" data-backdrop="static">Register here</a></span>
               </div>
               <div class="login_button">
                 <button type="button" class="btn btn-default login-btn">Log in</button>
@@ -95,6 +95,7 @@
                     <input type="password" class="form-control" id="Passwordconfirm" placeholder="Confirm Password" name="confm_pswd">
                     <span class="error_form confm_pswd"></span>
                   </div>
+                  <span class="pull-right"><a href="javascript:void(0);" data-dismiss="modal" data-toggle="modal" data-target="#login" data-keyboard="false" data-backdrop="static">Login here</a></span>
                 </div>
                 <div class="col-md-12 cosl-sm-12">
                   <div class="login_button">
@@ -379,6 +380,16 @@ $("body").on('click','.signup-btn',function() {
 
 $("body").on('click','.login-btn',function() {
   var form_data = new FormData($('#login-form')[0]);
+  var email = $('form#login-form input.email').val();
+  var password = $('form#login-form input.password').val();
+  if(email == ""){
+      showToaster('success','Please enter email address');
+      return false;
+  }
+  if(password == ""){
+      showToaster('success','Please enter password');
+      return false;
+  }
   var QueryString = getQueryStringValue('return_uri');
   form_data.append('query_string',QueryString);
   $.ajax({

@@ -10,8 +10,12 @@ if(!function_exists('checkUserSession')) {
 	    }
 	    else
 	    {
-	    	$PathInfo = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : $_SERVER['ORIG_PATH_INFO'];
-	    	$RequestURI = ltrim($PathInfo,"/");
+	    	$PathInfo    = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : $_SERVER['ORIG_PATH_INFO'];
+	    	$QueryString = (isset($_SERVER['QUERY_STRING'])) ? $_SERVER['QUERY_STRING'] : '';
+	    	$RequestURI  = ltrim($PathInfo,"/");
+	    	if(!empty($QueryString)){
+	    		$RequestURI .= '?'.$QueryString;
+	    	}
 	    	$ci->session->set_flashdata('login_error','you need to login');
 	    	if(!empty($RequestURI)){
 	    		redirect('?return_uri='.urlencode(base_url().$RequestURI));
