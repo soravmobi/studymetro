@@ -97,7 +97,7 @@ if(!function_exists('getAllOffices')) {
 	function getAllOffices()
 	{
 		$ci = &get_instance();
-		$results = $ci->common_model->getAllRecordsByOrder(OFFICES,'id','DESC');
+		$results = $ci->common_model->getAllRecordsByOrder(OFFICES,'id','ASC');
 	    return $results;
 	}
 }
@@ -434,6 +434,9 @@ if(!function_exists('getPageName')) {
 					'12' => 'Contact US',
 					'13' => 'Default Template',
 					'14' => 'Apply Now',
+					'15' => 'College Campus Office',
+					'16' => 'Terms Conditions',
+					'17' => 'Internship'
 				);
 		return $pages[$key];
 	}

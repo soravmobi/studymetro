@@ -102,7 +102,7 @@ class Offices extends CI_Controller {
 	    $data['offset'] = $offset;
 	    $data['offices'] = '';
 	    $data['pagination'] = '';
-	    $data['offices'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(OFFICES, (isset($_GET['s'])) ? array('title','address','email','telephone','mobile') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'DESC', RESULT_PER_PAGE, $offset, '');
+	    $data['offices'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(OFFICES, (isset($_GET['s'])) ? array('title','address','email','telephone','mobile') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'ASC', RESULT_PER_PAGE, $offset, '');
 	    if(count($data['offices']) > 0) {
 	    	/* Pagination records */
 	        $url = get_cms_url().$this->url.'/view-all';

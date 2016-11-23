@@ -598,6 +598,25 @@ function getVimeoVideoIdFromUrl($url = '') {
     }
     return $id;
 }
+
+function addZero($no)
+{
+  if($no >= 10){
+    return $no;
+  }else{
+    return "0".$no;
+  }
+}
+
+function getAllCount($table,$where="")
+{
+  $CI = & get_instance();
+  if(!empty($where)){
+    $CI->db->where($where);
+  }
+  $q = $CI->db->count_all_results($table);
+  return addZero($q);
+}
     
 /* End of file common_helper.php */
 /* Location: ./system/application/helpers/common_helper.php */

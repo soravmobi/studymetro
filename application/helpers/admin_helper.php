@@ -171,6 +171,9 @@ function getAllPages()
 				'11' => 'FAQS',
 				'12' => 'Contact US',
 				'13' => 'Default Template',
+				'15' => 'College Campus Office',
+				'16' => 'Terms Conditions',
+				'17' => 'Internship'
 			);
 	return $pages;
 }

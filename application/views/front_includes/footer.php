@@ -189,7 +189,7 @@
                 <?php foreach(getQualifiedUniversity() as $qu){ ?>
                   <div class="col-md-3 col-sm-3">
                     <ul class="ftr_list">
-                      <li><a href="<?php echo base_url(); ?>university/details/<?php echo encode($qu['id']); ?>"><?php echo $qu['name']; ?></a></li>
+                      <li><a href="<?php echo getUniversityUrl($qu['id'],$qu['name']); ?>"><?php echo $qu['name']; ?></a></li>
                     </ul>
                   </div>
                 <?php } ?>
@@ -203,13 +203,13 @@
       <div class="container">
             <div class="row">
        <div class="col-md-8 col-sm-8">
-                <label>Recent Posts </label>
                 <ul class="ftr_menu_list">
-                  <li><a href="#">Lincoln University </a></li>
-                  <li><a href="#">Greencity College </a></li>
-                  <li><a href="#">SNHU </a></li>
-                  <li><a href="#">California Flight Academy</a></li>
-                  <li><a href="#">University Of Findlay </a></li>
+                  <li><a href="<?php echo base_url(); ?>college-campus-office">College Campus Office</a></li>
+                  <li><a href="http://page.studymetro.com/Study-Metro-Franchisee-Summit-2016">Summit </a></li>
+                  <li><a href="http://page.studymetro.com/Franchise-Inquiry-Form ">Apply for Franchisee</a></li>
+                  <li><a href="http://www.html.mwdemoserver.com/study_metro/work_us.html">Work as Agent </a></li>
+                  <li><a href="http://page.studymetro.com/Knowledge-Base">Knowledge Base </a></li>
+                  <li><a href="<?php echo base_url(); ?>terms-conditions">Terms & Conditions </a></li>
                 </ul>
               </div>
                <div class="col-md-4 col-sm-4">
@@ -283,7 +283,7 @@
 
       var check_login = "<?php echo $this->session->userdata('login_error'); ?>";
       if(check_login == "you need to login"){
-        jQuery('#login').modal('show');
+        jQuery('#register').modal('show');
         <?php echo $this->session->unset_userdata('login_error'); ?>
       }
       $("#my-gallery-container").mpmansory(

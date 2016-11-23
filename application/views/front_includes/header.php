@@ -187,10 +187,18 @@
       <div class="head_bottom_bar">
         <div class="container">
           <div class="row">
-            <div class="col-md-8 col-sm-8">
+            <div class="col-md-4 col-sm-4">
               <p>Study Metro - An ISO 9001 Certified Company</p>
             </div>
-            <div class="col-md-4 col-sm-4">
+            <div class="col-md-6 col-sm-6">
+              <ul class="ftr_menu_list">
+                  <li><a href="http://page.studymetro.com/Recorded-Webinar">Webinar</a></li>
+                  <li><a href="#">Pricing</a></li>
+                  <li><a href="<?php echo base_url(); ?>forum" target="_blank">Forum</a></li>
+                  <li><a href="<?php echo base_url(); ?>internship">Internship</a></li>
+              </ul>
+            </div>
+            <div class="col-md-2 col-sm-2">
               <div class="appy_now">
                 <a href="<?php cms_url('apply-now'); ?>">Apply Now <i class="fa fa-check"></i></a>
               </div>
