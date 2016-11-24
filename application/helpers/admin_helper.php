@@ -173,7 +173,8 @@ function getAllPages()
 				'13' => 'Default Template',
 				'15' => 'College Campus Office',
 				'16' => 'Terms Conditions',
-				'17' => 'Internship'
+				'17' => 'Internship',
+				'18' => 'Work As Agent'
 			);
 	return $pages;
 }

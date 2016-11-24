@@ -207,7 +207,7 @@
                   <li><a href="<?php echo base_url(); ?>college-campus-office">College Campus Office</a></li>
                   <li><a href="http://page.studymetro.com/Study-Metro-Franchisee-Summit-2016">Summit </a></li>
                   <li><a href="http://page.studymetro.com/Franchise-Inquiry-Form ">Apply for Franchisee</a></li>
-                  <li><a href="http://www.html.mwdemoserver.com/study_metro/work_us.html">Work as Agent </a></li>
+                  <li><a href="<?php echo base_url(); ?>work-as-agent">Work as Agent </a></li>
                   <li><a href="http://page.studymetro.com/Knowledge-Base">Knowledge Base </a></li>
                   <li><a href="<?php echo base_url(); ?>terms-conditions">Terms & Conditions </a></li>
                 </ul>

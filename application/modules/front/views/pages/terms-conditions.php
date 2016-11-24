@@ -1,6 +1,6 @@
 <div class="main_container">
 
-<section class="hidden banner" <?php if($details['media'] == 0) echo"style='background-image:url(uploads/pages/".$details['media_file'].");'" ?>>
+<section class="banner" <?php if($details['media'] == 0) echo"style='background-image:url(uploads/pages/".$details['media_file'].");'" ?>>
 	<?php if($details['media'] == 1){ ?>
 		<video controls autoplay muted loop id="bg_video">
           <source src="<?php echo base_url(); ?>uploads/pages/<?php echo $details['media_file']; ?>" type="video/mp4">

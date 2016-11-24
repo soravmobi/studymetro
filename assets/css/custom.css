@@ -4083,3 +4083,14 @@ a.appy_btn.appy_summer {
     height: 49px;
 }
 /* Counter end */
+.reuired-star{
+    color: red;
+    font-weight: bold;
+    font-size: 13pt;
+}
+.popular-countries{
+  margin-bottom: 5px;
+}
+label.col-sm-3.control-label {
+    font-weight: normal !important;
+}

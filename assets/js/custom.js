@@ -58,7 +58,14 @@ $(document).ready(function () {
         getUniversities(country, true, '');
     }); 
 
-    
+    $('body').on('click', 'a', function () {
+        var href = $(this).attr('href');
+        var mail_type = href.indexOf('mailto');
+        if(href != '#' && href != 'javascript:void(0)' && href != 'javascript:void(0);' && mail_type == -1){
+            $(this).attr('target','_blank');
+        }
+    });
+
     /*$("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
       var id = $(e.target).attr("href").substr(1);
       window.location.hash = id;
@@ -66,6 +73,7 @@ $(document).ready(function () {
 
     var hash = window.location.hash;
     $('ul.nav-tabs a[href="' + hash + '"]').tab('show');*/
+    
    // js for bootstrap switches
     $('.BSSorting').bootstrapSwitch('state', false);
 

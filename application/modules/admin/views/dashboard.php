@@ -12,13 +12,13 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
           <div class="inner">
-            <h3>150</h3>
-            <p>New Orders</p>
+            <h3><?php echo getAllCount(UNIVERSITIES); ?></h3>
+            <p>Universities</p>
           </div>
           <div class="icon">
-            <i class="ion ion-bag"></i>
+            <i class="fa fa-university"></i>
           </div>
-          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          <a href="<?php echo base_url(); ?>admin/university/view-all" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div><!-- ./col -->
 
@@ -26,13 +26,13 @@
         <!-- small box -->
         <div class="small-box bg-green">
           <div class="inner">
-            <h3>53<sup style="font-size: 20px">%</sup></h3>
-            <p>Bounce Rate</p>
+            <h3><?php echo getAllCount(PROGRAMS); ?></h3>
+            <p>Programs</p>
           </div>
           <div class="icon">
-            <i class="ion ion-stats-bars"></i>
+            <i class="fa fa-graduation-cap"></i>
           </div>
-          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          <a href="<?php echo base_url(); ?>admin/programs/view-all" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div><!-- ./col -->
 
@@ -40,13 +40,13 @@
         <!-- small box -->
         <div class="small-box bg-yellow">
           <div class="inner">
-            <h3>44</h3>
-            <p>User Registrations</p>
+            <h3><?php echo getAllCount(USER); ?></h3>
+            <p>Users</p>
           </div>
           <div class="icon">
-            <i class="ion ion-person-add"></i>
+            <i class="fa fa-users"></i>
           </div>
-          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          <a href="<?php echo base_url(); ?>admin/users/view-all" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div><!-- ./col -->
 
@@ -54,13 +54,13 @@
         <!-- small box -->
         <div class="small-box bg-red">
           <div class="inner">
-            <h3>65</h3>
-            <p>Unique Visitors</p>
+            <h3><?php echo getAllCount(TESTIMONIALS); ?></h3>
+            <p>Testimonials</p>
           </div>
           <div class="icon">
-            <i class="ion ion-pie-graph"></i>
+            <i class="fa fa-quote-left" aria-hidden="true"></i>
           </div>
-          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          <a href="<?php echo base_url(); ?>admin/testimonials/view-all" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div><!-- ./col -->
 

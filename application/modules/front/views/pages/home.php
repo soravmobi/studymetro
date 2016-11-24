@@ -315,6 +315,33 @@
   </div>
 </section>
 
+<section class="hms icnt clearfix" id="infoPod" style="">
+<div class="wrapper">
+<ul class="icntu">
+<li>
+<i class="fa fa-university icruv" aria-hidden="true"></i>
+<span class="icntn no-counter"><?php echo getAllCount(UNIVERSITIES); ?></span>
+<span class="icntc">Universities</span>
+</li>
+<li class="icrs">
+<i class="fa fa-graduation-cap icruv" aria-hidden="true"></i>
+<span class="icntn no-counter"><?php echo getAllCount(PROGRAMS); ?></span>
+<span class="icntc">Programs</span>
+</li>
+<li>
+<i class="fa fa-flag icruv" aria-hidden="true"></i>
+<span class="icntn no-counter"><?php echo count(countries()); ?></span>
+<span class="icntc">Countries</span>
+</li>
+<li>
+<i class="fa fa-users icruv" aria-hidden="true"></i>
+<span class="icntn no-counter"><?php echo getAllCount(USER,array('user_type' => 2)); ?></span>
+<span class="icntc">Students</span>
+</li>
+</ul>
+</div>
+</section>
+
 <?php if($details['scholar_form'] == 0) { 
     echo getScholarshipForm();
 } ?>
@@ -330,3 +357,14 @@
     </div>
 
     <!--Main container sec end-->
+
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/waypoints.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.counterup.min.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+      $('.no-counter').counterUp({
+          delay: 10,
+          time: 1000
+      });
+  });
+</script>

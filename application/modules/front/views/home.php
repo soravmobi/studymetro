@@ -567,3 +567,14 @@
     </div>
 
     <!--Main container sec end-->
+
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/waypoints.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.counterup.min.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+      $('.no-counter').counterUp({
+          delay: 10,
+          time: 1000
+      });
+  });
+</script>

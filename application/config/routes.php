@@ -97,6 +97,10 @@ $route['admin/testimonials/add-new'] = 'admin/testimonials/addNew';
 $route['admin/testimonials/view-all'] = 'admin/testimonials/viewAll';
 $route['admin/testimonials/view-all/(:any)'] = 'admin/testimonials/viewAll/$1';
 
+$route['admin/coupons/add-new'] = 'admin/coupons/addNew';
+$route['admin/coupons/view-all'] = 'admin/coupons/viewAll';
+$route['admin/coupons/view-all/(:any)'] = 'admin/coupons/viewAll/$1';
+
 $route['admin/blogs/add-new'] = 'admin/blogs/addNew';
 $route['admin/blogs/view-all'] = 'admin/blogs/viewAll';
 $route['admin/blogs/view-all/(:any)'] = 'admin/blogs/viewAll/$1';

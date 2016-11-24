@@ -180,6 +180,7 @@ define('DEFAULT_PROGRAM_FEE', '50');
 
 /* Database Tables */
 define('MENU', 'menus');
+define('COUPONS', 'coupons');
 define('BLOGS', 'blogs');
 define('OFFICES', 'offices');
 define('APPLIED_PROGRAMS', 'applied_programs');

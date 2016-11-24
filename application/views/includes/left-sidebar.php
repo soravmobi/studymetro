@@ -349,6 +349,26 @@
           </li>
         </ul>
       </li>
+      <!-- Coupons -->
+      <li class="treeview <?php tree_active_class('faqs', array('addNew', 'edit','viewAll')); ?>">
+        <a href="javascript:void(0);" title="Coupons">
+          <i class="fa fa-bars"></i> 
+          <span>Coupons</span> 
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<?php add_active_class('coupons', 'addNew'); ?>">
+            <a href="<?php cms_url('admin/coupons/add-new'); ?>" title="Add New Coupon">
+              <i class="fa fa-plus"></i> Add New Coupon
+            </a>
+          </li>
+          <li class="<?php add_active_class('coupons', 'viewAll'); ?>">
+            <a href="<?php cms_url('admin/coupons/view-all'); ?>" title="View All Coupons">
+              <i class="fa fa-eye"></i> View All Coupons
+            </a>
+          </li>
+        </ul>
+      </li>
       <!-- Menu -->
       <!-- <li class="treeview <?php tree_active_class('menu', array('addNew', 'edit', 'viewAll', 'manageLocation')); ?>">
         <a href="javascript:void(0);" title="Menu">
