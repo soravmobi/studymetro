@@ -414,6 +414,48 @@
             <h4 class="modal-title" id="myModalLabel">Payment</h4>
           </div>
           <div class="modal-body">
+          <?php
+              $mode = 'live';
+              if($mode == 'sandbox') { 
+                  //Need to replace the last part of URL("your-vanityUrlPart") with your Testing/Live URL
+                  $formPostUrl = "https://sandbox.citruspay.com/uycuxzlzv2";  
+                  //Need to change with your Secret Key
+                  $secret_key = "cbce9048aab88acabb0fc1e0d3d0b1b88d275001";   
+                  //Need to change with your Vanity URL Key from the citrus panel
+                  $vanityUrl = "uycuxzlzv2";
+                  //Should be unique for every transaction
+                  $merchantTxnId = uniqid(); 
+                  //Need to change with your Order Amount
+                  $orderAmount = $ApplicationFees;
+                  $currency = "USD";
+                  $data = $vanityUrl.$orderAmount.$merchantTxnId.$currency;
+                  $notifyUrl = base_url().'front/user/citrus_notify';
+                  $securitySignature = hash_hmac('sha1', $data, $secret_key);
+              } elseif($mode == 'live') {
+                  //Need to replace the last part of URL("your-vanityUrlPart") with your Testing/Live URL
+                  $formPostUrl = "https://www.citruspay.com/studymetro";  
+                  //Need to change with your Secret Key
+                  $secret_key = "2f616053f8837dc11d2a6cb28944873a3cdaaa66";   
+                  //Need to change with your Vanity URL Key from the citrus panel
+                  $vanityUrl = "studymetro";
+                  //Should be unique for every transaction
+                  $merchantTxnId = uniqid(); 
+                  //Need to change with your Order Amount
+                  $orderAmount = $ApplicationFees;
+                  $currency = "USD";
+                  $data = $vanityUrl.$orderAmount.$merchantTxnId.$currency;
+                  $notifyUrl = base_url().'front/user/citrus_notify';
+                  $securitySignature = hash_hmac('sha1', $data, $secret_key);
+              }
+          ?>
+            <form align="center" id="citrus-form" method="post" action="<?php echo $formPostUrl; ?>">
+               <input type="hidden" id="merchantTxnId" name="merchantTxnId" value="<?php echo $merchantTxnId; ?>" />
+               <input type="hidden" id="orderAmount" name="orderAmount" value="<?php echo $orderAmount; ?>" />
+               <input type="hidden" id="currency" name="currency" value="<?php echo $currency; ?>" />
+               <input type="hidden" name="returnUrl" value="" class="citrus-return-url" />
+               <!-- <input type="hidden" id="notifyUrl" name="notifyUrl" value="<%=notifyUrl%>" /> -->
+               <input type="hidden" id="secSignature" name="secSignature" value="<?php echo $securitySignature; ?>" />
+           </form>
             <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" id="paypal-form">
                 <input type="hidden" name="cmd" value="_xclick" />
                 <input type="hidden" name="charset" value="utf-8" />
@@ -423,7 +465,7 @@
                 <input type="hidden" name="amount" value="<?php echo $ApplicationFees; ?>" />
                 <input type="hidden" name="currency_code" value="USD" />
                 <input type="hidden" name="return" value="<?php echo base_url(); ?>front/user/paypal_success" />
-                <input type="hidden" name="cancel_return" value="<?php echo base_url(); ?>front/user/paypal_cancel" />
+                <input type="hidden" name="cancel_return" value="<?php echo base_url(); ?>front/user/cancel_payment" />
                 <input type="hidden" name="bn" value="Business_BuyNow_WPS_SE" />
             </form>
             <form method="post" id="payment-form">
@@ -453,9 +495,7 @@ $('document').ready(function(){
     if(type == 0){
       $('#paypal-form').submit();
     }else{
-      showToaster('error','Citrus payment is under working');  
-      return false;
-      // $('#citrus-form').submit();
+      $('#citrus-form').submit();
     }
   });
 
@@ -484,8 +524,10 @@ $('document').ready(function(){
                };
              }
              else if(resp.type == "success"){
+              var return_url = "<?php echo base_url(); ?>front/user/citrus_return?id="+resp.id;
               $('#apply-program-form')[0].reset();
               $('input.custom-field').val(resp.id);
+              $('input.citrus-return-url').val(return_url);
               $('#program-payment').modal('show');
              }
              else{

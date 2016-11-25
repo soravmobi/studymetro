@@ -193,7 +193,7 @@
             <div class="col-md-6 col-sm-6">
               <ul class="ftr_menu_list">
                   <li><a href="http://page.studymetro.com/Recorded-Webinar">Webinar</a></li>
-                  <li><a href="#">Pricing</a></li>
+                  <li><a href="<?php echo base_url(); ?>pricing">Pricing</a></li>
                   <li><a href="<?php echo base_url(); ?>forum" target="_blank">Forum</a></li>
                   <li><a href="<?php echo base_url(); ?>internship">Internship</a></li>
               </ul>

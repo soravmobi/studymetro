@@ -335,7 +335,7 @@
 </li>
 <li>
 <i class="fa fa-users icruv" aria-hidden="true"></i>
-<span class="icntn no-counter"><?php echo getAllCount(USER,array('user_type' => 2)); ?></span>
+<span class="icntn no-counter"><?php echo 2500 + getAllCount(USER,array('user_type' => 2)); ?></span>
 <span class="icntc">Students</span>
 </li>
 </ul>

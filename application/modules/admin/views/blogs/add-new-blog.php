@@ -27,14 +27,14 @@
 
 	          	<div class="box-body">
 
-		            <div class="col-md-6">
+		            <div class="col-md-12">
 		            	<div class="form-group photo_1">
 		                  <label for="photos">Title</label>
 		                  <input type="text" name="title" required class="form-control margin_bottom10"/>
 		                </div>
 		                <div class="form-group">
 		                  <label for="photos">Descprition</label>
-		                  <textarea required rows="6" name="descprition" class="form-control"></textarea>
+		                  <textarea required rows="15" name="descprition" class="form-control mceEditor"></textarea>
 		                </div>
 		            </div>
 

@@ -515,7 +515,7 @@ class User extends CI_Controller {
                         array('Attribute' => 'mx_Is_an_education_counsellor_helping_you', 'Value' => $data['education_counsellor']),
                     );
                     feedCRMDetails($fields);
-                    echo json_encode(array('type' => 'success','id' => $lid));exit;
+                    echo json_encode(array('type' => 'success','id' => encode($lid)));exit;
                 }else{
                     echo json_encode(array('type' => 'failed', 'msg' => GENERAL_ERROR));exit;
                 }
@@ -540,7 +540,7 @@ class User extends CI_Controller {
             $data['txn_id']     = $_GET['tx'];
             $data['pay_status'] = $_GET['st'];
             $data['paymnet_date'] = datetime();
-            $status = $this->common_model->updateRecords(APPLIED_PROGRAMS,$data,array('id' => $_GET['cm']));
+            $status = $this->common_model->updateRecords(APPLIED_PROGRAMS,$data,array('id' => decode($_GET['cm'])));
             if($_GET['st'] == 'Completed' && $status == TRUE){
                 $this->session->set_flashdata('success','Payment successfully completed');
             }else{
@@ -552,10 +552,38 @@ class User extends CI_Controller {
         redirect('student/my-applications');
     }
 
-    public function paypal_cancel()
+    public function cancel_payment()
     {
         $this->session->set_flashdata('error','Paymnet cancelled !!');
         redirect('search-programs');
+    }
+
+    public function citrus_notify()
+    {
+        mail('sorav.mobiwebtech123@gmail.com', 'Citrus Pay Notification', json_encode($_POST));
+    }
+
+    public function citrus_return()
+    {
+        if(!empty($_POST) && !empty($_GET['id'])){
+            $data               = array();
+            $data['amount']     = $_POST['amount'];
+            $data['pay_type']   = 1;
+            $data['txn_id']     = $_POST['TxId'];
+            $data['pay_status'] = $_POST['TxStatus'];
+            $data['paymnet_date'] = datetime();
+            $status = $this->common_model->updateRecords(APPLIED_PROGRAMS,$data,array('id' => decode($_GET['id'])));
+            if($_POST['TxStatus'] == 'SUCCESS' && $status == TRUE){
+                $this->session->set_flashdata('success','Payment successfully completed');
+                redirect('student/my-applications');
+            }else{
+                $this->session->set_flashdata('error','Payment failed please try again !!');
+                redirect('search-programs');
+            }
+        }else{
+            $this->session->set_flashdata('error','Payment failed please try again !!');
+            redirect('search-programs');
+        }
     }
 
 

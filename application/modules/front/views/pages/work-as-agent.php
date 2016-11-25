@@ -490,7 +490,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group clearfix">
+                                <div class="form-group clearfix hidden">
                                     <label for="" class="col-sm-3 control-label">Into which Division of Study Group will you be enrolling most students?  <span class="reuired-star">*</span></label>
                                     <div class="col-sm-9">
                                         <div class="radio">
@@ -610,7 +610,7 @@
                                 Additional Information
                             </div>
                             <div class="form-group clearfix">
-                                <label for="" class="col-sm-3 control-label">How did you hear about Study Group?  <span class="reuired-star">*</span></label>
+                                <label for="" class="col-sm-3 control-label">How did you hear about Study Metro?  <span class="reuired-star">*</span></label>
                                 <div class="col-sm-9">
                                     <select class="form-control" required name="HowDidYouHearAboutUs">
                                         <option value="">Please Select</option>
@@ -623,7 +623,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group clearfix">
+                            <div class="form-group clearfix hidden">
                                 <label for="" class="col-sm-3 control-label">Our expectation is that your service will include providing advice about visa requirements and study options, assistance with visa processing and travel arrangements and liaison with Study Group regarding airport reception and student accommodation. <br/> <br/>  Please tell us how you deal with the visa process and whether you hold any qualifications in that area. </label>
                                 <div class="col-sm-9">
                                 <textarea placeholder="Please tell us how you deal with the visa process and whether you hold any qualifications in that area." rows="12" class="form-control" name="OtherComments"></textarea>

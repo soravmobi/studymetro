@@ -4094,3 +4094,125 @@ a.appy_btn.appy_summer {
 label.col-sm-3.control-label {
     font-weight: normal !important;
 }
+/*css for membership plan start*/
+.plan_main_box {
+  float: left;
+  width: 20%;
+}
+.plan_top_box {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  height: 290px;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  background: #0e80e3;
+}
+.plan_top {
+  background: #0b5ea6 none repeat scroll 0 0;
+  color: #fff;
+  font-size: 20px;
+  font-style: italic;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+.price_box {
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  height: 125px;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  width: 125px;
+  margin: 0 auto;
+}
+.membership_plan {
+  margin: 60px 0;
+}
+.plan_top {
+  background: #0b5ea6 none repeat scroll 0 0;
+  height: 60px;
+}
+
+.plan_meta {
+  background: #0b5ea6 none repeat scroll 0 0;
+  color: #fff;
+  font-size: 18px;
+  height: 40px;
+  padding: 8px;
+  font-family: 'SourceSansProSemibold'; 
+}
+.tb_box {
+  background-color: #f6f6f6;
+  padding: 8px;
+  min-height: 56px;
+  text-align: center;
+}
+.tb_box.odd_color {
+  background-color: #e3e3e3;
+}
+.tb_box > a {
+  color: #444444;
+  text-transform: capitalize;
+}
+.plan_odd{
+  background: #0b5ea6 ;
+}
+.font_0{
+  font-size: 0px;
+  height: 40px;
+}
+.plan_top_box h4 {
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 25px;
+  text-transform: capitalize;
+}
+.btn_try {
+  border: medium none;
+  border-radius: 2px;
+  display: inline-block;
+  height: 36px;
+  margin: 25px auto 0;
+  width: 117px;
+   font-family: "SourceSansProSemibold";
+}
+
+.price_box h3 {
+  font-size: 32px;
+}
+.plan_box.basic {
+  text-align: center;
+}
+.plan_main_box:hover {
+  box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 111;
+}
+.advanced{
+box-shadow:5px 0 30px rgba(0, 0, 0, 0.5);
+ position: relative;
+  z-index: 11;
+}
+.Enterprise{
+box-shadow:5px 0 30px rgba(0, 0, 0, 0.5);
+}
+.tb_box .btn_try {
+  border: 1px solid #ddd;
+  margin-top: 0;
+}
+.blank_height {
+  height: 52px;
+}
+.plan_main_box.priceing:hover {
+  box-shadow: none;
+}
+
+/*css for membership plan end*/

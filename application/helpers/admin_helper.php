@@ -174,7 +174,8 @@ function getAllPages()
 				'15' => 'College Campus Office',
 				'16' => 'Terms Conditions',
 				'17' => 'Internship',
-				'18' => 'Work As Agent'
+				'18' => 'Work As Agent',
+				'19' => 'Pricing'
 			);
 	return $pages;
 }
