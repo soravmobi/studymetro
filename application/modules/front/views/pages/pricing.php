@@ -27,13 +27,13 @@
                                             <div class="plan_top_box">
                                                 <div class="price_box">
                                                     <h3>Pricing</h3>
-                                                    <span>Per month</span>
+                                                    <span></span>
                                                 </div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="plan_meta">
-                                                Product Interface
+                                                Services
                                             </div>
                                         </li>
                                         <li>
@@ -264,21 +264,21 @@
                                 <div class="plan_box basic">
                                     <ul>
                                         <li>
-                                            <div class="plan_top">For Entry Stage StartUps</div>
+                                            <div class="plan_top"></div>
                                         </li>
                                         <li>
                                             <div class="plan_top_box plan_odd">
                                                 <h4>Basic</h4>
-                                                <div class="price_box">
-                                                    <h3>Custom</h3>
+                                                <div class="price_box basic_plan">
+                                                    <h3>Application Fee only</h3>
                                                     <span></span>
                                                 </div>
-                                                <button class="btn_try" type="button">Try Now</button>
+                                                <button class="btn_try" type="button">Apply Now</button>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="plan_meta font_0">
-                                                Product Interface
+                                                Services
                                             </div>
                                         </li>
                                         <li>
@@ -498,7 +498,7 @@
                                         </li>
                                         <li>
                                             <div class="tb_box even_color">
-                                                <button class="btn_try" type="button">Try Now</button>
+                                                <button class="btn_try" type="button">Apply Now</button>
                                             </div>
                                         </li>
                                     </ul>
@@ -510,7 +510,7 @@
                                 <div class="plan_box basic">
                                     <ul>
                                         <li>
-                                            <div class="plan_top">For Small Businesses</div>
+                                            <div class="plan_top"></div>
                                         </li>
                                         <li>
                                             <div class="plan_top_box">
@@ -519,12 +519,12 @@
                                                     <h3>$500</h3>
                                                     <span></span>
                                                 </div>
-                                                <button class="btn_try" type="button">Try Now</button>
+                                                <button class="btn_try" type="button">Apply Now</button>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="plan_meta font_0">
-                                                Product Interface
+                                                Services
                                             </div>
                                         </li>
                                         <li>
@@ -744,7 +744,7 @@
                                         </li>
                                         <li>
                                             <div class="tb_box even_color">
-                                                <button class="btn_try" type="button">Try Now</button>
+                                                <button class="btn_try" type="button">Apply Now</button>
                                             </div>
                                         </li>
                                     </ul>
@@ -756,7 +756,7 @@
                                 <div class="plan_box basic Premium">
                                     <ul>
                                         <li>
-                                            <div class="plan_top">For Medium Businesses</div>
+                                            <div class="plan_top"></div>
                                         </li>
                                         <li>
                                             <div class="plan_top_box plan_odd">
@@ -765,12 +765,12 @@
                                                     <h3>$1000</h3>
                                                     <span></span>
                                                 </div>
-                                                <button class="btn_try" type="button">Try Now</button>
+                                                <button class="btn_try" type="button">Apply Now</button>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="plan_meta font_0">
-                                                Product Interface
+                                                Services
                                             </div>
                                         </li>
                                          <li>
@@ -990,7 +990,7 @@
                                         </li>
                                         <li>
                                             <div class="tb_box even_color">
-                                                <button class="btn_try" type="button">Try Now</button>
+                                                <button class="btn_try" type="button">Apply Now</button>
                                             </div>
                                         </li>
                                     </ul>
@@ -1002,7 +1002,7 @@
                                 <div class="plan_box basic">
                                     <ul>
                                         <li>
-                                            <div class="plan_top">For large Businesses</div>
+                                            <div class="plan_top"></div>
                                         </li>
                                         <li>
                                             <div class="plan_top_box">
@@ -1016,7 +1016,7 @@
                                         </li>
                                         <li>
                                             <div class="plan_meta font_0">
-                                                Product Interface
+                                                Services
                                             </div>
                                         </li>
                                         <li>

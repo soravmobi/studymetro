@@ -468,9 +468,21 @@ class User extends CI_Controller {
                 }
                 $data['user_id']    = $this->uid;
                 $data['apply_date'] = datetime();
-                /*if(!empty($_FILES['education_documents'])){
-                    $data['education_documents'] = imgUpload('education_documents','programs');
-                }*/
+                if(!empty($_FILES['education_documents']['name'])){
+                    $data['education_documents'] = fileUploading('education_documents','programs');
+                }
+                if(!empty($_FILES['passport_resume']['name'])){
+                    $data['passport_resume'] = fileUploading('passport_resume','programs');
+                }
+                if(!empty($_FILES['test_score']['name'])){
+                    $data['test_score'] = fileUploading('test_score','programs');
+                }
+                if(!empty($_FILES['sop_lor']['name'])){
+                    $data['sop_lor'] = fileUploading('sop_lor','programs');
+                }
+                if(!empty($_FILES['finance_documents']['name'])){
+                    $data['finance_documents'] = fileUploading('finance_documents','programs');
+                }
                 $lid = $this->common_model->addRecords(APPLIED_PROGRAMS,$data);
                 if(!empty($lid)){
                     $fields = array(

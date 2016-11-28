@@ -196,6 +196,7 @@
                   <li><a href="<?php echo base_url(); ?>pricing">Pricing</a></li>
                   <li><a href="<?php echo base_url(); ?>forum" target="_blank">Forum</a></li>
                   <li><a href="<?php echo base_url(); ?>internship">Internship</a></li>
+                  <li><a href="<?php echo base_url(); ?>abroad-courses">Abroad Courses</a></li>
               </ul>
             </div>
             <div class="col-md-2 col-sm-2">

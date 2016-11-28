@@ -1,7 +1,7 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
-  <?php admin_content_header($meta_title, $small_text, 'view_all_programs_header'); ?>
+  <?php admin_content_header($meta_title, $small_text, 'search_programs_header'); ?>
 
   <!-- Main content -->
   <section class="content">
@@ -10,9 +10,8 @@
 	      <div class="box box-primary">
 	        <div class="box-header">
 	          <h3 class="box-title"><?php echo sprintf(ALL_DATA, 'Program'); ?></h3>
-	          <a href="<?php cms_url('admin/programs/add-new'); ?>" class="addNewAdmin" title="Add New Program">Add New</a>
 	          <div class="box-tools">
-	            <div class="input-group customInputGroups" style="width: 150px;">
+	            <div class="input-group customInputGroups hidden" style="width: 150px;">
 	              <form action="<?php cms_url('admin/programs/view-all'); ?>" method="get">
 		              <input type="text" name="s" class="form-control input-sm pull-right" placeholder="Search" value="<?php echo $this->input->get('s'); ?>">
 		              <div class="input-group-btn cusInputGrpbtn">
@@ -35,6 +34,40 @@
                 </div>
             <?php } ?>
 	        </div><!-- /.box-header -->
+	        <hr/>
+	        <form action="" method="get">
+	        <div class="box-body">
+	            <div class="col-md-12">
+	            	<div class="col-md-4">
+		                <div class="form-group photo_1">
+		                  <label for="photos">Select Country</label>
+		                  <select name="country" required class="form-control select_country" id="country" name="country">
+		                  <option value="">Select Country</option>
+					      <?php foreach(countries() as $c) { ?>
+					      	<option value="<?php echo $c; ?>" <?php if(isset($_GET['country']) && $_GET['country'] == $c) echo "selected"; ?>><?php echo $c; ?></option>
+					      <?php } ?>
+					      </select>
+		                </div>
+		            </div>
+		            <div class="col-md-6">
+		                <div class="form-group photo_1">
+		                  <label for="photos">Select University</label>
+		                  <select name="university_id" required class="form-control select_university" id="university_id" name="university_id">
+		                  	<option value="">Select University</option>
+		                  	<?php if(!empty($universities)) { foreach($universities as $u) { ?>
+		                  		<option value="<?php echo $u['id']; ?>" <?php if(isset($_GET['university_id']) && $_GET['university_id'] == $u['id']) echo "selected"; ?>><?php echo $u['name']; ?></option>
+		                  	<?php } } ?>
+					      </select>
+		                </div>
+		            </div>
+		            <div class="col-md-2">
+		                <button class="btn btn-primary" style="margin-top: 24px;" title="Seach Programs Universities Wise">Search</button>
+		            </div>
+	            </div>
+	        </div>
+	        </form>
+	        <hr/>
+	        <?php if(!empty($programs)) { ?>
 	        <div class="box-body table-responsive no-padding">
 	          <table class="table table-hover">
 	            <tr>
@@ -77,10 +110,56 @@
 	            <?php } ?>
 	          </table>
 	        </div><!-- /.box-body -->
+	        <?php } ?>
 	        <div class="box-footer"><?php if($pagination) { echo $pagination; } ?></div>
 	      </div><!-- /.box -->
 	    </div>
     </div><!-- .row -->
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+
+  /**************** Get University Start ***************/
+
+  $('body').on('change','.select_country',function(){
+    var country = $(this).val();
+    var appendHTML = '<option value="">Select University</option>';
+    if(country == ''){
+      $('.select_university').html(appendHTML);
+      return false;
+    }else{
+       $.ajax({
+        url :"<?php echo base_url(); ?>admin/programs/getUniversities",
+        type:"POST",
+        data:{country:country},
+        dataType:"JSON",
+        beforeSend: function() {
+          ajaxindicatorstart();
+        }, 
+        success: function(resp)
+        {
+          if(resp != ''){
+            for (var i = 0; i < resp.length; i++) {
+              appendHTML += '<option value="'+resp[i]['id']+'">'+resp[i]['name']+'</option>';
+            }
+          }
+          $('.select_university').html(appendHTML);
+          ajaxindicatorstop();
+        },
+        error:function(error)
+        {
+          ajaxindicatorstop();
+        }
+      });
+    }
+  }); 
+
+  /**************** Get University End *****************/
+
+});
+
+</script>
 

@@ -219,6 +219,13 @@ class Programs extends CI_Controller {
 	    if(!$offset) {
 		 	$offset = 0;
 	    }
+	    if(isset($_GET['s']) && !empty($_GET['s'])){
+	    	if($this->input->get('per_page')){
+	    		$offset = $this->input->get('per_page');
+	    	}else{
+	    		$offset = 0;
+	    	}
+	    }
 
 	    $data['offset'] = $offset;
 	    $data['programs'] = '';
@@ -226,12 +233,71 @@ class Programs extends CI_Controller {
 	    $data['programs'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(PROGRAMS, (isset($_GET['s'])) ? array('location', 'program_name', 'course_type', 'study_metro_scholarship','country') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'ASC', RESULT_PER_PAGE, $offset, '');
 	    if(count($data['programs']) > 0) {
 	    	/* Pagination records */
+	        $query_string = '';
 	        $url = get_cms_url().$this->url.'/view-all';
+	        if(isset($_GET['s']) && !empty($_GET['s'])){
+	        	$url .= '?s='.$_GET['s'];
+	        	$query_string = 'yes';
+	        }
 	        $total_records = $this->common_model->getTotalPaginateRecordsByOrderByLikeCondition(PROGRAMS, (isset($_GET['s'])) ? array('location', 'program_name', 'course_type', 'study_metro_scholarship','country') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', '');
-	        $data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right');
+	        $data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right','',$query_string);
 	    }
 		/* Load admin view */
 		load_admin_view('programs/view-all-programs', $data);
+    }
+
+    /**
+	* Search programs
+    */
+    public function searchPrograms()
+    {
+    	is_logged_in($this->url.'/search-programs');
+		$data = array();
+		$data['meta_title'] = 'Search Programs';
+		$data['small_text'] = 'Search Programs';
+		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'search_programs');
+		$data['session_data'] = admin_session_data();
+		$data['user_info'] = get_user($data['session_data']['user_id']);
+		$data['programs']  = array();
+		$data['universities']  = array();
+		$data['pagination'] = '';
+
+		if(!empty($_GET['country']) && !empty($_GET['university_id'])){
+			if($this->input->get('per_page')){
+	    		$offset = $this->input->get('per_page');
+	    	}else{
+	    		$offset = 0;
+	    	}
+
+	    	$data['offset'] = $offset;
+
+	    	/* Get programs data */
+	    	$this->db->where('university_id',$_GET['university_id']);
+	    	$this->db->where('country',$_GET['country']);
+	    	$this->db->order_by('program_name','ASC');
+	    	$this->db->limit(RESULT_PER_PAGE,$offset);
+	    	$query = $this->db->get(PROGRAMS);
+			$data['programs']  = $query->result_array();
+
+			$data['universities']  = $this->common_model->getAllRecordsOrderById(UNIVERSITIES,'name','ASC',array('country' => $_GET['country']));
+
+			$this->db->where('university_id',$_GET['university_id']);
+	    	$this->db->where('country',$_GET['country']);
+	    	$this->db->order_by('program_name','ASC');
+	    	$query = $this->db->get(PROGRAMS);
+			$total_records = $query->num_rows();
+
+			$query_string = '';
+	        $url = get_cms_url().$this->url.'/search-programs';
+	        if(!empty($_GET['country']) && !empty($_GET['university_id'])){
+	        	$url .= '?country='.$_GET['country'];
+	        	$url .= '&university_id='.$_GET['university_id'];
+	        	$query_string = 'yes';
+	        }
+	    	$data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right','',$query_string);
+		}
+		/* Load admin view */
+		load_admin_view('programs/search-programs', $data);
     }
 
     /**
@@ -295,6 +361,13 @@ class Programs extends CI_Controller {
 	    if(!$offset) {
 		 	$offset = 0;
 	    }
+	    if(isset($_GET['s']) && !empty($_GET['s'])){
+	    	if($this->input->get('per_page')){
+	    		$offset = $this->input->get('per_page');
+	    	}else{
+	    		$offset = 0;
+	    	}
+	    }
 
 	    $data['offset'] = $offset;
 	    $data['programs'] = '';
@@ -302,9 +375,14 @@ class Programs extends CI_Controller {
 	    $data['programs'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(SUMMER_PROGRAMS, (isset($_GET['s'])) ? array('location', 'country', 'courses', 'eligibility','period') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'ASC', RESULT_PER_PAGE, $offset, '');
 	    if(count($data['programs']) > 0) {
 	    	/* Pagination records */
+	    	$query_string = '';
 	        $url = get_cms_url().$this->url.'/view-all-summer-programs';
+	        if(isset($_GET['s']) && !empty($_GET['s'])){
+	        	$url .= '?s='.$_GET['s'];
+	        	$query_string = 'yes';
+	        }
 	        $total_records = $this->common_model->getTotalPaginateRecordsByOrderByLikeCondition(SUMMER_PROGRAMS, (isset($_GET['s'])) ? array('location', 'country', 'courses', 'eligibility','period') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', '');
-	        $data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right');
+	        $data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right','',$query_string);
 	    }
 		/* Load admin view */
 		load_admin_view('programs/view-all-summer-programs', $data);

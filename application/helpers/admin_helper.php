@@ -130,6 +130,22 @@ if(!function_exists('skin_color_attributes')) {
 	}
 }
 
+function fileUploading($name,$subfolder)
+{
+    $f_name1 = $_FILES[$name]['name'];
+    $f_tmp1  = $_FILES[$name]['tmp_name'];
+    $f_size1 = $_FILES[$name]['size'];
+    $f_extension1 = explode('.',$f_name1); 
+    $f_extension1 = strtolower(end($f_extension1)); 
+    $f_newfile1="";
+    if($f_name1){
+    $f_newfile1 = "SM_".uniqid().'.'.$f_extension1; 
+    $store1 = "uploads/".$subfolder."/". $f_newfile1;
+    $image2 =  move_uploaded_file($f_tmp1,$store1);
+    }
+    return "uploads/".$subfolder."/". $f_newfile1;
+}
+
 function imgUpload($filename,$subfolder,$ext,$size="",$width="",$height="")
 {
     $CI = & get_instance();
@@ -175,7 +191,8 @@ function getAllPages()
 				'16' => 'Terms Conditions',
 				'17' => 'Internship',
 				'18' => 'Work As Agent',
-				'19' => 'Pricing'
+				'19' => 'Pricing',
+				'20' => 'Abroad Courses'
 			);
 	return $pages;
 }

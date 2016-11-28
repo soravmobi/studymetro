@@ -35,7 +35,7 @@
 		                <input type="hidden" name="id" value="<?php echo $details['id']; ?>">
 		                <div class="form-group">
 		                  <label for="photos">Descprition</label>
-		                  <textarea required rows="15" name="descprition" class="form-control mceEditor"><?php echo $details['descprition']; ?></textarea>
+		                  <textarea rows="15" name="descprition" class="form-control mceEditor"><?php echo $details['descprition']; ?></textarea>
 		                </div>
 		            </div>
 

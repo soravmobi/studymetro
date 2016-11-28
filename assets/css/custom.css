@@ -4216,3 +4216,112 @@ box-shadow:5px 0 30px rgba(0, 0, 0, 0.5);
 }
 
 /*css for membership plan end*/
+.basic_plan h3 {
+    font-size: 20px !important;
+}
+/*css start for explore page*/
+
+.explore_list li {
+  float: left;
+  width: 20%;
+  line-height: 26px;
+}
+.explore_list li a{
+font-size: 20px;
+color: #fff;
+ display: flex;
+   height: 120px;
+  -webkit-display: flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+    background-color: #2c2c80;
+    padding: 10px;
+}
+
+.explore_list li.colr2 a{
+     background-color: #0e9dee;
+}
+.explore_list li.colr3 a{
+     background-color: #f9a132;
+}
+.explore_list li.colr4 a{
+     background-color: #fdb514;
+}
+.explore_list li.colr5 a{
+     background-color: #868b93;
+}
+.explore_list li.colr6 a{
+     background-color: #00acbd ;
+}
+.explore_list li.colr7 a{
+     background-color: #115581;
+}
+.explore_list li.colr8 a{
+     background-color: #f48648;
+}
+.explore_list li.colr9 a{
+     background-color: #71cef5;
+}
+.explore_list li.colr10 a{
+     background-color: #207dc1;
+}
+.explore_list li.colr11 a{
+     background-color: #3a62ae;
+}
+.explore_list li.colr12 a{
+     background-color: #ffc82f;
+}
+.explore_list li.colr13 a{
+     background-color: #19a4ad;
+}
+.explore_list li.colr14 a{
+     background-color: #0e9dee;
+}
+.explore_list li.colr15 a{
+     background-color: #008599;
+}
+.explore_list li.colr16 a{
+     background-color: #092f87;
+}
+.explore_list li.colr17 a{
+     background-color: #bac72b;
+}
+.explore_list li.colr18 a{
+     background-color: #24ab63;
+}
+.explore_list li.colr19 a{
+     background-color: #831e1e;
+}
+.explore_list li.colr20 a{
+     background-color: #0b5ea6;
+}
+.explore_head a {
+  background-color: #004c9c;
+  border: medium none;
+  color: #fff;
+  float: right;
+  font-size: 20px;
+  margin-bottom: 15px;
+  margin-top: 0;
+  padding: 10px 20px;
+  text-transform: capitalize;
+}
+.explore_head a i{margin-right: 10px;}
+.explore_head h3 {
+  float: left;
+  font-size: 30px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.explore_box {
+  margin-bottom: 40px;
+}
+.explore_head > p {
+  float: right;
+  font-size: 20px;
+  margin-top: 15px;
+}
+/*css end for explore page*/

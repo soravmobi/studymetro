@@ -318,16 +318,29 @@ class University extends CI_Controller {
 	    if(!$offset) {
 		 	$offset = 0;
 	    }
+	    if(isset($_GET['s']) && !empty($_GET['s'])){
+	    	if($this->input->get('per_page')){
+	    		$offset = $this->input->get('per_page');
+	    	}else{
+	    		$offset = 0;
+	    	}
+	    }
 
 	    $data['offset'] = $offset;
 	    $data['university'] = '';
 	    $data['pagination'] = '';
-	    $data['university'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(UNIVERSITIES, (isset($_GET['s'])) ? array('name', 'location', 'address', 'founded', 'president') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'DESC', RESULT_PER_PAGE, $offset, '');
+	    $data['university'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(UNIVERSITIES, (isset($_GET['s'])) ? array('name', 'location', 'country' ,'address', 'founded', 'president') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'DESC', RESULT_PER_PAGE, $offset, '');
+	    // echo $this->db->last_query();die;
 	    if(count($data['university']) > 0) {
 	    	/* Pagination records */
+	    	$query_string = '';
 	        $url = get_cms_url().$this->url.'/view-all';
-	        $total_records = $this->common_model->getTotalPaginateRecordsByOrderByLikeCondition(UNIVERSITIES, (isset($_GET['s'])) ? array('name', 'location', 'address', 'founded', 'president') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', '');
-	        $data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right');
+	        if(isset($_GET['s']) && !empty($_GET['s'])){
+	        	$url .= '?s='.$_GET['s'];
+	        	$query_string = 'yes';
+	        }
+	        $total_records = $this->common_model->getTotalPaginateRecordsByOrderByLikeCondition(UNIVERSITIES, (isset($_GET['s'])) ? array('name', 'location', 'country','address', 'founded', 'president') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', '');
+	        $data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right','',$query_string);
 	    }
 
 		/* Load admin view */

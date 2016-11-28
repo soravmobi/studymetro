@@ -129,6 +129,7 @@ $route['admin/referrals/set-earning'] = 'admin/referrals/setEarning';
 
 $route['admin/programs/import']   = 'admin/programs/import';
 $route['admin/programs/add-new'] = 'admin/programs/addNew';
+$route['admin/programs/search-programs'] = 'admin/programs/searchPrograms';
 $route['admin/programs/add-new-summer-program'] = 'admin/programs/addNewSummerProgram';
 $route['admin/programs/view-all'] = 'admin/programs/viewAll';
 $route['admin/programs/view-all/(:any)'] = 'admin/programs/viewAll/$1';

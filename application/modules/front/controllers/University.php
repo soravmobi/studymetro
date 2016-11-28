@@ -15,9 +15,11 @@ class University extends CI_Controller {
     {
     	$uid = $id;
         $data = array();
-        $data['details']  = $this->common_model->getSingleRecordById(UNIVERSITIES,array('id' => $uid));
-    	$data['programs'] = getProgramsBy('university_id',$uid);
-        $data['meta_title'] = $data['details']['name'];
+        $data['details']    = $this->common_model->getSingleRecordById(UNIVERSITIES,array('id' => $uid));
+    	$data['programs']   = getProgramsBy('university_id',$uid);
+        $data['meta_title'] = $data['details']['meta_title'];
+        $data['meta_description'] = $data['details']['meta_descprition'];
+        $data['meta_keywords'] = $data['details']['meta_keywords'];
         load_front_view('pages/university_detail', $data);
     }
 

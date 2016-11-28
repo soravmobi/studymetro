@@ -179,6 +179,7 @@ define('INCLUDES', 'includes/');
 define('DEFAULT_PROGRAM_FEE', '50');
 
 /* Database Tables */
+define('ABROAD_COURSES', 'abroad_courses');
 define('MENU', 'menus');
 define('COUPONS', 'coupons');
 define('BLOGS', 'blogs');

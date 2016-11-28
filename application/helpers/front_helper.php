@@ -130,6 +130,15 @@ if(!function_exists('getUserDetails')) {
 	}
 }
 
+if(!function_exists('get_abroad_courses')) {
+	function get_abroad_courses($type)
+	{
+		$ci =&get_instance();
+	    $results = $ci->common_model->getAllRecordsOrderById(ABROAD_COURSES,'name','ASC',array('course_type' => $type));
+	    return $results;
+	}
+}
+
 if(!function_exists('getUserDetailsBy')) {
 	function getUserDetailsBy($column,$value)
 	{
@@ -438,7 +447,8 @@ if(!function_exists('getPageName')) {
 					'16' => 'Terms Conditions',
 					'17' => 'Internship',
 					'18' => 'Work As Agent',
-					'19' => 'Pricing'
+					'19' => 'Pricing',
+					'20' => 'Abroad Courses'
 				);
 		return $pages[$key];
 	}

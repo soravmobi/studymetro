@@ -421,7 +421,7 @@ if(!function_exists('admin_favicon')) {
 * @param 
 */
 if(!function_exists('custom_pagination')) {
-	function custom_pagination($url, $total_records, $results, $pull = 'right', $uri_segment = '') {
+	function custom_pagination($url, $total_records, $results, $pull = 'right', $uri_segment = '',$query_string = '') {
 		$ci =&get_instance();
 		$config['full_tag_open'] 	= '<ul class="pagination pagination-sm no-margin pull-'.$pull.'">';
 		$config['full_tag_close'] 	= '</ul>';				
@@ -442,12 +442,14 @@ if(!function_exists('custom_pagination')) {
 		$config['num_tag_open'] 	= '<li class="paginationNums">';
 		$config['num_tag_close'] 	= '</li>';
 		$config['base_url'] 		= $url;
+		if(!empty($query_string)){
+			$config['page_query_string'] = TRUE;
+		}
 		if(!empty($uri_segment)) {
-			$config['uri_segment'] 		= $uri_segment;
+			$config['uri_segment'] 	= $uri_segment;
 		}
 		$config['total_rows'] 		= $total_records;
 		$config['per_page'] 		= $results;
-
 		$ci->pagination->initialize($config);
 		return $ci->pagination->create_links();
 	}

@@ -34,7 +34,7 @@
 		                </div>
 		                <div class="form-group">
 		                  <label for="photos">Descprition</label>
-		                  <textarea required rows="15" name="descprition" class="form-control mceEditor"></textarea>
+		                  <textarea rows="15" name="descprition" class="form-control mceEditor"></textarea>
 		                </div>
 		            </div>
 

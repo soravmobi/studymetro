@@ -107,6 +107,11 @@
               <i class="fa fa-eye"></i> View All Programs
             </a>
           </li>
+          <li class="<?php add_active_class('programs', 'search'); ?>">
+            <a href="<?php cms_url('admin/programs/search-programs'); ?>" title="Search Programs">
+              <i class="fa fa-search"></i> Search Programs
+            </a>
+          </li>
           <li class="<?php add_active_class('programs', 'import'); ?>">
             <a href="<?php cms_url('admin/programs/import'); ?>" title="Import Programs">
               <i class="fa fa-upload"></i> Import Programs

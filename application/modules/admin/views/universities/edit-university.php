@@ -212,6 +212,34 @@
 	            </div><!-- .box-body -->	
 
 	            <div class="box-header with-border">
+		            <h3 class="box-title">Meta Information</h3>
+	          	</div>
+
+	          	<div class="box-body">
+
+	          	<div class="col-md-12">
+	            	<div class="col-md-6">
+		                <div class="form-group">
+		                  <label for="phone">Meta Title</label>
+		                  <input type="text" name="meta_title" class="form-control" id="meta_title" placeholder="Meta Title" value="<?php echo $details['meta_title']; ?>" />
+		                </div>
+		            </div>
+		            <div class="col-md-6">
+		                <div class="form-group">
+		                  <label for="email">Meta Keywords</label>
+		                  <input type="text" name="meta_keywords" class="form-control" id="meta_keywords" placeholder="Meta Keywords" value="<?php echo $details['meta_keywords']; ?>" />
+		                </div>
+		            </div>
+	            </div>
+	            <div class="col-md-12 full-grid">
+		                <div class="form-group">
+		                  <label for="website">Meta Descprition</label>
+		                  <textarea class="form-control" rows="4" name="meta_descprition" placeholder="Meta Descprition"><?php echo $details['meta_descprition']; ?></textarea>
+		                </div>
+		            </div>
+	          	</div>
+
+	            <div class="box-header with-border">
 		            <h3 class="box-title">Contact Information</h3>
 	          	</div>
 
