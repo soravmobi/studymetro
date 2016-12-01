@@ -211,6 +211,22 @@ class Admin extends CI_Controller {
 	}
 
 	/**
+	* Download Database Backup
+	*/
+	public function databse_backup() {
+		$this->load->dbutil();
+		$prefs = array(     
+                'format'      => 'sql',             
+                'filename'    => 'study_metro.sql'
+            );
+		$backup = $this->dbutil->backup($prefs); 
+		$db_name = 'STUDY-METRO-BACKUP-'. date("Y-m-d") .'.sql';
+        $this->load->helper('download');
+        force_download($db_name, $backup); 
+		exit();
+	}
+
+	/**
 	* Admin Dashboard
 	*/
 	public function dashboard() {

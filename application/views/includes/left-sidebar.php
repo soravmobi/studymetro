@@ -429,9 +429,16 @@
           </li>
         </ul>
       </li>
+      <!-- Download Database Backup -->
+      <li class="<?php add_active_class('databse_backup'); ?>">
+        <a href="<?php cms_url('admin/databse_backup'); ?>" title="Download Database Backup">
+          <i class="fa fa-database"></i> 
+          <span>Download Database Backup</span>
+        </a>
+      </li>
       <!-- Sign Out -->
       <li class="<?php add_active_class('logout'); ?>">
-        <a href="<?php cms_url('admin/logout'); ?>">
+        <a href="<?php cms_url('admin/logout'); ?>" title="Sign Out">
           <i class="fa fa-power-off"></i> 
           <span>Sign Out</span>
         </a>

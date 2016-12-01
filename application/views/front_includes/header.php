@@ -125,7 +125,7 @@
                 <?php $user = $this->session->userdata("user_id"); 
                 $first_name = $this->session->userdata("first_name"); 
                 if(empty($user)) { ?>
-                  <li><a href="javascript:void(0);" data-toggle="modal" data-target="#register" data-keyboard="false" data-backdrop="static">Are you a member? Register  / </a></li>
+                  <li><a href="javascript:void(0);" data-toggle="modal" data-target="#register" data-keyboard="false" data-backdrop="static"><span class="are-you-member">Are you a member?</span> Register  / </a></li>
                   <li><a href="javascript:void(0);" data-toggle="modal" data-target="#login" data-keyboard="false" data-backdrop="static">Login</a></li>
                 <?php } else { ?>
                   <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome <?php if(isset($first_name)) echo $first_name; ?>, </a>

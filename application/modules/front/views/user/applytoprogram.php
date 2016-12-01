@@ -459,7 +459,7 @@
             <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" id="paypal-form">
                 <input type="hidden" name="cmd" value="_xclick" />
                 <input type="hidden" name="charset" value="utf-8" />
-                <input type="hidden" name="business" value="sourav-facilitator@mobiwebtech.com" />
+                <input type="hidden" name="business" value="<?php echo PAYPAL_BUSINESS_ID; ?>" />
                 <input type="hidden" name="item_name" value="Programs" />
                 <input type="hidden" name="custom" value="" class="custom-field" /> 
                 <input type="hidden" name="amount" value="<?php echo $ApplicationFees; ?>" />
