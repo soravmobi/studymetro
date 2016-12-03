@@ -174,27 +174,35 @@ class Programs extends CI_Controller {
 		foreach(array_values($sheetData) as $s)
 		{
 			if(!empty($s['A'])){
-			$dataArr = array(
-					'university_id' => $data['university_id'],
-					'program_name'  => $s['A'],
-					'location'      => $s['B'],
-					'course_type'   => $s['C'],
-					'ielts_toefl_pte' => $s['D'],
-					'esl_program' => $s['E'],
-					'gre_sat'    => $s['F'],
-					'application_fee'    => $s['G'],
-					'criteria' => $s['H'],
-					'intake_date'  => $s['I'],
-					'bank_statement' => $s['J'],
-					'duration' 	 => $s['K'],
-					'tution_fee' => $s['L'],
-					'university_scholarship' => $s['M'],
-					'website_lnik' => $s['N'],
-					'study_metro_scholarship' => $s['O'],
-					'country' 		=> $this->input->post('country'),
-					'added_date'    => datetime()
-				);
-			$this->common_model->addRecords(PROGRAMS, $dataArr);
+				$condition = array();
+				$condition['university_id'] = $data['university_id'];
+				$condition['program_name']  = $s['A'];
+				$condition['course_type']   = $s['C'];
+				$result = $this->common_model->getSingleRecordById(PROGRAMS,$condition);
+				if(empty($result))
+				{
+					$dataArr = array(
+							'university_id' => $data['university_id'],
+							'program_name'  => $s['A'],
+							'location'      => $s['B'],
+							'course_type'   => $s['C'],
+							'ielts_toefl_pte' => $s['D'],
+							'esl_program' => $s['E'],
+							'gre_sat'    => $s['F'],
+							'application_fee'    => $s['G'],
+							'criteria' => $s['H'],
+							'intake_date'  => $s['I'],
+							'bank_statement' => $s['J'],
+							'duration' 	 => $s['K'],
+							'tution_fee' => $s['L'],
+							'university_scholarship' => $s['M'],
+							'website_lnik' => $s['N'],
+							'study_metro_scholarship' => $s['O'],
+							'country' 		=> $this->input->post('country'),
+							'added_date'    => datetime()
+						);
+					$this->common_model->addRecords(PROGRAMS, $dataArr);
+				}
 		   }
 		}
 		$this->session->set_flashdata('item_success', sprintf(ITEM_ADD_SUCCESS, 'Programs'));

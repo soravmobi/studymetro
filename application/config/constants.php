@@ -228,3 +228,11 @@ define('SITE_NAME', 'Study Metro');
 define('DEFAULT_IMG', 'default-148.png');
 define('CRM_ACCESS_KEY', 'u$r5f9d994f80d8e0629cafc38bb0e0446b');
 define('CRM_SECRET_KEY', 'abcc73f9e7a9c54d754dc87bb9e124cfe45c0bcf');
+
+define('HTTP_HOST', $_SERVER['HTTP_HOST']);
+
+if(HTTP_HOST == 'localhost' || HTTP_HOST == 'studymetro.sid.mwdemoserver.com'){
+	define('PAYPAL_BUSINESS_ID', 'sourav-facilitator@mobiwebtech.com');
+}else{
+	define('PAYPAL_BUSINESS_ID', 'abhishekbajaj01@gmail.com');
+}
