@@ -543,6 +543,15 @@ class User extends CI_Controller {
         }
     }
 
+    public function sendEmailToAdmin($message,$subject,$from="")
+    {
+        checkUserSession(array('2'));
+        $uid = $this->session->userdata("user_id");
+        $email = $this->common_model->getSingleRecordById('users',array('id'=>$uid));
+        $user_email = $email['email'];
+        send_mail($message, $subject, $user_email,$from="");
+    }
+
     public function paypal_success()
     {
         if(!empty($_GET)){
@@ -554,6 +563,9 @@ class User extends CI_Controller {
             $data['paymnet_date'] = datetime();
             $status = $this->common_model->updateRecords(APPLIED_PROGRAMS,$data,array('id' => decode($_GET['cm'])));
             if($_GET['st'] == 'Completed' && $status == TRUE){
+
+                $this->sendEmailToAdmin('Payment successfully completed','payment',SUPPORT_EMAIL);
+
                 $this->session->set_flashdata('success','Payment successfully completed');
             }else{
                 $this->session->set_flashdata('error','Failed please try again !!');
@@ -586,6 +598,9 @@ class User extends CI_Controller {
             $data['paymnet_date'] = datetime();
             $status = $this->common_model->updateRecords(APPLIED_PROGRAMS,$data,array('id' => decode($_GET['id'])));
             if($_POST['TxStatus'] == 'SUCCESS' && $status == TRUE){
+                
+                $this->sendEmailToAdmin('Payment successfully completed','payment',SUPPORT_EMAIL);
+
                 $this->session->set_flashdata('success','Payment successfully completed');
                 redirect('student/my-applications');
             }else{

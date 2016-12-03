@@ -62,10 +62,13 @@ $route['admin/users/add-new'] = 'admin/users/addNew';
 
 $route['admin/users/view-all'] = 'admin/users/viewAll';
 $route['admin/users/view-all/(:any)'] = 'admin/users/viewAll';
+$route['admin/users/view-history/(:any)'] = 'admin/users/viewHistory';
+$route['admin/users/changeAppStatus'] = 'admin/users/change_app_status';
 
 $route['admin/pages/add-new'] = 'admin/pages/addNew';
 $route['admin/pages/view-all'] = 'admin/pages/viewAll';
 $route['admin/pages/view-all/(:any)'] = 'admin/pages/viewAll/$1';
+
 
 $route['admin/menu/add-new'] = 'admin/menu/addNew';
 
@@ -165,6 +168,8 @@ $route['faqs/(:any)'] = 'front/home/faqs/$1';
 $route['contact-us'] = 'front/home/contactus';
 $route['university/details/(:any)/(:any)'] = 'front/university/details/$1/$1';
 $route['(:any)/apply-to-program'] = 'front/user/applytoprogram/$1';
+
+$route['user/sendEmail'] = 'front/user/sendEmailToAdmin';
 
 /*
 | -------------------------------------------------------------------------
