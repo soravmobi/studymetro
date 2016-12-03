@@ -179,7 +179,13 @@
 
     </div>
 </section>
+
 <?php
+    $social_buttons = get_option('social_buttons');
+    if(!empty($social_buttons)){
+        echo $social_buttons;
+    }
+
     echo getPhotosGallery();
     echo getScholarshipForm();
     echo getTestimonails();

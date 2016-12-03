@@ -23,82 +23,54 @@
       <script src="<?php echo base_url(); ?>assets/js/modernizr-custom.js"></script>
       <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
       <script src="<?php echo base_url(); ?>assets/js/chosen.jquery.min.js"></script>
-      <!-- Google Code for Remarketing Tag --> 
-      <script type="text/javascript"> 
-      /* <![CDATA[ */ 
-      var google_conversion_id = 953824868; 
+      
+      <?php
+        $google_remarking_code = get_option('google_remarking_code');
+        $facebook_plugin       = get_option('facebook_plugin');
+        $twitter_plugin        = get_option('twitter_plugin');
+        $google_analytics      = get_option('google_analytics');
+        $google_webmaster      = get_option('google_webmaster');
+        $bing_webmaster        = get_option('bing_webmaster');
+        $linkedin_plugin       = get_option('linkedin_plugin');
+        $lead_squared          = get_option('lead_squared');
+        $hubspot_plugin        = get_option('hubspot_plugin');
+        $pop_up_function       = get_option('pop_up_function');
+        $other_plugin          = get_option('other_plugin');
 
-      var google_custom_params = window.google_tag_params; 
-
-      var google_remarketing_only = true; 
-      /* ]]> */ 
-      </script> 
-
-      <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"> </script> 
-      <noscript> 
-        <div style="display:inline;"> 
-          <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/953824868/?value=0&amp;guid=ON&amp;script=0"/> 
-        </div> 
-      </noscript>
-
-      <script>(function() {
-        var _fbq = window._fbq || (window._fbq = []);
-
-        if (!_fbq.loaded) {
-
-          var fbds = document.createElement('script');
-
-          fbds.async = true;
-
-          fbds.src = '//connect.facebook.net/en_US/fbds.js';
-
-          var s = document.getElementsByTagName('script')[0];
-
-          s.parentNode.insertBefore(fbds, s);
-
-          _fbq.loaded = true;
-
+        if(!empty($google_remarking_code)){
+            echo $google_remarking_code;
         }
-
-        _fbq.push(['addPixelId', '727416350628543']);
-
-      })();
-
-      window._fbq = window._fbq || [];
-      window._fbq.push(['track', 'PixelInitialized', {}]);
-      </script>
-
-      <noscript>
-        <img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=727416350628543&amp;ev=NoScript" />
-      </noscript>
-
-      <!-- Facebook Conversion Code for Webinar With Golden Globe University -->
-      <script>(function() {
-        var _fbq = window._fbq || (window._fbq = []);
-
-        if (!_fbq.loaded) {
-
-          var fbds = document.createElement('script');
-
-          fbds.async = true;
-
-          fbds.src = '//connect.facebook.net/en_US/fbds.js';
-
-          var s = document.getElementsByTagName('script')[0];
-
-          s.parentNode.insertBefore(fbds, s);
-
-          _fbq.loaded = true;
-
+        if(!empty($facebook_plugin)){
+            echo $facebook_plugin;
         }
-
-      })();
-      window._fbq = window._fbq || [];
-      window._fbq.push(['track', '6022168739415', {'value':'0.01','currency':'INR'}]);
-      </script>
-      <noscript>
-        <img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6022168739415&amp;cd[value]=0.01&amp;cd[currency]=INR&amp;noscript=1" />
-      </noscript>
+        if(!empty($twitter_plugin)){
+            echo $twitter_plugin;
+        }
+        if(!empty($google_analytics)){
+            echo $google_analytics;
+        }
+        if(!empty($google_webmaster)){
+            echo $google_webmaster;
+        }
+        if(!empty($bing_webmaster)){
+            echo $bing_webmaster;
+        }
+        if(!empty($linkedin_plugin)){
+            echo $linkedin_plugin;
+        }
+        if(!empty($lead_squared)){
+            echo $lead_squared;
+        }
+        if(!empty($hubspot_plugin)){
+            echo $hubspot_plugin;
+        }
+        if(!empty($pop_up_function)){
+            echo $pop_up_function;
+        }
+        if(!empty($other_plugin)){
+            echo $other_plugin;
+        }
+      ?>
   </head>
   <body class="hold-transition login-page <?php body_class((!empty($body_class)) ? $body_class : ''); ?>">
     <main class="animsition">
@@ -110,7 +82,7 @@
             <div class="col-md-4 col-sm-4">
               <ul class="contact_list">
                 <li><a href="javascript:void(0);"><i class="fa fa-phone"></i> 91-8088-867-867</a></li>
-                <li><a href="mailto:admission@studymetro.com"><i class="fa fa-envelope"></i> admission@studymetro.com</a></li>
+                <li><a href="mailto:admission@studymetro.com"><i class="fa fa-envelope"></i> <span class="hide_num"> admission@studymetro.com </span></a></li>
               </ul>
             </div>
             <div class="col-md-8 col-sm-8">
@@ -121,7 +93,8 @@
                   </a>
               </div>
               <div class="login_wrap">
-                <ul>
+                <div class="frt_toggle"><span></span> <span></span> <span></span></div>
+                <ul class="head_right sidefrt_menu_list">
                 <?php $user = $this->session->userdata("user_id"); 
                 $first_name = $this->session->userdata("first_name"); 
                 if(empty($user)) { ?>
@@ -191,13 +164,16 @@
               <p>Study Metro - An ISO 9001 Certified Company</p>
             </div>
             <div class="col-md-6 col-sm-6">
-              <ul class="ftr_menu_list">
+              <div class="ftr_menu_list_main">
+              <div class="frt_toggle1"><span></span> <span></span> <span></span></div>
+              <ul class="ftr_menu_list toggle_menu">
                   <li><a href="http://page.studymetro.com/Recorded-Webinar">Webinar</a></li>
                   <li><a href="<?php echo base_url(); ?>pricing">Pricing</a></li>
                   <li><a href="<?php echo base_url(); ?>forum" target="_blank">Forum</a></li>
                   <li><a href="<?php echo base_url(); ?>internship">Internship</a></li>
                   <li><a href="<?php echo base_url(); ?>abroad-courses">Abroad Courses</a></li>
               </ul>
+            </div>
             </div>
             <div class="col-md-2 col-sm-2">
               <div class="appy_now">

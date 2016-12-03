@@ -162,8 +162,17 @@ $("#home_video").owlCarousel({
     dots: true,
     loop: true,
     autoplay: true,
-    itemsDesktop: [1199, 3],
-    itemsDesktopSmall: [979, 3],
+     responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    },
     navigationText: [
         "<i class='icon-chevron-left icon-white'></i>",
         "<i class='icon-chevron-right icon-white'></i>"
@@ -193,14 +202,50 @@ $("#my-gallery-container").owlCarousel({
     dots: true,
     loop: true,
     autoplay: true,
-    itemsDesktop: [1199, 3],
-    itemsDesktopSmall: [979, 3],
+     responsive:{
+        0:{
+            items:1
+        },
+         480:{
+            items:2
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    },
     navigationText: [
         "<i class='icon-chevron-left icon-white'></i>",
         "<i class='icon-chevron-right icon-white'></i>"
     ]
 });
+$('body').on('click','.frt_toggle', function (e) {
+	$(".sidefrt_menu_list").toggleClass("show_sidemenu");
+});
 
+ $('.main_container').on('click', function (e) {
+     
+   $(".sidefrt_menu_list").removeClass("show_sidemenu");
+      
+});
+
+$('body').on('click','.frt_toggle1', function (e) {
+	$(".ftr_menu_list").toggleClass("show_sidemenu1");
+});
+
+ $('.main_container').on('click', function (e) {
+     
+   $(".ftr_menu_list").removeClass("show_sidemenu1");
+      
+});
+
+
+
+ $(".contact_list li a").click(function(){
+      $( this ).prev(".contact_list li").toggleClass("open");
+  });
 
 $('.bs-datepicker').datepicker({
     autoclose : true,

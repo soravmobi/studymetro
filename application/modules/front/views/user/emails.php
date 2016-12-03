@@ -155,7 +155,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">To:</span>
-                                    <input type="email" name="to_email" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
+                                    <input type="email" name="to_email" class="form-control" placeholder="Email" aria-describedby="basic-addon1" value="<?php echo SUPPORT_EMAIL; ?>">
                                 </div>
                                 <div class="error_form to_email"></div>
                             </div>

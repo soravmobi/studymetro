@@ -4328,3 +4328,8 @@ color: #fff;
 .navigation {
   margin-top: 10px;
 }
+.a2a_kit.a2a_kit_size_32.a2a_default_style {
+    float: right !important;
+    margin-right: 180px !important;
+    margin-top: -42px !important;
+}

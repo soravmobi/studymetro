@@ -95,7 +95,9 @@
                                 <p>Dial +91-78030887476 now to avail the free counselling from our expert career advisors.</p>
                                 <h4>Join Universities in World</h4>
                                 <ul class="top_univ">
-                                <?php if(!empty(getAllSummerPrograms())) { foreach(getAllSummerPrograms() as $sp) { ?>
+                                <?php 
+                                $summerPrograms = getAllSummerPrograms();
+                                if(!empty($summerPrograms)) { foreach($summerPrograms as $sp) { ?>
                                     <li> 
                                         <span><?php echo ucwords($sp['university']); ?>,</span>
                                         <div class="data_wrap">
@@ -139,7 +141,7 @@
                         <li><a href="#">apply for franchaisee </a></li>
                     </ul>
                     <div class="bg_join">
-                        <img src="<?php echo base_url(); ?>assets/images/Flyer Front.jpg" style="width:100%">
+                        <img src="<?php echo base_url(); ?>assets/images/FlyerFront.jpg" style="width:100%">
                         <div class="bg_join_data">
                             <p>As part of STUDY METRO International Summer Programs, you'll have the unique opportunity to relish
                                 your desire, while you gain experience with Global Education Leaders.The STUDY METRO international
@@ -153,7 +155,7 @@
                         </div>
                     </div>
                     <div class="internation_summer_bg">
-                        <img src="<?php echo base_url(); ?>assets/images/Flyer Back.jpg">
+                        <img src="<?php echo base_url(); ?>assets/images/FlyerBack.jpg">
                         <img src="<?php echo base_url(); ?>assets/images/internationa_summer_bg.jpg">
                         <img src="<?php echo base_url(); ?>assets/images/STUDY METRO_Advertorial.jpg">
                     </div>

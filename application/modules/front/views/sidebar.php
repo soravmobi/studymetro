@@ -52,7 +52,7 @@
                                   <li <?php if(isset($parent) && $parent == 'feedback') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/feedback">Feedback <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>
                                 <?php if(in_array($user_type, array('2','3'))) { ?>
-                                  <li><a href="<?php echo base_url(); ?>faqs">Visa Guidance <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                  <li><a href="<?php echo base_url(); ?>visa">Visa Guidance <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>
                                 <?php if(in_array($user_type, array('2'))) { ?>
                                   <li <?php if(isset($parent) && $parent == 'quote') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>student/getquote">Get Quote <i class="fa fa-chevron-right pull-right"></i></a></li>
