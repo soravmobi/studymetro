@@ -46,6 +46,7 @@
 	              <th>Online Status</th>
 	              <th>User Status</th>
 	              <th>User Type</th>
+	              <th>History</th>
 	              <th>Action</th>
 	              <th>Date Created</th>
 	              <th>Delete</th>
@@ -107,6 +108,11 @@
 		              	<?php } elseif($val['user_type'] == 6) { ?>
 		              		<span class="label label-primary">Frainchsee</span>
 		              	<?php } ?>
+		              </td>
+		              <td>
+		              	<a href="<?php cms_url('admin/users/viewHistory/'.$val['id']); ?>" title="View History">
+		              		<!-- <i class="fa fa-eye"></i> --> View-History
+		              	</a>
 		              </td>
 		              <td>
 		              	<a href="<?php cms_url('admin/users/edit/'.$val['id']); ?>" title="Edit User">

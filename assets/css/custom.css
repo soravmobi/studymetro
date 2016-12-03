@@ -3079,7 +3079,7 @@ button.confirm {
 }
 .box_doc {
     height: auto;
-    width: 149px;
+    width: 148px;
     display: inline-block;
     border: 1px solid #ddd;
     text-align: center;
@@ -3106,6 +3106,18 @@ a.cross_btn {
     display: block;
     text-align: center;
 }
+a.download_btn {
+    height: 20px;
+    width: 20px;
+    background-color: #3C8DBC;
+    color: #fff;
+    margin-top: 0px;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    display: block;
+    text-align: center;
+}
+
 .error_form {
     color: red;
 }

@@ -133,3 +133,24 @@
     </script>
   </body>
 </html>
+
+<script type="text/javascript">
+  $('body').on('change','.app_status',function(){
+    var prgrm_status = $(this).val();
+    var prgrm_id = $(this).attr('app_id');
+
+    //alert(prgrm_id);
+    $.ajax({
+            url:"<?php echo base_url('admin/users/changeAppStatus'); ?>",
+            type:"POST",
+            data:{prgrm_status:prgrm_status,prgrm_id:prgrm_id},
+            success:function(result)
+            {
+              if(result==1)
+              {
+                $('.success').html('<div class="alert alert-success alert-dismissable" style="margin-top:12px;"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>Status updated successfully.</div>');
+              }
+            }
+    });
+  });
+</script>

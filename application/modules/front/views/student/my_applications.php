@@ -24,6 +24,7 @@
                               <th>Email</th>
                               <th>Phone No</th>
                               <th>Pay Status</th>
+                              <th>Interview Date</th>
                               <th>Apply Date</th>
                             </tr>
                           </thead>
@@ -36,6 +37,7 @@
                               <td><?php echo $a['email']; ?></td>
                               <td><?php echo $a['phone_no']; ?></td>
                               <td><?php echo (!empty($a['pay_status'])) ? $a['pay_status'] : 'Pending'; ?></td>
+                              <td><?php if() ?></td>
                               <td><?php echo convertDateTime($a['apply_date']); ?></td>
                             </tr>
                           <?php $i++; } ?>

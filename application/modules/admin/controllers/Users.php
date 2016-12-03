@@ -151,11 +151,49 @@ class Users extends CI_Controller {
     }
 
     /**
+    * View History
+    * @param $_POST
+    */
+    public function viewHistory($id) {
+        is_logged_in($this->url.'/view-histoty');
+        $data = array();
+        $data['meta_title'] = 'View Histoty';
+        $data['small_text'] = 'User';
+        $data['body_class'] = array('admin_dashboard', 'is_logged_in', 'view_all_users');
+        $data['session_data'] = admin_session_data();
+        $data['user_info'] = get_user($data['session_data']['user_id']);
+        // print_r($data['user_info']); die;
+        /* Fetch Data */
+        
+        $data['documents']  = $this->common_model->getAllRecordsOrderById(DOCUMENTS,'id','DESC',array('user_id' =>$id));
+
+        $data['applications']   = $this->common_model->getAllRecordsOrderById(APPLIED_PROGRAMS,'id','DESC',array('user_id' =>$id));
+
+        $data['users'] = $this->common_model->getAllRecordsOrderById(USER,'id','DESC',array('id' =>$id));
+        //print_r($data['users']); die;
+
+        $data['user_name'] = $data['users'][0]['first_name'].' '.$data['users'][0]['last_name'];
+
+        /* Load admin view */
+        load_admin_view('users/view-history', $data);
+    }
+
+    public function change_app_status()
+    {
+        is_logged_in($this->url.'/view-all');
+        
+        $updateData = array('program_status'=>$_POST['prgrm_status']);
+        $where = array('id'=>$_POST['prgrm_id']);
+        $request = $this->common_model->updateRecords('applied_programs',$updateData,$where);
+        echo $request;
+    }
+
+    /**
     * Edit User
     * @param $_POST
     */
     public function edit() {
-        is_logged_in($this->url.'/view-all');
+        is_logged_in($this->url.'/view-histoty');
         $userId = $this->uri->segment(4);
         if($userId) {
             $data = array();
