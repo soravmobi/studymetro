@@ -10,8 +10,8 @@
 	      <div class="box box-primary">
 	        <div class="box-header">
 	          
-	          <h2 class="box-title"><?php echo sprintf(ALL_DATA, 'Documents'); ?></h2>
-	          <h3><?php echo $user_name; ?></h3>
+	          <h3><?php echo $user_name; ?></h3><br/>
+            <h2 class="box-title"><?php echo sprintf(ALL_DATA, 'Documents'); ?></h2>
 	          
 	        </div><!-- /.box-header -->
           <div class="success"></div>
@@ -29,7 +29,9 @@
                       <p><?php echo date('F d, Y', strtotime($d['added_date'])); ?> <span><?php echo $d['document']; ?></span></p>
                     </div>
                   </div>
-                <?php } } ?>
+                <?php } } else{ ?>
+                  <div class="well text-center">Documents not uploaded by user</div>
+                <?php } ?>
                </div>
 
 	        </div>
@@ -66,7 +68,7 @@
                       <td><?php echo (!empty($a['pay_status'])) ? $a['pay_status'] : 'Pending'; ?></td>
                       <td><?php echo convertDateTime($a['apply_date']); ?></td>
                       <td>
-                      	<select app_id="<?php echo $a['id']; ?>" name="app_status" id="app_status" class="app_status">
+                      	<select app_id="<?php echo $a['id']; ?>" name="app_status" id="app_status" class="app_status form-control">
                       		<option value="0" <?php if($a['program_status']==0) { echo 'selected'; } ?>>Applied</option>
                       		<option value="1" <?php if($a['program_status']==1) { echo 'selected'; } ?>>In Process</option>
                       		<option value="2" <?php if($a['program_status']==2) { echo 'selected'; } ?>>I20 Release</option>
@@ -92,4 +94,24 @@
 	    </div>
     </div><!-- .row -->
   </section><!-- /.content -->
-</div><!-- /.content-wrapper
+</div><!-- /.content-wrapper-->
+
+
+<script type="text/javascript">
+  $('body').on('change','.app_status',function(){
+    var prgrm_status = $(this).val();
+    var prgrm_id = $(this).attr('app_id');
+    $.ajax({
+            url:"<?php echo base_url('admin/users/changeAppStatus'); ?>",
+            type:"POST",
+            data:{prgrm_status:prgrm_status,prgrm_id:prgrm_id},
+            success:function(result)
+            {
+              if(result==1)
+              {
+                $('.success').html('<div class="alert alert-success alert-dismissable" style="margin-top:12px;"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>Status updated successfully.</div>');
+              }
+            }
+    });
+  });
+</script>
