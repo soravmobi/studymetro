@@ -383,4 +383,38 @@ class Common_model extends CI_Model
 		$query = $this->db->get($table);
 		return $query->result_array();
 	}
+
+	function getUserEmail($user_id,$prgrm_id)
+	{
+		$this->db->from(USER);
+		$this->db->join(APPLIED_PROGRAMS,APPLIED_PROGRAMS.'.user_id='.USER.'.id');
+		$this->db->where(USER.'.id',$user_id);
+		$this->db->where(APPLIED_PROGRAMS.'.id',$prgrm_id);
+		$query = $this->db->get();
+		//echo $this->db->last_query(); die;
+		return $query->row_array();
+	}
+
+	function getRecordBySingleJoin($table1,$col1,$table2,$col2,$user_id)
+	{
+		$this->db->from($table1);
+		$this->db->join($table2,$table2.".".$col2."=".$table1.".".$col1."");
+		$this->db->where($table1.'.id',$user_id);
+		$query = $this->db->get();
+		//echo $this->db->last_query(); die;
+		return $query->row_array();
+	}
+
+	function getComments($table, $field, $short, $condition1,$condition2,$limit="")
+	{
+		$this->db->order_by($field, $short);
+	   if(!empty($limit)){
+	   		$this->db->limit($limit);
+	   }
+	   $this->db->where($condition1);
+	   $this->db->or_where($condition2);
+	   $query = $this->db->get($table);
+	   return $query->result_array();
+	}
+
 }

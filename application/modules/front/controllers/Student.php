@@ -66,6 +66,41 @@ class Student extends CI_Controller {
         load_front_view('student/my_applications', $data);
     }
 
+    public function my_comments()
+    {
+        $data = array();
+        $data['meta_title']     = 'My Comments';
+        $data['parent']         = 'my_comments';
+        
+        $where = array('to_user_id' =>$this->uid);
+        $or_where = array('from_user_id' =>$this->uid);
+        $data['comments']  = $this->common_model->getComments(COMMENTS,'id','ASC',$where,$or_where);
+        load_front_view('student/my_comments', $data);
+    }
+
+    public function add_comment()
+    {
+        $message = $_POST['comment_text'];
+        $from_id = $this->uid;
+        $to_id = ADMIN_ID;
+        if(isset($_POST))
+        {
+            $insertData = array('message'=>$message,'from_user_id'=>$from_id,'to_user_id'=>$to_id,'comment_date'=>date('Y-m-d'));
+
+            $request=$this->common_model->addRecords(COMMENTS,$insertData);
+            if($request)
+            {
+                $this->session->set_flashdata('success', "Comment added succefully");
+                redirect(base_url().'student/my-comments');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', "Unable to add Comment.");
+                redirect(base_url().'student/my-comments');
+            }
+        }
+    }
+
     public function saveEducation()
     {
         if($this->input->is_ajax_request())
@@ -205,6 +240,32 @@ class Student extends CI_Controller {
             $this->session->set_flashdata('error',GENERAL_ERROR);
         }
         redirect('student/portfolio');
+    }
+
+    public function sendEmailToAdmin($message,$subject,$from="")
+    {
+        checkUserSession(array('2'));
+        $uid = $this->session->userdata("user_id");
+        $email = $this->common_model->getSingleRecordById('users',array('id'=>$uid));
+        $user_email = $email['email'];
+        send_mail($message, $subject, $user_email,$from="");
+    }
+
+    public function set_interview_date()
+    {
+        $updateData = array('interview_date'=>$_POST['interview_date']);
+        $where = array('id'=>$_POST['prgrm_id']);
+        $request = $this->common_model->updateRecords('applied_programs',$updateData,$where);
+        $user_id = $_POST['user_id'];
+        $prgrm_id = $_POST['prgrm_id'];
+
+        $userEmail = $this->common_model->getUserEmail($user_id,$prgrm_id);
+        $user_email = $userEmail['email'];
+        $status = $_POST['interview_date'];
+        
+        $this->sendEmailToAdmin('Program interview date set on"'.$status.'"','Program Interview Date',$user_email,SUPPORT_EMAIL);
+
+        echo $request;
     }
     
     

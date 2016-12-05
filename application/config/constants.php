@@ -185,6 +185,7 @@ define('COUPONS', 'coupons');
 define('BLOGS', 'blogs');
 define('OFFICES', 'offices');
 define('APPLIED_PROGRAMS', 'applied_programs');
+define('COMMENTS', 'comments');
 define('STATIC_PAGE', 'static_pages');
 define('SYSTEM_PREFERENCE', 'system_preferences');
 define('USER', 'users');
@@ -212,6 +213,8 @@ define('VOLUNTEERS', 'volunteers');
 define('INTERNATIONAL', 'international_partnership');
 define('MY_VIDEOS', 'my_videos');
 define('LOCATIONS', 'locations');
+
+define('ADMIN_ID',1);
 
 /* Rest Api constants */
 define('SUCCESS', '100');

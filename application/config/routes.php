@@ -64,6 +64,7 @@ $route['admin/users/view-all'] = 'admin/users/viewAll';
 $route['admin/users/view-all/(:any)'] = 'admin/users/viewAll';
 $route['admin/users/view-history/(:any)'] = 'admin/users/viewHistory';
 $route['admin/users/changeAppStatus'] = 'admin/users/change_app_status';
+$route['users/addComment'] = 'admin/users/add_comment';
 
 $route['admin/pages/add-new'] = 'admin/pages/addNew';
 $route['admin/pages/view-all'] = 'admin/pages/viewAll';
@@ -152,9 +153,13 @@ $route['user/upload_documents'] = 'front/user/upload_documents';
 $route['user/notes'] = 'front/user/notes';
 $route['user/emails'] = 'front/user/emails';
 $route['user/my-videos'] = 'front/user/myvideos';
+$route['user/sendEmail'] = 'front/user/sendEmailToAdmin';
 $route['student/getquote'] = 'front/student/getquote';
 $route['student/portfolio'] = 'front/student/portfolio';
 $route['student/my-applications'] = 'front/student/my_applications';
+$route['student/my-comments'] = 'front/student/my_comments';
+$route['student/addComment'] = 'front/student/add_comment';
+$route['student/setInterviewDate'] = 'front/student/set_interview_date';
 $route['university/profile_types'] = 'front/university/profile_types';
 $route['university/post_grad'] = 'front/university/post_grad';
 $route['university/mba'] = 'front/university/mba';
@@ -168,8 +173,6 @@ $route['faqs/(:any)'] = 'front/home/faqs/$1';
 $route['contact-us'] = 'front/home/contactus';
 $route['university/details/(:any)/(:any)'] = 'front/university/details/$1/$1';
 $route['(:any)/apply-to-program'] = 'front/user/applytoprogram/$1';
-
-$route['user/sendEmail'] = 'front/user/sendEmailToAdmin';
 
 /*
 | -------------------------------------------------------------------------

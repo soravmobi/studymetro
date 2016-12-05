@@ -203,3 +203,13 @@ width: 90%;}
 .content_tooltip {
     color: #484545;
 }
+
+.cmnt_text_box{
+    width:900px;
+    margin: 14px 7px;
+}
+.cmnt_table{
+    border: 1px solid #ccc;
+    margin: 8px 8px 16px;
+    width: 95%;
+}

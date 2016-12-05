@@ -4345,3 +4345,13 @@ color: #fff;
     margin-right: 180px !important;
     margin-top: -42px !important;
 }
+
+.cmnt_text_box{
+    width:691px;
+    margin: 14px 7px;
+}
+.cmnt_table{
+    border: 1px solid #ccc;
+    margin: 8px 8px 16px;
+    width: 95%;
+}

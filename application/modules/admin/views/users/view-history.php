@@ -14,7 +14,19 @@
             <h2 class="box-title"><?php echo sprintf(ALL_DATA, 'Documents'); ?></h2>
 	          
 	        </div><!-- /.box-header -->
-          <div class="success"></div>
+
+          <div class="success">
+          <?php if($this->session->flashdata('success')){ ?>
+            <div class="alert alert-success">
+              <?php echo $this->session->flashdata('success'); ?>
+            </div>
+          <?php } elseif($this->session->flashdata('error')) { ?>
+          <div class="alert alert-danger">
+              <?php echo $this->session->flashdata('error'); ?>
+            </div>
+          <?php } ?>
+          </div>
+
 	        <div class="box-body table-responsive no-padding">
 	          <!-- view all documents -->
 
@@ -68,7 +80,7 @@
                       <td><?php echo (!empty($a['pay_status'])) ? $a['pay_status'] : 'Pending'; ?></td>
                       <td><?php echo convertDateTime($a['apply_date']); ?></td>
                       <td>
-                      	<select app_id="<?php echo $a['id']; ?>" name="app_status" id="app_status" class="app_status form-control">
+                      	<select user_id="<?php echo $a['user_id']; ?>" app_id="<?php echo $a['id']; ?>" name="app_status" id="app_status" class="app_status form-control">
                       		<option value="0" <?php if($a['program_status']==0) { echo 'selected'; } ?>>Applied</option>
                       		<option value="1" <?php if($a['program_status']==1) { echo 'selected'; } ?>>In Process</option>
                       		<option value="2" <?php if($a['program_status']==2) { echo 'selected'; } ?>>I20 Release</option>
@@ -88,6 +100,56 @@
 
 	        </div>
 
+          <div class="box-header">
+            
+            <h2 class="box-title"><?php echo sprintf(ALL_DATA, 'Comments'); ?></h2>
+            
+          </div><!-- /.box-header -->
+
+          <div class="box-body table-responsive no-padding">
+            <!-- view comments -->
+            <h5>Click the “add comment” button below to submit your comments to College Study US.</h5>
+              <div class="cmnt_box">
+                  <?php if(!empty($comments)) { foreach($comments as $c) { ?>
+                  <table cellspacing="2" cellpadding="4" border="1" class="cmnt_table">
+                    <tbody>
+                      <tr>
+                      <?php $sess_data = $this->session->userdata('admin_session_data'); if($sess_data['user_id'] == $c['from_user_id']) { $color = '#3C8DBC'; } else {
+                                    $color = '#434b4e';
+                                    } ?>
+                        <td align="right" style="width:50px; padding-right:8px; border-right:1px solid #dcdcdc; font-size:7pt; color:<?php echo $color; ?>;">
+                            <?php echo $c['comment_date']; ?>
+                            <br>
+                            <?php $from = $this->common_model->getRecordBySingleJoin(USER,'id',COMMENTS,'from_user_id',$c['from_user_id']); 
+                            if($from['user_type']==1){ echo 'Admin'; }
+                            if($from['user_type']==2){ echo 'Student'; }
+                            if($from['user_type']==5){ echo 'University'; } ?>
+                        </td>
+                        <td style="padding-left:8px; color:<?php echo $color; ?>;"><?php echo $c['message']; ?></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <?php } ?>
+                </div><?php } else { ?>
+            <div class="well text-center">Comments not uploaded by user</div>
+            <?php } ?>
+            <form method="post" action="<?php echo base_url('users/addComment'); ?>">
+              <table cellspacing="0" cellpadding="0" border="0" style="">
+                <tbody>
+                  <tr>
+                    <td style="">
+                      <input type="text" class="cmnt_text_box" name="comment_text">
+                      <input type="hidden" class="to_id" name="to_id" value="<?php echo $this->uri->segment(4); ?>">
+                    </td>
+                    <td>
+                      <input type="submit" class="btn btn-primary" value="Add comment" name="submit">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+
 	        <!-- /.box-body -->
 	        <div class="box-footer"><?php //if($pagination) { echo $pagination; } ?></div>
 	      </div><!-- /.box -->
@@ -101,12 +163,13 @@
   $('body').on('change','.app_status',function(){
     var prgrm_status = $(this).val();
     var prgrm_id = $(this).attr('app_id');
+    var user_id=$(this).attr('user_id');
     $.ajax({
             url:"<?php echo base_url('admin/users/changeAppStatus'); ?>",
             type:"POST",
-            data:{prgrm_status:prgrm_status,prgrm_id:prgrm_id},
+            data:{prgrm_status:prgrm_status,prgrm_id:prgrm_id,user_id:user_id},
             success:function(result)
-            {
+            { //alert(result);
               if(result==1)
               {
                 $('.success').html('<div class="alert alert-success alert-dismissable" style="margin-top:12px;"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>Status updated successfully.</div>');

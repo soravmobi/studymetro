@@ -4,7 +4,7 @@
               <div class="container">
                  <div class="row">
                  <div class="col-md-12 col-sm-12">
-                   My Applications
+                   My Comments
                    </div>
                  </div>
               </div>
@@ -16,47 +16,48 @@
                     <div class="col-md-9 col-sm-9">
                       <div class="right_dashboard">
                       <div class="success"></div>
-                        <table class="table table-hover">
-                          <thead>
-                            <tr>
-                              <th>S.NO.</th>
-                              <th>Program</th>
-                              <th>Name</th>
-                              <th>Email</th>
-                              <th>Phone No</th>
-                              <th>Pay Status</th>
-                              <th>Program Status</th>
-                              <th>Interview Date</th>
-                              <th>Apply Date</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                          <?php $i = 1; foreach($applications as $a) { ?>
-                            <tr>
-                              <td><?php echo $i; ?></td>
-                              <td><?php echo getDetailsBy(PROGRAMS,'id',$a['program_id'],'program_name'); ?></td>
-                              <td><?php echo $a['first_name']." ".$a['last_name']; ?></td>
-                              <td><?php echo $a['email']; ?></td>
-                              <td><?php echo $a['phone_no']; ?></td>
-                              <td><?php echo (!empty($a['pay_status'])) ? $a['pay_status'] : 'Pending'; ?></td>
-                              <td>
-                              <?php if($a['program_status']==0){ echo 'Applied'; } ?>
-                              <?php if($a['program_status']==1){ echo 'In Process'; } ?>
-                              <?php if($a['program_status']==2){ echo 'I20 Release'; } ?>
-                              <?php if($a['program_status']==3){ echo 'Visa Appointment Date'; } ?>
-                              <?php if($a['program_status']==4){ echo 'Visa Approved'; } ?>
-                              <?php if($a['program_status']==5){ echo 'Visa Declined'; } ?>
-                              <?php if($a['program_status']==6){ echo 'Tution Fee Paid'; } ?>
-                              <?php if($a['program_status']==7){ echo 'Accepted'; } ?></td>
-                              <td>
-                              <?php if($a['program_status']==7){ ?>
-                                  <input type="text" name="interview_date" id="interview_date" class="interview_date" prgrm_id="<?php echo $a['id']; ?>" user_id="<?php echo $a['user_id']; ?>" value="<?php echo $a['interview_date']; ?>"> <?php } ?>
-                              </td>
-                              <td><?php echo convertDateTime($a['apply_date']); ?></td>
-                            </tr>
-                          <?php $i++; } ?>
-                          </tbody>
+                      <div class="box-body table-responsive no-padding">
+                        <!-- view comments -->
+                        <h5>Click the “add comment” button below to submit your comments to College Study US.</h5><br/>
+                          <div class="cmnt_box">
+                              <?php if(!empty($comments)) { foreach($comments as $c) { ?>
+                              <table cellspacing="2" cellpadding="4" border="1" class="cmnt_table">
+                                <tbody>
+                                  <tr>
+                                  <?php if($this->session->userdata('user_id') == $c['from_user_id']) { $color = '#014e99'; } else {
+                                    $color = '#434b4e';
+                                    } ?>
+                                    <td align="right" style="width:60px; padding-right:8px; border-right:1px solid #dcdcdc; font-size:7pt; color:<?php echo $color; ?>;">
+                                        <?php echo $c['comment_date']; ?>
+                                        <br>
+                                        <?php $from = $this->common_model->getRecordBySingleJoin(USER,'id',COMMENTS,'from_user_id',$c['from_user_id']); 
+                                        if($from['user_type']==1){ echo 'Admin'; }
+                                        if($from['user_type']==2){ echo 'Student'; }
+                                        if($from['user_type']==5){ echo 'University'; } ?>
+                                    </td>
+                                    <td style="padding-left:8px; color:<?php echo $color; ?>"><?php echo $c['message']; ?></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <?php } ?>
+                            </div><?php } else { ?>
+                        <div class="well text-center">Comments not uploaded by user</div>
+                        <?php } ?>
+                        <form method="post" action="<?php echo base_url('student/addComment'); ?>">
+                          <table cellspacing="0" cellpadding="0" border="0" style="">
+                            <tbody>
+                              <tr>
+                                <td style="">
+                                  <input type="text" class="cmnt_text_box" name="comment_text">
+                                </td>
+                                <td>
+                                  <input type="submit" class="btn btn-primary" value="Add comment" name="submit">
+                                </td>
+                              </tr>
+                            </tbody>
                           </table>
+                        </form>
+                      </div>
                       </div>
                      </div> 
                     </div>
@@ -316,35 +317,3 @@
             </div>
         </div>
         <!-- Modal  for #certificate end-->
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-<script>
-  $( function() {
-    $( ".interview_date" ).datepicker({
-        minDate: 0,
-        format: "yyyy-m-dd",
-        autoclose: true
-    });
-  });
-
-  // for change interview date
-
-  $('body').on('change','.interview_date',function(){
-    var interview_date = $(this).val();
-    var prgrm_id = $(this).attr('prgrm_id');
-    var user_id=$(this).attr('user_id');
-    $.ajax({
-            url:"<?php echo base_url('student/setInterviewDate'); ?>",
-            type:"POST",
-            data:{interview_date:interview_date,prgrm_id:prgrm_id,user_id:user_id},
-            success:function(result)
-            { 
-              if(result==1)
-              {
-                $('.success').html('<div class="alert alert-success alert-dismissable" style="margin-top:12px;"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>Interview Date set successfully.</div>');
-              }
-            }
-    });
-  });
-</script>
