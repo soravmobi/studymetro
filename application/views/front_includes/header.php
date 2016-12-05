@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="<?php echo (!empty($meta_keywords)) ? $meta_keywords : ''; ?>">
     <meta name="description" content="<?php echo (!empty($meta_description)) ? $meta_description : ''; ?>">
-    <title><?php admin_meta_title((!empty($meta_title)) ? $meta_title : ''); ?></title>
+    <title><?php echo (!empty($meta_title)) ? $meta_title : 'Study Metro Overseas Education Consultant'; ?></title>
+    <!-- <title><?php admin_meta_title((!empty($meta_title)) ? $meta_title : ''); ?></title> -->
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php admin_favicon(); ?>

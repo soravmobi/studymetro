@@ -613,6 +613,19 @@ class User extends CI_Controller {
         }
     }
 
+    public function my_comments()
+    {
+        checkUserSession(array('2','4','5','6'));
+        $data = array();
+        $data['meta_title']     = 'My Comments';
+        $data['parent']         = 'my_comments';
+        
+        $where = array('to_user_id' =>$this->uid);
+        $or_where = array('from_user_id' =>$this->uid);
+        $data['comments']  = $this->common_model->getComments(COMMENTS,'id','ASC',$where,$or_where);
+        load_front_view('student/my_comments', $data);
+    }
+
 
 
 }

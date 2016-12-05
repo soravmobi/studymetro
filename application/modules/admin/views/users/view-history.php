@@ -108,7 +108,6 @@
 
           <div class="box-body table-responsive no-padding">
             <!-- view comments -->
-            <h5>Click the “add comment” button below to submit your comments to College Study US.</h5>
               <div class="cmnt_box">
                   <?php if(!empty($comments)) { foreach($comments as $c) { ?>
                   <table cellspacing="2" cellpadding="4" border="1" class="cmnt_table">
@@ -131,7 +130,7 @@
                   </table>
                   <?php } ?>
                 </div><?php } else { ?>
-            <div class="well text-center">Comments not uploaded by user</div>
+            <div class="well text-center">Conversation not found</div>
             <?php } ?>
             <form method="post" action="<?php echo base_url('users/addComment'); ?>">
               <table cellspacing="0" cellpadding="0" border="0" style="">

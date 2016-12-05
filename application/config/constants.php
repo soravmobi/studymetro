@@ -184,6 +184,7 @@ define('MENU', 'menus');
 define('COUPONS', 'coupons');
 define('BLOGS', 'blogs');
 define('OFFICES', 'offices');
+define('OFFLINE_PAYMENT', 'offline_payment');
 define('APPLIED_PROGRAMS', 'applied_programs');
 define('COMMENTS', 'comments');
 define('STATIC_PAGE', 'static_pages');
@@ -235,7 +236,21 @@ define('CRM_SECRET_KEY', 'abcc73f9e7a9c54d754dc87bb9e124cfe45c0bcf');
 define('HTTP_HOST', $_SERVER['HTTP_HOST']);
 
 if(HTTP_HOST == 'localhost' || HTTP_HOST == 'studymetro.sid.mwdemoserver.com'){
+	/* Paypal Details */
 	define('PAYPAL_BUSINESS_ID', 'sourav-facilitator@mobiwebtech.com');
+	define('PAYPAL_FORM_URL', 'https://www.sandbox.paypal.com/cgi-bin/webscr');
+
+	/* Citrus Details */
+	define('CITRUS_FORM_URL', 'https://sandbox.citruspay.com/uycuxzlzv2');
+	define('CITRUS_SECRET_KEY', 'cbce9048aab88acabb0fc1e0d3d0b1b88d275001');
+	define('CITRUS_VANITY_URL', 'uycuxzlzv2');
 }else{
+	/* Paypal Details */
 	define('PAYPAL_BUSINESS_ID', 'abhishekbajaj01@gmail.com');
+	define('PAYPAL_FORM_URL', 'https://www.paypal.com/cgi-bin/webscr');
+
+	/* Citrus Details */
+	define('CITRUS_FORM_URL', 'https://www.citruspay.com/studymetro');
+	define('CITRUS_SECRET_KEY', '2f616053f8837dc11d2a6cb28944873a3cdaaa66');
+	define('CITRUS_VANITY_URL', 'studymetro');
 }

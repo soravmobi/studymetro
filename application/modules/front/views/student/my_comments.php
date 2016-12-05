@@ -41,7 +41,7 @@
                               </table>
                               <?php } ?>
                             </div><?php } else { ?>
-                        <div class="well text-center">Comments not uploaded by user</div>
+                        <div class="well text-center">Conversation not found</div>
                         <?php } ?>
                         <form method="post" action="<?php echo base_url('student/addComment'); ?>">
                           <table cellspacing="0" cellpadding="0" border="0" style="">

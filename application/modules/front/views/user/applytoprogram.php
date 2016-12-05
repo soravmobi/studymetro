@@ -415,48 +415,20 @@
           </div>
           <div class="modal-body">
           <?php
-              $mode = 'live';
-              if($mode == 'sandbox') { 
-                  //Need to replace the last part of URL("your-vanityUrlPart") with your Testing/Live URL
-                  $formPostUrl = "https://sandbox.citruspay.com/uycuxzlzv2";  
-                  //Need to change with your Secret Key
-                  $secret_key = "cbce9048aab88acabb0fc1e0d3d0b1b88d275001";   
-                  //Need to change with your Vanity URL Key from the citrus panel
-                  $vanityUrl = "uycuxzlzv2";
-                  //Should be unique for every transaction
-                  $merchantTxnId = uniqid(); 
-                  //Need to change with your Order Amount
-                  $orderAmount = $ApplicationFees;
-                  $currency = "USD";
-                  $data = $vanityUrl.$orderAmount.$merchantTxnId.$currency;
-                  $notifyUrl = base_url().'front/user/citrus_notify';
-                  $securitySignature = hash_hmac('sha1', $data, $secret_key);
-              } elseif($mode == 'live') {
-                  //Need to replace the last part of URL("your-vanityUrlPart") with your Testing/Live URL
-                  $formPostUrl = "https://www.citruspay.com/studymetro";  
-                  //Need to change with your Secret Key
-                  $secret_key = "2f616053f8837dc11d2a6cb28944873a3cdaaa66";   
-                  //Need to change with your Vanity URL Key from the citrus panel
-                  $vanityUrl = "studymetro";
-                  //Should be unique for every transaction
-                  $merchantTxnId = uniqid(); 
-                  //Need to change with your Order Amount
-                  $orderAmount = $ApplicationFees;
-                  $currency = "USD";
-                  $data = $vanityUrl.$orderAmount.$merchantTxnId.$currency;
-                  $notifyUrl = base_url().'front/user/citrus_notify';
-                  $securitySignature = hash_hmac('sha1', $data, $secret_key);
-              }
+              $merchantTxnId = uniqid(); 
+              $currency = "USD";
+              $orderAmount = $ApplicationFees;
+              $data = CITRUS_VANITY_URL.$orderAmount.$merchantTxnId.$currency;
+              $securitySignature = hash_hmac('sha1', $data, CITRUS_SECRET_KEY);
           ?>
-            <form align="center" id="citrus-form" method="post" action="<?php echo $formPostUrl; ?>">
+            <form align="center" id="citrus-form" method="post" action="<?php echo CITRUS_FORM_URL; ?>">
                <input type="hidden" id="merchantTxnId" name="merchantTxnId" value="<?php echo $merchantTxnId; ?>" />
                <input type="hidden" id="orderAmount" name="orderAmount" value="<?php echo $orderAmount; ?>" />
                <input type="hidden" id="currency" name="currency" value="<?php echo $currency; ?>" />
                <input type="hidden" name="returnUrl" value="" class="citrus-return-url" />
-               <!-- <input type="hidden" id="notifyUrl" name="notifyUrl" value="<%=notifyUrl%>" /> -->
                <input type="hidden" id="secSignature" name="secSignature" value="<?php echo $securitySignature; ?>" />
            </form>
-            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" id="paypal-form">
+            <form action="<?php echo PAYPAL_FORM_URL; ?>" method="post" id="paypal-form">
                 <input type="hidden" name="cmd" value="_xclick" />
                 <input type="hidden" name="charset" value="utf-8" />
                 <input type="hidden" name="business" value="<?php echo PAYPAL_BUSINESS_ID; ?>" />

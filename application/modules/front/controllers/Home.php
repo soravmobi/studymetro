@@ -24,10 +24,13 @@ class Home extends CI_Controller {
     }
 
     public function pages($slug){
+        if($slug == 'university' || $slug == 'search-programs'){
+            checkUserSession(array('2','3','4','5','6'));
+        }
         $data = array();
         $data['details'] = $this->common_model->getSingleRecordById(STATIC_PAGE,array('slug' => $slug));
         if(!empty($data['details'])){
-            $data['meta_title'] = $data['details']['title'];
+            $data['meta_title'] = $data['details']['meta_title'];
             $data['meta_keywords'] = $data['details']['meta_keywords'];
             $data['meta_description'] = $data['details']['meta_description'];
             $page_name = strtolower(str_replace(' ', '-', getPageName($data['details']['page_no'])));

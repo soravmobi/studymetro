@@ -66,17 +66,6 @@ class Student extends CI_Controller {
         load_front_view('student/my_applications', $data);
     }
 
-    public function my_comments()
-    {
-        $data = array();
-        $data['meta_title']     = 'My Comments';
-        $data['parent']         = 'my_comments';
-        
-        $where = array('to_user_id' =>$this->uid);
-        $or_where = array('from_user_id' =>$this->uid);
-        $data['comments']  = $this->common_model->getComments(COMMENTS,'id','ASC',$where,$or_where);
-        load_front_view('student/my_comments', $data);
-    }
 
     public function add_comment()
     {
@@ -91,12 +80,12 @@ class Student extends CI_Controller {
             if($request)
             {
                 $this->session->set_flashdata('success', "Comment added succefully");
-                redirect(base_url().'student/my-comments');
+                redirect('user/my-comments');
             }
             else
             {
                 $this->session->set_flashdata('error', "Unable to add Comment.");
-                redirect(base_url().'student/my-comments');
+                redirect('user/my-comments');
             }
         }
     }

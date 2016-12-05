@@ -354,8 +354,29 @@
           </li>
         </ul>
       </li>
+
+      <!-- Offline Payment -->
+      <li class="treeview <?php tree_active_class('payments', array('addNew', 'edit','viewAll')); ?>">
+        <a href="javascript:void(0);" title="Offline Payment">
+          <i class="fa fa-money"></i> 
+          <span>Offline Payment</span> 
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<?php add_active_class('payments', 'addNew'); ?>">
+            <a href="<?php cms_url('admin/payments/add-new'); ?>" title="Make New Payment">
+              <i class="fa fa-plus"></i> Make New Payment
+            </a>
+          </li>
+          <li class="<?php add_active_class('payments', 'viewAll'); ?>">
+            <a href="<?php cms_url('admin/payments/view-all'); ?>" title="View Payment History">
+              <i class="fa fa-eye"></i> View Payment History
+            </a>
+          </li>
+        </ul>
+      </li>
       <!-- Coupons -->
-      <li class="treeview <?php tree_active_class('faqs', array('addNew', 'edit','viewAll')); ?>">
+      <li class="treeview <?php tree_active_class('coupons', array('addNew', 'edit','viewAll')); ?>">
         <a href="javascript:void(0);" title="Coupons">
           <i class="fa fa-bars"></i> 
           <span>Coupons</span> 

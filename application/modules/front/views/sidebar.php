@@ -68,8 +68,8 @@
                                   <li <?php if(isset($parent) && $parent == 'my_applications') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>student/my-applications">My Applications <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>
 
-                                <?php if(in_array($user_type, array('2','3','5'))) { ?>
-                                <li <?php if(isset($parent) && $parent == 'my_comments') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>student/my-comments">Comments <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php if(in_array($user_type, array('2','4','5','6'))) { ?>
+                                <li <?php if(isset($parent) && $parent == 'my_comments') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/my-comments">Comments <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>
 
                                 <?php if(in_array($user_type, array('2','3'))) { ?>
