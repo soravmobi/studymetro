@@ -466,7 +466,7 @@ if(!function_exists('getCourseTypes')) {
 if(!function_exists('filter_course_types')) {
 	function filter_course_types($ct) {
 		$types = array(
-			'Graduate Course' => array('Graduate Courses', 'Post Graduate Diploma', 'Bachelor & Master', 'Bachelor & Masters', 'Diploma & Masters', 'Diploma.Bachelors & Masters', 'Master', 'Masters', 'master/bachelor'), 
+			'Graduate Course' => array('Graduate Course','Graduate Courses', 'Post Graduate Diploma', 'Bachelor & Master', 'Bachelor & Masters', 'Diploma & Masters', 'Diploma.Bachelors & Masters', 'Master', 'Masters', 'master/bachelor'), 
 			'Undergraduate Course' => array('Associate Degree', 'Associate & Certificate', 'Associate', 'Undergraduate', 'Undergraduate courses', 'UnderGraduate/Certificate'), 
 			'Doctored' => array('Doctor', 'Doctoral', 'doctorate'), 
 			'Certificate/Diploma' => array('Certificates / DIPLOMA', 'Post Baccalaureat Diploma', 'Post Bacculerate Diploma', 'Post Baccalaureate diploma', 'Diploma', 'Diplomas', '2 Year Advanced Diploma Courses', 'Digital Design Advanced Diploma', 'Creative Communications Advanced Diploma', 'Motion Graphics & Film Advanced Diploma', 'Advance Diploma', 'Advanced diploma', 'Certificate & Diploma', 'Certificates / Diploma', 'Diploma & Certificate', 'Diploma & Masters', 'Diploma course', 'Graduate diploma', ''), 

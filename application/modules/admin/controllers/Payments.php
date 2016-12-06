@@ -60,6 +60,30 @@ class Payments extends CI_Controller {
     	}
     }
 
+    public function citrus_return()
+    {
+        if(!empty($_POST) && !empty($_GET['amount'])){
+            $data               = array();
+            $data['amount']     = $_POST['amount'];
+            $data['pay_type']   = 1;
+            $data['remark']     = $_GET['remark'];
+            $data['txn_id']     = $_POST['TxId'];
+            $data['status']     = $_POST['TxStatus'];
+            $data['payment_date'] = datetime();
+            $this->common_model->addRecords(OFFLINE_PAYMENT, $data);
+            if($_POST['TxStatus'] == 'SUCCESS'){
+                $this->session->set_flashdata('item_success', 'Payment success');
+                redirect($this->url.'/view-all');
+            }else{
+                $this->session->set_flashdata('general_error', 'Paymnet failed  !!');
+                redirect($this->url.'/add-new');
+            }
+        }else{
+            $this->session->set_flashdata('general_error', 'Paymnet failed  !!');
+            redirect($this->url.'/add-new');
+        }
+    }
+
     /**
 	* View all payments
 	* @return Array of all payments
