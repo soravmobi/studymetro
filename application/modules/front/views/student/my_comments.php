@@ -48,7 +48,7 @@
                             <tbody>
                               <tr>
                                 <td style="">
-                                  <input type="text" class="cmnt_text_box" name="comment_text">
+                                  <input type="text" class="cmnt_text_box <?php if(form_error('comment_text')) { echo 'valid_error' ;} ?>" name="comment_text">
                                 </td>
                                 <td>
                                   <input type="submit" class="btn btn-primary" value="Add comment" name="submit">

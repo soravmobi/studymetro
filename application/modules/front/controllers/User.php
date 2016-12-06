@@ -626,6 +626,22 @@ class User extends CI_Controller {
         load_front_view('student/my_comments', $data);
     }
 
+    public function view_portfolio()
+    {
+        $data = array();
+        $data['meta_title'] = 'E-portfolio';
+        $data['parent'] = 'portfolio';
+        //echo $_GET['id'];die;
+        $user_id = decode($_GET['id']);
+        $data['certifications'] = $this->common_model->getAllRecordsOrderById(CERTIFICATIONS,'id','DESC',array('user_id' => $user_id));
+        $data['education']      = $this->common_model->getAllRecordsOrderById(EDUCATION,'id','DESC',array('user_id' => $user_id));
+        $data['interests']      = $this->common_model->getAllRecordsOrderById(INTERESTS,'id','DESC',array('user_id' => $user_id));
+        $data['volunteers']     = $this->common_model->getAllRecordsOrderById(VOLUNTEERS,'id','DESC',array('user_id' => $user_id));
+        $data['username']     = $this->common_model->getSingleRecordById(USER,array('id' => $user_id));
+
+        load_front_view('student/social_icon_portfolio', $data);
+    }
+
 
 
 }

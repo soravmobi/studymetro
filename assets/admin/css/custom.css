@@ -204,9 +204,9 @@ width: 90%;}
     color: #484545;
 }
 
-.cmnt_text_box{
-    width:900px;
-    margin: 14px 7px;
+.admin_cmnt_text_box {
+  margin: 14px 7px;
+  width: 863px;
 }
 .cmnt_table{
     border: 1px solid #ccc;
