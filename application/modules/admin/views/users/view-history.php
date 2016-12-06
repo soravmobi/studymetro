@@ -131,14 +131,14 @@
                   <?php } ?>
                 </div><?php } else { ?>
             <div class="well text-center">Conversation not found</div>
-            <?php } ?>
-            <form method="post" action="<?php echo base_url('users/addComment'); ?>">
+            <?php } $id= $this->uri->segment(4);?>
+            <form method="post" action="<?php echo base_url('admin/users/addComment/'.$id); ?>">
               <table cellspacing="0" cellpadding="0" border="0" style="">
                 <tbody>
                   <tr>
                     <td style="">
-                      <input type="text" class="cmnt_text_box" name="comment_text">
-                      <input type="hidden" class="to_id" name="to_id" value="<?php echo $this->uri->segment(4); ?>">
+                      <input type="text" class="admin_cmnt_text_box <?php if(form_error('comment_text')) { echo 'valid_error' ;} ?>" name="comment_text">
+                      <input type="hidden" class="to_id" name="to_id" value="<?php echo $id; ?>">
                     </td>
                     <td>
                       <input type="submit" class="btn btn-primary" value="Add comment" name="submit">

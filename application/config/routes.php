@@ -62,9 +62,10 @@ $route['admin/users/add-new'] = 'admin/users/addNew';
 
 $route['admin/users/view-all'] = 'admin/users/viewAll';
 $route['admin/users/view-all/(:any)'] = 'admin/users/viewAll';
-$route['admin/users/view-history/(:any)'] = 'admin/users/viewHistory';
+$route['admin/users/view-history'] = 'admin/users/viewHistory';
+$route['admin/users/view-history/(:any)'] = 'admin/users/viewHistory/$1';
 $route['admin/users/changeAppStatus'] = 'admin/users/change_app_status';
-$route['users/addComment'] = 'admin/users/add_comment';
+$route['admin/users/addComment/(:any)'] = 'admin/users/add_comment/$1';
 
 $route['admin/pages/add-new'] = 'admin/pages/addNew';
 $route['admin/pages/view-all'] = 'admin/pages/viewAll';
@@ -160,6 +161,7 @@ $route['user/my-videos'] = 'front/user/myvideos';
 $route['user/sendEmail'] = 'front/user/sendEmailToAdmin';
 $route['student/getquote'] = 'front/student/getquote';
 $route['student/portfolio'] = 'front/student/portfolio';
+$route['user/view-portfolio'] = 'front/user/view_portfolio';
 $route['student/my-applications'] = 'front/student/my_applications';
 $route['user/my-comments'] = 'front/user/my_comments';
 $route['student/addComment'] = 'front/student/add_comment';

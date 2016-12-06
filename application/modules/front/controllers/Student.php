@@ -50,6 +50,7 @@ class Student extends CI_Controller {
         $data = array();
         $data['meta_title'] = 'E-portfolio';
         $data['parent'] = 'portfolio';
+        $data['subunique']= base_url().'user/view-portfolio?id='.encode($this->session->userdata('user_id'));
         $data['certifications'] = $this->common_model->getAllRecordsOrderById(CERTIFICATIONS,'id','DESC',array('user_id' => $this->uid));
         $data['education']      = $this->common_model->getAllRecordsOrderById(EDUCATION,'id','DESC',array('user_id' => $this->uid));
         $data['interests']      = $this->common_model->getAllRecordsOrderById(INTERESTS,'id','DESC',array('user_id' => $this->uid));
@@ -69,12 +70,22 @@ class Student extends CI_Controller {
 
     public function add_comment()
     {
-        $message = $_POST['comment_text'];
         $from_id = $this->uid;
         $to_id = ADMIN_ID;
-        if(isset($_POST))
+
+        $this->form_validation->set_rules('comment_text','Message','required');
+        if($this->form_validation->run()==true)
         {
+            $message = $_POST['comment_text'];
             $insertData = array('message'=>$message,'from_user_id'=>$from_id,'to_user_id'=>$to_id,'comment_date'=>date('Y-m-d'));
+
+            $userEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$to_id));
+            $user_email = $userEmail['email'];
+
+            $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$from_id));
+            $from_email = $userEmail['email'];
+
+            $this->sendEmailToAdmin('User send a comment to you','Comment',$user_email,$from_email);
 
             $request=$this->common_model->addRecords(COMMENTS,$insertData);
             if($request)
@@ -87,6 +98,17 @@ class Student extends CI_Controller {
                 $this->session->set_flashdata('error', "Unable to add Comment.");
                 redirect('user/my-comments');
             }
+        }
+        else
+        {
+            $data = array();
+            $data['meta_title']     = 'My Comments';
+            $data['parent']         = 'my_comments';
+            
+            $where = array('to_user_id' =>$this->uid);
+            $or_where = array('from_user_id' =>$this->uid);
+            $data['comments']  = $this->common_model->getComments(COMMENTS,'id','ASC',$where,$or_where);
+            load_front_view('student/my_comments', $data);
         }
     }
 
@@ -247,15 +269,20 @@ class Student extends CI_Controller {
         $request = $this->common_model->updateRecords('applied_programs',$updateData,$where);
         $user_id = $_POST['user_id'];
         $prgrm_id = $_POST['prgrm_id'];
-
-        $userEmail = $this->common_model->getUserEmail($user_id,$prgrm_id);
-        $user_email = $userEmail['email'];
         $status = $_POST['interview_date'];
+
+        $to_id = ADMIN_ID;
+        $userEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$to_id));
+        $user_email = $userEmail['email'];
+
+        $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$user_id));
+        $from_email = $userEmail['email'];
         
-        $this->sendEmailToAdmin('Program interview date set on"'.$status.'"','Program Interview Date',$user_email,SUPPORT_EMAIL);
+        $this->sendEmailToAdmin('Program interview date set on"'.$status.'"','Program Interview Date',$user_email,$from_email);
 
         echo $request;
     }
+
     
     
 }

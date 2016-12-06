@@ -164,6 +164,8 @@ class Users extends CI_Controller {
         $data['user_info'] = get_user($data['session_data']['user_id']);
         // print_r($data['user_info']); die;
         /* Fetch Data */
+
+        $data['to_id']=$id;
         
         $data['documents']  = $this->common_model->getAllRecordsOrderById(DOCUMENTS,'id','DESC',array('user_id' =>$id));
 
@@ -210,15 +212,24 @@ class Users extends CI_Controller {
         echo $request;
     }
 
-    public function add_comment()
-    {   $sess_data = $this->session->userdata('admin_session_data');
-
-        $message = $_POST['comment_text'];
+    public function add_comment($id)
+    {   error_reporting(0);
+        $sess_data = $this->session->userdata('admin_session_data');
         $from_id = $sess_data['user_id'];
-        $to_id = $_POST['to_id'];
-        if(isset($_POST))
+        if($id!=''){$to_id = $id;}else{$to_id = $_POST['to_id'];}
+        
+
+        $this->form_validation->set_rules('comment_text','Message','required');
+        if($this->form_validation->run()==true)
         {
+            $message = $_POST['comment_text'];
+            
             $insertData = array('message'=>$message,'from_user_id'=>$from_id,'to_user_id'=>$to_id,'comment_date'=>date('Y-m-d'));
+
+            $userEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$to_id));
+            $user_email = $userEmail['email'];
+
+            $this->sendEmailToAdmin('Admin send a comment to you','Comment',$user_email,SUPPORT_EMAIL);
 
             $request=$this->common_model->addRecords(COMMENTS,$insertData);
             if($request)
@@ -231,6 +242,21 @@ class Users extends CI_Controller {
                 $this->session->set_flashdata('error', "Unable to add Comment.");
                 redirect(base_url().'admin/users/viewHistory/'.$to_id);
             }
+        }
+        else
+        {
+            $where = array('to_user_id' =>$to_id);
+            $or_where = array('from_user_id' =>$to_id);
+            $data['comments']  = $this->common_model->getComments(COMMENTS,'id','ASC',$where,$or_where);
+            
+            $data['documents']  = $this->common_model->getAllRecordsOrderById(DOCUMENTS,'id','DESC',array('user_id' =>$to_id));
+
+            $data['applications']   = $this->common_model->getAllRecordsOrderById(APPLIED_PROGRAMS,'id','DESC',array('user_id' =>$to_id));
+
+            $data['users'] = $this->common_model->getAllRecordsOrderById(USER,'id','DESC',array('id' =>$to_id));
+
+            $data['user_name'] = $data['users'][0]['first_name'].' '.$data['users'][0]['last_name'];
+            load_admin_view('users/view-history', $data);
         }
     }
 

@@ -4355,3 +4355,11 @@ color: #fff;
     margin: 8px 8px 16px;
     width: 95%;
 }
+.valid_error{
+  border: 1px solid red;
+}
+.social_icon {
+  margin: 0 644px;
+  padding: 4px 32px;
+  width: 30%;
+}
