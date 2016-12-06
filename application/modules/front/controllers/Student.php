@@ -277,10 +277,20 @@ class Student extends CI_Controller {
 
         $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$user_id));
         $from_email = $userEmail['email'];
+        $from_user_name = $userEmail['first_name'].' '.$userEmail['last_name'];
         
-        $this->sendEmailToAdmin('Program interview date set on"'.$status.'"','Program Interview Date',$user_email,$from_email);
+        $this->sendEmailToAdmin('Program interview date set on"'.$status.'" by "'.$from_user_name.'"','Program Interview Date',$user_email,$from_email);
 
-        echo $request;
+        if($request==1)
+        {
+            $this->session->set_flashdata('success', "Interview Date set successfully.");
+            redirect('student/my-applications');
+        }
+        else
+        {
+            $this->session->set_flashdata('error', "Unable to set interview Date.");
+            redirect('student/my-applications');
+        }
     }
 
     
