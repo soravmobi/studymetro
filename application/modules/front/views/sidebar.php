@@ -72,6 +72,10 @@
                                 <li <?php if(isset($parent) && $parent == 'my_comments') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/my-comments">Comments <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>
 
+                                <?php if(in_array($user_type, array('2'))) { ?>
+                                <li <?php if(isset($parent) && $parent == 'my_assignments') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>student/my-assignments">Assignments <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php } ?>
+
                                 <?php if(in_array($user_type, array('2','3'))) { ?>
                                   <li <?php if(isset($parent) && $parent == 'searchProgram') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>search-programs">Search Programs <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>

@@ -187,6 +187,8 @@ define('OFFICES', 'offices');
 define('OFFLINE_PAYMENT', 'offline_payment');
 define('APPLIED_PROGRAMS', 'applied_programs');
 define('COMMENTS', 'comments');
+define('QUESTIONS', 'assignment_questions');
+define('ANSWERS', 'assignment_answers');
 define('STATIC_PAGE', 'static_pages');
 define('SYSTEM_PREFERENCE', 'system_preferences');
 define('USER', 'users');

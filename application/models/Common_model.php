@@ -405,6 +405,16 @@ class Common_model extends CI_Model
 		return $query->row_array();
 	}
 
+	function getAssignment($table1,$col1,$table2,$col2,$user_id)
+	{
+		$this->db->from($table1);
+		$this->db->join($table2,$table2.".".$col2."=".$table1.".".$col1."");
+		$this->db->where($table1.'.user_id',$user_id);
+		$query = $this->db->get();
+		//echo $this->db->last_query(); die;
+		return $query->result_array();
+	}
+
 	function getComments($table, $field, $short, $condition1,$condition2,$limit="")
 	{
 		$this->db->order_by($field, $short);
