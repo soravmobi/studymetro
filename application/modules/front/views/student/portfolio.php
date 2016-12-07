@@ -18,6 +18,9 @@
                         <div class="social_icon">
                             <ul>
                                 <li>
+                                    <a href="<?php echo $subunique; ?>" class="facebook_icon" target="_blank"><span class="fa fa-clipboard"></span></a>
+                                </li>
+                                <li>
                                     <a href="http://www.facebook.com/sharer.php?u=<?php echo $subunique; ?>" class="facebook_icon" target="_blank"><span class="fa fa-facebook"></span></a>
                                 </li>
                                 <li>
