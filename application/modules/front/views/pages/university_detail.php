@@ -42,7 +42,7 @@
                                     <li>$<?php echo $pl['application_fee']; ?> USD/year</li>
                                 </ul>
                                 <div class="apply_now_wrap pull-right">
-                                   <a href="<?php echo base_url(); ?><?php echo $pl['id']; ?>/apply-to-program" class="appy_btn">apply to this program</a>
+                                   <a href="<?php echo base_url(); ?><?php echo $pl['id']; ?>/apply-to-program?type=0" class="appy_btn">apply to this program</a>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
