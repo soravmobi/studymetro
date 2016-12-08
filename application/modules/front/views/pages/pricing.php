@@ -1008,7 +1008,7 @@
                                             <div class="plan_top_box">
                                                 <h4>Enterprise</h4>
                                                 <div class="price_box">
-                                                    <h3>1500</h3>
+                                                    <h3>$1500</h3>
                                                     <span></span>
                                                 </div>
                                                 <button class="btn_try" type="button">Sign Up</button>

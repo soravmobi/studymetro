@@ -2089,8 +2089,19 @@ background-position: center center;
   width: 35px;
 }
 .social_icon {
-  padding-top: 20px;
-  text-align: center;
+    padding-top: 20px;
+    text-align: right;
+    margin-bottom: 10px;
+    padding-right: 52px !important;
+}
+.social_icon .twitter_icon{
+  background-color: #1da1f2 !important;
+}
+.social_icon .google_plus_icon{
+  background-color: #db4437 !important;
+}
+.social_icon .linkedin_icon{
+  background-color: #287bbc !important;
 }
 .social_icon .twitter_bg{background-color:#55acee; }
 .social_icon .twitter_bg1{background-color:#007bb6; }
@@ -4362,4 +4373,7 @@ color: #fff;
   margin: 0 644px;
   padding: 4px 32px;
   width: 30%;
+}
+.footer_navi .navbar-header {
+  display: none;
 }

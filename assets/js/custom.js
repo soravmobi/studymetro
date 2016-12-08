@@ -155,6 +155,11 @@ $(document).ready(function () {
 
 });
 
+$(".toggle-ftr").click(function(){
+    $(".navbar-ftr").toggleClass('open');
+});
+
+
 $("#home_video").owlCarousel({
     autoPlay: 3000,
     navigation: true,

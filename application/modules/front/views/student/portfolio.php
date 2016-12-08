@@ -18,16 +18,16 @@
                         <div class="social_icon">
                             <ul>
                                 <li>
-                                    <a href="http://www.facebook.com/sharer.php?u=<?php echo $subunique; ?>" class="facebook_icon" target="_blank"><span class="fa fa-facebook"></span></a>
+                                    <a href="http://www.facebook.com/sharer.php?u=<?php echo $subunique; ?>" class="facebook_icon" target="_blank" title="Share Portfolio On Facebook"><span class="fa fa-facebook"></span></a>
                                 </li>
                                 <li>
-                                    <a href="http://twitter.com/home?status=<?php echo $subunique; ?>" target="_blank" class="twitter_icon"><span class="fa fa-twitter"></span></a>
+                                    <a href="http://twitter.com/home?status=<?php echo $subunique; ?>" target="_blank" class="twitter_icon" title="Share Portfolio On Twitter"><span class="fa fa-twitter"></span></a>
                                 </li>
                                 <li>
-                                    <a href="https://plus.google.com/share?url=<?php echo $subunique; ?>" target="_blank" class="google_plus_icon"><span class="fa fa-google-plus"></span></a>
+                                    <a href="https://plus.google.com/share?url=<?php echo $subunique; ?>" target="_blank" class="google_plus_icon" title="Share Portfolio On Google"><span class="fa fa-google-plus"></span></a>
                                 </li>
                                 <li>
-                                    <a href="https://www.linkedin.com/cws/share?url=<?php echo $subunique; ?>" class="linkedin_icon" target="_blank"><span class="fa fa-linkedin"></span></a>
+                                    <a href="https://www.linkedin.com/cws/share?url=<?php echo $subunique; ?>" class="linkedin_icon" target="_blank" title="Share Portfolio On Linkdin"><span class="fa fa-linkedin"></span></a>
                                 </li>
                             </ul>
                             <div class="clearfix"></div>

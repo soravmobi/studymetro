@@ -205,13 +205,13 @@
        <div class="col-md-8 col-sm-8">
          <div class="footer_navi">
          <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation1" aria-expanded="false">
+                  <button type="button" class="toggle-ftr">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
                 </div>
-                 <div class="collapse navbar-collapse" id="navigation1">
+                 <div class=" navbar-ftr" id="navigation1">
                 <ul class="ftr_menu_list">
                   <li><a href="<?php echo base_url(); ?>college-campus-office">College Campus Office</a></li>
                   <li><a href="http://page.studymetro.com/Study-Metro-Franchisee-Summit-2016">Summit </a></li>
@@ -483,9 +483,11 @@ $("body").on('click','.password-btn',function() {
     });
 });
 
+
 });
 
 </script>
+
 <script type="text/javascript">
 <?php if($this->session->flashdata('error')){ ?>
     showToaster('error',"<?php echo $this->session->flashdata('error') ?>");    
