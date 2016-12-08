@@ -36,6 +36,11 @@
                             </ul>
                             <div class="clearfix"></div>
                         </div>
+                            <!-- <div class="describ_box">
+                                <h1><i class="fa fa-graduation-cap" aria-hidden="true"></i> Personal Education <a href="javascript:void(0)"
+                                     title="Save Personal Education" class="pull-right btn btn-primary">Save</a></h1>
+                                                                                                   
+                            </div> -->
                             <div class="describ_box">
                                 <h1><i class="fa fa-graduation-cap" aria-hidden="true"></i> Education <a href="javascript:void(0)"
                                         data-toggle="modal" title="Add New Education" data-target="#education" class="pull-right"><i class="fa fa-plus"></i></a></h1>

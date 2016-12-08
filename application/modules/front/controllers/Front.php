@@ -12,7 +12,12 @@ class Front extends CI_Controller {
 
 	public function index() {
 		$data = array();
-		$data['meta_title'] = 'Home';
+		$data['details'] = $this->common_model->getSingleRecordById(STATIC_PAGE,array('slug' => 'home'));
+		if(!empty($data['details'])){
+			$data['meta_title'] = $data['details']['meta_title'];
+            $data['meta_keywords'] = $data['details']['meta_keywords'];
+            $data['meta_description'] = $data['details']['meta_description'];
+		}
 		$user = $this->session->userdata("user_id");
 		$cookie_data = $this->input->cookie('study_metro',true);
 		if(isset($cookie_data) && !empty($cookie_data)){

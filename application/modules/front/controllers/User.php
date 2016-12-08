@@ -323,7 +323,7 @@ class User extends CI_Controller {
         checkUserSession(array('2','3','4','5','6'));
         if($this->input->is_ajax_request())
         {
-            $this->form_validation->set_rules('to_email','To Email','trim|required|valid_email');
+            $this->form_validation->set_rules('to_email','To Email','trim|required|valid_emails');
             $this->form_validation->set_rules('subject','Subject','trim|required');
             $this->form_validation->set_rules('message','Message','trim|required');
             if($this->form_validation->run()==TRUE){
@@ -339,9 +339,9 @@ class User extends CI_Controller {
                 }
                 $data['message'] = $html;
                 $result = $this->common_model->getSingleRecordById(USER,array('email' => $data['to_email']));
-                if(empty($result)){
+                /*if(empty($result)){
                     echo json_encode(array('type' => 'failed', 'msg' => 'We could not find the user '.$data['to_email']));exit;
-                }
+                }*/
                 $data['from_email'] = $this->session->userdata('email');
                 $data['added_date'] = datetime();
                 $lid = $this->common_model->addRecords(EMAILS,$data);

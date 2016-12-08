@@ -88,6 +88,30 @@
 .video_visa_box > iframe {
   height: auto;
 }
+.apply_now_wrap .appy_btn {
+  font-size: 14px;
+  padding: 7px 10px;
+}
+.course_detail .univ_logo {
+    margin-right: 40px;
+}
+.course_detail .univ_logo {
+    width: 250px;
+}
+.univ_name {
+  display: block;
+  font-size: 18px;
+}
+input.cmn-toggle-yes-no + label {
+  display: inline-block;
+  height: 40px;
+  padding: 2px;
+  vertical-align: text-bottom;
+  width: 70px;
+}
+.switch_main {
+  margin-left: 5px;
+}
 .university_box {
   background-color: #fff;
   border: 1px solid #d3d4d6;
@@ -327,12 +351,75 @@ img.accreditation-img {
 a.appy_btn.appy_summer {
   bottom: 0;
 }
-.hold-transition iframe {
+/*.hold-transition iframe {
   height: 500px;
   width: 100% !important;
-}
+}*/
 .list_summer_video > li {
   width: auto;
+}
+.price_box {
+  height: 110px;
+  width: 110px;
+}
+.price_box h3 {
+  font-size: 26px;
+}
+.explore_list li a {
+  font-size: 15px;
+  height: 120px;
+  line-height: 18px;
+  padding: 4px;
+}
+.explore_head h3 {
+  float: left;
+  font-size: 24px;
+}
+.content_info {
+  padding: 10px;
+}
+.university_logo {
+  width: 150px;
+}
+.course_detail .univ_meta {
+  padding-left: 10px;
+}
+.apply_now_wrap.pull-right {
+  float: none !important;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.content_info .social_icon {
+  padding-right: 44px !important;
+}
+.unive_data {
+  margin-top: 5px;
+  vertical-align: top;
+}
+.univ_info {
+  vertical-align: top;
+}
+.send_message_bottom {
+  padding-left: 20px;
+}
+.post_content {
+  display: inline-block;
+  padding-left: 20px;
+  vertical-align: top;
+  width: 70%;
+}
+.post_content .btn {
+  font-size: 14px;
+}
+.comment_txt {
+  width: 81%;
+}
+.list_dash a {
+  font-size: 14px;
+  padding: 10px;
+}
+.send_comment .form-control {
+  width: 70%;
 }
 }
 
@@ -344,6 +431,24 @@ a.appy_btn.appy_summer {
   height: 2px;
   width: 22px;
 }	
+.univ_logo {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+  width: 100%;
+}
+.switch {
+  text-align: left;
+}
+.univ_info {
+  display: block;
+}
+.university_logo {
+  width: 150px;
+}
+.content_info {
+  padding: 10px;
+}
 .register_mod .modal-dialog {
   margin: 43% auto;
   max-width: 600px;
@@ -519,6 +624,8 @@ a.appy_btn.appy_summer {
 }
 .search_form_content {
   padding-top: 5px;
+  position: relative;
+  z-index: 11;
 }
 .about_content .button_box > button {
   background-color: #004c9c;
@@ -692,13 +799,11 @@ a.appy_btn.appy_summer {
   font-size: 16px;
   padding: 10px;
 }
-.apply_form {
-  padding: 0;
-}
-.hold-transition iframe {
+
+/*.hold-transition iframe {
   height: 212px;
   width: 100% !important;
-}
+}*/
 .brand_list {
   padding-top: 40px;
   text-align: center;
@@ -963,8 +1068,9 @@ a.appy_btn.appy_summer {
 .about_content h1{
   font-size: 26px;
 }
-.about_content h2{
+.about_content h2 {
   font-size: 22px;
+  margin-bottom: 10px;
 }
 .list_services > li {
   line-height: 24px;
@@ -1048,7 +1154,8 @@ a.appy_btn.appy_summer {
   font-size: 16px;
 }
 .video_visa_box > iframe {
-  height: 212px;
+    height: 212px;
+    width: 100%;
 }
 .left_wrap_visa {
   padding: 10px;
@@ -1064,4 +1171,163 @@ a.appy_btn.appy_summer {
 .panel-title {
   font-size: 13px;
 }
+.img_ub img {
+  min-height: inherit;
+}
+.university_box {
+  min-height: inherit;
+}
+.head_university label {
+  font-size: 14px;
+  font-weight: normal;
+}
+.head_university .bootstrap-switch {
+  border: medium none;
+  margin-left: -6px;
+  margin-right: 2px;
+  width: 30px !important;
+}
+.membership_plan .container {
+  width: 880px;
+}
+.membership_plan.explore_sec .container {
+  width: auto;
+}
+.plan_main_box {
+  float: left;
+  width: 168px;
+}
+.price_box {
+  height: 95px;
+  width: 95px;
+}
+.basic_plan h3 {
+    font-size: 15px !important;
+}
+.price_box h3 {
+    font-size: 20px;
+}
+.membership_plan {
+  margin: 20px 0;
+}
+.explore_head h3 {
+  float: left;
+  font-size: 16px;
+}
+.explore_head a {
+  padding: 10px;
+  font-size: 16px;
+}
+.rlp-block .content-block-holder {
+  min-height: inherit !important;
+}
+
+.about_content.applyNowIframe {
+  height: 2370px;
+}
+.course_detail .univ_logo {
+  margin-right: 0;
+  width: 100%;
+}
+.course_detail .univ_meta {
+  padding-left: 10px;
+}
+.unive_data {
+  margin-bottom: 15px;
+  margin-left: 10px;
+  text-align: left;
+  width: 50%;
+}
+.search_box_top .pagination a {
+  margin-left: 5px;
+  padding: 4px 10px;
+}
+.a2a_kit.a2a_kit_size_32.a2a_default_style {
+  float: right !important;
+  margin-left: 17px !important;
+  margin-right: 0 !important;
+  margin-top: -42px !important;
+  text-align: center;
+  width: 100%;
+  padding-left: 10px;
+}
+.apply_now_wrap.pull-right {
+  float: none !important;
+  margin-left: 10px;
+}
+.content_info .social_icon {
+  margin: 0;
+  padding-right: 20px !important;
+  padding-top: 20px;
+  text-align: center;
+  width: auto;
+}
+ul.nav.nav-tabs.course-types-tabs {
+  margin-bottom: -16px;
+  margin-left: 2px;
+}
+.course-types-tabs .nav > li > a {
+  display: block;
+  padding: 10px 6px;
+  position: relative;
+}
+input.cmn-toggle-yes-no + label::before, input.cmn-toggle-yes-no + label::after {
+  font-size: 14px;
+  left: 0;
+  line-height: 30px;
+}
+input.cmn-toggle-yes-no + label {
+  display: inline-block;
+  height: 30px;
+  padding: 2px;
+  vertical-align: text-bottom;
+  width: 60px;
+}
+.right_dashboard h2 {
+  margin-bottom: 20px;
+}
+.video_sec {
+  /*background-color: #e2e3e5;*/
+  padding: 20px 0;
+}
+.form_head {
+  font-size: 18px;
+  margin: 10px 0;
+}
+iframe.vimeo_play {
+    width: 100%;
+    height: 420px;
+}
+.top_summer_bg > span{
+  margin-bottom: 15px;
+}
+iframe.embed-responsive-item {
+    height: 300px;
+}
+.membership_plan {
+    overflow: auto;
+}
+
 }	
+
+@media (min-width:480px) and (max-width:767px){
+ .explore_list li {
+  float: left;
+  line-height: 20px;
+  width: 25%;
+}
+.explore_list li a {
+  font-size: 17px;
+}
+
+}
+@media (max-width:480px){
+  .explore_list li {
+  float: left;
+  line-height: 20px;
+  width: 50%;
+}
+.explore_list li a {
+  font-size: 17px;
+}
+}
