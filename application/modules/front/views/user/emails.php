@@ -36,7 +36,7 @@
                                 <div class="tool_bar_right">
                                     <button type="button" data-toggle="modal" data-target="#message" data-backdrop="static" data-keyboard="false">New Message <i class="fa fa-pencil"></i></button>
                                 </div>
-                            </div><br/>
+                            </div>
                               <ul class="nav nav-pills">
                                 <li class="active"><a data-toggle="pill" href="#inbox"><i class="fa fa-envelope-o"></i>  Inbox</a></li>
                                 <li><a data-toggle="pill" href="#sent"><i class="fa fa-paper-plane" aria-hidden="true"></i> Sent Items</a></li>
@@ -72,6 +72,19 @@
                                                     <h4 class="view-mail" type="inbox" main="<?php echo encode($i['id']); ?>"><?php echo $i['subject']; ?></h4>
                                                     <p class="view-mail" type="inbox"  main="<?php echo encode($i['id']); ?>"><?php echo $user_details[0]['first_name']." ".$user_details[0]['last_name']; ?></p>
                                                 </div>
+                                            </td>
+                                            <td>
+                                            <?php if($i['attachment']!=''){ ?>
+                                            
+                                                <div class="box_doc">
+                    <a download="" class="download_btn" href="<?php echo base_url().$i['attachment']; ?>" title="Click Here To Download Document"><i class="fa fa-download" aria-hidden="true"></i></a>
+
+                    <a href="<?php echo base_url().$i['attachment']; ?>" class="img_doc gallery"><img src="<?php echo base_url().$i['attachment']; ?>"></a>
+                    <div class="doc_meta">
+                    </div>
+                  </div>
+                                            
+                                            <?php } ?>
                                             </td>
                                             <td>
                                                 <div class="time_box"><?php echo date('d M, Y',strtotime($i['added_date'])); ?></div>
@@ -173,6 +186,13 @@
                                 </div>
                                 <div class="error_form message"></div>
                             </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">Attachment:</span>
+                                    <input type="file" name="attachment" class="form-control" placeholder="Attachment" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="error_form message"></div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -241,6 +261,7 @@ $("body").on('click','.send_email',function() {
             $('#send_email_form')[0].reset();
             $('#message').modal('hide');
             showToaster('success',resp.msg);
+            setTimeout(function(){location.reload(); }, 1500);
            }
            else{
             showToaster('error',resp.msg);  

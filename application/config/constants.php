@@ -186,6 +186,7 @@ define('BLOGS', 'blogs');
 define('OFFICES', 'offices');
 define('OFFLINE_PAYMENT', 'offline_payment');
 define('APPLIED_PROGRAMS', 'applied_programs');
+define('FAVORITE_PROGRAMS', 'favorite_programs');
 define('COMMENTS', 'comments');
 define('QUESTIONS', 'assignment_questions');
 define('ANSWERS', 'assignment_answers');
@@ -230,6 +231,7 @@ define('SERVER_MSG', 'SERVER_ERROR');
 
 define('FROM_EMAIL', 'studymetro@studymetro.com');
 define('SUPPORT_EMAIL', 'support@studymetro.com');
+define('VISA_EMAIL', 'visa@studymetro.com');
 define('SITE_NAME', 'Study Metro');
 define('DEFAULT_IMG', 'default-148.png');
 define('CRM_ACCESS_KEY', 'u$r5f9d994f80d8e0629cafc38bb0e0446b');

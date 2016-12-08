@@ -14,6 +14,16 @@ class Common_model extends CI_Model
 		return $query->num_rows();
 	}
 
+	function getAllRecordsBySingleJoin($table1,$col1,$table2,$col2,$id)
+	{
+		$this->db->from($table1);
+		$this->db->join($table2,$table2.".".$col2."=".$table1.".".$col1."");
+		$this->db->where($table1.'.user_id',$id);
+		$query = $this->db->get();
+		//echo $this->db->last_query(); die;
+		return $query->result_array();
+	}
+
 	function getAllRecordsByOrder($table, $field, $short)
 	{	
 		$this->db->order_by($field, $short);
