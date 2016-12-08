@@ -277,12 +277,78 @@ class Student extends CI_Controller {
 
         $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$user_id));
         $from_email = $userEmail['email'];
+        $from_user_name = $userEmail['first_name'].' '.$userEmail['last_name'];
         
-        $this->sendEmailToAdmin('Program interview date set on"'.$status.'"','Program Interview Date',$user_email,$from_email);
+        $this->sendEmailToAdmin('Program interview date set on"'.$status.'" by "'.$from_user_name.'"','Program Interview Date',$user_email,$from_email);
 
-        echo $request;
+        if($request==1)
+        {
+            $this->session->set_flashdata('success', "Interview Date set successfully.");
+            redirect('student/my-applications');
+        }
+        else
+        {
+            $this->session->set_flashdata('error', "Unable to set interview Date.");
+            redirect('student/my-applications');
+        }
     }
 
+    public function my_assignments()
+    {
+        $user_id = $this->uid;
+        $to_id = ADMIN_ID;
+
+        $count = count($_POST);
+        for($i=1;$i<=$count;$i++)
+        {
+            $this->form_validation->set_rules('answer_'.$i.'','Answer','required'); 
+        }
+        
+        if($this->form_validation->run()==false)
+        {   
+            //print_r($_POST); die;
+            $data = array();
+            $data['meta_title']     = 'My Assignments';
+            $data['parent']         = 'my_assignments';
+            
+            $data['questions'] = $this->common_model->getAllRecords(QUESTIONS);
+            load_front_view('student/my_assignments', $data);
+        }
+        else
+        { 
+            $answerData = array_filter($_POST); 
+            //print_r($answerData); die;
+
+            foreach ($answerData as $key => $value)
+            {
+               $ques_id = explode('_',$key);
+
+               $insertData = array('user_id'=>$user_id,'question_id'=>$ques_id[1],'answer'=>$value,'added_date'=>date('Y-m-d'));
+
+               $request=$this->common_model->addRecords(ANSWERS,$insertData);
+            }
+
+            $userEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$to_id));
+            $user_email = $userEmail['email'];
+
+            $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$user_id));
+            $from_email = $userEmail['email'];
+            $from_user_name = $userEmail['first_name'].' '.$userEmail['last_name'];
+            
+            $this->sendEmailToAdmin('Answers submitted by "'.$from_user_name.'"','Assignments',$user_email,$from_email);
+
+            if($request!='')
+            {
+                $this->session->set_flashdata('success', "Answers submitted successfully.");
+                redirect('student/my-assignments');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', "Unable to submit answers.");
+                redirect('student/my-assignments');
+            }
+        }
+    }
     
     
 }

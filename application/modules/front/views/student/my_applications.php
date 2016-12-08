@@ -15,7 +15,13 @@
                     <?php $this->load->view('sidebar'); ?>
                     <div class="col-md-9 col-sm-9">
                       <div class="right_dashboard">
-                      <div class="success"></div>
+                      <div class="success">
+                        <?php if($this->session->flashdata('success')){ ?>
+                          <div class="alert alert-success"><?php echo $this->session->flashdata('success'); ?></div>
+                        <?php } elseif($this->session->flashdata('error')) { ?>
+                        <div class="alert alert-danger"><?php echo $this->session->flashdata('error'); ?></div>
+                        <?php } ?>
+                      </div>
                         <table class="table table-hover">
                           <thead>
                             <tr>
@@ -340,10 +346,13 @@
             data:{interview_date:interview_date,prgrm_id:prgrm_id,user_id:user_id},
             success:function(result)
             { 
-              if(result==1)
-              {
-                $('.success').html('<div class="alert alert-success alert-dismissable" style="margin-top:12px;"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>Interview Date set successfully.</div>');
-              }
+              //alert(result);
+              // if(result==1)
+              // {
+              //   $('.success').html('<div class="alert alert-success alert-dismissable" style="margin-top:12px;"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>Interview Date set successfully.</div>');
+              // }
+
+              //location.reload();
             }
     });
   });

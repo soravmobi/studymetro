@@ -164,6 +164,7 @@ $route['student/portfolio'] = 'front/student/portfolio';
 $route['user/view-portfolio'] = 'front/user/view_portfolio';
 $route['student/my-applications'] = 'front/student/my_applications';
 $route['user/my-comments'] = 'front/user/my_comments';
+$route['student/my-assignments'] = 'front/student/my_assignments';
 $route['student/addComment'] = 'front/student/add_comment';
 $route['student/setInterviewDate'] = 'front/student/set_interview_date';
 $route['university/profile_types'] = 'front/university/profile_types';

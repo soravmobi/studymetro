@@ -4370,10 +4370,15 @@ color: #fff;
   border: 1px solid red;
 }
 .social_icon {
-  margin: 0 644px;
+  margin: 0 626px;
   padding: 4px 32px;
   width: 30%;
 }
+<<<<<<< HEAD
 .footer_navi .navbar-header {
   display: none;
+=======
+.assign_ques h4 {
+  margin: 7px 10px;
+>>>>>>> f98b82fc35851b29f699b0699901c1012ed0dd1d
 }

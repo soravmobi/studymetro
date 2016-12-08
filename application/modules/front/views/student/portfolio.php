@@ -18,7 +18,11 @@
                         <div class="social_icon">
                             <ul>
                                 <li>
-                                    <a href="http://www.facebook.com/sharer.php?u=<?php echo $subunique; ?>" class="facebook_icon" target="_blank" title="Share Portfolio On Facebook"><span class="fa fa-facebook"></span></a>
+                                    <a href="javascript:void(0)" link="<?php echo $subunique; ?>" class="copy_icon" id="copy_link"><span class="fa fa-clipboard"></span></a>
+                                    <input type="hidden" id="link" value="<?php echo $subunique; ?>"></a>
+                                </li>
+                                <li>
+                                    <a href="http://www.facebook.com/sharer.php?u=<?php echo $subunique; ?>" class="facebook_icon" target="_blank"><span class="fa fa-facebook"></span></a>
                                 </li>
                                 <li>
                                     <a href="http://twitter.com/home?status=<?php echo $subunique; ?>" target="_blank" class="twitter_icon" title="Share Portfolio On Twitter"><span class="fa fa-twitter"></span></a>
@@ -543,7 +547,16 @@ $("body").on('click','.certificate-save-btn',function() {
             ajaxindicatorstop();
         }
     });
-});        
+});
+
+// for copy to link
+$("a#copy_link").zclip({
+   path:"<?php echo base_url('ZeroClipboard.swf'); ?>",
+   copy:function()
+   {
+     return $("input#link").val();
+   }
+});
 
 });
 

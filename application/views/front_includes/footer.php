@@ -286,6 +286,8 @@
   <script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/jquery.twbsPagination.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/jquery.zclip.js"></script>
+  
   <script type="text/javascript">
     function getQueryStringValue(key)
     {  
