@@ -4385,4 +4385,20 @@ color: #fff;
   padding-top: 20px;
   text-align: right;
   width: auto;
+  margin: 0 620px;
+  padding: 4px 32px;
+  width: 30%;
+}
+
+.footer_navi .navbar-header {
+  display: none;
+}
+.assign_ques h4 {
+  margin: 7px 10px;
+}
+.my_events {
+  width: 49%;
+}
+.fav_prgrm.course_detail .univ_logo {
+  margin-right: 60px;
 }

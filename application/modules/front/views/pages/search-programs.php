@@ -168,7 +168,8 @@
                                                                     <?php echo substr($pl['program_name'], 0,40); ?>
                                                                         <span class="course_meta"> <?php echo $pl['location']; ?></span>
                                                                 </a>
-                                                                <i class="fa fa-star star"></i>
+                                                                
+                                                                <i class="fa fa-star star fvrt_prgrm" program_id="<?php echo $pl['id']; ?>" title="Favorite"></i>
                                                             </div>
                                                         </div>
                                                         <ul class="univ_info">
@@ -359,3 +360,27 @@
         
     </script>
 <?php } ?>
+
+<script type="text/javascript">
+  $('body').on('click','.fvrt_prgrm',function(){
+    var program_id = $(this).attr('program_id');
+
+    $.ajax({
+            url:"<?php echo base_url('user/addFavoritePrograms'); ?>",
+            type:"POST",
+            data:{program_id:program_id},
+            success:function(result)
+            {
+              var obj = JSON.parse(result);
+              if(obj.type=="success")
+              {
+                showToaster('success',obj.msg);
+              }
+              else if(obj.type=="error")
+              {
+                showToaster('error',obj.msg);
+              }
+            }
+    });
+  });
+</script>

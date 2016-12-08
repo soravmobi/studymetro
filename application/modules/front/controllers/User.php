@@ -344,6 +344,56 @@ class User extends CI_Controller {
                 }*/
                 $data['from_email'] = $this->session->userdata('email');
                 $data['added_date'] = datetime();
+
+                /* Upload attachment */
+                $attachment = '';
+                // if(!empty($_FILES['attachment']['name'])) {
+                //     $config['file_name']     = time().$_FILES['attachment']['name'];
+                //     $config['upload_path']   = './uploads/email_attachments';
+                //     $config['allowed_types'] = 'jpg|png|jpeg';
+                //     $config['max_size']      = '2474898';
+                //     $config['max_width']     = '100024';
+                //     $config['max_height']    = '768000';
+                //     $config['remove_spaces'] = true;
+                //     $config['field_name']     = 'attachment';
+
+                //     $imageData = upload_file($_FILES['attachment'], $config);
+                //     if(isset($imageData) && $imageData['message'] == 'success') {
+                //        $attachment = $imageData['file_path'];
+                //     }
+                // } else {
+                //     $attachment = '';
+                // }
+
+                     $config['file_name'] = $_FILES['attachment']['name']; 
+                     $config['upload_path'] ='uploads/email_attachments/'; 
+                     $config['allowed_types'] = 'png|jpeg|jpg';
+                     $config['max_size']      = '10000000';
+                     $config['max_width']     = '100024';
+                     $config['max_height']    = '768000';
+                     $config['remove_spaces'] = true;
+                     $config['encrypt_name'] = TRUE;
+                     $this->load->library('upload', $config);
+                     $this->upload->initialize($config);
+                     $this->upload->set_allowed_types('*');
+                     $upload_data['upload_data'] = '';
+                     $attachment = '';
+               
+                  if (!$this->upload->do_upload('attachment'))
+                   {
+                       $upload_data = array('msg' => $this->upload->display_errors());
+                   } 
+                  else 
+                      { 
+                        $upload_data = array('msg' => "Upload success!");
+                        
+                        $upload_data['upload_data'] = $this->upload->data();
+                        //print_r($data['upload_data']['file_name']); die;
+                        $attachment = 'uploads/email_attachments/'.$upload_data['upload_data']['file_name'];
+                        //echo $attachment; die;
+                        $data['attachment'] = $attachment;
+                      }
+                
                 $lid = $this->common_model->addRecords(EMAILS,$data);
                 if(!empty($lid)){
                     send_mail($data['message'],$data['subject'],$data['to_email'],$data['from_email']);
@@ -640,6 +690,62 @@ class User extends CI_Controller {
         $data['username']     = $this->common_model->getSingleRecordById(USER,array('id' => $user_id));
 
         load_front_view('student/social_icon_portfolio', $data);
+    }
+
+    public function my_events()
+    {
+        $data = array();
+        $data['meta_title'] = 'My Events';
+        $data['parent'] = 'my-events';
+        
+        //$data['events'] = $this->common_model->getAllRecords(EVENTS);
+        load_front_view('user/my_events', $data);
+    }
+
+    public function favorite_programs()
+    {
+        $user_id = $this->uid;
+        $data['programs'] = $this->common_model->getAllRecordsBySingleJoin(FAVORITE_PROGRAMS,'program_id',PROGRAMS,'id',$user_id);
+        load_front_view('pages/favorite_programs', $data);
+    }
+
+    public function add_favorite_programs()
+    {
+        $user_id = $this->uid;
+        $fvrtArray = array('user_id'=>$user_id,'program_id'=>$_POST['program_id']);
+        
+        $getFvrtData = $this->common_model->getAllRecordsById(FAVORITE_PROGRAMS,$fvrtArray);
+        if(empty($getFvrtData))
+        {
+            $fvrtArray['added_date'] = date('Y-m-d');
+            $request = $this->common_model->addRecords(FAVORITE_PROGRAMS,$fvrtArray);
+            if($request)
+            {
+                echo json_encode(array('type' => 'success', 'msg' => 'Program added successfully in your favorite list'));
+            }
+        }
+        else
+        {
+            echo json_encode(array('type' => 'error', 'msg' => 'This Program is already exist in your favorite list'));
+            exit;
+        }
+    }
+
+    public function Remove_favorite_programs()
+    {
+        $user_id = $this->uid;
+        $fvrtArray = array('user_id'=>$user_id,'program_id'=>$_POST['program_id']);
+        
+        $request = $this->common_model->deleteRecord(FAVORITE_PROGRAMS,$fvrtArray);
+        if($request)
+        {
+            echo json_encode(array('type' => 'success', 'msg' => 'Program remove successfully from your favorite list'));
+        }
+        // else
+        // {
+        //     echo json_encode(array('type' => 'error', 'msg' => 'This Program is already exist in your favorite list'));
+        //     exit;
+        // }
     }
 
 

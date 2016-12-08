@@ -264,12 +264,13 @@ class Student extends CI_Controller {
 
     public function set_interview_date()
     {
-        $updateData = array('interview_date'=>$_POST['interview_date']);
-        $where = array('id'=>$_POST['prgrm_id']);
-        $request = $this->common_model->updateRecords('applied_programs',$updateData,$where);
         $user_id = $_POST['user_id'];
         $prgrm_id = $_POST['prgrm_id'];
         $status = $_POST['interview_date'];
+
+        $updateData = array('interview_date'=>$status);
+        $where = array('id'=>$prgrm_id);
+        $request = $this->common_model->updateRecords('applied_programs',$updateData,$where);
 
         $to_id = ADMIN_ID;
         $userEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$to_id));
@@ -283,13 +284,11 @@ class Student extends CI_Controller {
 
         if($request==1)
         {
-            $this->session->set_flashdata('success', "Interview Date set successfully.");
-            redirect('student/my-applications');
+            echo json_encode(array('type' => 'success', 'msg' => 'Interview Date set successfully'));
         }
         else
         {
-            $this->session->set_flashdata('error', "Unable to set interview Date.");
-            redirect('student/my-applications');
+            echo json_encode(array('type' => 'error', 'msg' => 'Unable to set interview Date'));
         }
     }
 
@@ -328,14 +327,14 @@ class Student extends CI_Controller {
                $request=$this->common_model->addRecords(ANSWERS,$insertData);
             }
 
-            $userEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$to_id));
-            $user_email = $userEmail['email'];
+            // $userEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$to_id));
+            // $user_email = $userEmail['email'];
 
             $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$user_id));
             $from_email = $userEmail['email'];
             $from_user_name = $userEmail['first_name'].' '.$userEmail['last_name'];
             
-            $this->sendEmailToAdmin('Answers submitted by "'.$from_user_name.'"','Assignments',$user_email,$from_email);
+            $this->sendEmailToAdmin('Answers submitted by "'.$from_user_name.'"','Assignments',VISA_EMAIL,$from_email);
 
             if($request!='')
             {

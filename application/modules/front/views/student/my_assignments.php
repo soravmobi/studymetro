@@ -27,6 +27,7 @@
                                             <!-- <input type="text" class="form-control" name="answer_<?php echo $q['id']; ?>" value="<?php $isset= 'answer_'.$q['id']; if(isset($_POST[$isset])){ echo $_POST[$isset]; } ?>"> -->
 
                                             <textarea class="form-control" name="answer_<?php echo $q['id']; ?>"><?php $isset= 'answer_'.$q['id']; if(isset($_POST[$isset])){ echo $_POST[$isset]; } ?></textarea>
+                                            <!-- <input type="hidden" name="ques_<?php echo $q['id']; ?>"> -->
                                             <span style="color:red;"><?php echo form_error("answer_".$q['id']); ?></span>
                                         </div>
 

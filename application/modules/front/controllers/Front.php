@@ -148,7 +148,7 @@ class Front extends CI_Controller {
 		{
 			$data = $this->input->post();
 			$query_string = $data['query_string'];
-			$redirect_url = base_url().'home';
+			$redirect_url = base_url().'user/dashboard';
 			$password = md5($data['password']);
 			$where  = array('password' => $password,'email' => $data['email']);
 			$result = $this->common_model->getSingleRecordById('users',$where);

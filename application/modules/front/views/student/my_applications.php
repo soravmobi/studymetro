@@ -336,7 +336,7 @@
 
   // for change interview date
 
-  $('body').on('change','.interview_date',function(){
+  $('body').on('change','#interview_date',function(){
     var interview_date = $(this).val();
     var prgrm_id = $(this).attr('prgrm_id');
     var user_id=$(this).attr('user_id');
@@ -346,13 +346,16 @@
             data:{interview_date:interview_date,prgrm_id:prgrm_id,user_id:user_id},
             success:function(result)
             { 
-              //alert(result);
-              // if(result==1)
-              // {
-              //   $('.success').html('<div class="alert alert-success alert-dismissable" style="margin-top:12px;"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>Interview Date set successfully.</div>');
-              // }
-
-              //location.reload();
+              var obj = JSON.parse(result);
+              alert(result);
+              if(obj.type=="success")
+              {
+                showToaster('success',obj.msg);
+              }
+              else if(obj.type=="error")
+              {
+                showToaster('error',obj.msg);
+              }
             }
     });
   });

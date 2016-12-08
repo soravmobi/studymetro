@@ -44,6 +44,7 @@ class Home extends CI_Controller {
                 $data['total_count'] = 0;
                 if($this->input->get()){
                     $arr_data = $this->input->get();
+                    //print_r($arr_data); die;
                     $data['programs'] = $this->common_model->searchPrograms($arr_data);
                 }else{
                     $data['programs'] = $this->getPrograms((isset($_GET['country']) && !empty($_GET['country'])) ? $_GET['country'] : 'USA',8);
