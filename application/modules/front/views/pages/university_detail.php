@@ -8,7 +8,7 @@
 <section class="university_details_wrap">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-sm-8">
+            <div class="col-md-8 col-sm-7">
                 <div class="details_uviver">
                     <h2>About <?php echo $details['name']; ?></h2>
                     <?php echo $details['content']; ?>
@@ -51,7 +51,7 @@
                 <?php $j++; } ?>
             </div>
             </div>
-            <div class="col-md-4 col-sm-4">
+            <div class="col-md-4 col-sm-5">
 
                 <div class="university_info">
                     <div class="info_univ_box">
