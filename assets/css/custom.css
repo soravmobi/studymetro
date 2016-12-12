@@ -4402,3 +4402,6 @@ color: #fff;
 .fav_prgrm.course_detail .univ_logo {
   margin-right: 60px;
 }
+a.vc-powered-by {
+    display: none;
+}

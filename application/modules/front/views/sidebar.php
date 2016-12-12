@@ -46,7 +46,7 @@
                                   <li <?php if(isset($parent) && $parent == 'upload_documents') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/upload_documents">Upload Documents <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>
                                 <?php if(in_array($user_type, array('2','3','5'))) { ?>
-                                  <li><a href="https://live.vcita.com/site/33412ea9518e6493/online-scheduling?staff=4b97eb70eb924ade" target="_blank">Online Schedule Meeting <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                  <li <?php if(isset($parent) && $parent == 'online_scheduling_meeting') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/online-scheduling-meeting" target="_blank">Online Schedule Meeting <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>
                                 <?php if(in_array($user_type, array('2','5'))) { ?>
                                   <li <?php if(isset($parent) && $parent == 'feedback') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/feedback">Feedback <i class="fa fa-chevron-right pull-right"></i></a></li>

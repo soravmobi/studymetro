@@ -748,6 +748,14 @@ class User extends CI_Controller {
         // }
     }
 
+    public function online_scheduling_meeting() {
+        checkUserSession(array('2','3','5'));
+        $data = array();
+        $data['meta_title'] = 'Online Schedule Meeting';
+        $data['parent']     = 'online_scheduling_meeting';
+        load_front_view('user/online_scheduling_meeting', $data);
+    }
+
 
 
 }

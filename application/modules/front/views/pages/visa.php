@@ -19,7 +19,7 @@
                                 <div class="video_visa_wrap">
                                     <div class="video_visa_box">
                                         <iframe width="420" height="315" src="https://www.youtube.com/embed/mRe7IEOCYgc" frameborder="0" allowfullscreen></iframe>
-                                        <div class="video_bottom"><span class="price">$150</span>
+                                        <div class="video_bottom"><span class="price">$50</span>
                                             <button type="button" class="enroll_btn"><i class="fa fa-shopping-cart"></i> Enroll Now</button></div>
                                     </div>
                                     <div class="highlight_box">
