@@ -73,7 +73,7 @@
                                                     <p class="view-mail" type="inbox"  main="<?php echo encode($i['id']); ?>"><?php echo $user_details[0]['first_name']." ".$user_details[0]['last_name']; ?></p>
                                                 </div>
                                             </td>
-                                            <td>
+                                            <!-- <td>
                                             <?php if($i['attachment']!=''){ ?>
                                             
                                                 <div class="box_doc">
@@ -85,7 +85,7 @@
                   </div>
                                             
                                             <?php } ?>
-                                            </td>
+                                            </td> -->
                                             <td>
                                                 <div class="time_box"><?php echo date('d M, Y',strtotime($i['added_date'])); ?></div>
                                             </td>
@@ -222,6 +222,7 @@
                                
                            </div>
                            <p class="mail-content"></p>
+                           <p class="mail-attachment"></p>
                         <div class="clearfix"></div>
                         </div>
                 </div>
@@ -289,10 +290,22 @@ $('body').on('click','.view-mail',function(){
         success: function(resp){
            if(resp.type == "success"){
             var mail_data = resp.mail;
+            //alert(mail_data);
             $('.mail-content').html(mail_data.message);
             $('.user-name').text(resp.username);
             $('.user-img-show').attr('src',resp.userimg);
             $('.mail-subject-time').html(mail_data.subject+' <span>'+resp.datetime+'</span>');
+            if($.trim(resp.attachment)!='')
+            {
+                //alert(mail_data.attachment);
+                $('.mail-attachment').html('<a download class="download_btn" href="<?php echo base_url() ?>'+resp.attachment+'" title="Click Here To Download Document"><i class="fa fa-download" aria-hidden="true"></i></a> Download Attachment');
+            }
+            else
+            {
+                $('.mail-attachment').html('');
+            }
+            
+
             $('#title').modal('show');
            }
            else{

@@ -14,8 +14,7 @@
                     <div class="row">
                     <?php $this->load->view('sidebar'); ?>
                     <div class="col-md-9 col-sm-9">
-                      <div class="right_dashboard">
-                        <div class="social_icon">
+                    <div class="social_icon">
                             <ul>
                                 <li>
                                     <a href="javascript:void(0)" link="<?php echo $subunique; ?>" class="copy_icon" id="copy_link"><span class="fa fa-clipboard"></span></a>
@@ -34,13 +33,183 @@
                                     <a href="https://www.linkedin.com/cws/share?url=<?php echo $subunique; ?>" class="linkedin_icon" target="_blank" title="Share Portfolio On Linkdin"><span class="fa fa-linkedin"></span></a>
                                 </li>
                             </ul>
-                            <div class="clearfix"></div>
                         </div>
-                            <!-- <div class="describ_box">
-                                <h1><i class="fa fa-graduation-cap" aria-hidden="true"></i> Personal Education <a href="javascript:void(0)"
-                                     title="Save Personal Education" class="pull-right btn btn-primary">Save</a></h1>
-                                                                                                   
-                            </div> -->
+
+                    <!-- personal info  -->
+                        <div class="subhead_dash">
+                          <div class="container">
+                             <div class="row">
+                             <div class="col-md-12 col-sm-12">
+                               Personal Education
+                               </div>
+                             </div>
+                          </div>
+                        </div>
+
+                    <div class="right_dashboard">
+
+                        <div class="personal_edu">
+                            <form method="post" action="<?php echo base_url('student/Personal-Education'); ?>" enctype="multipart/form-data">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control <?php if(form_error('name')){ echo 'valid_error'; } ?>" name="name" value="<?php echo $eduProfileData['name']; ?>">
+                                        <div class="error_name"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Mobile</label>
+                                        <input type="text" class="form-control <?php if(form_error('mobile')){ echo 'valid_error'; } ?>" name="mobile" value="<?php echo $eduProfileData['mobile']; ?>">
+                                        <div class="error_name"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Current Location</label>
+                                        <input type="text" class="form-control <?php if(form_error('location')){ echo 'valid_error'; } ?>" name="location" value="<?php echo $eduProfileData['location']; ?>" >
+                                        <div class="error_name"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                       <label>Outside India </label>
+                                        <div class="checkbox_align">
+                                        <input type="checkbox" class="<?php if(form_error('outside_india')){ echo 'valid_error'; } ?>" name="outside_india" value="1" <?php if($eduProfileData['outside_india']==1){ echo 'checked'; } ?>> 
+                                        <div class="error_name"></div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <?php if($eduProfileData['resume']!=''){ ?>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Upload Resume</label>
+                                        <input type="file" class="form-control" name="resume" >
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Download Resume</label>
+                                        <div class="form-control"><a download="" class="download_btn" href="<?php echo base_url().$eduProfileData['resume']; ?>" title="Click Here To Download Document"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php } else{ ?>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Upload Resume</label>
+                                        <input type="file" class="form-control" name="resume" >
+                                    </div>
+                                </div>
+                                <?php } ?>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>High Qualification</label>
+                                        <input type="text" class="form-control <?php if(form_error('high_qualification')){ echo 'valid_error'; } ?>" name="high_qualification" value="<?php echo $eduProfileData['high_qualification']; ?>">
+                                        <div class="error_name"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Course</label>
+                                        <input type="text" class="form-control <?php if(form_error('course')){ echo 'valid_error'; } ?>" name="course" value="<?php echo $eduProfileData['course']; ?>">
+                                        <div class="error_name"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Specialization</label>
+                                        <input type="text" class="form-control <?php if(form_error('specialization')){ echo 'valid_error'; } ?>" name="specialization" value="<?php echo $eduProfileData['specialization']; ?>">
+                                        <div class="error_name"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>University</label>
+                                        <input type="text" class="form-control <?php if(form_error('university')){ echo 'valid_error'; } ?>" name="university" value="<?php echo $eduProfileData['university']; ?>">
+                                        <div class="error_name"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label style="display: block;">Course Type</label>
+                                        <label class="radio-inline">
+                                        <input type="radio" class="" name="course_type" value="Graduation" <?php if($eduProfileData['course_type']=='Graduation'){ echo 'checked'; } ?>>Graduation
+                                        </label>
+                                        <label class="radio-inline">
+                                        
+                                        <input type="radio" class="" name="course_type" value="Post Graduation" <?php if($eduProfileData['course_type']=='Post Graduation'){ echo 'checked'; } ?>>Post Graduation
+                                        </label>
+                                        <div class="error_name"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Passing Year</label>
+                                        <input type="text" class="form-control <?php if(form_error('passing_year')){ echo 'valid_error'; } ?>" name="passing_year" value="<?php echo $eduProfileData['passing_year']; ?>">
+                                        <div class="error_name"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Skills</label>
+                                        <input type="text" class="form-control <?php if(form_error('skills')){ echo 'valid_error'; } ?>" name="skills" value="<?php echo $eduProfileData['skills']; ?>">
+                                        <div class="error_name"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Date of Birth</label>
+                                        <input type="text" class="form-control <?php if(form_error('birthdate')){ echo 'valid_error'; } ?>" name="birthdate" id="birthdate" value="<?php echo $eduProfileData['birthdate']; ?>">
+                                        <div class="error_name"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                       <label style="display: block"> Gender</label>
+                                        <label class="radio-inline">
+                                        <input type="radio" class="" name="gender" value="Male" <?php if($eduProfileData['gender']=='Male'){ echo 'checked'; } ?>>Male
+                                        </label>
+                                        <label class="radio-inline">
+                                        
+                                        <input type="radio" class="" name="gender" value="Female" <?php if($eduProfileData['gender']=='Female'){ echo 'checked'; } ?>>Female
+                                        </label>
+                                        <div class="error_name"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Marital Status</label>
+                                        <input type="text" class="form-control <?php if(form_error('marital_status')){ echo 'valid_error'; } ?>" name="marital_status" value="<?php echo $eduProfileData['marital_status']; ?>">
+                                        <div class="error_name"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>city</label>
+                                        <input type="text" class="form-control <?php if(form_error('city')){ echo 'valid_error'; } ?>" name="city" value="<?php echo $eduProfileData['city']; ?>">
+                                        <div class="error_name"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <textarea class="form-control <?php if(form_error('address')){ echo 'valid_error'; } ?>" name="address"><?php echo $eduProfileData['address']; ?></textarea>
+                                        <div class="error_name"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-sm-12">
+                                    <input type="submit" class="btn btn-primary" name="update_info" value="Submit">
+                                </div>
+                            </form>
+                        </div>
+
+                      
+                        
+                        <div class="clearfix"></div>
+                        
                             <div class="describ_box">
                                 <h1><i class="fa fa-graduation-cap" aria-hidden="true"></i> Education <a href="javascript:void(0)"
                                         data-toggle="modal" title="Add New Education" data-target="#education" class="pull-right"><i class="fa fa-plus"></i></a></h1>
@@ -566,3 +735,15 @@ $("a#copy_link").zclip({
 });
 
 </script>  
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<script>
+  $( function() {
+    $( "#birthdate" ).datepicker({
+        minDate: 0,
+        format: "yyyy-m-dd",
+        autoclose: true
+    });
+  });
+</script>

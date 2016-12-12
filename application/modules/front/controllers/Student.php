@@ -55,6 +55,9 @@ class Student extends CI_Controller {
         $data['education']      = $this->common_model->getAllRecordsOrderById(EDUCATION,'id','DESC',array('user_id' => $this->uid));
         $data['interests']      = $this->common_model->getAllRecordsOrderById(INTERESTS,'id','DESC',array('user_id' => $this->uid));
         $data['volunteers']     = $this->common_model->getAllRecordsOrderById(VOLUNTEERS,'id','DESC',array('user_id' => $this->uid));
+        $where = array('user_id' => $this->uid);
+
+        $data['eduProfileData'] = $this->common_model->getSingleRecordById(PORTFOLIO,$where);
         load_front_view('student/portfolio', $data);
     }
 
@@ -346,6 +349,135 @@ class Student extends CI_Controller {
                 $this->session->set_flashdata('error', "Unable to submit answers.");
                 redirect('student/my-assignments');
             }
+        }
+    }
+
+    public function add_personal_education()
+    {
+        $uid= $this->uid;
+        $where = array('user_id'=>$uid);
+
+        $this->form_validation->set_rules('name','','required');
+        $this->form_validation->set_rules('mobile','','required');
+        $this->form_validation->set_rules('location','','required');
+        //$this->form_validation->set_rules('outside_india','','required');
+        //$this->form_validation->set_rules('resume','','required');
+        $this->form_validation->set_rules('high_qualification','','required');
+        $this->form_validation->set_rules('course','','required');
+        $this->form_validation->set_rules('specialization','','required');
+        $this->form_validation->set_rules('university','','required');
+        //$this->form_validation->set_rules('course_type','','required');
+        $this->form_validation->set_rules('passing_year','','required');
+        $this->form_validation->set_rules('skills','','required');
+        $this->form_validation->set_rules('birthdate','','required');
+        //$this->form_validation->set_rules('gender','','required');
+        $this->form_validation->set_rules('marital_status','','required');
+        $this->form_validation->set_rules('address','','required');
+        $this->form_validation->set_rules('city','','required');
+        
+        if($this->form_validation->run()==false)
+        {
+            $data = array();
+            $data['meta_title'] = 'E-portfolio';
+            $data['parent'] = 'portfolio';
+            $data['subunique']= base_url().'user/view-portfolio?id='.encode($this->session->userdata('user_id'));
+            $data['certifications'] = $this->common_model->getAllRecordsOrderById(CERTIFICATIONS,'id','DESC',array('user_id' => $this->uid));
+            $data['education']      = $this->common_model->getAllRecordsOrderById(EDUCATION,'id','DESC',array('user_id' => $this->uid));
+            $data['interests']      = $this->common_model->getAllRecordsOrderById(INTERESTS,'id','DESC',array('user_id' => $this->uid));
+            $data['volunteers']     = $this->common_model->getAllRecordsOrderById(VOLUNTEERS,'id','DESC',array('user_id' => $this->uid));
+
+            $data['eduProfileData'] = $this->common_model->getSingleRecordById(PORTFOLIO,$where);
+            //print_r($data['eduProfileData']); die;
+            load_front_view('student/portfolio', $data);
+        }
+        else
+        {    //print_r($_FILES); die;
+             $config['file_name'] = $_FILES['resume']['name']; 
+             $config['upload_path'] ='uploads/resume/'; 
+             //$config['allowed_types'] = 'png|jpeg|jpg';
+             $config['max_size']      = '10000000';
+             $config['max_width']     = '100024';
+             $config['max_height']    = '768000';
+             $config['remove_spaces'] = true;
+             $config['encrypt_name'] = TRUE;
+             $this->load->library('upload', $config);
+             $this->upload->initialize($config);
+             $this->upload->set_allowed_types('*');
+             $upload_data['upload_data'] = '';
+             $resume = '';
+       
+          if (!$this->upload->do_upload('resume'))
+           {
+               $upload_data = array('msg' => $this->upload->display_errors());
+           } 
+          else 
+              { 
+                $upload_data = array('msg' => "Upload success!");
+                
+                $upload_data['upload_data'] = $this->upload->data();
+                //print_r($upload_data['upload_data']['file_name']); die;
+                $resume = 'uploads/resume/'.$upload_data['upload_data']['file_name'];
+                //echo $resume; die;
+              }
+              if(isset($_POST['outside_india']))
+              {
+                $outside = $_POST['outside_india'];
+              }
+              else
+              {
+                $outside = 0;
+              }
+
+            $eduData = array(
+                            'user_id'=>$uid,
+                            'name'=>$_POST['name'],
+                            'mobile'=>$_POST['mobile'],
+                            'location'=>$_POST['location'],
+                            'outside_india'=>$outside,
+                            //'resume'=>$resume,
+                            'high_qualification'=>$_POST['high_qualification'],
+                            'course'=>$_POST['course'],
+                            'specialization'=>$_POST['specialization'],
+                            'university'=>$_POST['university'],
+                            'course_type'=>$_POST['course_type'],
+                            'passing_year'=>$_POST['passing_year'],
+                            'skills'=>$_POST['skills'],
+                            'birthdate'=>$_POST['birthdate'],
+                            'gender'=>$_POST['gender'],
+                            'marital_status'=>$_POST['marital_status'],
+                            'address'=>$_POST['address'],
+                            'city'=>$_POST['city'],
+                            'status'=>1,
+                            'created_date'=>date('Y-m-d')
+                            );
+            if($_FILES['resume']['name']!='')
+              {
+                $eduData['resume']=$resume;
+              }
+           // echo "<pre>"; print_r($_POST); print_r($eduData); die;
+
+            $getEduData = $this->common_model->getAllRecordsById(PORTFOLIO,$where);
+            if(empty($getEduData))
+            {
+                $request = $this->common_model->addRecords(PORTFOLIO,$eduData);
+            }
+            else
+            {
+                $request = $this->common_model->updateRecords(PORTFOLIO,$eduData,$where);
+            }
+            
+
+            if($request)
+            {
+                $this->session->set_flashdata('success', "Education profile updated successfully.");
+                redirect('student/Personal-Education');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', "Unable to update Education Profile.");
+                redirect('student/Personal-Education');
+            }
+
         }
     }
     

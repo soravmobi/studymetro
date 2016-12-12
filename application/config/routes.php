@@ -162,6 +162,7 @@ $route['user/my-videos'] = 'front/user/myvideos';
 $route['user/sendEmail'] = 'front/user/sendEmailToAdmin';
 $route['student/getquote'] = 'front/student/getquote';
 $route['student/portfolio'] = 'front/student/portfolio';
+$route['student/Personal-Education'] = 'front/student/add_personal_education';
 $route['user/view-portfolio'] = 'front/user/view_portfolio';
 $route['user/my-events'] = 'front/user/my_events';
 $route['user/my-comments'] = 'front/user/my_comments';

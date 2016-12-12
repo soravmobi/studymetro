@@ -15,13 +15,7 @@
                     <?php $this->load->view('sidebar'); ?>
                     <div class="col-md-9 col-sm-9">
                       <div class="right_dashboard">
-                      <div class="success">
-                        <?php if($this->session->flashdata('success')){ ?>
-                          <div class="alert alert-success"><?php echo $this->session->flashdata('success'); ?></div>
-                        <?php } elseif($this->session->flashdata('error')) { ?>
-                        <div class="alert alert-danger"><?php echo $this->session->flashdata('error'); ?></div>
-                        <?php } ?>
-                      </div>
+                      <div class="table_box">
                         <table class="table table-hover">
                           <thead>
                             <tr>
@@ -63,6 +57,7 @@
                           <?php $i++; } ?>
                           </tbody>
                           </table>
+                          </div>
                       </div>
                      </div> 
                     </div>
@@ -347,7 +342,7 @@
             success:function(result)
             { 
               var obj = JSON.parse(result);
-              alert(result);
+              //alert(result);
               if(obj.type=="success")
               {
                 showToaster('success',obj.msg);

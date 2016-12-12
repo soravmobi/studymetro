@@ -367,7 +367,7 @@ class User extends CI_Controller {
 
                      $config['file_name'] = $_FILES['attachment']['name']; 
                      $config['upload_path'] ='uploads/email_attachments/'; 
-                     $config['allowed_types'] = 'png|jpeg|jpg';
+                     //$config['allowed_types'] = 'png|jpeg|jpg';
                      $config['max_size']      = '10000000';
                      $config['max_width']     = '100024';
                      $config['max_height']    = '768000';
@@ -420,6 +420,7 @@ class User extends CI_Controller {
             $id   = decode($this->input->post('mail'));
             $type = $this->input->post('type');
             $result = $this->common_model->getSingleRecordById(EMAILS,array('id' => $id));
+            //print_r($result); die;
             if(!empty($result)){
                 if($type == 'inbox'){
                     $user_details = getUserDetailsBy('email',$result['from_email']);
@@ -431,7 +432,15 @@ class User extends CI_Controller {
                 }else{
                   $file = base_url().'uploads/users/'.$user_details[0]['photo'];
                 }
-                echo json_encode(array('type' => 'success', 'mail' => $result, 'username' => $user_details[0]['first_name']." ".$user_details[0]['last_name'],'userimg' => $file,'datetime' => date('d M, Y',strtotime($result['added_date']))));exit;
+                if($result['attachment']!='')
+                {
+                    $attachment = $result['attachment'];
+                }
+                else
+                {
+                    $attachment = '';
+                }
+                echo json_encode(array('type' => 'success', 'mail' => $result, 'username' => $user_details[0]['first_name']." ".$user_details[0]['last_name'],'attachment'=>$attachment,'userimg' => $file,'datetime' => date('d M, Y',strtotime($result['added_date']))));exit;
             }else{
                 echo json_encode(array('type' => 'failed', 'msg' => GENERAL_ERROR));exit;
             }
@@ -688,6 +697,7 @@ class User extends CI_Controller {
         $data['interests']      = $this->common_model->getAllRecordsOrderById(INTERESTS,'id','DESC',array('user_id' => $user_id));
         $data['volunteers']     = $this->common_model->getAllRecordsOrderById(VOLUNTEERS,'id','DESC',array('user_id' => $user_id));
         $data['username']     = $this->common_model->getSingleRecordById(USER,array('id' => $user_id));
+        $data['eduProfileData'] = $this->common_model->getSingleRecordById(PORTFOLIO,array('user_id' => $user_id));
 
         load_front_view('student/social_icon_portfolio', $data);
     }

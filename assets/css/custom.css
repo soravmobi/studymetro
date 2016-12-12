@@ -3190,6 +3190,7 @@ a.download_btn {
   cursor: pointer;
   font-family: "SourceSansProBold";
   font-size: 16px;
+  text-transform: capitalize;
 }
 .message_sub img {
   margin-right: 6px;
@@ -4371,6 +4372,8 @@ color: #fff;
 .valid_error{
   border: 1px solid red;
 }
+/*.social_icon {
+=======
 .social_icon {
   margin: 0 644px;
   padding: 4px 32px;
@@ -4385,10 +4388,11 @@ color: #fff;
   padding-top: 20px;
   text-align: right;
   width: auto;
+>>>>>>> 6c1fa02bf7329fb25371e8427f08699b2565351d
   margin: 0 620px;
   padding: 4px 32px;
   width: 30%;
-}
+}*/
 
 .footer_navi .navbar-header {
   display: none;
@@ -4402,6 +4406,54 @@ color: #fff;
 .fav_prgrm.course_detail .univ_logo {
   margin-right: 60px;
 }
-a.vc-powered-by {
-    display: none;
+.message_box .table{
+  border: 1px solid #ddd;
+}
+.right_dashboard .photo_frame {
+  height: 50px;
+  margin: 4px 10px 0;
+  padding-top: 0;
+  vertical-align: middle;
+  width: 50px;
+}
+.right_dashboard .photo_frame > img {
+  max-height: 100%;
+  max-width: 100%;
+  width: 100%;
+}
+
+.right_dashboard .nav-pills li a {
+  background: #014e99 none repeat scroll 0 0;
+  color: #fff;
+  line-height: 10px;
+  padding: 10px;
+}
+#message input[type="file"]{
+height: auto;
+}
+
+.table_box .table td {
+    border: 1px solid #ddd;
+}
+.table_box .table th {
+    border: 1px solid #ddd !important;
+}
+.table_box .interview_date {
+  width: 90px;
+}
+
+.subhead_dash {
+  background-color: #014e99;
+  color: #fff;
+  font-size: 22px;
+  margin-bottom: 25px;
+  padding: 5px;
+  text-transform: uppercase;
+}
+.personal_edu .col-sm-6 {
+  min-height: 75px;
+}
+.right_dashboard .social_icon {
+  float: right;
+>>>>>>> 1a61cd42277ef0774bd98b6106c7f2c6c831f59b
 }
