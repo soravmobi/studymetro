@@ -152,6 +152,7 @@ $route['admin/programs/edit-summer-program/(:any)'] = 'admin/programs/editSummer
 $route['home']         = 'front/Home';
 $route['universities'] = 'front/Home/universities';
 $route['user/profile'] = 'front/user/profile';
+$route['user/online-scheduling-meeting'] = 'front/user/online_scheduling_meeting';
 $route['user/feedback'] = 'front/user/feedback';
 $route['user/dashboard'] = 'front/user/dashboard';
 $route['user/upload_documents'] = 'front/user/upload_documents';
