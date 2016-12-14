@@ -179,6 +179,12 @@ $route['university/short_term'] = 'front/university/short_term';
 $route['university/online'] = 'front/university/online';
 $route['university/international_partnerships'] = 'front/university/international_partnerships';
 $route['university/locations'] = 'front/university/locations';
+$route['university/university-dashboard'] = 'front/university/university_dashboard';
+$route['university/updateUniversityData/(:any)'] = 'front/university/updateUniversityData/$1';
+$route['university/my-programs'] = 'front/university/my_programs';
+$route['university/add-new-program'] = 'front/university/add_new_program';
+$route['university/delete-program/(:any)'] = 'front/university/delete_program/$1';
+$route['university/edit-program/(:any)'] = 'front/university/edit_program/$1';
 
 $route['(:any)'] = 'front/home/pages/$1';
 $route['faqs/(:any)'] = 'front/home/faqs/$1';

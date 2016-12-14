@@ -199,6 +199,191 @@ class University extends CI_Controller {
         redirect('university/locations');
     }
 
+    public function sendEmailToAdmin($message,$subject,$from="")
+    {
+        checkUserSession(array('5'));
+        $uid = $this->session->userdata("user_id");
+        $email = $this->common_model->getSingleRecordById('users',array('id'=>$uid));
+        $user_email = $email['email'];
+        send_mail($message, $subject, $user_email,$from="");
+    }
+
+    public function university_dashboard()
+    {
+        checkUserSession(array('5'));
+        $data = array();
+        $data['meta_title']     = 'University Dashboard';
+        $data['parent']         = 'university_dashboard';
+        $uid = $this->uid;
+        $data['university']   = $this->common_model->getAllRecords(UNIVERSITIES);
+        $data['assign_univ']   = $this->common_model->getAllRecordsById(USER,array('id'=>$uid));
+        
+        load_front_view('university/university_dashboard', $data);
+    }
+
+    public function updateUniversityData($id)
+    {
+        $data = $this->input->post();
+
+        $this->form_validation->set_rules('name', 'University Name', 'trim|required');
+        $this->form_validation->set_rules('founded', 'University Founded Year', 'trim|required|numeric|min_length[4]|max_length[4]');
+        $this->form_validation->set_rules('location', 'University Location', 'trim|required');
+        $this->form_validation->set_rules('address', 'University Address', 'trim|required');
+        $this->form_validation->set_rules('content', 'University Content', 'trim|required');
+
+        if($this->form_validation->run()==TRUE){
+            //print_r($data); die;
+            if($data['founded'] > date('Y-m-d')){
+                echo json_encode(array('type' => 'validation_err','msg' => array('Foundation year should be less than or equals to '.date('Y'))));die;
+            }
+            if(!empty($_FILES['logo']['name'])){
+                $logo = imgUpload('logo','university','png');
+                if(isset($logo['error'])){
+                    echo json_encode(array('type' => 'validation_err','msg' => array("University logo - ".strip_tags($logo['error'],'<br>'))));die;
+                }else{
+                    $data['logo'] = $logo['upload_data']['file_name'];
+                }
+            }
+            if(!empty($_FILES['image']['name'])){
+                $image = imgUpload('image','university','jpg|jpeg|gif|png');
+                if(isset($image['error'])){
+                    echo json_encode(array('type' => 'validation_err','msg' => array("University image - ".strip_tags($image['error'],'<br>'))));die;
+                }else{
+                    $data['image'] = $image['upload_data']['file_name'];
+                }
+            }
+            
+            $data['quotes_title'] = json_encode($data['quotes_title']);
+            $data['quotes_content'] = json_encode($data['quotes_content']);
+            if($this->common_model->updateRecords(UNIVERSITIES, $data, array('id' => $id))) {
+                $this->session->set_flashdata('success', "University updated successfully");
+                redirect('university/university-dashboard');
+            } else {
+               $this->session->set_flashdata('error', "Unable to update University.");
+                redirect('university/university-dashboard');
+            }
+        }
+        else
+        {
+            $data = array();
+            $data['meta_title']     = 'Edit University';
+            $data['parent']         = 'university_dashboard';
+            $uid = $this->uid;
+            $data['details'] = $this->common_model->getSingleRecordById(UNIVERSITIES, array('id' => $id));
+            load_front_view('university/edit_university', $data);
+        }
+    }
+
+    public function my_programs()
+    {
+        $data = array();
+        $data['meta_title']     = 'My Programs';
+        $data['parent']         = 'my_programs';
+        $uid = $this->uid;
+    
+        $data['assign_univ']   = $this->common_model->getAllRecordsById(USER,array('id'=>$uid));
+
+        foreach ($data['assign_univ'] as $a) { 
+            $univ = explode(',',$a['university_id']);
+            for($j=0;$j<count($univ);$j++){
+                $univ[$j];
+                $data['details'][] = $this->common_model->getAllRecordsById(PROGRAMS,array('university_id'=>$univ[$j]));
+            } 
+
+        }
+        //echo "<pre>"; print_r($data['details']); die;
+        load_front_view('university/my_programs', $data);
+    }
+
+    public function delete_program($id)
+    {
+        $request = $this->common_model->deleteRecord(PROGRAMS,array('id'=>$id));
+        if($request)
+        {
+            $this->session->set_flashdata('success', "Program deleted successfully");
+                redirect('university/my-programs');
+        }
+        else
+        {
+            $this->session->set_flashdata('error', "Unable to delete Program.");
+                redirect('university/my-programs');
+        }
+    }
+
+    public function add_new_program()
+    {
+        $this->form_validation->set_rules('program_name','Program Name','required');
+        $this->form_validation->set_rules('location','Program Name','required');
+        $this->form_validation->set_rules('country','Program Name','required');
+        $this->form_validation->set_rules('university_id','Program Name','required');
+        $this->form_validation->set_rules('course_type','Program Name','required');
+        $this->form_validation->set_rules('application_fee','Program Name','required');
+        if($this->form_validation->run()==false)
+        {
+            $data = array();
+            $data['meta_title']     = 'Add Programs';
+            $data['parent']         = 'my_programs';
+            $uid = $this->uid;
+            
+            load_front_view('university/add_new_program', $data);
+        }
+        else
+        {
+            $addData = $this->input->post();
+            $data['added_date'] = datetime();
+            $request = $this->common_model->addRecords(PROGRAMS,$addData);
+            if($request!='')
+            {
+                $this->session->set_flashdata('success', "Program added successfully");
+                    redirect('university/my-programs');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', "Unable to add Program.");
+                    redirect('university/my-programs');
+            }
+        }
+        
+    }
+
+    public function edit_program($id)
+    {
+        $this->form_validation->set_rules('program_name','Program Name','required');
+        $this->form_validation->set_rules('location','Program Name','required');
+        $this->form_validation->set_rules('country','Program Name','required');
+        $this->form_validation->set_rules('university_id','Program Name','required');
+        $this->form_validation->set_rules('course_type','Program Name','required');
+        $this->form_validation->set_rules('application_fee','Program Name','required');
+        if($this->form_validation->run()==false)
+        {
+            $data = array();
+            $data['meta_title']     = 'Edit Programs';
+            $data['parent']         = 'my_programs';
+            $uid = $this->uid;
+            $data['details'] = $this->common_model->getSingleRecordById(PROGRAMS,array('id'=>$id));
+            $data['universities']  = $this->common_model->getAllRecordsOrderById(UNIVERSITIES,'name','ASC',array('country' => $data['details']['country']));
+            load_front_view('university/edit_program', $data);
+        }
+        else
+        {
+            $updateData = $this->input->post();
+            $data['added_date'] = datetime();
+            $request = $this->common_model->updateRecords(PROGRAMS,$updateData,array('id'=>$id));
+
+            if($request)
+            {
+                $this->session->set_flashdata('success', "Program updated successfully");
+                    redirect('university/my-programs');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', "Unable to update Program.");
+                    redirect('university/my-programs');
+            }
+        }
+        
+    }
+
 }
 
 ?>

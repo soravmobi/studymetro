@@ -33,52 +33,38 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input type="text" class="form-control <?php if(form_error('name')){ echo 'valid_error'; } ?>" name="name" value="<?php echo $eduProfileData['name']; ?>">
-                                        <div class="error_name"></div>
+                                        <input type="text" class="form-control" name="name" value="<?php echo $eduProfileData['name']; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Mobile</label>
-                                        <input type="text" class="form-control <?php if(form_error('mobile')){ echo 'valid_error'; } ?>" name="mobile" value="<?php echo $eduProfileData['mobile']; ?>">
-                                        <div class="error_name"></div>
+                                        <input type="text" class="form-control" name="mobile" value="<?php echo $eduProfileData['mobile']; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Current Location</label>
-                                        <input type="text" class="form-control <?php if(form_error('location')){ echo 'valid_error'; } ?>" name="location" value="<?php echo $eduProfileData['location']; ?>" >
-                                        <div class="error_name"></div>
+                                        <input type="text" class="form-control" name="location" value="<?php echo $eduProfileData['location']; ?>" readonly>
                                     </div>
                                 </div>
+                                <?php if($eduProfileData['outside_india']==1){?>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                        <label>Outside India </label>
                                         <div class="checkbox_align">
-                                        <input type="checkbox" class="<?php if(form_error('outside_india')){ echo 'valid_error'; } ?>" name="outside_india" value="1" <?php if($eduProfileData['outside_india']==1){ echo 'checked'; } ?>> 
+                                        <input type="checkbox" class="<?php if(form_error('outside_india')){ echo 'valid_error'; } ?>" name="outside_india" value="1"  checked> 
                                         <div class="error_name"></div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <?php if($eduProfileData['resume']!=''){ ?>
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <label>Upload Resume</label>
-                                        <input type="file" class="form-control" name="resume" >
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <label>Download Resume</label>
-                                        <div class="form-control"><a download="" class="download_btn" href="<?php echo base_url().$eduProfileData['resume']; ?>" title="Click Here To Download Document"><i class="fa fa-download" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                 </div>
-                                <?php } else{ ?>
+                                <?php } ?>
+                                <?php if($eduProfileData['resume']!=''){ ?>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Upload Resume</label>
-                                        <input type="file" class="form-control" name="resume" >
+                                        <label>Download Resume</label>
+                                        <div class="form-control"><a download class="download_btn" href="<?php echo base_url().$eduProfileData['resume']; ?>" title="Click Here To Download Document"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                                 <?php } ?>
@@ -86,97 +72,89 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>High Qualification</label>
-                                        <input type="text" class="form-control <?php if(form_error('high_qualification')){ echo 'valid_error'; } ?>" name="high_qualification" value="<?php echo $eduProfileData['high_qualification']; ?>">
-                                        <div class="error_name"></div>
+                                        <input type="text" class="form-control" name="high_qualification" value="<?php echo $eduProfileData['high_qualification']; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Course</label>
-                                        <input type="text" class="form-control <?php if(form_error('course')){ echo 'valid_error'; } ?>" name="course" value="<?php echo $eduProfileData['course']; ?>">
-                                        <div class="error_name"></div>
+                                        <input type="text" class="form-control" name="course" value="<?php echo $eduProfileData['course']; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Specialization</label>
-                                        <input type="text" class="form-control <?php if(form_error('specialization')){ echo 'valid_error'; } ?>" name="specialization" value="<?php echo $eduProfileData['specialization']; ?>">
-                                        <div class="error_name"></div>
+                                        <input type="text" class="form-control" name="specialization" value="<?php echo $eduProfileData['specialization']; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>University</label>
-                                        <input type="text" class="form-control <?php if(form_error('university')){ echo 'valid_error'; } ?>" name="university" value="<?php echo $eduProfileData['university']; ?>">
-                                        <div class="error_name"></div>
+                                        <input type="text" class="form-control" name="university" value="<?php echo $eduProfileData['university']; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label style="display: block;">Course Type</label>
+                                        <?php if($eduProfileData['course_type']=='Graduation'){ ?>
                                         <label class="radio-inline">
-                                        <input type="radio" class="" name="course_type" value="Graduation" <?php if($eduProfileData['course_type']=='Graduation'){ echo 'checked'; } ?>>Graduation
+                                        <input type="radio" class="" name="course_type" value="Graduation" checked>Graduation
                                         </label>
+                                        <?php } elseif($eduProfileData['course_type']=='Post Graduation'){ ?>
                                         <label class="radio-inline">
-                                        
                                         <input type="radio" class="" name="course_type" value="Post Graduation" <?php if($eduProfileData['course_type']=='Post Graduation'){ echo 'checked'; } ?>>Post Graduation
                                         </label>
-                                        <div class="error_name"></div>
+                                        <?php } ?>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Passing Year</label>
-                                        <input type="text" class="form-control <?php if(form_error('passing_year')){ echo 'valid_error'; } ?>" name="passing_year" value="<?php echo $eduProfileData['passing_year']; ?>">
-                                        <div class="error_name"></div>
+                                        <input type="text" class="form-control" name="passing_year" value="<?php echo $eduProfileData['passing_year']; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Skills</label>
-                                        <input type="text" class="form-control <?php if(form_error('skills')){ echo 'valid_error'; } ?>" name="skills" value="<?php echo $eduProfileData['skills']; ?>">
-                                        <div class="error_name"></div>
+                                        <input type="text" class="form-control" name="skills" value="<?php echo $eduProfileData['skills']; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Date of Birth</label>
-                                        <input type="text" class="form-control <?php if(form_error('birthdate')){ echo 'valid_error'; } ?>" name="birthdate" id="birthdate" value="<?php echo $eduProfileData['birthdate']; ?>">
-                                        <div class="error_name"></div>
+                                        <input type="text" class="form-control" name="birthdate" id="birthdate" value="<?php echo $eduProfileData['birthdate']; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                       <label style="display: block"> Gender</label>
+                                        <label style="display: block"> Gender</label>
+                                        <?php if($eduProfileData['gender']=='Male'){ ?>
                                         <label class="radio-inline">
-                                        <input type="radio" class="" name="gender" value="Male" <?php if($eduProfileData['gender']=='Male'){ echo 'checked'; } ?>>Male
+                                        <input type="radio" class="" name="gender" value="Male"  checked >Male
                                         </label>
+                                        <?php } elseif($eduProfileData['gender']=='Female'){ ?>
                                         <label class="radio-inline">
-                                        
                                         <input type="radio" class="" name="gender" value="Female" <?php if($eduProfileData['gender']=='Female'){ echo 'checked'; } ?>>Female
                                         </label>
-                                        <div class="error_name"></div>
+                                        <?php } ?>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Marital Status</label>
-                                        <input type="text" class="form-control <?php if(form_error('marital_status')){ echo 'valid_error'; } ?>" name="marital_status" value="<?php echo $eduProfileData['marital_status']; ?>">
-                                        <div class="error_name"></div>
+                                        <input type="text" class="form-control" name="marital_status" value="<?php echo $eduProfileData['marital_status']; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>city</label>
-                                        <input type="text" class="form-control <?php if(form_error('city')){ echo 'valid_error'; } ?>" name="city" value="<?php echo $eduProfileData['city']; ?>">
-                                        <div class="error_name"></div>
+                                        <input type="text" class="form-control" name="city" value="<?php echo $eduProfileData['city']; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Address</label>
-                                        <textarea class="form-control <?php if(form_error('address')){ echo 'valid_error'; } ?>" name="address"><?php echo $eduProfileData['address']; ?></textarea>
-                                        <div class="error_name"></div>
+                                        <textarea class="form-control" name="address" readonly><?php echo $eduProfileData['address']; ?></textarea>
                                     </div>
                                 </div>
                                 

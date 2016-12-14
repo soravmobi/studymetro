@@ -187,6 +187,7 @@ define('OFFICES', 'offices');
 define('OFFLINE_PAYMENT', 'offline_payment');
 define('APPLIED_PROGRAMS', 'applied_programs');
 define('FAVORITE_PROGRAMS', 'favorite_programs');
+define('ASSIGNED_UNIVERSITY', 'assigned_university');
 define('PORTFOLIO', 'portfolio');
 define('COMMENTS', 'comments');
 define('QUESTIONS', 'assignment_questions');

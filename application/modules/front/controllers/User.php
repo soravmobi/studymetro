@@ -715,7 +715,7 @@ class User extends CI_Controller {
     public function favorite_programs()
     {
         $user_id = $this->uid;
-        $data['programs'] = $this->common_model->getAllRecordsBySingleJoin(FAVORITE_PROGRAMS,'program_id',PROGRAMS,'id',$user_id);
+        $data['programs'] = $this->common_model->getAllRecordsBySingleJoin(FAVORITE_PROGRAMS,'program_id',PROGRAMS,'id',$user_id,'DESC');
         load_front_view('pages/favorite_programs', $data);
     }
 

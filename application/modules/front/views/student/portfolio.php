@@ -46,8 +46,6 @@
                           </div>
                         </div>
 
-                    <div class="right_dashboard">
-
                         <div class="personal_edu">
                             <form method="post" action="<?php echo base_url('student/Personal-Education'); ?>" enctype="multipart/form-data">
                                 <div class="col-sm-6">
@@ -90,7 +88,7 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Download Resume</label>
-                                        <div class="form-control"><a download="" class="download_btn" href="<?php echo base_url().$eduProfileData['resume']; ?>" title="Click Here To Download Document"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                        <div class="form-control"><a download class="download_btn" href="<?php echo base_url().$eduProfileData['resume']; ?>" title="Click Here To Download Document"><i class="fa fa-download" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -201,15 +199,13 @@
                                 </div>
                                 
                                 <div class="col-sm-12">
-                                    <input type="submit" class="btn btn-primary" name="update_info" value="Submit">
+                                    <input type="submit" class="commn_btn" name="update_info" value="Submit">
                                 </div>
                             </form>
                         </div>
 
-                      
-                        
                         <div class="clearfix"></div>
-                        
+                        <div class="right_dashboard">
                             <div class="describ_box">
                                 <h1><i class="fa fa-graduation-cap" aria-hidden="true"></i> Education <a href="javascript:void(0)"
                                         data-toggle="modal" title="Add New Education" data-target="#education" class="pull-right"><i class="fa fa-plus"></i></a></h1>

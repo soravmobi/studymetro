@@ -47,6 +47,7 @@
 	              <th>User Status</th>
 	              <th>User Type</th>
 	              <th>History</th>
+	              <th>University</th>
 	              <th>Action</th>
 	              <th>Date Created</th>
 	              <th>Delete</th>
@@ -58,7 +59,7 @@
 	            ?>
 	            	<tr>
 		              <td><?php echo $offset++; ?></td>
-		              <td><?php echo $val['username']; ?></td>
+		              <td id="user_name<?php echo $val['id']; ?>"><?php echo $val['username']; ?></td>
 		              <td>
 		              	<?php 
 		              		$profilePic = get_user_meta($val['id'], 'profile_picture');
@@ -111,8 +112,15 @@
 		              </td>
 		              <td>
 		              	<a href="<?php cms_url('admin/users/viewHistory/'.$val['id']); ?>" title="View History">
-		              		<!-- <i class="fa fa-eye"></i> --> View-History
+		              		View-History
 		              	</a>
+		              </td>
+		              <td>
+		              	<?php if($val['user_type']==5){ ?>
+		              	<a href="javascript:" user_id="<?php echo $val['id']; ?>" class="assign_univ" title="Assign University">
+		              		Assign-University
+		              	</a>
+		              	<?php } ?>
 		              </td>
 		              <td>
 		              	<a href="<?php cms_url('admin/users/edit/'.$val['id']); ?>" title="Edit User">
@@ -140,3 +148,87 @@
     </div><!-- .row -->
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+
+<!-- login Modal Start -->
+<div class="modal fade model_logoinform" id="assigned_university" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Assigned University</h4>
+      </div>
+      <div class="modal-body">
+      <!-- <form method="post" action=""> -->
+       <input type="hidden" name="assign_user_id" id="assign_user_id" value="" />
+        <div class="form-group">
+            <label for="inputEmail">University List</label><br/>
+            <select multiple="" name="univ_name" id="univ_name" class="chosen-select form-control">
+            	<!-- <option value="">Select University</option> -->
+            	<?php foreach($universities as $univ){ ?>
+            	<option value="<?php echo $univ['id']; ?>"><?php echo $univ['name']; ?></option>
+            	<?php } ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Assigned to</label><br/>
+            <input type="text" name="username" id="username" class="form-control" value="" />
+        </div>
+        
+        <input type="submit" id="submit_univ" class="btn btn-primary" value="Submit">
+        <!-- <a href="javascript:"  class="btn btn-primary">Login</a> -->
+           <!-- </form> -->
+      </div>
+      
+    </div>
+  </div>
+</div>
+<!-- login Modal End -->
+
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/admin/css/chosen.min.css">
+<script src="<?php echo base_url(); ?>assets/admin/js/chosen.jquery.js"></script>
+
+<script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      
+      $(selector).chosen(config[selector]);
+    }
+
+    $('#univ_name_chosen').attr('style','width: 100%;');
+  </script>
+
+<script type="text/javascript">
+	$('body').on('click','.assign_univ',function(){
+		var user_id = $(this).attr('user_id');
+		var user_name = $('#user_name'+user_id).html();
+		$('#assigned_university').modal('show');
+		$('#assign_user_id').val(user_id);;
+		$('#username').val(user_name);
+	});
+
+	$('body').on('click','#submit_univ',function(){
+		var user_id = $('#assign_user_id').val();
+		var univ_name = $('#univ_name').val();
+		var univ_id = JSON.stringify(univ_name);
+		$.ajax({
+				url:"<?php echo base_url('admin/users/assignUniversity'); ?>",
+				type:"POST",
+				data:{user_id:user_id,univ_id:univ_id},
+				success:function(result)
+				{
+					if(result==1)
+					{
+						$('#assigned_university').modal('hide');
+						alert('University has assigned successfully');
+					}
+				}
+		});
+		
+	});
+</script>
