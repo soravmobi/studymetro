@@ -47,6 +47,7 @@
 	              <th>User Status</th>
 	              <th>User Type</th>
 	              <th>History</th>
+	              <th>Invoice</th>
 	              <th>University</th>
 	              <th>Action</th>
 	              <th>Date Created</th>
@@ -117,6 +118,13 @@
 		              </td>
 		              <td>
 		              	<?php if($val['user_type']==5){ ?>
+		              	<a href="javascript:" user_id="<?php echo $val['id']; ?>" class="upload_invoice" title="Upload Invoice">
+		              		Upload Invoice
+		              	</a>
+		              	<?php } ?>
+		              </td>
+		              <td>
+		              	<?php if($val['user_type']==5){ ?>
 		              	<a href="javascript:" user_id="<?php echo $val['id']; ?>" class="assign_univ" title="Assign University">
 		              		Assign-University
 		              	</a>
@@ -149,7 +157,7 @@
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 
-<!-- login Modal Start -->
+<!-- Modal Start -->
 <div class="modal fade model_logoinform" id="assigned_university" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -182,7 +190,42 @@
     </div>
   </div>
 </div>
-<!-- login Modal End -->
+<!--  Modal End -->
+
+
+<!-- Modal Start -->
+<div class="modal fade model_logoinform" id="upload_invoice_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Upload Invoice</h4>
+      </div>
+      <div class="modal-body">
+       <form name="invoice_form" id="invoice_form" enctype="multipart/form-data"> 
+       <input type="hidden" name="invoice_user_id" id="invoice_user_id" value="" />
+        <div class="form-group">
+                    <label for="name" class="col-sm-3 control-label"> Browse file:</label>
+                    <div class="col-sm-9">
+                    <input type="file" class="form-control"  onchange="readURL(this,'pdf','')" name="file">
+                     <div class="error_form"><?php echo form_error('file'); ?></div>
+                    </div>
+                </div>
+        <div class="form-group">
+            <label for="inputEmail">Upload for</label><br/>
+            <input type="text" name="invoice_username" id="invoice_username" class="form-control" value="" />
+        </div>
+        
+        <input type="submit" id="submit_invoice" class="btn btn-primary" value="Submit">
+        <!-- <a href="javascript:"  class="btn btn-primary">Login</a> -->
+          </form> 
+      </div>
+      
+    </div>
+  </div>
+</div>
+<!--  Modal End -->
+
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/admin/css/chosen.min.css">
 <script src="<?php echo base_url(); ?>assets/admin/js/chosen.jquery.js"></script>
@@ -231,4 +274,44 @@
 		});
 		
 	});
+
+
+// for upload invoice
+
+$('body').on('click','.upload_invoice',function(){
+		var user_id = $(this).attr('user_id');
+		var user_name = $('#user_name'+user_id).html();
+		$('#upload_invoice_modal').modal('show');
+		$('#invoice_user_id').val(user_id);;
+		$('#invoice_username').val(user_name);
+	});
+
+	$('body').on('click','#submit_invoice',function(e){
+		e.preventDefault();
+		var user_id = $('#invoice_user_id').val();
+		var file = new FormData($('#invoice_form')[0]);
+		
+		//alert(file);
+		$.ajax({
+				url:"<?php echo base_url(); ?>admin/users/doUploadInvoices",
+				type:"POST",
+				data:file,user_id,
+				processData: false,
+    			contentType: false,
+				success:function(result)
+				{	
+					//alert(result);
+					if(result==1)
+					{
+						$('#upload_invoice_modal').modal('hide');
+						alert('Invoice uploaded successfully');
+					}
+				},
+				error: function(error_data){
+			        alert(error_data);
+			    }
+		});
+		
+	});
+
 </script>

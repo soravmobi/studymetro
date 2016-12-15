@@ -5,7 +5,7 @@
               <div class="container">
                  <div class="row">
                  <div class="col-md-12 col-sm-12">
-                   My Programss
+                   My Programs
                    </div>
                  </div>
               </div>

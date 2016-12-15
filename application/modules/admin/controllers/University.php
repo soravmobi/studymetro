@@ -387,6 +387,169 @@ class University extends CI_Controller {
 		}
     }
 
+    /**
+	* University Invoices
+	* @param $_POST
+    */
+    public function invoice() {
+    	is_logged_in($this->url.'/invoice');
+		$data = array();
+		$data['meta_title'] = 'Invoice';
+		$data['small_text'] = 'Invoice';
+		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'university_invoice');
+		$data['session_data'] = admin_session_data();
+		$data['user_info'] = get_user($data['session_data']['user_id']);
+		load_admin_view('universities/university_invoice', $data);
+    }
 
-	
+    public function view_all_webinar()
+    {
+    	is_logged_in($this->url.'/view_all_webinar');
+		$data = array();
+		$data['meta_title'] = 'Webinar';
+		$data['small_text'] = 'Webinar';
+		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'schedule_webinar');
+		$data['session_data'] = admin_session_data();
+		$data['user_info'] = get_user($data['session_data']['user_id']);
+
+
+		/* Fetch Data */
+        $offset = $this->uri->segment(4);
+	    if(!$offset) {
+		 	$offset = 0;
+	    }
+	    if(isset($_GET['s']) && !empty($_GET['s'])){
+	    	if($this->input->get('per_page')){
+	    		$offset = $this->input->get('per_page');
+	    	}else{
+	    		$offset = 0;
+	    	}
+	    }
+
+	    $data['offset'] = $offset;
+	    $data['university'] = '';
+	    $data['pagination'] = '';
+	    $data['university'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(WEBINARS, (isset($_GET['s'])) ? array('name', 'location', 'country' ,'address', 'founded', 'president') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'DESC', RESULT_PER_PAGE, $offset, '');
+	    // echo $this->db->last_query();die;
+	    if(count($data['university']) > 0) {
+	    	/* Pagination records */
+	    	$query_string = '';
+	        $url = get_cms_url().$this->url.'/view-all';
+	        if(isset($_GET['s']) && !empty($_GET['s'])){
+	        	$url .= '?s='.$_GET['s'];
+	        	$query_string = 'yes';
+	        }
+	        $total_records = $this->common_model->getTotalPaginateRecordsByOrderByLikeCondition(WEBINARS, (isset($_GET['s'])) ? array('name', 'location', 'country','address', 'founded', 'president') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', '');
+	        $data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right','',$query_string);
+	    }
+
+
+		
+		$data['webinars'] = $this->common_model->getAllRecords(WEBINARS);
+		load_admin_view('universities/schedule_webinar', $data);
+    }
+
+    public function activate_webinar($id)
+    {
+    	is_logged_in($this->url.'/view_all_webinar');
+    	$req = $this->common_model->updateRecords(WEBINARS,array('status'=>1),array('id'=>$id));
+    	if($req)
+    	{
+    		$this->session->set_flashdata('item_success', 'Webinar is approved');
+            redirect($this->url.'/view-all-webinar');
+        } else {
+            $this->session->set_flashdata('invalid_item', 'Unable to approve Webinar');
+            redirect($this->url.'/view-all-webinar');
+    	}
+    }
+
+    public function deactivate_webinar($id)
+    {
+    	is_logged_in($this->url.'/view_all_webinar');
+    	$req = $this->common_model->updateRecords(WEBINARS,array('status'=>0),array('id'=>$id));
+    	if($req)
+    	{
+    		$this->session->set_flashdata('item_success', 'Webinar is disapproved');
+            redirect($this->url.'/view-all-webinar');
+        } else {
+            $this->session->set_flashdata('invalid_item', 'Unable to disapprove Webinar');
+            redirect($this->url.'/view-all-webinar');
+    	}
+    }
+
+    public function view_all_appointment()
+    {
+    	is_logged_in($this->url.'/view_all_appointment');
+		$data = array();
+		$data['meta_title'] = 'Appointment';
+		$data['small_text'] = 'Appointment';
+		$data['body_class'] = array('admin_dashboard', 'is_logged_in', 'schedule_appointment');
+		$data['session_data'] = admin_session_data();
+		$data['user_info'] = get_user($data['session_data']['user_id']);
+
+
+		/* Fetch Data */
+        $offset = $this->uri->segment(4);
+	    if(!$offset) {
+		 	$offset = 0;
+	    }
+	    if(isset($_GET['s']) && !empty($_GET['s'])){
+	    	if($this->input->get('per_page')){
+	    		$offset = $this->input->get('per_page');
+	    	}else{
+	    		$offset = 0;
+	    	}
+	    }
+
+	    $data['offset'] = $offset;
+	    $data['university'] = '';
+	    $data['pagination'] = '';
+	    $data['university'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(APPOINTMENT, (isset($_GET['s'])) ? array('name', 'location', 'country' ,'address', 'founded', 'president') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'DESC', RESULT_PER_PAGE, $offset, '');
+	    // echo $this->db->last_query();die;
+	    if(count($data['university']) > 0) {
+	    	/* Pagination records */
+	    	$query_string = '';
+	        $url = get_cms_url().$this->url.'/view-all';
+	        if(isset($_GET['s']) && !empty($_GET['s'])){
+	        	$url .= '?s='.$_GET['s'];
+	        	$query_string = 'yes';
+	        }
+	        $total_records = $this->common_model->getTotalPaginateRecordsByOrderByLikeCondition(APPOINTMENT, (isset($_GET['s'])) ? array('name', 'location', 'country','address', 'founded', 'president') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', '');
+	        $data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right','',$query_string);
+	    }
+
+
+		
+		$data['appointments'] = $this->common_model->getAllRecords(APPOINTMENT);
+		load_admin_view('universities/schedule_appointment', $data);
+    }
+
+    public function activate_appointment($id)
+    {
+    	is_logged_in($this->url.'/view_all_appointment');
+    	$req = $this->common_model->updateRecords(APPOINTMENT,array('status'=>1),array('id'=>$id));
+    	if($req)
+    	{
+    		$this->session->set_flashdata('item_success', 'Appointment is approved');
+            redirect($this->url.'/view-all-appointment');
+        } else {
+            $this->session->set_flashdata('invalid_item', 'Unable to approve Appointment');
+            redirect($this->url.'/view-all-appointment');
+    	}
+    }
+
+    public function deactivate_appointment($id)
+    {
+    	is_logged_in($this->url.'/view_all_appointment');
+    	$req = $this->common_model->updateRecords(APPOINTMENT,array('status'=>0),array('id'=>$id));
+    	if($req)
+    	{
+    		$this->session->set_flashdata('item_success', 'Appointment is disapproved');
+            redirect($this->url.'/view-all-appointment');
+        } else {
+            $this->session->set_flashdata('invalid_item', 'Unable to disapprove Appointment');
+            redirect($this->url.'/view-all-appointment');
+    	}
+    }
+
 }

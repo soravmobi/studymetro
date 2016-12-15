@@ -274,8 +274,21 @@ class University extends CI_Controller {
         }
     }
 
+    public function my_invoices()
+    {
+        checkUserSession(array('5'));
+        $data = array();
+        $data['meta_title']     = 'My Invoices';
+        $data['parent']         = 'my_invoices';
+        $uid = $this->uid;
+    
+        $data['details']   = $this->common_model->getAllRecordsById(INVOICES,array('user_id'=>$uid));
+        load_front_view('university/my_invoices', $data);
+    }
+
     public function my_programs()
     {
+        checkUserSession(array('5'));
         $data = array();
         $data['meta_title']     = 'My Programs';
         $data['parent']         = 'my_programs';
@@ -312,6 +325,7 @@ class University extends CI_Controller {
 
     public function add_new_program()
     {
+        checkUserSession(array('5'));
         $this->form_validation->set_rules('program_name','Program Name','required');
         $this->form_validation->set_rules('location','Program Name','required');
         $this->form_validation->set_rules('country','Program Name','required');
@@ -348,6 +362,7 @@ class University extends CI_Controller {
 
     public function edit_program($id)
     {
+        checkUserSession(array('5'));
         $this->form_validation->set_rules('program_name','Program Name','required');
         $this->form_validation->set_rules('location','Program Name','required');
         $this->form_validation->set_rules('country','Program Name','required');
@@ -382,6 +397,218 @@ class University extends CI_Controller {
             }
         }
         
+    }
+
+    public function webinar()
+    {
+        checkUserSession(array('5'));
+        $data = array();
+        $data['meta_title']     = 'Schedule Webinar';
+        $data['parent']         = 'webinar';
+        $uid = $this->uid;
+        
+        $data['webinars'] = $this->common_model->getAllRecordsById(WEBINARS,array('user_id'=>$uid));
+        load_front_view('university/schedule_webinar', $data);
+    }
+
+    public function add_webinar()
+    {
+        checkUserSession(array('5'));
+        $uid = $this->uid;
+
+        $this->form_validation->set_rules('name','Name','required');
+        $this->form_validation->set_rules('email','Email','required');
+        $this->form_validation->set_rules('phone','Phone','required');
+        $this->form_validation->set_rules('skype_id','sSype','required');
+        $this->form_validation->set_rules('date','Date','required');
+        $this->form_validation->set_rules('time','Time','required');
+        if($this->form_validation->run()==false)
+        {
+            $data = array();
+            $data['meta_title']     = 'Schedule Webinar';
+            $data['parent']         = 'webinar';
+            $uid = $this->uid;
+            
+            load_front_view('university/add_webinar', $data);
+        }
+        else
+        {
+            $data = $this->input->post();
+            $data['user_id'] = $uid;
+            $data['status'] = 0;
+            $data['added_date'] = datetime();
+            $request = $this->common_model->addRecords(WEBINARS,$data);
+            if($request!='')
+            {
+                $this->session->set_flashdata('success', "Webinar added successfully");
+                    redirect('university/webinar');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', "Unable to add Webinar.");
+                    redirect('university/webinar');
+            }
+        }
+    }
+
+    public function edit_webinar($id)
+    {
+        checkUserSession(array('5'));
+        $this->form_validation->set_rules('name','Name','required');
+        $this->form_validation->set_rules('email','Email','required');
+        $this->form_validation->set_rules('phone','Phone','required');
+        $this->form_validation->set_rules('skype_id','sSype','required');
+        $this->form_validation->set_rules('date','Date','required');
+        $this->form_validation->set_rules('time','Time','required');
+        if($this->form_validation->run()==false)
+        {
+            $data = array();
+            $data['meta_title']     = 'Schedule Webinar';
+            $data['parent']         = 'webinar';
+            $uid = $this->uid;
+            
+            $data['details'] = $this->common_model->getSingleRecordById(WEBINARS,array('user_id'=>$uid));
+            load_front_view('university/edit_webinar', $data);
+        }
+        else
+        {
+            $updateData = $this->input->post();
+            $request = $this->common_model->updateRecords(WEBINARS,$updateData,array('id'=>$id));
+
+            if($request)
+            {
+                $this->session->set_flashdata('success', "Webinar updated successfully");
+                    redirect('university/webinar');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', "Unable to update Webinar.");
+                    redirect('university/webinar');
+            }
+        }
+        
+    }
+
+    public function delete_webinar($id)
+    {
+        $request = $this->common_model->deleteRecord(WEBINARS,array('id'=>$id));
+        if($request)
+        {
+            $this->session->set_flashdata('success', "Webinar deleted successfully");
+                redirect('university/webinar');
+        }
+        else
+        {
+            $this->session->set_flashdata('error', "Unable to delete Webinar.");
+                redirect('university/webinar');
+        }
+    }
+
+    public function appointment()
+    {
+        checkUserSession(array('5'));
+        $data = array();
+        $data['meta_title']     = 'Schedule Appointment';
+        $data['parent']         = 'appointment';
+        $uid = $this->uid;
+        
+        $data['appointments'] = $this->common_model->getAllRecordsById(APPOINTMENT,array('user_id'=>$uid));
+        load_front_view('university/schedule_appointment', $data);
+    }
+
+    public function add_appointment()
+    {
+        checkUserSession(array('5'));
+        $uid = $this->uid;
+
+        $this->form_validation->set_rules('name','Name','required');
+        $this->form_validation->set_rules('email','Email','required');
+        $this->form_validation->set_rules('phone','Phone','required');
+        $this->form_validation->set_rules('type','Type','required');
+        $this->form_validation->set_rules('skype_id','sSype','required');
+        $this->form_validation->set_rules('date','Date','required');
+        $this->form_validation->set_rules('time','Time','required');
+        if($this->form_validation->run()==false)
+        {
+            $data = array();
+            $data['meta_title']     = 'Schedule Appointment';
+            $data['parent']         = 'webinar';
+            $uid = $this->uid;
+            
+            load_front_view('university/add_appointment', $data);
+        }
+        else
+        {
+            $data = $this->input->post();
+            $data['user_id'] = $uid;
+            $data['status'] = 0;
+            $data['added_date'] = datetime();
+            $request = $this->common_model->addRecords(APPOINTMENT,$data);
+            if($request!='')
+            {
+                $this->session->set_flashdata('success', "Appointment added successfully");
+                    redirect('university/appointment');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', "Unable to add Appointment.");
+                    redirect('university/appointment');
+            }
+        }
+    }
+
+    public function edit_appointment($id)
+    {
+        checkUserSession(array('5'));
+        $this->form_validation->set_rules('name','Name','required');
+        $this->form_validation->set_rules('email','Email','required');
+        $this->form_validation->set_rules('phone','Phone','required');
+        $this->form_validation->set_rules('type','Type','required');
+        $this->form_validation->set_rules('skype_id','sSype','required');
+        $this->form_validation->set_rules('date','Date','required');
+        $this->form_validation->set_rules('time','Time','required');
+        if($this->form_validation->run()==false)
+        {
+            $data = array();
+            $data['meta_title']     = 'Schedule Appointment';
+            $data['parent']         = 'appointment';
+            $uid = $this->uid;
+            
+            $data['details'] = $this->common_model->getSingleRecordById(APPOINTMENT,array('user_id'=>$uid));
+            load_front_view('university/edit_appointment', $data);
+        }
+        else
+        {
+            $updateData = $this->input->post();
+            $request = $this->common_model->updateRecords(APPOINTMENT,$updateData,array('id'=>$id));
+
+            if($request)
+            {
+                $this->session->set_flashdata('success', "Appointment updated successfully");
+                    redirect('university/appointment');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', "Unable to update Appointment.");
+                    redirect('university/appointment');
+            }
+        }
+        
+    }
+
+    public function delete_appointment($id)
+    {
+        $request = $this->common_model->deleteRecord(APPOINTMENT,array('id'=>$id));
+        if($request)
+        {
+            $this->session->set_flashdata('success', "Appointment deleted successfully");
+                redirect('university/appointment');
+        }
+        else
+        {
+            $this->session->set_flashdata('error', "Unable to delete Appointment.");
+                redirect('university/appointment');
+        }
     }
 
 }

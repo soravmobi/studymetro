@@ -87,8 +87,46 @@
               <i class="fa fa-upload"></i> Import Universities
             </a>
           </li>
+          <!-- <li class="<?php add_active_class('university', 'invoice'); ?>">
+            <a href="<?php cms_url('admin/university/invoice'); ?>" title="University Invoices">
+              <i class="fa fa-upload"></i> University Invoices
+            </a>
+          </li> -->
         </ul>
       </li>
+
+      <!-- Webinar -->
+      <li class="treeview <?php tree_active_class('webinar', array('viewAll')); ?>">
+        <a href="javascript:void(0);" title="Webinar">
+          <i class="fa fa-university"></i> 
+          <span>Schedule Webinar</span> 
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<?php add_active_class('webinar', 'viewAll'); ?>">
+            <a href="<?php cms_url('admin/university/view-all-webinar'); ?>" title="View All Webinars">
+              <i class="fa fa-eye"></i> View All Webinars
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Appointment -->
+      <li class="treeview <?php tree_active_class('appointment', array('viewAll')); ?>">
+        <a href="javascript:void(0);" title="appointment">
+          <i class="fa fa-university"></i> 
+          <span>Schedule Appointment</span> 
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<?php add_active_class('appointment', 'viewAll'); ?>">
+            <a href="<?php cms_url('admin/university/view-all-appointment'); ?>" title="View All Appointments">
+              <i class="fa fa-eye"></i> View All Appointment
+            </a>
+          </li>
+        </ul>
+      </li>
+
       <!-- Programs -->
       <li class="treeview <?php tree_active_class('programs', array('addNew', 'edit','viewAll','import')); ?>">
         <a href="javascript:void(0);" title="Programs">

@@ -446,4 +446,55 @@ class Users extends CI_Controller {
             return FALSE;
         }
     }
+
+    public function doUploadInvoices(){
+        
+        
+        $data = $this->input->post();
+        //print_r($data); die;
+        
+        //if(!empty($_FILES['file']['name'])){
+             $config['file_name'] = $_FILES['file']['name']; 
+             $config['upload_path'] ='uploads/invoices/'; 
+             //$config['allowed_types'] = 'png|jpeg|jpg';
+             $config['max_size']      = '10000000';
+             $config['max_width']     = '100024';
+             $config['max_height']    = '768000';
+             $config['remove_spaces'] = true;
+             $config['encrypt_name'] = TRUE;
+             $this->load->library('upload', $config);
+             $this->upload->initialize($config);
+             $this->upload->set_allowed_types('*');
+             $upload_data['upload_data'] = '';
+             $file = '';
+       
+          if (!$this->upload->do_upload('file'))
+           {
+               $upload_data = array('msg' => $this->upload->display_errors());
+           } 
+          else 
+              { 
+                $upload_data = array('msg' => "Upload success!");
+                
+                $upload_data['upload_data'] = $this->upload->data();
+                //print_r($data['upload_data']['file_name']); die;
+                $file = 'uploads/invoices/'.$upload_data['upload_data']['file_name'];
+                //echo $file; die;
+                $data['file'] = $file;
+              }
+
+              $addData = array('user_id'=>$_POST['invoice_user_id'],'file'=>$file,'status'=>1,'added_date'=>datetime());
+                $req = $this->common_model->addRecords(INVOICES, $addData);
+                $this->session->set_flashdata('success', sprintf(ITEM_ADD_SUCCESS, 'Invoice'));
+                
+            if($req)
+            {
+                echo 1;
+            }
+            else
+            {
+                echo 0;
+            }
+        }
+    
 }
