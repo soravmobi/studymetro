@@ -24,8 +24,21 @@
                                  <?php foreach($videos as $v) { ?>
                                   <div class="video_box_content">
                                     <div class="video_top"><a href="<?php echo base_url(); ?>front/user/deleteVideo/<?php echo encode($v['id']); ?>" onclick="return confirm('Are you sure ?')"><i class="fa fa-trash"></i></a></div>
-                                    <iframe width="100%" height="100%" src="<?php echo str_replace('watch?v=', 'embed/', $v['live_video_url']); ?>"></iframe>
+                                    <!-- <iframe width="100%" height="100%" src="<?php echo str_replace('watch?v=', 'embed/', $v['live_video_url']); ?>"></iframe> -->
+                                    <?php if($v['video_img']!=''){ ?>
+                                    <a target="_blank" href="<?php echo str_replace('watch?v=', 'embed/', $v['live_video_url']); ?>">
+                                    <img width="100%" height="100%" src="<?php echo $v['video_img']; ?>">
+                                    <img class="logo" height="60px" width="60px" src="<?php echo base_url('/uploads/users/youtube.png'); ?>"></a>
+                                    <?php } else { ?>
+                                    <a target="_blank" href="<?php echo $v['live_video_url']; ?>">
+                                    <video width="257" height="193" poster="<?php echo base_url('/uploads/users/video-default.png'); ?>" controls>
+                                      <source src="<?php echo $v['live_video_url']; ?>" >
+                                    </video>
+                                      </a>
+                                    <?php } ?>
+
                                   </div>
+
                                   <?php } ?>
                                 
                                
@@ -113,6 +126,7 @@ $("body").on('click','.upload-btn',function() {
           $('.upload-btn').attr('disabled',true).text('Loading....');
         },       
         success: function(resp){
+          //alert(resp);
            $('.error_form').html("");
            if(resp.type == "validation_err"){
              var errObj = resp.msg;

@@ -193,11 +193,11 @@ $route['university/delete-webinar/(:any)'] = 'front/university/delete_webinar/$1
 $route['university/delete-program/(:any)'] = 'front/university/delete_program/$1';
 $route['university/edit-program/(:any)'] = 'front/university/edit_program/$1';
 $route['university/edit-webinar/(:any)'] = 'front/university/edit_webinar/$1';
-
 $route['university/appointment'] = 'front/university/appointment';
 $route['university/add-appointment'] = 'front/university/add_appointment';
 $route['university/delete-appointment/(:any)'] = 'front/university/delete_appointment/$1';
 $route['university/edit-appointment/(:any)'] = 'front/university/edit_appointment/$1';
+$route['university/application'] = 'front/university/application';
 
 $route['(:any)'] = 'front/home/pages/$1';
 $route['faqs/(:any)'] = 'front/home/faqs/$1';

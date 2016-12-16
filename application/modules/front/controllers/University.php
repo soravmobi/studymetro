@@ -611,6 +611,35 @@ class University extends CI_Controller {
         }
     }
 
+    public function application()
+    {
+        checkUserSession(array('5'));
+        $data = array();
+        $data['meta_title']     = 'Application';
+        $data['parent']         = 'application';
+        $uid = $this->uid;
+    
+        $data['assign_univ']   = $this->common_model->getAllRecordsById(USER,array('id'=>$uid));
+
+        foreach ($data['assign_univ'] as $a) { 
+            $univ = explode(',',$a['university_id']);
+            for($j=0;$j<count($univ);$j++){
+                $univ[$j];
+                $details[] = $this->common_model->getAllRecordsById(PROGRAMS,array('university_id'=>$univ[$j]));
+            } 
+
+        }
+        //echo "<pre>"; print_r($details); die;
+        // load_front_view('university/my_programs', $data);
+        foreach ($details as $key) {
+            for($j=0;$j<count($key);$j++){
+                $pid[] = $this->common_model->getAllRecordsById(APPLIED_PROGRAMS,array('program_id'=>$key[$j]['id']));
+            }
+        }
+        $data['applications'] = $pid;
+        load_front_view('university/application', $data);
+    }
+
 }
 
 ?>

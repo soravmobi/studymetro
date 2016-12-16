@@ -94,6 +94,8 @@
                                   <li <?php if(isset($parent) && $parent == 'webinar') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/webinar">Schedule Webinar <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 
                                   <li <?php if(isset($parent) && $parent == 'appointment') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/appointment">Schedule Appointment <i class="fa fa-chevron-right pull-right"></i></a></li>
+
+                                  <li <?php if(isset($parent) && $parent == 'application') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/application">Applications <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>
 
                                 <?php if(in_array($user_type, array('2','3'))) { ?>
