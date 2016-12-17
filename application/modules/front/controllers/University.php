@@ -256,6 +256,13 @@ class University extends CI_Controller {
             $data['quotes_title'] = json_encode($data['quotes_title']);
             $data['quotes_content'] = json_encode($data['quotes_content']);
             if($this->common_model->updateRecords(UNIVERSITIES, $data, array('id' => $id))) {
+
+                $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
+                $user_email = $userData['email'];
+                $user_name = $userData['username'];
+
+                $this->sendEmailToAdmin($user_name.' updated university data','university updation',SUPPORT_EMAIL,$user_email);
+
                 $this->session->set_flashdata('success', "University updated successfully");
                 redirect('university/university-dashboard');
             } else {
@@ -348,6 +355,12 @@ class University extends CI_Controller {
             $request = $this->common_model->addRecords(PROGRAMS,$addData);
             if($request!='')
             {
+                $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
+                $user_email = $userData['email'];
+                $user_name = $userData['username'];
+
+                $this->sendEmailToAdmin($user_name.' add new program','new program new program',SUPPORT_EMAIL,$user_email);
+
                 $this->session->set_flashdata('success', "Program added successfully");
                     redirect('university/my-programs');
             }
@@ -387,6 +400,12 @@ class University extends CI_Controller {
 
             if($request)
             {
+                $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
+                $user_email = $userData['email'];
+                $user_name = $userData['username'];
+
+                $this->sendEmailToAdmin($user_name.' edited program','program updation',SUPPORT_EMAIL,$user_email);
+
                 $this->session->set_flashdata('success', "Program updated successfully");
                     redirect('university/my-programs');
             }
@@ -440,6 +459,12 @@ class University extends CI_Controller {
             $request = $this->common_model->addRecords(WEBINARS,$data);
             if($request!='')
             {
+                $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
+                $user_email = $userData['email'];
+                $user_name = $userData['username'];
+
+                $this->sendEmailToAdmin($user_name.' added new webinar','new webinar',SUPPORT_EMAIL,$user_email);
+
                 $this->session->set_flashdata('success', "Webinar added successfully");
                     redirect('university/webinar');
             }
@@ -467,7 +492,7 @@ class University extends CI_Controller {
             $data['parent']         = 'webinar';
             $uid = $this->uid;
             
-            $data['details'] = $this->common_model->getSingleRecordById(WEBINARS,array('user_id'=>$uid));
+            $data['details'] = $this->common_model->getSingleRecordById(WEBINARS,array('id'=>$id));
             load_front_view('university/edit_webinar', $data);
         }
         else
@@ -477,6 +502,12 @@ class University extends CI_Controller {
 
             if($request)
             {
+                $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
+                $user_email = $userData['email'];
+                $user_name = $userData['username'];
+
+                $this->sendEmailToAdmin($user_name.' updated webinar','webinar updation',SUPPORT_EMAIL,$user_email);
+
                 $this->session->set_flashdata('success', "Webinar updated successfully");
                     redirect('university/webinar');
             }
@@ -546,6 +577,12 @@ class University extends CI_Controller {
             $request = $this->common_model->addRecords(APPOINTMENT,$data);
             if($request!='')
             {
+                $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
+                $user_email = $userData['email'];
+                $user_name = $userData['username'];
+
+                $this->sendEmailToAdmin($user_name.' added new appoinrment','new appointment',SUPPORT_EMAIL,$user_email);
+
                 $this->session->set_flashdata('success', "Appointment added successfully");
                     redirect('university/appointment');
             }
@@ -574,7 +611,7 @@ class University extends CI_Controller {
             $data['parent']         = 'appointment';
             $uid = $this->uid;
             
-            $data['details'] = $this->common_model->getSingleRecordById(APPOINTMENT,array('user_id'=>$uid));
+            $data['details'] = $this->common_model->getSingleRecordById(APPOINTMENT,array('id'=>$id));
             load_front_view('university/edit_appointment', $data);
         }
         else
@@ -584,6 +621,12 @@ class University extends CI_Controller {
 
             if($request)
             {
+                $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
+                $user_email = $userData['email'];
+                $user_name = $userData['username'];
+
+                $this->sendEmailToAdmin($user_name.' updated appoinrment','appointment updation',SUPPORT_EMAIL,$user_email);
+
                 $this->session->set_flashdata('success', "Appointment updated successfully");
                     redirect('university/appointment');
             }
@@ -629,8 +672,6 @@ class University extends CI_Controller {
             } 
 
         }
-        //echo "<pre>"; print_r($details); die;
-        // load_front_view('university/my_programs', $data);
         foreach ($details as $key) {
             for($j=0;$j<count($key);$j++){
                 $pid[] = $this->common_model->getAllRecordsById(APPLIED_PROGRAMS,array('program_id'=>$key[$j]['id']));

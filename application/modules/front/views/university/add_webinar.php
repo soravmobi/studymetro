@@ -109,6 +109,8 @@
     });
   });
 
-  $('#time').timepicker();
+  //$('#time').timepicker();
+  $('#time').timepicker({ 'step': 5 });
+  
 
 </script>

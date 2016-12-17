@@ -39,6 +39,7 @@
 	          <table class="table table-hover">
 	            <tr>
 	              <th>ID</th>
+	              <td>Appointment By</td>
 	              <th>Name</th>
                   <th>Email</th>
                   <th>Phone</th>
@@ -53,9 +54,12 @@
 	            	if(!empty($appointments)) {
 	            		$offset = $offset + 1;
 	            		foreach($appointments as $val) {
+	            		$user_name = $this->common_model->getSingleRecordById(USER,array('id'=>$val['user_id']));
+	            		//print_r($user_name);
 	            ?>
 	            	<tr>
 		              <td><?php echo $offset++; ?></td>
+		              <td><?php echo $user_name['first_name'].' '.$user_name['last_name']; ?></td>
 		              <td><?php echo $val['name']; ?></td>
                       <td><?php echo $val['email']; ?></td>
                       <td><?php echo $val['phone']; ?></td>
@@ -79,11 +83,11 @@
 		              <td>
 		              	<?php if($val['status']==0){ ?>
 		              	<a href="<?php cms_url('admin/university/activate_appointment/'.$val['id']); ?>" title="Activate appointment">
-		              	<i class="fa fa-pencil"></i> Activate
+		              	Activate
 		              	</a>
 		              	<?php } else{ ?>
 		              	<a href="<?php cms_url('admin/university/deactivate_appointment/'.$val['id']); ?>" title="Deactivate appointment">
-		              	<i class="fa fa-pencil"></i> Deactivate
+		              	<!-- <i class="fa fa-pencil"></i> --> Deactivate
 		              	</a>
 		              	<?php } ?>
 		              </td>

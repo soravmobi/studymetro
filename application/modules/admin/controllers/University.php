@@ -8,6 +8,9 @@ class University extends CI_Controller {
         $this->module = $this->router->fetch_module();
         $this->class = $this->router->fetch_class();
         $this->url = $this->module.'/'.$this->class;
+        $data['session_data'] = admin_session_data();
+    	$data['user_info'] = get_user($data['session_data']['user_id']);
+    	$from_id = $data['user_info']['user_id'];
     }
 
 	/**
@@ -452,9 +455,19 @@ class University extends CI_Controller {
     public function activate_webinar($id)
     {
     	is_logged_in($this->url.'/view_all_webinar');
+    	$data['session_data'] = admin_session_data();
+    	$data['user_info'] = get_user($data['session_data']['user_id']);
+    	$from_id = $data['user_info']['user_id'];
+
     	$req = $this->common_model->updateRecords(WEBINARS,array('status'=>1),array('id'=>$id));
     	if($req)
-    	{
+    	{ 
+    		$userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->from_id));
+            $user_email = $userData['email'];
+            $user_name = $userData['username'];
+
+            $this->sendEmailToAdmin('Admin approved your webinar','webinar approve',$user_email,SUPPORT_EMAIL);
+
     		$this->session->set_flashdata('item_success', 'Webinar is approved');
             redirect($this->url.'/view-all-webinar');
         } else {
@@ -469,6 +482,12 @@ class University extends CI_Controller {
     	$req = $this->common_model->updateRecords(WEBINARS,array('status'=>0),array('id'=>$id));
     	if($req)
     	{
+    		$userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->from_id));
+            $user_email = $userData['email'];
+            $user_name = $userData['username'];
+
+            $this->sendEmailToAdmin('Admin disapproved your webinar','webinar disapprove',$user_email,SUPPORT_EMAIL);
+
     		$this->session->set_flashdata('item_success', 'Webinar is disapproved');
             redirect($this->url.'/view-all-webinar');
         } else {
@@ -530,6 +549,12 @@ class University extends CI_Controller {
     	$req = $this->common_model->updateRecords(APPOINTMENT,array('status'=>1),array('id'=>$id));
     	if($req)
     	{
+    		$userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->from_id));
+            $user_email = $userData['email'];
+            $user_name = $userData['username'];
+
+            $this->sendEmailToAdmin('Admin approved your appointment','appointment approve',$user_email,SUPPORT_EMAIL);
+
     		$this->session->set_flashdata('item_success', 'Appointment is approved');
             redirect($this->url.'/view-all-appointment');
         } else {
@@ -544,6 +569,12 @@ class University extends CI_Controller {
     	$req = $this->common_model->updateRecords(APPOINTMENT,array('status'=>0),array('id'=>$id));
     	if($req)
     	{
+    		$userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->from_id));
+            $user_email = $userData['email'];
+            $user_name = $userData['username'];
+
+            $this->sendEmailToAdmin('Admin disapproved your appointment','appointment disapprove',$user_email,SUPPORT_EMAIL);
+
     		$this->session->set_flashdata('item_success', 'Appointment is disapproved');
             redirect($this->url.'/view-all-appointment');
         } else {

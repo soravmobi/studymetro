@@ -73,7 +73,7 @@
                   <div class="col-md-6">
                       <div class="form-group">
                         <label for="time">Time</label>
-                        <input type="text" name="time" class="form-control <?php if(form_error('time')) { echo 'valid_error'; } ?>" id="" placeholder="Enter Time" value="<?php echo $details['time']; ?>"/>
+                        <input type="text" name="time" class="form-control <?php if(form_error('time')) { echo 'valid_error'; } ?>" id="time" placeholder="Enter Time" value="<?php echo $details['time']; ?>"/>
                       </div>
                   </div>
                 </div>
@@ -112,6 +112,6 @@
     });
   });
 
-  $('#time').timepicker();
+  $('#time').timepicker({ 'step': 5 });
 
 </script>

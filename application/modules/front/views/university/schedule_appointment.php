@@ -17,7 +17,7 @@
                     <div class="col-md-9 col-sm-9">
                       <div class="right_dashboard">
                       <div class="table_box">
-                      <a class="btn btn-primary" title="Add Webinar" href="<?php echo base_url('university/add-appointment'); ?>">Add New</a>
+                      <a class="commn_btn" title="Add Webinar" href="<?php echo base_url('university/add-appointment'); ?>">Add New</a>
                         <table class="table table-hover">
                           <thead>
                             <tr>
@@ -54,15 +54,14 @@
                               <td><?php if($a['status']==1){ echo '<a href="javascript:void(0)">Approved</a>' ;} else { echo '<a href="javascript:void(0)">Not Approved</a>'; } ?></td>
 
                               <td><?php if($a['status']==0){ ?>
-                                <a href="<?php echo base_url('university/edit-appointment/'.$a['id']); ?>"> <i class="fa fa-edit"></i> Edit</a>
-                                <?php } ?>
-                                
+                                <a href="<?php echo base_url('university/edit-appointment/'.$a['id']); ?>"> <i class="fa fa-edit"></i> Edit</a> 
                                 <a href="<?php echo base_url('university/delete-appointment/'.$a['id']); ?>"> <i class="fa fa-trash"></i> Delete </a>
+                                <?php } ?>
                                 
                               </td>
                             </tr>
                           <?php $i++; } } else { ?>
-                          <tr ><td colspan="8" class="well"> No Record Found.</td></tr>
+                          <tr ><td colspan="10" class="well"> No Record Found.</td></tr>
                           <?php } ?>
                           </tbody>
                           </table>

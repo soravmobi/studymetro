@@ -31,7 +31,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                          <?php $i = 1; for($j=0;$j<count($applications);$j++){ foreach($applications[$j] as $a) { ?>
+                          <?php $i = 1; if(!empty($applications[0])){ for($j=0;$j<count($applications);$j++){ foreach($applications[$j] as $a) { ?>
                             <tr>
                               <td><?php echo $i; ?></td>
                               <td><?php echo getDetailsBy(PROGRAMS,'id',$a['program_id'],'program_name'); ?></td>
@@ -54,7 +54,9 @@
                               </td>
                               <td><?php echo convertDateTime($a['apply_date']); ?></td>
                             </tr>
-                          <?php $i++; } } ?>
+                          <?php $i++; } } } else { ?>
+                          <tr> <td colspan="9">No Record Found</td></tr>
+                          <?php } ?>
                           </tbody>
                           </table>
                           </div>

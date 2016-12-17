@@ -347,23 +347,6 @@ class User extends CI_Controller {
 
                 /* Upload attachment */
                 $attachment = '';
-                // if(!empty($_FILES['attachment']['name'])) {
-                //     $config['file_name']     = time().$_FILES['attachment']['name'];
-                //     $config['upload_path']   = './uploads/email_attachments';
-                //     $config['allowed_types'] = 'jpg|png|jpeg';
-                //     $config['max_size']      = '2474898';
-                //     $config['max_width']     = '100024';
-                //     $config['max_height']    = '768000';
-                //     $config['remove_spaces'] = true;
-                //     $config['field_name']     = 'attachment';
-
-                //     $imageData = upload_file($_FILES['attachment'], $config);
-                //     if(isset($imageData) && $imageData['message'] == 'success') {
-                //        $attachment = $imageData['file_path'];
-                //     }
-                // } else {
-                //     $attachment = '';
-                // }
 
                      $config['file_name'] = $_FILES['attachment']['name']; 
                      $config['upload_path'] ='uploads/email_attachments/'; 
