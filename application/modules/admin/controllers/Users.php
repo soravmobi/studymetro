@@ -146,6 +146,8 @@ class Users extends CI_Controller {
             $data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right','',$query_string);
         }
 
+        $data['universities'] = $this->common_model->getAllRecords('universities');
+        $data['assign_univ']   = $this->common_model->getAllRecords(USER);
         /* Load admin view */
         load_admin_view('users/view-all-users', $data);
     }
@@ -186,11 +188,37 @@ class Users extends CI_Controller {
 
     public function sendEmailToAdmin($message,$subject,$from="")
     {
-        checkUserSession(array('2'));
+        //checkUserSession(array('2'));
         $uid = $this->session->userdata("user_id");
         $email = $this->common_model->getSingleRecordById('users',array('id'=>$uid));
         $user_email = $email['email'];
         send_mail($message, $subject, $user_email,$from="");
+    }
+
+    public function assignUniversity()
+    {
+        is_logged_in($this->url.'/view-all');
+        $user_id = $_POST['user_id'];
+        $univ_name = implode(',',json_decode($_POST['univ_id']));
+        $where = array('id'=>$user_id);
+        
+        $updateData = array('university_id'=>$univ_name);
+        //print_r($addData); die;
+        $request = $this->common_model->updateRecords(USER,$updateData,$where);
+
+        $userEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$user_id));
+        $user_email = $userEmail['email'];
+        
+        $this->sendEmailToAdmin('Admin has assigned you university. Please check on your dashboard','Assigned University',$user_email,SUPPORT_EMAIL);
+
+        if($request==1)
+        {
+            echo 1;
+        }
+        else
+        {
+            echo 0;
+        }
     }
 
     public function change_app_status()
@@ -418,4 +446,55 @@ class Users extends CI_Controller {
             return FALSE;
         }
     }
+
+    public function doUploadInvoices(){
+        
+        
+        $data = $this->input->post();
+        //print_r($data); die;
+        
+        //if(!empty($_FILES['file']['name'])){
+             $config['file_name'] = $_FILES['file']['name']; 
+             $config['upload_path'] ='uploads/invoices/'; 
+             //$config['allowed_types'] = 'png|jpeg|jpg';
+             $config['max_size']      = '10000000';
+             $config['max_width']     = '100024';
+             $config['max_height']    = '768000';
+             $config['remove_spaces'] = true;
+             $config['encrypt_name'] = TRUE;
+             $this->load->library('upload', $config);
+             $this->upload->initialize($config);
+             $this->upload->set_allowed_types('*');
+             $upload_data['upload_data'] = '';
+             $file = '';
+       
+          if (!$this->upload->do_upload('file'))
+           {
+               $upload_data = array('msg' => $this->upload->display_errors());
+           } 
+          else 
+              { 
+                $upload_data = array('msg' => "Upload success!");
+                
+                $upload_data['upload_data'] = $this->upload->data();
+                //print_r($data['upload_data']['file_name']); die;
+                $file = 'uploads/invoices/'.$upload_data['upload_data']['file_name'];
+                //echo $file; die;
+                $data['file'] = $file;
+              }
+
+              $addData = array('user_id'=>$_POST['invoice_user_id'],'file'=>$file,'status'=>1,'added_date'=>datetime());
+                $req = $this->common_model->addRecords(INVOICES, $addData);
+                $this->session->set_flashdata('success', sprintf(ITEM_ADD_SUCCESS, 'Invoice'));
+                
+            if($req)
+            {
+                echo 1;
+            }
+            else
+            {
+                echo 0;
+            }
+        }
+    
 }

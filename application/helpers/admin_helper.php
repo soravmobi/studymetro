@@ -152,13 +152,13 @@ function imgUpload($filename,$subfolder,$ext,$size="",$width="",$height="")
     $config['upload_path']   = 'uploads/'.$subfolder.'/'; 
     $config['allowed_types'] = $ext; 
     if($size){
-      $config['max_size']   = 100; 
+      $config['max_size']   = 10000; 
     }
     if($width){
-      $config['max_width']  = 1024; 
+      $config['max_width']  = 102400; 
     }
     if($height){
-      $config['max_height'] = 768;  
+      $config['max_height'] = 76800;  
     }
     $CI->load->library('upload', $config);
     if (!$CI->upload->do_upload($filename)) {

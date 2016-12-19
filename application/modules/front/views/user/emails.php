@@ -298,7 +298,7 @@ $('body').on('click','.view-mail',function(){
             if($.trim(resp.attachment)!='')
             {
                 //alert(mail_data.attachment);
-                $('.mail-attachment').html('<a download class="download_btn" href="<?php echo base_url() ?>'+resp.attachment+'" title="Click Here To Download Document"><i class="fa fa-download" aria-hidden="true"></i></a> Download Attachment');
+                $('.mail-attachment').html('Download Attachment<a download class="download_btn" href="<?php echo base_url() ?>'+resp.attachment+'" title="Click Here To Download Document"><i class="fa fa-download" aria-hidden="true"></i></a> ');
             }
             else
             {

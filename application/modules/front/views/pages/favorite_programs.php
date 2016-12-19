@@ -4,7 +4,7 @@
               <div class="container">
                  <div class="row">
                  <div class="col-md-12 col-sm-12">
-                   My Events
+                   Favorite Programs
                    </div>
                  </div>
               </div>
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                         <?php } } else { ?>
-                        <div class="well" >No</div>
+                        <div class="well" >No Record Found</div>
                         <?php } ?>
 
                       </div>

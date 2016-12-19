@@ -347,23 +347,6 @@ class User extends CI_Controller {
 
                 /* Upload attachment */
                 $attachment = '';
-                // if(!empty($_FILES['attachment']['name'])) {
-                //     $config['file_name']     = time().$_FILES['attachment']['name'];
-                //     $config['upload_path']   = './uploads/email_attachments';
-                //     $config['allowed_types'] = 'jpg|png|jpeg';
-                //     $config['max_size']      = '2474898';
-                //     $config['max_width']     = '100024';
-                //     $config['max_height']    = '768000';
-                //     $config['remove_spaces'] = true;
-                //     $config['field_name']     = 'attachment';
-
-                //     $imageData = upload_file($_FILES['attachment'], $config);
-                //     if(isset($imageData) && $imageData['message'] == 'success') {
-                //        $attachment = $imageData['file_path'];
-                //     }
-                // } else {
-                //     $attachment = '';
-                // }
 
                      $config['file_name'] = $_FILES['attachment']['name']; 
                      $config['upload_path'] ='uploads/email_attachments/'; 
@@ -481,9 +464,30 @@ class User extends CI_Controller {
             $this->form_validation->set_rules('live_video_url','Video URL','trim|required');
             if($this->form_validation->run()==TRUE){
                 $data = $this->input->post();
-                $data['user_id'] = $this->uid;
-                $data['added_date'] = datetime();
-                $lid = $this->common_model->addRecords(MY_VIDEOS,$data);
+
+                $url = $data['live_video_url'];
+                $queryString = parse_url($url, PHP_URL_QUERY);
+                 parse_str($queryString, $params);
+                $video_id = $params['v'];
+                
+                $data = file_get_contents("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD_gVnv8O8Gw8_c3xDcUbI3N3Bza-EERyo&part=snippet&id=".$video_id);
+                $json = json_decode($data);
+                $img= $json->items[0]->snippet->thumbnails; 
+                $video_img =  $img->high->url;
+
+                $addData = array(
+                                 'title'=>$_POST['title'],
+                                 'live_video_url'=>$_POST['live_video_url'],
+                                 'user_id'=>$this->uid,
+                                 'video_img'=>$video_img,
+                                 'descprition'=>$_POST['descprition'],
+                                 'added_date'=>datetime(),
+                                );
+                // $data['live_video_url'] = $url;
+                // $data['user_id'] = $this->uid;
+                // $data['video_img'] = $video_img;
+                // $data['added_date'] = datetime();
+                $lid = $this->common_model->addRecords(MY_VIDEOS,$addData);
                 if(!empty($lid)){
                     echo json_encode(array('type' => 'success', 'msg' => 'Video added successfully'));exit;
                 }else{
@@ -715,7 +719,7 @@ class User extends CI_Controller {
     public function favorite_programs()
     {
         $user_id = $this->uid;
-        $data['programs'] = $this->common_model->getAllRecordsBySingleJoin(FAVORITE_PROGRAMS,'program_id',PROGRAMS,'id',$user_id);
+        $data['programs'] = $this->common_model->getAllRecordsBySingleJoin(FAVORITE_PROGRAMS,'program_id',PROGRAMS,'id',$user_id,'DESC');
         load_front_view('pages/favorite_programs', $data);
     }
 

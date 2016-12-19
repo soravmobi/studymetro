@@ -25,8 +25,8 @@
                             </form>
                             <ul class="list_dash">
                                 <!-- <li <?php if(isset($parent) && $parent == 'dashboard') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/dashboard">Global Wall <i class="fa fa-chevron-right pull-right"></i></a></li> -->
-                                <li><a href="<?php echo base_url(); ?>university">Find Schools <i class="fa fa-chevron-right pull-right"></i></a></li>
-                                <li><a href="<?php echo base_url(); ?>contact-us">Find Offices <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <!-- <li><a href="<?php echo base_url(); ?>university">Find Schools <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <li><a href="<?php echo base_url(); ?>contact-us">Find Offices <i class="fa fa-chevron-right pull-right"></i></a></li> -->
                                 <li <?php if(isset($parent) && $parent == 'profile') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/profile">My Profile <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php if(in_array($user_type, array('5'))) { ?>
                                     <li <?php if(isset($parent) && $parent == 'international_partnerships') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/international_partnerships">International Partnerships <i class="fa fa-chevron-right pull-right"></i></a></li>
@@ -80,9 +80,23 @@
 
                                 <li <?php if(isset($parent) && $parent == 'favorite_programs') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/favorite-programs">Favorite Programs <i class="fa fa-chevron-right pull-right"></i></a></li>
 
-                                <li <?php if(isset($parent) && $parent == 'favorite_programs') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university">Find University <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <!-- <li <?php if(isset($parent) && $parent == 'favorite_programs') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university">Find University <i class="fa fa-chevron-right pull-right"></i></a></li> -->
 
-                                <li <?php if(isset($parent) && $parent == 'favorite_programs') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>abroad-courses"">Find Abroad Courses <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <!-- <li <?php if(isset($parent) && $parent == 'favorite_programs') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>abroad-courses"">Find Abroad Courses <i class="fa fa-chevron-right pull-right"></i></a></li> -->
+
+                                <?php if(in_array($user_type, array('5'))) { ?>
+                                  <li <?php if(isset($parent) && $parent == 'university_dashboard') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/university-dashboard">My University <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                
+                                  <li <?php if(isset($parent) && $parent == 'my_programs') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/my-programs">My Programs <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                
+                                  <li <?php if(isset($parent) && $parent == 'my_invoices') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/my-invoices">My Invoices <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                
+                                  <li <?php if(isset($parent) && $parent == 'webinar') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/webinar">Schedule Webinar <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                
+                                  <li <?php if(isset($parent) && $parent == 'appointment') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/appointment">Schedule Appointment <i class="fa fa-chevron-right pull-right"></i></a></li>
+
+                                  <li <?php if(isset($parent) && $parent == 'application') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>university/application">Applications <i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php } ?>
 
                                 <?php if(in_array($user_type, array('2','3'))) { ?>
                                   <li <?php if(isset($parent) && $parent == 'searchProgram') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>search-programs">Search Programs <i class="fa fa-chevron-right pull-right"></i></a></li>

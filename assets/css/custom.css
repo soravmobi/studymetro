@@ -3644,6 +3644,7 @@ span.new_price {
     width: 32%;
     margin-bottom: 20px;
     vertical-align: top;
+    position: relative;
 }
 .video_top {
     background-color: #333;
@@ -4455,5 +4456,16 @@ height: auto;
 }
 .right_dashboard .social_icon {
   float: right;
->>>>>>> 1a61cd42277ef0774bd98b6106c7f2c6c831f59b
+}
+
+.video_box_content .logo {
+  left: 93px;
+  position: absolute;
+  top: 100px;
+}
+.table_box .commn_btn {
+  margin-bottom: 10px;
+}
+.personal_edu .commn_btn {
+  margin-bottom: 10px;
 }

@@ -64,6 +64,14 @@ class Front extends CI_Controller {
 				unset($data['confm_pswd']);
 				$data['password'] = md5($data['password']);
 				$data['username'] = $data['first_name'].$data['last_name'];
+				if($data['user_type']==5)
+				{
+					$data['user_status']=0;
+				}
+				else
+				{
+					$data['user_status']=1;
+				}
 				$data['user_type']  = $data['user_type'];
 				$data['is_blocked'] = 0;
 				$data['is_email_verified'] = 1;

@@ -419,6 +419,12 @@ class Student extends CI_Controller {
                 $resume = 'uploads/resume/'.$upload_data['upload_data']['file_name'];
                 //echo $resume; die;
               }
+              
+              if($_FILES['resume']['name']!='')
+              {
+                $eduData['resume']=$resume;
+              }
+
               if(isset($_POST['outside_india']))
               {
                 $outside = $_POST['outside_india'];
@@ -434,7 +440,6 @@ class Student extends CI_Controller {
                             'mobile'=>$_POST['mobile'],
                             'location'=>$_POST['location'],
                             'outside_india'=>$outside,
-                            //'resume'=>$resume,
                             'high_qualification'=>$_POST['high_qualification'],
                             'course'=>$_POST['course'],
                             'specialization'=>$_POST['specialization'],
@@ -447,22 +452,20 @@ class Student extends CI_Controller {
                             'marital_status'=>$_POST['marital_status'],
                             'address'=>$_POST['address'],
                             'city'=>$_POST['city'],
-                            'status'=>1,
-                            'created_date'=>date('Y-m-d')
+                            'status'=>1
                             );
-            if($_FILES['resume']['name']!='')
-              {
-                $eduData['resume']=$resume;
-              }
+            
            // echo "<pre>"; print_r($_POST); print_r($eduData); die;
 
             $getEduData = $this->common_model->getAllRecordsById(PORTFOLIO,$where);
             if(empty($getEduData))
             {
+                $eduData['created_date']=date('Y-m-d');
                 $request = $this->common_model->addRecords(PORTFOLIO,$eduData);
             }
             else
             {
+                $eduData['modify_date']=date('Y-m-d');
                 $request = $this->common_model->updateRecords(PORTFOLIO,$eduData,$where);
             }
             
