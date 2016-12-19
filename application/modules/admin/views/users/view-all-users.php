@@ -157,6 +157,8 @@
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 
+
+
 <!-- Modal Start -->
 <div class="modal fade model_logoinform" id="assigned_university" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -170,12 +172,15 @@
        <input type="hidden" name="assign_user_id" id="assign_user_id" value="" />
         <div class="form-group">
             <label for="inputEmail">University List</label><br/>
-            <select multiple="" name="univ_name" id="univ_name" class="chosen-select form-control">
-            	<!-- <option value="">Select University</option> -->
-            	<?php foreach($universities as $univ){ ?>
-            	<option value="<?php echo $univ['id']; ?>"><?php echo $univ['name']; ?></option>
-            	<?php } ?>
-            </select>
+            <div id="getAssignedUniversity">
+	            <select multiple="" name="univ_name" id="univ_name" class="chosen-select form-control">
+	            	<!-- <option value="">Select University</option> -->
+	            	<?php foreach($universities as $univ){ ?>
+	            	<option value="<?php echo $univ['id']; ?>"><?php echo $univ['name']; ?></option>
+	            	<?php } ?>
+	            </select>
+            </div>
+
         </div>
         <div class="form-group">
             <label for="inputEmail">Assigned to</label><br/>
@@ -205,12 +210,16 @@
        <form name="invoice_form" id="invoice_form" enctype="multipart/form-data"> 
        <input type="hidden" name="invoice_user_id" id="invoice_user_id" value="" />
         <div class="form-group">
-                    <label for="name" class="col-sm-3 control-label"> Browse file:</label>
-                    <div class="col-sm-9">
-                    <input type="file" class="form-control"  onchange="readURL(this,'pdf','')" name="file">
-                     <div class="error_form"><?php echo form_error('file'); ?></div>
-                    </div>
+                <label for="name" class="col-sm-3 control-label"> Browse file:</label>
+                <div class="col-sm-9">
+                <input type="file" class="form-control"  onchange="readURL(this,'pdf','')" name="file">
+                 <div class="error_form"><?php echo form_error('file'); ?></div>
                 </div>
+            </div>
+                <div class="form-group">
+	            <label for="remark">Remark</label><br/>
+	            <input type="text" name="remark" id="remark" class="form-control" value="" />
+	        </div>
         <div class="form-group">
             <label for="inputEmail">Upload for</label><br/>
             <input type="text" name="invoice_username" id="invoice_username" class="form-control" value="" />
@@ -253,6 +262,20 @@
 		$('#assigned_university').modal('show');
 		$('#assign_user_id').val(user_id);;
 		$('#username').val(user_name);
+
+		$.ajax({
+				url:"<?php echo base_url('admin/users/getAssignUniversity'); ?>",
+				type:"POST",
+				data:{user_id:user_id},
+				success:function(result)
+				{ //alert(result);
+					
+					$('#getAssignedUniversity').html(result);
+					//alert('University has assigned successfully');
+					
+				}
+		});
+
 	});
 
 	$('body').on('click','#submit_univ',function(){
@@ -290,12 +313,13 @@ $('body').on('click','.upload_invoice',function(){
 		e.preventDefault();
 		var user_id = $('#invoice_user_id').val();
 		var file = new FormData($('#invoice_form')[0]);
+		var remark = $('#remark').val();
 		
 		//alert(file);
 		$.ajax({
 				url:"<?php echo base_url(); ?>admin/users/doUploadInvoices",
 				type:"POST",
-				data:file,user_id,
+				data:file,user_id,remark,
 				processData: false,
     			contentType: false,
 				success:function(result)

@@ -9,7 +9,7 @@
     	<div class="col-xs-12">
 	      <div class="box box-primary">
 	        <div class="box-header">
-	          <h3 class="box-title"><?php echo sprintf(ALL_DATA, 'University'); ?></h3>
+	          <h3 class="box-title"><?php echo sprintf(ALL_DATA, 'Appointment'); ?></h3>
 	          <!-- <a href="<?php cms_url('admin/university/add-new'); ?>" class="addNewAdmin" title="Add New University">Add New</a> -->
 	          <div class="box-tools">
 	            <div class="input-group customInputGroups" style="width: 150px;">

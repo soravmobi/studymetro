@@ -405,6 +405,14 @@ class University extends CI_Controller {
 		load_admin_view('universities/university_invoice', $data);
     }
 
+    public function sendEmailToAdmin($message,$subject,$from="")
+    {
+        $uid = $this->session->userdata("user_id");
+        $email = $this->common_model->getSingleRecordById('users',array('id'=>$uid));
+        $user_email = $email['email'];
+        send_mail($message, $subject, $user_email,$from="");
+    }
+
     public function view_all_webinar()
     {
     	is_logged_in($this->url.'/view_all_webinar');
@@ -462,7 +470,7 @@ class University extends CI_Controller {
     	$req = $this->common_model->updateRecords(WEBINARS,array('status'=>1),array('id'=>$id));
     	if($req)
     	{ 
-    		$userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->from_id));
+    		$userData = $this->common_model->getSingleRecordById(USER,array('id'=>$from_id));
             $user_email = $userData['email'];
             $user_name = $userData['username'];
 
@@ -479,10 +487,14 @@ class University extends CI_Controller {
     public function deactivate_webinar($id)
     {
     	is_logged_in($this->url.'/view_all_webinar');
+    	$data['session_data'] = admin_session_data();
+    	$data['user_info'] = get_user($data['session_data']['user_id']);
+    	$from_id = $data['user_info']['user_id'];
+
     	$req = $this->common_model->updateRecords(WEBINARS,array('status'=>0),array('id'=>$id));
     	if($req)
     	{
-    		$userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->from_id));
+    		$userData = $this->common_model->getSingleRecordById(USER,array('id'=>$from_id));
             $user_email = $userData['email'];
             $user_name = $userData['username'];
 
@@ -546,10 +558,14 @@ class University extends CI_Controller {
     public function activate_appointment($id)
     {
     	is_logged_in($this->url.'/view_all_appointment');
+    	$data['session_data'] = admin_session_data();
+    	$data['user_info'] = get_user($data['session_data']['user_id']);
+    	$from_id = $data['user_info']['user_id'];
+
     	$req = $this->common_model->updateRecords(APPOINTMENT,array('status'=>1),array('id'=>$id));
     	if($req)
     	{
-    		$userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->from_id));
+    		$userData = $this->common_model->getSingleRecordById(USER,array('id'=>$from_id));
             $user_email = $userData['email'];
             $user_name = $userData['username'];
 
@@ -566,10 +582,14 @@ class University extends CI_Controller {
     public function deactivate_appointment($id)
     {
     	is_logged_in($this->url.'/view_all_appointment');
+    	$data['session_data'] = admin_session_data();
+    	$data['user_info'] = get_user($data['session_data']['user_id']);
+    	$from_id = $data['user_info']['user_id'];
+
     	$req = $this->common_model->updateRecords(APPOINTMENT,array('status'=>0),array('id'=>$id));
     	if($req)
     	{
-    		$userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->from_id));
+    		$userData = $this->common_model->getSingleRecordById(USER,array('id'=>$from_id));
             $user_email = $userData['email'];
             $user_name = $userData['username'];
 

@@ -465,17 +465,52 @@ class User extends CI_Controller {
             if($this->form_validation->run()==TRUE){
                 $data = $this->input->post();
 
-                $url = $data['live_video_url'];
-                $queryString = parse_url($url, PHP_URL_QUERY);
-                 parse_str($queryString, $params);
-                $video_id = $params['v'];
+                 $url = $data['live_video_url'];
+                // $queryString = parse_url($url, PHP_URL_QUERY);
+                //  parse_str($queryString, $params);
+                // $video_id = $params['v'];
                 
-                $data = file_get_contents("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD_gVnv8O8Gw8_c3xDcUbI3N3Bza-EERyo&part=snippet&id=".$video_id);
-                $json = json_decode($data);
-                $img= $json->items[0]->snippet->thumbnails; 
-                $video_img =  $img->high->url;
+                // $data = file_get_contents("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD_gVnv8O8Gw8_c3xDcUbI3N3Bza-EERyo&part=snippet&id=".$video_id);
+                // $json = json_decode($data);
+                // $img= $json->items[0]->snippet->thumbnails; 
+                // $video_img =  $img->high->url;
 
-                $addData = array(
+                // $addData = array(
+                //                  'title'=>$_POST['title'],
+                //                  'live_video_url'=>$_POST['live_video_url'],
+                //                  'user_id'=>$this->uid,
+                //                  'video_img'=>$video_img,
+                //                  'descprition'=>$_POST['descprition'],
+                //                  'added_date'=>datetime(),
+                //                 );
+                // // $data['live_video_url'] = $url;
+                // // $data['user_id'] = $this->uid;
+                // // $data['video_img'] = $video_img;
+                // // $data['added_date'] = datetime();
+
+
+
+
+                $youtube = strpos($url, 'youtube.com'); // for youtube
+                $vimeo   = strpos($url, 'vimeo.com'); // for vimeo
+                if($youtube !== FALSE){
+                    $name = str_replace('watch?v=', 'embed/', $url);
+                }
+                if($vimeo !== FALSE){
+                    $vid  = getVimeoVideoIdFromUrl($url);
+                    $name = 'https://player.vimeo.com/video/'.$vid;
+                }
+                if($vimeo !== FALSE || $youtube !== FALSE){
+                    $data = array(
+                            'name' => $name,
+                            'types'=> 1,
+                            'added_date' => date('Y-m-d H:i:s')
+                        );
+                    $thumb = parseVideos($data['name']);
+                    if(!empty($thumb)) {
+                        $video_img = $thumb[0]['fullsize'];
+                    }
+                    $addData = array(
                                  'title'=>$_POST['title'],
                                  'live_video_url'=>$_POST['live_video_url'],
                                  'user_id'=>$this->uid,
@@ -483,11 +518,11 @@ class User extends CI_Controller {
                                  'descprition'=>$_POST['descprition'],
                                  'added_date'=>datetime(),
                                 );
-                // $data['live_video_url'] = $url;
-                // $data['user_id'] = $this->uid;
-                // $data['video_img'] = $video_img;
-                // $data['added_date'] = datetime();
-                $lid = $this->common_model->addRecords(MY_VIDEOS,$addData);
+                    $lid = $this->common_model->addRecords(MY_VIDEOS, $addData);
+                }
+
+
+                //$lid = $this->common_model->addRecords(MY_VIDEOS,$addData);
                 if(!empty($lid)){
                     echo json_encode(array('type' => 'success', 'msg' => 'Video added successfully'));exit;
                 }else{

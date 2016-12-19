@@ -27,7 +27,7 @@
                                     <!-- <iframe width="100%" height="100%" src="<?php echo str_replace('watch?v=', 'embed/', $v['live_video_url']); ?>"></iframe> -->
                                     <?php if($v['video_img']!=''){ ?>
                                     <a target="_blank" href="<?php echo str_replace('watch?v=', 'embed/', $v['live_video_url']); ?>">
-                                    <img width="100%" height="100%" src="<?php echo $v['video_img']; ?>">
+                                    <img width="257px" height="193px" src="<?php echo $v['video_img']; ?>">
                                     <img class="logo" height="60px" width="60px" src="<?php echo base_url('/uploads/users/youtube.png'); ?>"></a>
                                     <?php } else { ?>
                                     <a target="_blank" href="<?php echo $v['live_video_url']; ?>">

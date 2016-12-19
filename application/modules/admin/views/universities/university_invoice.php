@@ -11,7 +11,7 @@
 	        <div class="box-header">
 	          
 	          <!-- <h3><?php echo $user_name; ?></h3><br/> -->
-            <!-- <h2 class="box-title"><?php echo sprintf(ALL_DATA, 'Documents'); ?></h2> -->
+            <!-- <h2 class="box-title"><?php echo sprintf(ALL_DATA, 'Invoices'); ?></h2> -->
 	          
 	        </div><!-- /.box-header -->
 
@@ -51,24 +51,3 @@
     </div><!-- .row -->
   </section><!-- /.content -->
 </div><!-- /.content-wrapper-->
-
-
-<script type="text/javascript">
-  $('body').on('change','.app_status',function(){
-    var prgrm_status = $(this).val();
-    var prgrm_id = $(this).attr('app_id');
-    var user_id=$(this).attr('user_id');
-    $.ajax({
-            url:"<?php echo base_url('admin/users/changeAppStatus'); ?>",
-            type:"POST",
-            data:{prgrm_status:prgrm_status,prgrm_id:prgrm_id,user_id:user_id},
-            success:function(result)
-            { //alert(result);
-              if(result==1)
-              {
-                $('.success').html('<div class="alert alert-success alert-dismissable" style="margin-top:12px;"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>Status updated successfully.</div>');
-              }
-            }
-    });
-  });
-</script>
