@@ -116,7 +116,7 @@ class Users extends CI_Controller {
         $data['body_class'] = array('admin_dashboard', 'is_logged_in', 'view_all_users');
         $data['session_data'] = admin_session_data();
         $data['user_info'] = get_user($data['session_data']['user_id']);
-
+        //print_r($data['user_info']); die;
         /* Fetch Data */
         $offset = $this->uri->segment(4);
         if(!$offset) {
@@ -146,8 +146,11 @@ class Users extends CI_Controller {
             $data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right','',$query_string);
         }
 
-        $data['universities'] = $this->common_model->getAllRecords('universities');
-        $data['assign_univ']   = $this->common_model->getAllRecords(USER);
+        
+
+        $data['universities'] = $this->common_model->getAllRecords(UNIVERSITIES);
+
+        //print_r($data['assign_univ']); die;
         /* Load admin view */
         load_admin_view('users/view-all-users', $data);
     }
@@ -219,6 +222,32 @@ class Users extends CI_Controller {
         {
             echo 0;
         }
+    }
+
+    public function getAssignUniversity()
+    {
+        $user_id = $_POST['user_id'];
+        $assign_univ = $this->common_model->getSingleRecordById(USER,array('id'=>$user_id));
+        $university   = $this->common_model->getAllRecords(UNIVERSITIES);
+        $html="";
+        $html.="<select multiple='' name='univ_name' id='univ_name' class='chosen-select form-control'>";
+        $univ = explode(',',$assign_univ['university_id']);
+        $select = '';
+        foreach($university as $u)
+        {   
+            for($j=0;$j<count($univ);$j++)
+            {
+                if($u['id']==$univ[$j])
+                {
+                    $select = 'selected';
+                    $html.="<option value=".$u['id']." ".$select." >".$u['name']."</option>";
+                }
+            }
+            $html.="<option value=".$u['id']." >".$u['name']."</option>";
+        }
+        $html.="</select>";
+        echo $html;
+
     }
 
     public function change_app_status()
@@ -483,7 +512,7 @@ class Users extends CI_Controller {
                 $data['file'] = $file;
               }
 
-              $addData = array('user_id'=>$_POST['invoice_user_id'],'file'=>$file,'status'=>1,'added_date'=>datetime());
+              $addData = array('user_id'=>$_POST['invoice_user_id'],'file'=>$file,'status'=>1,'remark'=>$_POST['remark'],'added_date'=>datetime());
                 $req = $this->common_model->addRecords(INVOICES, $addData);
                 $this->session->set_flashdata('success', sprintf(ITEM_ADD_SUCCESS, 'Invoice'));
                 
