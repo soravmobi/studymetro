@@ -29,13 +29,13 @@
                                     <a target="_blank" href="<?php echo str_replace('watch?v=', 'embed/', $v['live_video_url']); ?>">
                                     <img width="257px" height="193px" src="<?php echo $v['video_img']; ?>">
                                     <img class="logo" height="60px" width="60px" src="<?php echo base_url('/uploads/users/youtube.png'); ?>"></a>
-                                    <?php } else { ?>
-                                    <a target="_blank" href="<?php echo $v['live_video_url']; ?>">
+                                    <?php } //else { ?>
+                                    <!-- <a target="_blank" href="<?php echo $v['live_video_url']; ?>">
                                     <video width="257" height="193" poster="<?php echo base_url('/uploads/users/video-default.png'); ?>" controls>
                                       <source src="<?php echo $v['live_video_url']; ?>" >
                                     </video>
-                                      </a>
-                                    <?php } ?>
+                                      </a> -->
+                                    <?php //} ?>
 
                                   </div>
 

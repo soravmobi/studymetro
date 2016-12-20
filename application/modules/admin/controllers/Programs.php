@@ -451,5 +451,54 @@ class Programs extends CI_Controller {
         redirect($this->url.'/view-all-summer-programs');
     }
 
+    public function viewPrograms($user_id)
+    {
+    	is_logged_in($this->url.'/viewPrograms');
+        $data = array();
+        $data['meta_title'] = 'View Programs';
+        $data['small_text'] = 'User';
+        $data['body_class'] = array('admin_dashboard', 'is_logged_in', 'view_all_users');
+        $data['session_data'] = admin_session_data();
+        $data['user_info'] = get_user($data['session_data']['user_id']);
+        
+        $offset = $this->uri->segment(4);
+        if(!$offset) {
+            $offset = 0;
+        }
+        if(isset($_GET['s']) && !empty($_GET['s'])){
+            if($this->input->get('per_page')){
+                $offset = $this->input->get('per_page');
+            }else{
+                $offset = 0;
+            }
+        }
+
+        $data['offset'] = $offset;
+        $data['users'] = '';
+        $data['pagination'] = '';
+        $data['users'] = $this->common_model->getPaginateRecordsByOrderByLikeCondition(APPLIED_PROGRAMS, (isset($_GET['s'])) ? array('username', 'email') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', 'id', 'DESC', RESULT_PER_PAGE, $offset, '');
+        if(count($data['users']) > 0) {
+            /* Pagination records */
+            $query_string = '';
+            $url = get_cms_url().$this->url.'/view-all';
+            if(isset($_GET['s']) && !empty($_GET['s'])){
+                $url .= '?s='.$_GET['s'];
+                $query_string = 'yes';
+            }
+            $total_records = $this->common_model->getTotalPaginateRecordsByOrderByLikeCondition(APPLIED_PROGRAMS, (isset($_GET['s'])) ? array('username', 'email') : '', (isset($_GET['s'])) ? $_GET['s'] : '', 'OR', '');
+            $data['pagination'] = custom_pagination($url, $total_records, RESULT_PER_PAGE, 'right','',$query_string);
+        }     
+
+        //print_r($data['pagination']); die;   
+        
+        $data['applications']   = $this->common_model->getAllRecordsOrderById(APPLIED_PROGRAMS,'id','DESC',array('user_id' =>$user_id));
+
+        $data['users'] = $this->common_model->getAllRecordsOrderById(USER,'id','DESC',array('id' =>$user_id));
+        $data['user_name'] = $data['users'][0]['first_name'].' '.$data['users'][0]['last_name'];
+
+        /* Load admin view */
+        load_admin_view('programs/view-programs', $data);
+    }
+
 	
 }

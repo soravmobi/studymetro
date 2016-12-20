@@ -198,6 +198,10 @@ $route['university/add-appointment'] = 'front/university/add_appointment';
 $route['university/delete-appointment/(:any)'] = 'front/university/delete_appointment/$1';
 $route['university/edit-appointment/(:any)'] = 'front/university/edit_appointment/$1';
 $route['university/application'] = 'front/university/application';
+$route['university/postLandingForm'] = 'front/university/postLandingForm';
+$route['university/add-landing-form'] = 'front/university/add_landing_form';
+$route['university/delete-landing-form/(:any)'] = 'front/university/delete_landing_form/$1';
+$route['university/edit-landing-form/(:any)'] = 'front/university/edit_landing_form/$1';
 
 $route['(:any)'] = 'front/home/pages/$1';
 $route['faqs/(:any)'] = 'front/home/faqs/$1';

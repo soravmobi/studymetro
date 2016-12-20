@@ -483,6 +483,31 @@ class Student extends CI_Controller {
 
         }
     }
+
+    public function changeAppStatus()
+    {
+        
+        $updateData = array('program_status'=>$_POST['prgrm_status']);
+        $where = array('id'=>$_POST['prgrm_id']);
+        $request = $this->common_model->updateRecords('applied_programs',$updateData,$where);
+        $user_id = $_POST['user_id'];
+        $prgrm_id = $_POST['prgrm_id'];
+
+        $userEmail = $this->common_model->getUserEmail($user_id,$prgrm_id);
+        $user_email = $userEmail['email'];
+        $status = $_POST['prgrm_status'];
+        
+        $this->sendEmailToAdmin('Program status changed to"'.$status.'"','Application Program Status',$user_email,SUPPORT_EMAIL);
+
+        if($request==1)
+        {
+            echo json_encode(array('type' => 'success', 'msg' => 'Program status changed successfully'));
+        }
+        else
+        {
+            echo json_encode(array('type' => 'error', 'msg' => 'Unable to change Program status'));
+        }
+    }
     
     
 }

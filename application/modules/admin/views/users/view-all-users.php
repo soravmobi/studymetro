@@ -46,12 +46,9 @@
 	              <th>Online Status</th>
 	              <th>User Status</th>
 	              <th>User Type</th>
-	              <th>History</th>
-	              <th>Invoice</th>
-	              <th>University</th>
 	              <th>Action</th>
+	              <th>Operation</th>
 	              <th>Date Created</th>
-	              <th>Delete</th>
 	            </tr>
 	            <?php
 	            	if(!empty($users)) { //p($users);
@@ -112,35 +109,27 @@
 		              	<?php } ?>
 		              </td>
 		              <td>
-		              	<a href="<?php cms_url('admin/users/viewHistory/'.$val['id']); ?>" title="View History">
-		              		View-History
-		              	</a>
-		              </td>
-		              <td>
-		              	<?php if($val['user_type']==5){ ?>
-		              	<a href="javascript:" user_id="<?php echo $val['id']; ?>" class="upload_invoice" title="Upload Invoice">
-		              		Upload Invoice
-		              	</a>
-		              	<?php } ?>
-		              </td>
-		              <td>
-		              	<?php if($val['user_type']==5){ ?>
-		              	<a href="javascript:" user_id="<?php echo $val['id']; ?>" class="assign_univ" title="Assign University">
-		              		Assign-University
-		              	</a>
-		              	<?php } ?>
+		              	<select user_id="<?php echo $val['id']; ?>" name="action" id="action" class="form-control action">
+		              		<option value="">Please Select</option>
+		              		<?php if($val['user_type']==2){ ?>
+		              		<option value="allDoc">All Documents</option>
+		              		<option value="allPrg">All Programs</option>
+		              		<?php } if($val['user_type']==5){ ?>
+		              		<option value="allCom">All Comments</option>
+		              		<option value="invoice">Upload Invoice</option>
+		              		<option value="university">Assign-University</option>
+		              		<?php } ?>
+		              	</select>
 		              </td>
 		              <td>
 		              	<a href="<?php cms_url('admin/users/edit/'.$val['id']); ?>" title="Edit User">
 		              		<i class="fa fa-pencil"></i> Edit
-		              	</a>
-		              </td>
-		              <td><?php echo date('m-d-Y', strtotime($val['date_created'])); ?></td>
-		              <td>
+		              	</a> / 
 		              	<a href="<?php cms_url('admin/users/delete/'.$val['id']); ?>" title="Delete Page" onclick="if(!confirm('Are you sure you want to delete this user?')) return false;">
 		              		<i class="fa fa-trash"></i> Delete
 		              	</a>
 		              </td>
+		              <td><?php echo date('m-d-Y', strtotime($val['date_created'])); ?></td>
 		            </tr>
 	            <?php } /* End foreach */ ?>
 	            <?php } else { ?>
@@ -213,12 +202,13 @@
                 <label for="name" class="col-sm-3 control-label"> Browse file:</label>
                 <div class="col-sm-9">
                 <input type="file" class="form-control"  onchange="readURL(this,'pdf','')" name="file">
-                 <div class="error_form"><?php echo form_error('file'); ?></div>
+                 <div id="error_file"></div>
                 </div>
             </div>
                 <div class="form-group">
 	            <label for="remark">Remark</label><br/>
 	            <input type="text" name="remark" id="remark" class="form-control" value="" />
+	            <div id="error_data"></div>
 	        </div>
         <div class="form-group">
             <label for="inputEmail">Upload for</label><br/>
@@ -314,9 +304,37 @@ $('body').on('click','.upload_invoice',function(){
 		var user_id = $('#invoice_user_id').val();
 		var file = new FormData($('#invoice_form')[0]);
 		var remark = $('#remark').val();
-		
-		//alert(file);
-		$.ajax({
+		var status = 1;
+
+		//alert(new FormData($('#invoice_form')[0]));
+
+		if($('#invoice_form').val()=='')
+		{
+			$('#error_file').css('color','red');
+			$('#error_file').html('Please select file');
+			var status = 0;
+		}
+		else
+		{
+			$('#error_data').html('');
+		}
+		if(remark=='')
+		{
+			$('#error_data').css('color','red');
+			$('#error_data').html('Please fill remark');
+			var status = 0;
+		}
+		else
+		{
+			$('#error_data').html('');
+		}
+		if(status==0)
+		{
+			return false;
+		}
+		else
+		{
+			$.ajax({
 				url:"<?php echo base_url(); ?>admin/users/doUploadInvoices",
 				type:"POST",
 				data:file,user_id,remark,
@@ -324,7 +342,6 @@ $('body').on('click','.upload_invoice',function(){
     			contentType: false,
 				success:function(result)
 				{	
-					//alert(result);
 					if(result==1)
 					{
 						$('#upload_invoice_modal').modal('hide');
@@ -332,10 +349,40 @@ $('body').on('click','.upload_invoice',function(){
 					}
 				},
 				error: function(error_data){
-			        alert(error_data);
+			        //alert(error_data);
 			    }
-		});
-		
+			});
+		}
 	});
+</script>
 
+<script type="text/javascript">
+	$('body').on('change','.action',function(){
+		var action = $(this).val();
+		var user_id = $(this).attr('user_id');
+		if(action=='allDoc')
+		{
+			location.href = "<?php echo base_url(); ?>admin/documents/viewDocuments/"+user_id;
+		}
+		else if(action=='allPrg')
+		{
+			location.href = "<?php echo base_url(); ?>admin/programs/viewPrograms/"+user_id;
+		}
+		else if(action=='allCom')
+		{
+			location.href = "<?php echo base_url(); ?>admin/comments/viewComments/"+user_id;
+		}
+		else if(action=='invoice')
+		{
+			location.href = "<?php echo base_url(); ?>admin/invoices/viewInvoices/"+user_id;
+		}
+		else if(action=='university')
+		{
+			location.href = "<?php echo base_url(); ?>admin/university/viewUniversity/"+user_id;
+		}
+		else
+		{
+			alert('Please select atleast one');
+		}
+	});
 </script>
