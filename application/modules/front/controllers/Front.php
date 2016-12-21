@@ -49,6 +49,15 @@ class Front extends CI_Controller {
 	    }
 	}
 
+	public function sendEmailToAdmin($message,$subject,$from="")
+    {
+        //checkUserSession(array('2'));
+        $uid = $this->session->userdata("user_id");
+        $email = $this->common_model->getSingleRecordById('users',array('id'=>$uid));
+        $user_email = $email['email'];
+        send_mail($message, $subject, $user_email,$from="");
+    }
+
 	public function signup()
 	{
 		if($this->input->is_ajax_request())

@@ -681,6 +681,121 @@ class University extends CI_Controller {
         load_front_view('university/application', $data);
     }
 
+    public function postLandingForm()
+    {
+        checkUserSession(array('5'));
+        $data = array();
+        $data['meta_title']     = 'Post Landing Form';
+        $data['parent']         = 'post-landing-form';
+        $uid = $this->uid;
+        
+        $data['landing_form'] = $this->common_model->getAllRecordsById(POST_LANDING_FORM,array('user_id'=>$uid));
+        load_front_view('university/post-landing-form', $data);
+    }
+
+    public function add_landing_form()
+    {
+        checkUserSession(array('5'));
+        $uid = $this->uid;
+
+        $this->form_validation->set_rules('name','Name','required');
+        $this->form_validation->set_rules('email','Email','required');
+        $this->form_validation->set_rules('phone','Phone','required');
+        $this->form_validation->set_rules('type','Type','required');
+        
+        if($this->form_validation->run()==false)
+        {
+            $data = array();
+            $data['meta_title']     = 'Post Landing Form';
+            $data['parent']         = 'post-landing-form';
+            $uid = $this->uid;
+            
+            load_front_view('university/add_landing_form', $data);
+        }
+        else
+        {
+            $data = $this->input->post();
+            $data['user_id'] = $uid;
+            $data['status'] = 1;
+            $data['added_date'] = datetime();
+            $request = $this->common_model->addRecords(POST_LANDING_FORM,$data);
+            if($request!='')
+            {
+                $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
+                $user_email = $userData['email'];
+                $user_name = $userData['username'];
+
+                $this->sendEmailToAdmin($user_name.' added new landing form','new appointment',SUPPORT_EMAIL,$user_email);
+
+                $this->session->set_flashdata('success', "Landing form added successfully");
+                    redirect('university/postLandingForm');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', "Unable to add Landing form.");
+                    redirect('university/postLandingForm');
+            }
+        }
+    }
+
+    public function edit_landing_form($id)
+    {
+        checkUserSession(array('5'));
+        $this->form_validation->set_rules('name','Name','required');
+        $this->form_validation->set_rules('email','Email','required');
+        $this->form_validation->set_rules('phone','Phone','required');
+        $this->form_validation->set_rules('type','Type','required');
+        
+        if($this->form_validation->run()==false)
+        {
+            $data = array();
+            $data['meta_title']     = 'Post Landing Form';
+            $data['parent']         = 'post-landing-form';
+            $uid = $this->uid;
+            
+            $data['details'] = $this->common_model->getSingleRecordById(POST_LANDING_FORM,array('id'=>$id));
+            load_front_view('university/edit_landing_form', $data);
+        }
+        else
+        {
+            $updateData = $this->input->post();
+            $request = $this->common_model->updateRecords(POST_LANDING_FORM,$updateData,array('id'=>$id));
+
+            if($request)
+            {
+                $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
+                $user_email = $userData['email'];
+                $user_name = $userData['username'];
+
+                $this->sendEmailToAdmin($user_name.' updated new landing form','new appointment',SUPPORT_EMAIL,$user_email);
+
+                $this->session->set_flashdata('success', "Landing form updated successfully");
+                    redirect('university/postLandingForm');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', "Unable to update Landing form.");
+                    redirect('university/postLandingForm');
+            }
+        }
+        
+    }
+
+    public function delete_landing_form($id)
+    {
+        $request = $this->common_model->deleteRecord(POST_LANDING_FORM,array('id'=>$id));
+        if($request)
+        {
+            $this->session->set_flashdata('success', "Landing form deleted successfully");
+                redirect('university/postLandingForm');
+        }
+        else
+        {
+            $this->session->set_flashdata('error', "Unable to delete Landing form.");
+                redirect('university/postLandingForm');
+        }
+    }
+
 }
 
 ?>

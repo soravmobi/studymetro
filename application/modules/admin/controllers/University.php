@@ -603,4 +603,74 @@ class University extends CI_Controller {
     	}
     }
 
+    public function viewUniversity($user_id)
+    { 
+    	is_logged_in($this->url.'/viewUniversity');
+        $data = array();
+        $data['meta_title'] = 'View University';
+        $data['small_text'] = 'User';
+        $data['body_class'] = array('admin_dashboard', 'is_logged_in', 'view_all_users');
+        $data['session_data'] = admin_session_data();
+        $data['user_info'] = get_user($data['session_data']['user_id']);
+        /* Fetch Data */
+
+        $data['users'] = $this->common_model->getAllRecordsOrderById(USER,'id','DESC',array('id' =>$user_id));
+        $data['user_name'] = $data['users'][0]['first_name'].' '.$data['users'][0]['last_name'];
+
+        $data['assign_univ'] = $this->common_model->getSingleRecordById(USER,array('id'=>$user_id));
+        $data['universities']  = $this->common_model->getAllRecords(UNIVERSITIES);
+
+        /* Load admin view */
+        load_admin_view('universities/view-assign-university', $data);
+    }
+
+    public function assignUniversity($user_id)
+    { //echo $user_id; die;
+    	$this->form_validation->set_rules('univ_name[]','university','required');
+        
+        if($this->form_validation->run()==true)
+        {
+	        $univ_name = implode(',',$_POST['univ_name']);
+	        $where = array('id'=>$user_id);
+	        
+	        $updateData = array('university_id'=>$univ_name);
+	        $request = $this->common_model->updateRecords(USER,$updateData,$where);
+
+	        $userEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$user_id));
+	        $user_email = $userEmail['email'];
+	        
+	        $this->sendEmailToAdmin('Admin has assigned you university. Please check on your dashboard','Assigned University',$user_email,SUPPORT_EMAIL);
+	        
+	        if($request)    
+	        {
+	            $this->session->set_flashdata('success','Universities assigned Successfully.');
+	            redirect('admin/university/assignUniversity/'.$user_id);
+	        }
+	        else
+	        {
+	            $this->session->set_flashdata('error','Unable to assign Universities.');
+	            redirect('admin/university/assignUniversity/'.$user_id);
+	        }
+	    }
+	    else
+	    {
+	    	$data = array();
+	        $data['meta_title'] = 'View University';
+	        $data['small_text'] = 'User';
+	        $data['body_class'] = array('admin_dashboard', 'is_logged_in', 'view_all_users');
+	        $data['session_data'] = admin_session_data();
+	        $data['user_info'] = get_user($data['session_data']['user_id']);
+	        /* Fetch Data */
+
+	        $data['users'] = $this->common_model->getAllRecordsOrderById(USER,'id','DESC',array('id' =>$user_id));
+	        $data['user_name'] = $data['users'][0]['first_name'].' '.$data['users'][0]['last_name'];
+
+	        $data['assign_univ'] = $this->common_model->getSingleRecordById(USER,array('id'=>$user_id));
+	        $data['universities']  = $this->common_model->getAllRecords(UNIVERSITIES);
+
+	        /* Load admin view */
+	        load_admin_view('universities/view-assign-university', $data);
+	    }
+    }
+
 }

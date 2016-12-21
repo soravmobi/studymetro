@@ -488,9 +488,6 @@ class User extends CI_Controller {
                 // // $data['video_img'] = $video_img;
                 // // $data['added_date'] = datetime();
 
-
-
-
                 $youtube = strpos($url, 'youtube.com'); // for youtube
                 $vimeo   = strpos($url, 'vimeo.com'); // for vimeo
                 if($youtube !== FALSE){

@@ -195,6 +195,7 @@ define('INVOICES', 'invoices');
 define('QUESTIONS', 'assignment_questions');
 define('WEBINARS', 'schedule_webinar');
 define('APPOINTMENT', 'schedule_appointment');
+define('POST_LANDING_FORM', 'post_landing_form');
 define('ANSWERS', 'assignment_answers');
 define('STATIC_PAGE', 'static_pages');
 define('SYSTEM_PREFERENCE', 'system_preferences');
