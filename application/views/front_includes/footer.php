@@ -202,7 +202,7 @@
       <div class="footer_bottom">
       <div class="container">
             <div class="row">
-       <div class="col-md-8 col-sm-8">
+       <div class="col-md-10 col-sm-10">
          <div class="footer_navi">
          <div class="navbar-header">
                   <button type="button" class="toggle-ftr">
@@ -219,11 +219,12 @@
                   <li><a href="<?php echo base_url(); ?>work-as-agent">Work as Agent </a></li>
                   <li><a href="http://page.studymetro.com/Knowledge-Base">Knowledge Base </a></li>
                   <li><a href="<?php echo base_url(); ?>terms-conditions">Terms & Conditions </a></li>
+                  <li><a href="<?php echo base_url(); ?>privacy-policy">Privacy Policy </a></li>
                 </ul>
               </div>
                </div>
                </div>
-               <div class="col-md-4 col-sm-4">
+               <div class="col-md-2 col-sm-2">
         <div class="social_media">
           <ul>
             <li><a href="https://www.facebook.com/studymetro.abroad"><i class="fa fa-facebook" aria-hidden="true"></i>

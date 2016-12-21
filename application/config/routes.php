@@ -104,6 +104,10 @@ $route['admin/testimonials/add-new'] = 'admin/testimonials/addNew';
 $route['admin/testimonials/view-all'] = 'admin/testimonials/viewAll';
 $route['admin/testimonials/view-all/(:any)'] = 'admin/testimonials/viewAll/$1';
 
+$route['admin/city-events/add-new'] = 'admin/city_events/addNew';
+$route['admin/city-events/view-all'] = 'admin/city_events/viewAll';
+$route['admin/city-events/view-all/(:any)'] = 'admin/city_events/viewAll/$1';
+
 $route['admin/payments/add-new'] = 'admin/payments/addNew';
 $route['admin/payments/view-all'] = 'admin/payments/viewAll';
 $route['admin/payments/view-all/(:any)'] = 'admin/payments/viewAll/$1';
