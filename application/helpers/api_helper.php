@@ -36,6 +36,71 @@ if(!function_exists('check_request_type')) {
     }
 }
 
+/**
+ * extract_value
+ * @return string
+ */
+if (!function_exists('extract_value'))
+{
+
+    function extract_value($array, $key, $default = "")
+    {
+        $CI = & get_instance();
+        if(isset($array[$key])){
+          $string = $CI->db->escape_str($array[$key]);
+          return strip_tags($string);
+        }else{
+          return $default;
+        }
+    }
+
+}
+
+/**
+ * [Create GUID]
+ * @return string
+ */
+if (!function_exists('get_guid'))
+{
+    function get_guid()
+    {
+        if (function_exists('com_create_guid'))
+        {
+            return strtolower(com_create_guid());
+        }
+        else
+        {
+            mt_srand((double) microtime() * 10000); //optional for php 4.2.0 and up.
+            $charid = strtoupper(md5(uniqid(rand(), true)));
+            $hyphen = chr(45); // "-"
+            $uuid = substr($charid, 0, 8) . $hyphen
+                    . substr($charid, 8, 4) . $hyphen
+                    . substr($charid, 12, 4) . $hyphen
+                    . substr($charid, 16, 4) . $hyphen
+                    . substr($charid, 20, 12);
+            return strtolower($uuid);
+        }
+    }
+}
+
+/**
+ * [To check null value]
+ * @param string $value
+*/
+if ( ! function_exists('null_checker')) {
+  function null_checker($value,$custom="")
+  {
+    $return = "";
+    if(!empty($value)){
+      $return = ($value == NULL) ? $custom : $value;
+      return $return;
+    }else{
+      return $return;
+    }
+  }
+}
+
+
 if(!function_exists('get_user_type_name')) {
     function get_user_type_name($type) {
         switch ($type) {
