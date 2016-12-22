@@ -212,6 +212,23 @@
           </li>
         </ul>
       </li>
+
+      <!-- Notification -->
+      <li class="treeview <?php tree_active_class('notification', array('viewAll')); ?>">
+        <a href="javascript:void(0);" title="University">
+          <i class="fa fa-file-image-o"></i> 
+          <span>Notification</span> 
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<?php add_active_class('notification', 'viewAll'); ?>">
+            <a href="<?php cms_url('admin/notification/view-all'); ?>" title="View All Notification">
+              <i class="fa fa-eye"></i> View All Notification
+            </a>
+          </li>
+        </ul>
+      </li>
+
       <!-- Videos -->
       <li class="treeview <?php tree_active_class('videos', array('addNew', 'edit','viewAll')); ?>">
         <a href="javascript:void(0);" title="Videos">

@@ -225,6 +225,14 @@ define('INTERNATIONAL', 'international_partnership');
 define('MY_VIDEOS', 'my_videos');
 define('LOCATIONS', 'locations');
 
+define('NOTIFICATION', 'notification_data');
+define('STUDENT_NOTIFICATION', 'student_notification_history');
+define('ADMIN_NOTIFICATION', 'admin_notification_history');
+define('UNIVERSITY_NOTIFICATION', 'university_notification_history');
+define('AGENT_NOTIFICATION', 'agent_notification_history');
+define('FRAINCHSEE_NOTIFICATION', 'frainchsee_notification_history
+');
+
 define('ADMIN_ID',1);
 
 /* Rest Api constants */

@@ -21,6 +21,7 @@
                             <tr>
                               <th>S.NO.</th>
                               <th>Program</th>
+                              <th>University</th>
                               <th>Name</th>
                               <th>Email</th>
                               <th>Phone No</th>
@@ -36,6 +37,10 @@
                             <tr>
                               <td><?php echo $i; ?></td>
                               <td><?php echo getDetailsBy(PROGRAMS,'id',$a['program_id'],'program_name'); ?></td>
+                              <?php $univ_id = $this->common_model->getSingleRecordById(PROGRAMS,array('id'=>$a['program_id'])); 
+                              $univ_name = $this->common_model->getSingleRecordById(UNIVERSITIES,array('id'=>$univ_id['university_id']));
+                              //print_r($univ_name['name']); die; ?>
+                              <td><?php echo $univ_name['name']; ?></td>
                               <td><?php echo $a['first_name']." ".$a['last_name']; ?></td>
                               <td><?php echo $a['email']; ?></td>
                               <td><?php echo $a['phone_no']; ?></td>

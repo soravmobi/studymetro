@@ -153,6 +153,8 @@ $route['admin/programs/view-all-summer-programs/(:any)'] = 'admin/programs/viewA
 $route['admin/programs/import-summer-programs'] = 'admin/programs/importSummerPrograms';
 $route['admin/programs/edit-summer-program/(:any)'] = 'admin/programs/editSummerProgram/$1';
 
+$route['admin/notification/view-all'] = 'admin/notification/viewAll';
+
 /* Front custom Routing */
 
 $route['home']         = 'front/Home';
@@ -166,18 +168,19 @@ $route['user/notes'] = 'front/user/notes';
 $route['user/emails'] = 'front/user/emails';
 $route['user/my-videos'] = 'front/user/myvideos';
 $route['user/sendEmail'] = 'front/user/sendEmailToAdmin';
+$route['user/addComment'] = 'front/user/add_comment';
 $route['student/getquote'] = 'front/student/getquote';
 $route['student/portfolio'] = 'front/student/portfolio';
 $route['student/Personal-Education'] = 'front/student/add_personal_education';
 $route['user/view-portfolio'] = 'front/user/view_portfolio';
 $route['user/my-events'] = 'front/user/my_events';
 $route['user/my-comments'] = 'front/user/my_comments';
+$route['user/my-notification'] = 'front/user/my_notification';
 $route['user/favorite-programs'] = 'front/user/favorite_programs';
 $route['user/addFavoritePrograms'] = 'front/user/add_favorite_programs';
 $route['user/RemoveFavoritePrograms'] = 'front/user/Remove_favorite_programs';
 $route['student/my-applications'] = 'front/student/my_applications';
 $route['student/my-assignments'] = 'front/student/my_assignments';
-$route['student/addComment'] = 'front/student/add_comment';
 $route['student/setInterviewDate'] = 'front/student/set_interview_date';
 $route['university/profile_types'] = 'front/university/profile_types';
 $route['university/post_grad'] = 'front/university/post_grad';

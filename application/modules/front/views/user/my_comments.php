@@ -43,7 +43,7 @@
                             </div><?php } else { ?>
                         <div class="well text-center">Conversation not found</div>
                         <?php } ?>
-                        <form method="post" action="<?php echo base_url('user/addComment'); ?>">
+                        <form method="post" action="<?php echo base_url('front/user/addComment'); ?>">
                           <table cellspacing="0" cellpadding="0" border="0" style="">
                             <tbody>
                               <tr>

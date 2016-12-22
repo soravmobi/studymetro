@@ -708,6 +708,40 @@ class User extends CI_Controller {
         }
     }
 
+    public function my_notification()
+    {
+        checkUserSession(array('2','4','5','6'));
+        $data = array();
+        $data['meta_title']     = 'My Notification';
+        $data['parent']         = 'my_notification';
+        $to_id = $this->uid;
+
+        $table_name = getNotifyHistoryTable($to_id);
+        
+        $where = array('receiver_id' =>$to_id);
+        $data['notification'] = $this->common_model->getAllRecordsById($table_name,$where);
+        $this->common_model->updateRecords($table_name,array('is_read'=>1),$where);
+        load_front_view('user/my_notification', $data);
+    }
+
+    public function delete_notification($id)
+    {
+        $to_id = $this->uid;
+        $table_name = getNotifyHistoryTable($to_id);
+
+        $request = $this->common_model->deleteRecord($table_name,array('id'=>$id));
+        if($request)
+        {
+            $this->session->set_flashdata('success','Notification Deleted Successfully');
+            redirect('user/my-notification');
+        }
+        else
+        {
+            $this->session->set_flashdata('error','Unable to delete Notification');
+            redirect('user/my-notification');
+        }
+    }
+
     public function my_comments()
     {
         checkUserSession(array('2','4','5','6'));
@@ -718,7 +752,51 @@ class User extends CI_Controller {
         $where = array('to_user_id' =>$this->uid);
         $or_where = array('from_user_id' =>$this->uid);
         $data['comments']  = $this->common_model->getComments(COMMENTS,'id','ASC',$where,$or_where);
-        load_front_view('student/my_comments', $data);
+        load_front_view('user/my_comments', $data);
+    }
+
+    public function addComment()
+    {
+        checkUserSession(array('2','4','5','6'));
+        $from_id = $this->uid;
+        $to_id = ADMIN_ID;
+
+        $this->form_validation->set_rules('comment_text','Message','required');
+        if($this->form_validation->run()==true)
+        { 
+            $message = $_POST['comment_text'];
+            $insertData = array('message'=>$message,'from_user_id'=>$from_id,'to_user_id'=>$to_id,'comment_date'=>date('Y-m-d'));
+
+
+            $request=$this->common_model->addRecords(COMMENTS,$insertData);
+            if($request!='')
+            {
+                send_notification('COMMENT',$from_id,$to_id,ADMIN_NOTIFICATION);
+                $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$from_id));
+                $from_email = $fromEmail['email'];
+
+                $this->sendEmailToAdmin('User send a comment to you','Comment',SUPPORT_EMAIL,$from_email);
+                $this->session->set_flashdata('success', "Comment added succefully");
+                echo 'yes'; die;
+                redirect('user/my-comments');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', "Unable to add Comment.");
+                redirect('user/my-comments');
+            }
+        }
+        else
+        {
+            $data = array();
+            $data['meta_title']     = 'My Comments';
+            $data['parent']         = 'my_comments';
+            
+            $where = array('to_user_id' =>$this->uid);
+            $or_where = array('from_user_id' =>$this->uid);
+            $data['comments']  = $this->common_model->getComments(COMMENTS,'id','ASC',$where,$or_where);
+            load_front_view('user/my_comments', $data);
+        }
     }
 
     public function view_portfolio()

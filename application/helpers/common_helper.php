@@ -35,6 +35,134 @@ if (!function_exists('send_mail')) {
 	}
 }
 
+// for notification
+
+if (!function_exists('send_notification')) {
+	function send_notification($type,$sender_id,$receiver_id,$table) {
+	    $ci =&get_instance();
+		$notify = $ci->common_model->getSingleRecordById(NOTIFICATION,array('type'=>$type));
+
+		$notifyData = array(
+                            'notify_id'=>$notify['id'],
+                            'sender_id'=>$sender_id,
+                            'receiver_id'=>$receiver_id,
+                            'sent_datetime'=>datetime(),
+                            'is_read'=>0
+                            );
+        $request = $ci->common_model->addRecords($table,$notifyData);
+        if($request!='') {	
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+}
+
+if (!function_exists('getNotifyHistoryTable')) {
+	function getNotifyHistoryTable($user_id) {
+	    $ci =&get_instance();
+		$userData = $ci->common_model->getSingleRecordById(USER,array('id'=>$user_id));
+		$userType = $userData['user_type'];
+		if($userType==1)
+		{
+			return ADMIN_NOTIFICATION;
+		}
+		if($userType==2)
+		{
+			return STUDENT_NOTIFICATION;
+		}
+		if($userType==3)
+		{
+			return AGENT_NOTIFICATION;
+		}
+		if($userType==5)
+		{
+			return UNIVERSITY_NOTIFICATION;
+		}
+		if($userType==6)
+		{
+			return FRAINCHSEE_NOTIFICATION;
+		}
+	}
+}
+
+if (!function_exists('notifyUnreadCount')) {
+	function notifyUnreadCount($user_id) {
+	    $ci =&get_instance();
+
+	    $table_name = getNotifyHistoryTable($user_id);
+
+		$notifyCountData = $ci->common_model->getAllRecordsById($table_name,array('receiver_id'=>$user_id,'is_read'=>0));
+		
+		$count = count($notifyCountData);
+		if($count>0)
+		{
+			return $count;
+		}
+		else
+		{
+			return 0;
+		}
+		
+	}
+}
+
+if (!function_exists('getUserName')) {
+	function getUserName($user_id) {
+	    $ci =&get_instance();
+		$userData = $ci->common_model->getSingleRecordById(USER,array('id'=>$user_id));
+		return $userData['first_name'].' '.$userData['last_name'];
+	}
+}
+
+if (!function_exists('getNotifyMessage')) {
+	function getNotifyMessage($notify_id,$type='') {
+	    $ci =&get_instance();
+		$notifyData = $ci->common_model->getSingleRecordById(NOTIFICATION,array('id'=>$notify_id));
+		
+		if($type!='')
+		{
+			return $notifyData['type'];
+		}
+		else
+		{
+			return $notifyData['body'];
+		}
+	}
+}
+
+if (!function_exists('getUserType')) {
+	function getUserType($user_id) {
+	    $ci =&get_instance();
+		$userData = $ci->common_model->getSingleRecordById(USER,array('id'=>$user_id));
+		$userType = $userData['user_type'];
+		if($userType==1)
+		{
+			return 'Admin';
+		}
+		if($userType==2)
+		{
+			return 'Student';
+		}
+		if($userType==3)
+		{
+			return 'Agency';
+		}
+		if($userType==4)
+		{
+			return 'Trainer';
+		}
+		if($userType==5)
+		{
+			return 'University';
+		}
+		if($userType==6)
+		{
+			return 'Frainchsee';
+		}
+	}
+}
+
 /**
 * print_r formatting
 * @param Array $array
