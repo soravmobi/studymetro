@@ -70,50 +70,51 @@ class Student extends CI_Controller {
         load_front_view('student/my_applications', $data);
     }
 
+    // public function add_comment()
+    // {
+    //     $from_id = $this->uid;
+    //     $to_id = ADMIN_ID;
 
-    public function add_comment()
-    {
-        $from_id = $this->uid;
-        $to_id = ADMIN_ID;
+    //     $this->form_validation->set_rules('comment_text','Message','required');
+    //     if($this->form_validation->run()==true)
+    //     {
+    //         $message = $_POST['comment_text'];
+    //         $insertData = array('message'=>$message,'from_user_id'=>$from_id,'to_user_id'=>$to_id,'comment_date'=>date('Y-m-d'));
 
-        $this->form_validation->set_rules('comment_text','Message','required');
-        if($this->form_validation->run()==true)
-        {
-            $message = $_POST['comment_text'];
-            $insertData = array('message'=>$message,'from_user_id'=>$from_id,'to_user_id'=>$to_id,'comment_date'=>date('Y-m-d'));
+    //         // $userEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$to_id));
+    //         // $user_email = $userEmail['email'];
 
-            $userEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$to_id));
-            $user_email = $userEmail['email'];
+    //         $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$from_id));
+    //         $from_email = $fromEmail['email'];
 
-            $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$from_id));
-            $from_email = $userEmail['email'];
+    //         $this->sendEmailToAdmin('User send a comment to you','Comment',SUPPORT_EMAIL,$from_email);
 
-            $this->sendEmailToAdmin('User send a comment to you','Comment',$user_email,$from_email);
 
-            $request=$this->common_model->addRecords(COMMENTS,$insertData);
-            if($request)
-            {
-                $this->session->set_flashdata('success', "Comment added succefully");
-                redirect('user/my-comments');
-            }
-            else
-            {
-                $this->session->set_flashdata('error', "Unable to add Comment.");
-                redirect('user/my-comments');
-            }
-        }
-        else
-        {
-            $data = array();
-            $data['meta_title']     = 'My Comments';
-            $data['parent']         = 'my_comments';
+    //         $request=$this->common_model->addRecords(COMMENTS,$insertData);
+    //         if($request)
+    //         {
+    //             send_notification('COMMENT',$from_id,$to_id);
+    //             $this->session->set_flashdata('success', "Comment added succefully");
+    //             redirect('user/my-comments');
+    //         }
+    //         else
+    //         {
+    //             $this->session->set_flashdata('error', "Unable to add Comment.");
+    //             redirect('user/my-comments');
+    //         }
+    //     }
+    //     else
+    //     {
+    //         $data = array();
+    //         $data['meta_title']     = 'My Comments';
+    //         $data['parent']         = 'my_comments';
             
-            $where = array('to_user_id' =>$this->uid);
-            $or_where = array('from_user_id' =>$this->uid);
-            $data['comments']  = $this->common_model->getComments(COMMENTS,'id','ASC',$where,$or_where);
-            load_front_view('student/my_comments', $data);
-        }
-    }
+    //         $where = array('to_user_id' =>$this->uid);
+    //         $or_where = array('from_user_id' =>$this->uid);
+    //         $data['comments']  = $this->common_model->getComments(COMMENTS,'id','ASC',$where,$or_where);
+    //         load_front_view('student/my_comments', $data);
+    //     }
+    // }
 
     public function saveEducation()
     {

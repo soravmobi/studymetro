@@ -174,7 +174,7 @@ a{ -webkit-transition: all 0.4s ease-in-out 0; -moz-transition: all 0.4s ease-in
 }
 .login_wrap li:first-child a:hover {
  
-    color: #000;
+    color: #a6abab;
 }
 .login_wrap li a:hover{ color: #a6abab;}
 
@@ -4468,4 +4468,13 @@ height: auto;
 }
 .personal_edu .commn_btn {
   margin-bottom: 10px;
+}
+.table_box {
+    overflow: auto;
+}
+select.app_status {
+    width: 100px;
+}
+select.action {
+    width: 100px;
 }

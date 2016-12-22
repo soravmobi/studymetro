@@ -2,6 +2,7 @@
             <?php
               $detail = getUserDetails();
               $user_type = $this->session->userdata('user_type');
+              $uid = $this->session->userdata("user_id");
             ?>
                         <div class="left_dashboard">
                         <form class="form-horizontal" id="img-form" enctype="multipart/form-data" method="post">
@@ -72,8 +73,15 @@
                                 <li <?php if(isset($parent) && $parent == 'my_comments') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/my-comments">Comments <i class="fa fa-chevron-right pull-right"></i></a></li>
                                 <?php } ?>
 
+                                <?php if(in_array($user_type, array('2','4','5','6'))) { ?>
+                                <li <?php if(isset($parent) && $parent == 'my_notification') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/my-notification">Notification (<?php echo notifyUnreadCount($uid); ?>)<i class="fa fa-chevron-right pull-right"></i></a></li>
+                                <?php } ?>
+
                                 <?php if(in_array($user_type, array('2'))) { ?>
                                 <li <?php if(isset($parent) && $parent == 'my_assignments') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>student/my-assignments">Assignments <i class="fa fa-chevron-right pull-right"></i></a></li>
+
+                                <li <?php if(isset($parent) && $parent == 'online_programs') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>online-training">Online Programs <i class="fa fa-chevron-right pull-right"></i></a></li>
+
                                 <?php } ?>
 
                                 <li <?php if(isset($parent) && $parent == 'my_events') echo "class='active'"; ?>><a href="<?php echo base_url(); ?>user/my-events">My Events <i class="fa fa-chevron-right pull-right"></i></a></li>

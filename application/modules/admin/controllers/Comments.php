@@ -96,14 +96,17 @@ class Comments extends CI_Controller {
             
             $insertData = array('message'=>$message,'from_user_id'=>$from_id,'to_user_id'=>$to_id,'comment_date'=>date('Y-m-d'));
 
-            $userEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$to_id));
-            $user_email = $userEmail['email'];
-
-            $this->sendEmailToAdmin('Admin send a comment to you','Comment',$user_email,SUPPORT_EMAIL);
+            
 
             $request=$this->common_model->addRecords(COMMENTS,$insertData);
             if($request)
             {
+                $table_name = getNotifyHistoryTable($to_id);
+                send_notification('COMMENT',$from_id,$to_id,$table_name);
+                $userEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$to_id));
+                $user_email = $userEmail['email'];
+
+                $this->sendEmailToAdmin('Admin send a comment to you','Comment',$user_email,SUPPORT_EMAIL);
                 $this->session->set_flashdata('success', "Comment added succefully");
                 redirect(base_url().'admin/comments/viewComments/'.$to_id);
             }
