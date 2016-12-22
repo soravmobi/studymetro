@@ -172,6 +172,26 @@
           </li>
         </ul>
       </li>
+      <!-- City Events -->
+      <li class="treeview <?php tree_active_class('city_events', array('addNew', 'edit','viewAll')); ?>">
+        <a href="javascript:void(0);" title="City Events">
+          <i class="fa fa-calendar"></i> 
+          <span>City Events</span> 
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li class="<?php add_active_class('city_events', 'addNew'); ?>">
+            <a href="<?php cms_url('admin/city-events/add-new'); ?>" title="Add New Event">
+              <i class="fa fa-plus"></i> Add New Event
+            </a>
+          </li>
+          <li class="<?php add_active_class('city_events', 'viewAll'); ?>">
+            <a href="<?php cms_url('admin/city-events/view-all'); ?>" title="View All Events">
+              <i class="fa fa-eye"></i> View All Events
+            </a>
+          </li>
+        </ul>
+      </li>
       <!-- Photo gallery -->
       <li class="treeview <?php tree_active_class('photos', array('addNew', 'edit','viewAll')); ?>">
         <a href="javascript:void(0);" title="University">
@@ -186,8 +206,8 @@
             </a>
           </li>
           <li class="<?php add_active_class('photos', 'viewAll'); ?>">
-            <a href="<?php cms_url('admin/photos/view-all'); ?>" title="View All Photo">
-              <i class="fa fa-eye"></i> View All Photo
+            <a href="<?php cms_url('admin/photos/view-all'); ?>" title="View All Photos">
+              <i class="fa fa-eye"></i> View All Photos
             </a>
           </li>
         </ul>

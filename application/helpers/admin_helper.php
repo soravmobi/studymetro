@@ -192,7 +192,8 @@ function getAllPages()
 				'17' => 'Internship',
 				'18' => 'Work As Agent',
 				'19' => 'Pricing',
-				'20' => 'Abroad Courses'
+				'20' => 'Abroad Courses',
+				'21' => 'Privacy Policy'
 			);
 	return $pages;
 }

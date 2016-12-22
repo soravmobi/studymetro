@@ -1,7 +1,7 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
-  <?php admin_content_header($meta_title, $small_text, 'view_all_webinar_header'); ?>
+  <?php admin_content_header($meta_title, $small_text, 'view_all_city_events_header'); ?>
 
   <!-- Main content -->
   <section class="content">
@@ -9,11 +9,11 @@
     	<div class="col-xs-12">
 	      <div class="box box-primary">
 	        <div class="box-header">
-	          <h3 class="box-title"><?php echo sprintf(ALL_DATA, 'Webinar'); ?></h3>
-	          <!-- <a href="<?php cms_url('admin/university/add-new'); ?>" class="addNewAdmin" title="Add New University">Add New</a> -->
+	          <h3 class="box-title"><?php echo sprintf(ALL_DATA, 'City Events'); ?></h3>
+	          <a href="<?php cms_url('admin/city-events/add-new'); ?>" class="addNewAdmin" title="Add New City Event">Add New</a>
 	          <div class="box-tools">
 	            <div class="input-group customInputGroups" style="width: 150px;">
-	              <form action="<?php cms_url('admin/university/view_all_webinar'); ?>" method="get">
+	              <form action="<?php cms_url('admin/city-events/view-all'); ?>" method="get">
 		              <input type="text" name="s" class="form-control input-sm pull-right" placeholder="Search" value="<?php echo $this->input->get('s'); ?>">
 		              <div class="input-group-btn cusInputGrpbtn">
 		                <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
@@ -40,49 +40,38 @@
 	            <tr>
 	              <th>ID</th>
 	              <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Skype Id</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>Status</th>
-                  <th>Action</th>
+	              <th>City</th>
+	              <th>Date</th>
+	              <th>Registration Type</th>
+	              <th>Price</th>
+	              <th>Action</th>
 	            </tr>
 	            <?php
-	            	if(!empty($webinars)) {
+	            	if(!empty($city_events)) {
 	            		$offset = $offset + 1;
-	            		foreach($webinars as $val) {
+	            		foreach($city_events as $val) {
 	            ?>
 	            	<tr>
 		              <td><?php echo $offset++; ?></td>
 		              <td><?php echo $val['name']; ?></td>
-                      <td><?php echo $val['email']; ?></td>
-                      <td><?php echo $val['phone']; ?></td>
-                      <td><?php echo $val['skype_id']; ?></td>
-                      <td><?php echo $val['date']; ?></td>
-                      <td><?php echo $val['time']; ?></td>
-                      <td><?php if($val['status']==1){ ?>
-                      	<span class="label label-success">Approved</span>
-                      	<?php } else { ?>
-                      	<span class="label label-danger">Not Approved</span>
-                      	<?php } ?>
-                      </td>
+		              <td><?php echo $val['city']; ?></td>
+		              <td><?php echo $val['date']; ?></td>
+		              <td><?php echo $val['registartion_type']; ?></td>
+		              <td><?php echo ($val['is_free'] == 0) ? 'Free' : '$'.$val['price']; ?></td>
 		              <td>
-		              	<?php if($val['status']==0){ ?>
-		              	<a href="<?php cms_url('admin/university/activate_webinar/'.$val['id']); ?>" title="Activate webinar">
-		              	<i class="fa fa-pencil"></i> Activate
+		              	<a href="<?php cms_url('admin/city_events/edit/'.$val['id']); ?>" title="Edit City Event">
+		              		<i class="fa fa-edit"></i> Edit
 		              	</a>
-		              	<?php } else{ ?>
-		              	<a href="<?php cms_url('admin/university/deactivate_webinar/'.$val['id']); ?>" title="Deactivate webinar">
-		              	<i class="fa fa-pencil"></i> Deactivate
+		              	<span>&nbsp;</span>
+		              	<a href="<?php cms_url('admin/city_events/delete/'.$val['id']); ?>" title="Delete City Event" onclick="if(!confirm('Are you sure you want to delete this city event ?')) return false;">
+		              		<i class="fa fa-trash"></i> Delete
 		              	</a>
-		              	<?php } ?>
 		              </td>
 		            </tr>
 	            <?php } /* End foreach */ ?>
 	            <?php } else { ?>
 	            	<tr>
-	            		<td colspan="5" align="center"><?php echo sprintf(NO_RECORDS_FOUND, 'pages') ?></td>
+	            		<td colspan="5" align="center"><?php echo sprintf(NO_RECORDS_FOUND, 'city event') ?></td>
 	            	</tr>
 	            <?php } ?>
 	          </table>
