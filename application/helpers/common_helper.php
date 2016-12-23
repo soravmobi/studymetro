@@ -93,7 +93,7 @@ if (!function_exists('notifyUnreadCount')) {
 	    $table_name = getNotifyHistoryTable($user_id);
 
 		$notifyCountData = $ci->common_model->getAllRecordsById($table_name,array('receiver_id'=>$user_id,'is_read'=>0));
-
+		//print_r($notifyCountData);
 		$count = count($notifyCountData);
 		if($count>0)
 		{
@@ -142,10 +142,6 @@ if (!function_exists('exactNotfiyMessage')) {
 	    	}
 	    	return $body;
 	    }
-	    
-	    $message = str_replace($replaceTo,$replaceBy,$msg);
-		
-		return $message;
 	}
 }
 
@@ -179,6 +175,36 @@ if (!function_exists('getUserType')) {
 			return 'Frainchsee';
 		}
 	}
+}
+
+function time_elapsed_string($datetime, $full = false)
+{
+    $now     = new DateTime;
+    $ago     = new DateTime($datetime);
+    $diff    = $now->diff($ago);
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+    
+    $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second'
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+            unset($string[$k]);
+        }
+    }
+    
+    if (!$full)
+        $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
 
 /**

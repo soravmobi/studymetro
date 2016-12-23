@@ -214,7 +214,7 @@
       </li>
 
       <!-- Notification -->
-      <li class="treeview <?php tree_active_class('notification', array('viewAll')); ?>">
+      <!-- <li class="treeview <?php tree_active_class('notification', array('viewAll')); ?>">
         <a href="javascript:void(0);" title="University">
           <i class="fa fa-file-image-o"></i> 
           <span>Notification</span> 
@@ -227,7 +227,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> -->
 
       <!-- Videos -->
       <li class="treeview <?php tree_active_class('videos', array('addNew', 'edit','viewAll')); ?>">

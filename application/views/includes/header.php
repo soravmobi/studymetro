@@ -93,21 +93,43 @@
               </li>
 
               <!-- Notifications: style can be found in dropdown.less -->
+              <?php $data['session_data'] = admin_session_data();
+                    $data['user_info'] = get_user($data['session_data']['user_id']);
+                    $user_id = $data['user_info']['user_id'];
+                    $notification = $this->common_model->getAllRecords(ADMIN_NOTIFICATION);
+                   ?>
+             
               <li class="dropdown notifications-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning">0</span>
+                  <span class="label label-warning"><?php echo notifyUnreadCount($user_id); ?></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header"><?php echo sprintf(NOTIFICATION_TEXT, 0); ?></li>
+                  <li class="header"></li>
                   <li>
                     <!-- inner menu: contains the actual data -->
                     <ul class="menu">
-                      <li>
-                        <a href="#">
-                          <p><?php echo NO_NOTIFICATION_TEXT; ?></p>
+                    <?php if(!empty($notification))
+                          { 
+                            foreach($notification as $val)
+                            {
+                              $name = getUserName($val['sender_id']); ?>
+                      <li> <?php $array = array('NAME'=>$name,'TOPIC'=>'Pollution','AUTHOR'=>'Mathew Headen'); ?>
+                        <a href="javascript:void(0)" title="<?php echo exactNotfiyMessage($val['notify_id'],$array); ?>">
+                          <p><?php 
+                            echo substr(exactNotfiyMessage($val['notify_id'],$array),0,40); ?>
+                          </p>
+                          <p><?php echo time_elapsed_string($val['sent_datetime']); ?></p>
                         </a>
                       </li>
+                      <?php } } else{ ?>
+                      <li>
+                        <a href="#">
+                          <p><?php echo NO_NOTIFICATION_TEXT; ?>
+                          </p>
+                        </a>
+                      </li>
+                      <?php } ?>
                     </ul>
                   </li>
                   <li class="footer"><a href="javascript:void(0);"><?php echo SEE_ALL_NOTIFICATIONS; ?>l</a></li>
