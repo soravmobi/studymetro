@@ -210,6 +210,51 @@
 	            </div><!-- .box-body -->	
 
 	            <div class="box-header with-border">
+		            <h3 class="box-title">Training</h3>
+	          	</div>
+
+	          	<div class="box-body">
+
+	          	<div class="col-md-12">
+	            	<div class="col-md-6">
+		                <div class="form-group">
+		                  <label for="phone">IELTS</label>
+		                  <textarea name="IELTS" class="form-control" placeholder="IELTS"></textarea>
+		                </div>
+		            </div>
+		            <div class="col-md-6">
+		                <div class="form-group">
+		                  <label for="phone">TOEFL</label>
+		                  <textarea name="TOEFL" class="form-control" placeholder="TOEFL"></textarea>
+		                </div>
+		            </div>
+	            </div>
+	            <div class="col-md-12">
+	            	<div class="col-md-6">
+		                <div class="form-group">
+		                  <label for="phone">GRE</label>
+		                  <textarea name="GRE" class="form-control" placeholder="GRE"></textarea>
+		                </div>
+		            </div>
+		            <div class="col-md-6">
+		                <div class="form-group">
+		                  <label for="phone">GMAT</label>
+		                  <textarea name="GMAT" class="form-control" placeholder="GMAT"></textarea>
+		                </div>
+		            </div>
+	            </div>
+	            <div class="col-md-12">
+	            	<div class="col-md-12">
+		                <div class="form-group">
+		                  <label for="phone">SAT</label>
+		                  <textarea name="SAT" class="form-control" placeholder="SAT"></textarea>
+		                </div>
+		            </div>
+	            </div>
+
+	            </div>
+
+	            <div class="box-header with-border">
 		            <h3 class="box-title">Meta Information</h3>
 	          	</div>
 

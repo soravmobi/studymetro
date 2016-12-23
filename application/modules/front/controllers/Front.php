@@ -69,6 +69,7 @@ class Front extends CI_Controller {
 			$this->form_validation->set_rules('email','Email Id','trim|required|valid_email|is_unique[users.email]');
 			$this->form_validation->set_rules('password','Password','trim|required|min_length[6]|max_length[14]|callback_regex_check');
 			$this->form_validation->set_rules('confm_pswd','Confirm Password','trim|required|min_length[6]|max_length[14]|callback_regex_check|matches[password]');
+			
 			if($this->form_validation->run()==TRUE){
 				unset($data['confm_pswd']);
 				$data['password'] = md5($data['password']);
