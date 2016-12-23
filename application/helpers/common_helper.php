@@ -93,7 +93,7 @@ if (!function_exists('notifyUnreadCount')) {
 	    $table_name = getNotifyHistoryTable($user_id);
 
 		$notifyCountData = $ci->common_model->getAllRecordsById($table_name,array('receiver_id'=>$user_id,'is_read'=>0));
-		
+		//print_r($notifyCountData);
 		$count = count($notifyCountData);
 		if($count>0)
 		{
@@ -116,18 +116,32 @@ if (!function_exists('getUserName')) {
 }
 
 if (!function_exists('getNotifyMessage')) {
-	function getNotifyMessage($notify_id,$type='') {
+	function getNotifyMessage($notify_id) {
 	    $ci =&get_instance();
 		$notifyData = $ci->common_model->getSingleRecordById(NOTIFICATION,array('id'=>$notify_id));
 		
-		if($type!='')
-		{
-			return $notifyData['type'];
-		}
-		else
-		{
-			return $notifyData['body'];
-		}
+		return $notifyData['body'];
+	}
+}
+
+if (!function_exists('exactNotfiyMessage')) {
+	function exactNotfiyMessage($notify_id,$array) {
+	    $ci =&get_instance();
+	    $msg = '';
+	    $body = getNotifyMessage($notify_id);
+	    if(empty($array))
+	    {
+	    	return $body;
+	    }
+	    else
+	    {   
+	    	foreach($array as $a => $val)
+	    	{   
+	    		$msg=str_replace('{'.$a.'}', $val, $body);
+	    		$body = $msg;
+	    	}
+	    	return $body;
+	    }
 	}
 }
 
@@ -161,6 +175,36 @@ if (!function_exists('getUserType')) {
 			return 'Frainchsee';
 		}
 	}
+}
+
+function time_elapsed_string($datetime, $full = false)
+{
+    $now     = new DateTime;
+    $ago     = new DateTime($datetime);
+    $diff    = $now->diff($ago);
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+    
+    $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second'
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+            unset($string[$k]);
+        }
+    }
+    
+    if (!$full)
+        $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
 
 /**

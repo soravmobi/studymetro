@@ -22,6 +22,8 @@ class Student extends CI_Controller {
 
     public function submitQuote()
     {
+        $from_id = $this->uid;
+        $to_id = ADMIN_ID;
         $data = $this->input->post();
         $this->form_validation->set_rules('quote','Quotation','trim|required');
         if($this->form_validation->run()==TRUE){
@@ -32,6 +34,11 @@ class Student extends CI_Controller {
             $data['added_date'] = datetime();
             $lid = $this->common_model->addRecords(QUOTATIONS,$data);
             if(!empty($lid)){
+                send_notification('QUOTE',$from_id,$to_id,ADMIN_NOTIFICATION);
+                $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$from_id));
+                $from_email = $fromEmail['email'];
+
+                $this->sendEmailToAdmin('User add a new quote','Quote',SUPPORT_EMAIL,$from_email);
                 $this->session->set_flashdata('success','Your message has been sent successfully');
                 redirect('student/getquote');
             }else{
@@ -69,52 +76,6 @@ class Student extends CI_Controller {
         $data['applications']   = $this->common_model->getAllRecordsOrderById(APPLIED_PROGRAMS,'id','DESC',array('user_id' => $this->uid));
         load_front_view('student/my_applications', $data);
     }
-
-    // public function add_comment()
-    // {
-    //     $from_id = $this->uid;
-    //     $to_id = ADMIN_ID;
-
-    //     $this->form_validation->set_rules('comment_text','Message','required');
-    //     if($this->form_validation->run()==true)
-    //     {
-    //         $message = $_POST['comment_text'];
-    //         $insertData = array('message'=>$message,'from_user_id'=>$from_id,'to_user_id'=>$to_id,'comment_date'=>date('Y-m-d'));
-
-    //         // $userEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$to_id));
-    //         // $user_email = $userEmail['email'];
-
-    //         $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$from_id));
-    //         $from_email = $fromEmail['email'];
-
-    //         $this->sendEmailToAdmin('User send a comment to you','Comment',SUPPORT_EMAIL,$from_email);
-
-
-    //         $request=$this->common_model->addRecords(COMMENTS,$insertData);
-    //         if($request)
-    //         {
-    //             send_notification('COMMENT',$from_id,$to_id);
-    //             $this->session->set_flashdata('success', "Comment added succefully");
-    //             redirect('user/my-comments');
-    //         }
-    //         else
-    //         {
-    //             $this->session->set_flashdata('error', "Unable to add Comment.");
-    //             redirect('user/my-comments');
-    //         }
-    //     }
-    //     else
-    //     {
-    //         $data = array();
-    //         $data['meta_title']     = 'My Comments';
-    //         $data['parent']         = 'my_comments';
-            
-    //         $where = array('to_user_id' =>$this->uid);
-    //         $or_where = array('from_user_id' =>$this->uid);
-    //         $data['comments']  = $this->common_model->getComments(COMMENTS,'id','ASC',$where,$or_where);
-    //         load_front_view('student/my_comments', $data);
-    //     }
-    // }
 
     public function saveEducation()
     {
@@ -342,6 +303,12 @@ class Student extends CI_Controller {
 
             if($request!='')
             {
+                send_notification('ASSIGNMENT',$user_id,$to_id,ADMIN_NOTIFICATION);
+                $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$user_id));
+                $from_email = $userEmail['email'];
+                $from_user_name = $userEmail['first_name'].' '.$userEmail['last_name'];
+                
+                $this->sendEmailToAdmin('Answers submitted by "'.$from_user_name.'"','Assignments',VISA_EMAIL,$from_email);
                 $this->session->set_flashdata('success', "Answers submitted successfully.");
                 redirect('student/my-assignments');
             }
