@@ -93,7 +93,7 @@ if (!function_exists('notifyUnreadCount')) {
 	    $table_name = getNotifyHistoryTable($user_id);
 
 		$notifyCountData = $ci->common_model->getAllRecordsById($table_name,array('receiver_id'=>$user_id,'is_read'=>0));
-		
+
 		$count = count($notifyCountData);
 		if($count>0)
 		{
@@ -116,18 +116,36 @@ if (!function_exists('getUserName')) {
 }
 
 if (!function_exists('getNotifyMessage')) {
-	function getNotifyMessage($notify_id,$type='') {
+	function getNotifyMessage($notify_id) {
 	    $ci =&get_instance();
 		$notifyData = $ci->common_model->getSingleRecordById(NOTIFICATION,array('id'=>$notify_id));
 		
-		if($type!='')
-		{
-			return $notifyData['type'];
-		}
-		else
-		{
-			return $notifyData['body'];
-		}
+		return $notifyData['body'];
+	}
+}
+
+if (!function_exists('exactNotfiyMessage')) {
+	function exactNotfiyMessage($notify_id,$array) {
+	    $ci =&get_instance();
+	    $msg = '';
+	    $body = getNotifyMessage($notify_id);
+	    if(empty($array))
+	    {
+	    	return $body;
+	    }
+	    else
+	    {   
+	    	foreach($array as $a => $val)
+	    	{   
+	    		$msg=str_replace('{'.$a.'}', $val, $body);
+	    		$body = $msg;
+	    	}
+	    	return $body;
+	    }
+	    
+	    $message = str_replace($replaceTo,$replaceBy,$msg);
+		
+		return $message;
 	}
 }
 

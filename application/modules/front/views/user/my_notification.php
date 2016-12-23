@@ -29,13 +29,14 @@
                             </tr>
                           </thead>
                           <tbody>
-                          <?php $i = 1; if(!empty($notification)){ foreach($notification as $val) { ?>
+                          <?php $i = 1; if(!empty($notification)){ foreach($notification as $val) { $name = getUserName($val['sender_id']);?>
                             <tr>
                               <td><?php echo $i; ?></td>
-                              <td><?php echo getUserName($val['sender_id']); ?></td>
-                              <!-- <td><?php echo getUserType($val['sender_id']); ?></td>
-                              <td><?php echo getNotifyMessage($val['notify_id'],'type'); ?></td> -->
-                              <td><?php echo getUserName($val['sender_id']).' '.getNotifyMessage($val['notify_id']); ?></td>
+                              <td><?php echo $name; ?></td>
+                              <td>
+                              <?php $array = array('NAME'=>$name,'TOPIC'=>'Pollution','AUTHOR'=>'Mathew Headen');
+                               echo exactNotfiyMessage($val['notify_id'],$array); ?>
+                              </td>
                               <td><?php echo convertDateTime($val['sent_datetime']); ?></td>
                               <td><a href="<?php echo base_url('front/user/delete_notification/'.$val['id']); ?>"> <i class="fa fa-trash"></i> Delete </a></td>
                             </tr>

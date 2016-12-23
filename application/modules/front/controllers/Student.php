@@ -22,6 +22,8 @@ class Student extends CI_Controller {
 
     public function submitQuote()
     {
+        $from_id = $this->uid;
+        $to_id = ADMIN_ID;
         $data = $this->input->post();
         $this->form_validation->set_rules('quote','Quotation','trim|required');
         if($this->form_validation->run()==TRUE){
@@ -32,6 +34,11 @@ class Student extends CI_Controller {
             $data['added_date'] = datetime();
             $lid = $this->common_model->addRecords(QUOTATIONS,$data);
             if(!empty($lid)){
+                send_notification('QUOTE',$from_id,$to_id,ADMIN_NOTIFICATION);
+                $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$from_id));
+                $from_email = $fromEmail['email'];
+
+                $this->sendEmailToAdmin('User add a new quote','Quote',SUPPORT_EMAIL,$from_email);
                 $this->session->set_flashdata('success','Your message has been sent successfully');
                 redirect('student/getquote');
             }else{
@@ -342,6 +349,12 @@ class Student extends CI_Controller {
 
             if($request!='')
             {
+                send_notification('ASSIGNMENT',$user_id,$to_id,ADMIN_NOTIFICATION);
+                $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$user_id));
+                $from_email = $userEmail['email'];
+                $from_user_name = $userEmail['first_name'].' '.$userEmail['last_name'];
+                
+                $this->sendEmailToAdmin('Answers submitted by "'.$from_user_name.'"','Assignments',VISA_EMAIL,$from_email);
                 $this->session->set_flashdata('success', "Answers submitted successfully.");
                 redirect('student/my-assignments');
             }

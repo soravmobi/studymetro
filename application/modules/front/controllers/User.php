@@ -166,6 +166,8 @@ class User extends CI_Controller {
     public function submitFeedback()
     {
         checkUserSession(array('2','5'));
+        $from_id = $this->uid;
+        $to_id = ADMIN_ID;
         $data = $this->input->post();
         $this->form_validation->set_rules('name','Name','required');
         $this->form_validation->set_rules('email','Email','required|valid_email');
@@ -186,6 +188,11 @@ class User extends CI_Controller {
                 $message .= '<li><b>Suggestion:</b> '.$data['suggestion'].'</li>';
                 $message .= '</ul></body></html>';
                 send_mail($message,'New Feedback',SUPPORT_EMAIL,$data['email']);
+
+                send_notification('FEEDBACK',$from_id,$to_id,ADMIN_NOTIFICATION);
+                
+                $this->sendEmailToAdmin('Answers submitted by "'.$from_user_name.'"','Assignments',VISA_EMAIL,$from_email);
+
                 $this->session->set_flashdata('success','Thanks for your valuable feedback !!');
                 redirect('user/feedback');
             }else{
@@ -271,6 +278,8 @@ class User extends CI_Controller {
     public function notesmgmt()
     {
         checkUserSession(array('2','3'));
+        $from_id = $this->uid;
+        $to_id = ADMIN_ID;
         $data = $this->input->post();
         $this->form_validation->set_rules('notes','Note','trim|required');
         if($this->form_validation->run()==TRUE){
@@ -279,6 +288,12 @@ class User extends CI_Controller {
             unset($data['id']);
             $lid = $this->common_model->addRecords(NOTES,$data);
             if(!empty($lid)){
+                send_notification('NOTE',$from_id,$to_id,ADMIN_NOTIFICATION);
+                $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$from_id));
+                $from_email = $fromEmail['email'];
+
+                $this->sendEmailToAdmin('User add a new note','Note',SUPPORT_EMAIL,$from_email);
+
                 $this->session->set_flashdata('success','Note successfully added');
                 redirect('user/notes');
             }else{
@@ -777,7 +792,7 @@ class User extends CI_Controller {
 
                 $this->sendEmailToAdmin('User send a comment to you','Comment',SUPPORT_EMAIL,$from_email);
                 $this->session->set_flashdata('success', "Comment added succefully");
-                echo 'yes'; die;
+                //echo 'yes'; die;
                 redirect('user/my-comments');
             }
             else
