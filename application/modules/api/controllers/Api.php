@@ -22,7 +22,7 @@ class Api extends REST_Controller {
     function signup_post()
     {
         $data = $this->input->post();
-        $return['ResponseCode'] = 200;
+        $return['code'] = 200;
     	$this->form_validation->set_rules('first_name','First Name','trim|required');
         $this->form_validation->set_rules('last_name','Last Name','trim|required');
         $this->form_validation->set_rules('user_type','Register as','trim|required|in_list[2,3,4,5,6]');
@@ -35,9 +35,9 @@ class Api extends REST_Controller {
     	if($this->form_validation->run() == FALSE) 
         {
         	$error = $this->form_validation->rest_first_error_string(); 
-            $return['resp']         =   0; 
-            $return['data']         =   array(); 
-            $return['Message']      =   $error; 
+            $return['status']         =   0; 
+            $return['response']         =   array(); 
+            $return['message']      =   $error; 
         }
         else
         {   
@@ -89,13 +89,13 @@ class Api extends REST_Controller {
                 */
 
                 /* Return success response */
-                $return['resp']         =   1; 
-	            $return['data']         =   array(); 
-	            $return['Message']      =   'User registered successfully'; 
+                $return['status']         =   1; 
+	            $return['response']         =   array(); 
+	            $return['message']      =   'User registered successfully'; 
         	}else{
-                $return['resp']         =   0; 
-	            $return['data']         =   array(); 
-	            $return['Message']      =   GENERAL_ERROR;
+                $return['status']         =   0; 
+	            $return['response']         =   array(); 
+	            $return['message']      =   GENERAL_ERROR;
         	}
         }
         $this->response($return);
@@ -124,7 +124,7 @@ class Api extends REST_Controller {
      */
     function login_post()
     {
-        $return['ResponseCode'] =   200;
+        $return['code'] =   200;
         $data = $this->input->post();
         $this->form_validation->set_rules('email','Email Id','trim|required|valid_email');
         $this->form_validation->set_rules('password','Password','trim|required');
@@ -134,9 +134,9 @@ class Api extends REST_Controller {
         if($this->form_validation->run() == FALSE) 
         {
             $error = $this->form_validation->rest_first_error_string(); 
-            $return['resp']         =   0; 
-            $return['data']         =   array(); 
-            $return['Message']      =   $error; 
+            $return['status']         =   0; 
+            $return['response']         =   array(); 
+            $return['message']      =   $error; 
         }
         else
         {   
@@ -148,19 +148,19 @@ class Api extends REST_Controller {
             $Status = $this->common_model->getSingleRecordById(USER,$dataArr);
             if(empty($Status))
             {
-                $return['resp']         =   0; 
-                $return['data']         =   array(); 
-                $return['Message']      =   'Invalid Email-id or Password'; 
+                $return['status']         =   0; 
+                $return['response']         =   array(); 
+                $return['message']      =   'Invalid Email-id or Password'; 
             }
             else if(!empty($Status) && $Status['is_email_verified'] == 0){
-                $return['resp']         =   0; 
-                $return['data']         =   array(); 
-                $return['Message']      =   'Currently your profile is  not verified'; 
+                $return['status']         =   0; 
+                $return['response']         =   array(); 
+                $return['message']      =   'Currently your profile is  not verified'; 
             }
             else if(!empty($Status) && $Status['is_blocked'] == 1){
-                $return['resp']         =   0; 
-                $return['data']         =   array(); 
-                $return['Message']      =   'Your profile has been blocked. Please contact to our support team'; 
+                $return['status']         =   0; 
+                $return['response']         =   array(); 
+                $return['message']      =   'Your profile has been blocked. Please contact to our support team'; 
             }
             else if($Status['is_email_verified'] == 1 && $Status['is_blocked'] == 0){
                 /* Update User Data */
@@ -178,13 +178,13 @@ class Api extends REST_Controller {
                     $response['last_name']         = null_checker($Status['last_name']);
                     $response['email']             = null_checker($Status['email']);
                     $response['login_session_key'] = null_checker($LoginSessionKey);
-                    $return['resp']         =   1; 
-                    $return['data']         =   $response; 
-                    $return['Message']      =   'User logged in successfully';
+                    $return['status']         =   1; 
+                    $return['response']         =   $response; 
+                    $return['message']      =   'User logged in successfully';
                 }else{
-                    $return['resp']         =   0; 
-                    $return['data']         =   array(); 
-                    $return['Message']      =   GENERAL_ERROR; 
+                    $return['status']         =   0; 
+                    $return['response']         =   array(); 
+                    $return['message']      =   GENERAL_ERROR; 
                 }
             }
         }
