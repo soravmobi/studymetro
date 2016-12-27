@@ -220,6 +220,7 @@
                   <li><a href="http://page.studymetro.com/Knowledge-Base">Knowledge Base </a></li>
                   <li><a href="<?php echo base_url(); ?>terms-conditions">Terms & Conditions </a></li>
                   <li><a href="<?php echo base_url(); ?>privacy-policy">Privacy Policy </a></li>
+                  <li><a href="<?php echo base_url(); ?>city-events">City Events </a></li>
                 </ul>
               </div>
                </div>
@@ -500,6 +501,7 @@ $("body").on('click','.password-btn',function() {
 <?php } ?>
 </script>
 <?php
+if(isset($slug) && $slug != 'city-events'){
   $olark_plugin = get_option('olark_plugin');
   $vcita_plugin = get_option('vcita_plugin');
   if(!empty($olark_plugin)){
@@ -508,6 +510,7 @@ $("body").on('click','.password-btn',function() {
   if(!empty($vcita_plugin)){
       echo $vcita_plugin;
   }
+}
 ?>
 
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>

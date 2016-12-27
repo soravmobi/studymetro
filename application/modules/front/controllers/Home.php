@@ -28,6 +28,7 @@ class Home extends CI_Controller {
             checkUserSession(array('2','3','4','5','6'));
         }
         $data = array();
+        $data['slug'] = $slug;
         $data['details'] = $this->common_model->getSingleRecordById(STATIC_PAGE,array('slug' => $slug));
         if(!empty($data['details'])){
             $data['meta_title'] = $data['details']['meta_title'];
@@ -54,6 +55,9 @@ class Home extends CI_Controller {
             }
             if($page_name == 'blogs'){
                 $data['blogs'] = $this->common_model->getAllRecordsByOrder(BLOGS,'id','DESC');
+            }
+            if($page_name == 'city-events'){
+                $data['events'] = $this->common_model->getAllRecordsByOrder(CITY_EVENTS,'id','ASC');
             }
             load_front_view('pages/'.$page_name, $data);
         }else{

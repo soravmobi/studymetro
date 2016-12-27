@@ -42,8 +42,6 @@
 	              <th>Name</th>
 	              <th>City</th>
 	              <th>Date</th>
-	              <th>Registration Type</th>
-	              <th>Price</th>
 	              <th>Action</th>
 	            </tr>
 	            <?php
@@ -56,8 +54,6 @@
 		              <td><?php echo $val['name']; ?></td>
 		              <td><?php echo $val['city']; ?></td>
 		              <td><?php echo $val['date']; ?></td>
-		              <td><?php echo $val['registartion_type']; ?></td>
-		              <td><?php echo ($val['is_free'] == 0) ? 'Free' : '$'.$val['price']; ?></td>
 		              <td>
 		              	<a href="<?php cms_url('admin/city_events/edit/'.$val['id']); ?>" title="Edit City Event">
 		              		<i class="fa fa-edit"></i> Edit

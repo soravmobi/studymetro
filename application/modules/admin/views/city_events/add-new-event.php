@@ -33,6 +33,10 @@
 		                  <input type="text" name="name" placeholder="Event Name" required class="form-control margin_bottom10"/>
 		                </div>
 		                <div class="form-group photo_1">
+		                  <label for="photos">Venue</label>
+		                  <input type="text" name="venue" placeholder="Event Venue" required class="form-control margin_bottom10"/>
+		                </div>
+		                <div class="form-group photo_1">
 		                  <label for="photos">City</label>
 		                  <input type="text" name="city" placeholder="Event City" required class="form-control margin_bottom10"/>
 		                </div>
@@ -47,19 +51,59 @@
 		                  	<option value="1">No</option>
 		                  </select>
 		                </div>
-		                <div class="form-group photo_1">
-		                  <label for="photos">Registration Type</label>
-		                  <select name="registartion_type" class="form-control" id="registartion_type">
-		                  	<option value="Early Registration Rates (by January 31st, 2017)">Early Registration Rates (by January 31st, 2017)</option>
-		                  	<option value="Regular Registration Rates (by February 24th, 2017)">Regular Registration Rates (by February 24th, 2017)</option>
-		                  	<option value="Late Registration Rates(After February 24th, 2017) ">Late Registration Rates(After February 24th, 2017) </option>
-		                  	<option value="Presentation">Presentation</option>
-		                  </select>
-		                </div>
-		                <div class="form-group price-view hidden">
-		                  <label for="photos">Price</label>
-		                  <input type="number" min="1" name="price" placeholder="Price" class="form-control margin_bottom10"/>
-		                </div>
+		                <div class="paid-section hidden">
+			                <h4>Early Registration Rates (by January 31st, 2017)</h4><br/>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price</label>
+			                  <input type="number" min="1" name="price[]" placeholder="Price" class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group">
+			                  <label for="status">Is Table</label>
+			                  <select name="is_table[]" class="form-control is_table" id="is_table">
+			                  	<option value="0">Yes</option>
+			                  	<option value="1">No</option>
+			                  </select>
+			                </div>
+
+			                <h4>Regular Registration Rates (by February 24th, 2017)</h4><br/>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price</label>
+			                  <input type="number" min="1" name="price[]" placeholder="Price" class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group">
+			                  <label for="status">Is Table</label>
+			                  <select name="is_table[]" class="form-control is_table" id="is_table">
+			                  	<option value="0">Yes</option>
+			                  	<option value="1">No</option>
+			                  </select>
+			                </div>
+
+			                <h4>Late Registration Rates(After February 24th, 2017))</h4><br/>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price</label>
+			                  <input type="number" min="1" name="price[]" placeholder="Price" class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group">
+			                  <label for="status">Is Table</label>
+			                  <select name="is_table[]" class="form-control is_table" id="is_table">
+			                  	<option value="0">Yes</option>
+			                  	<option value="1">No</option>
+			                  </select>
+			                </div>
+
+			                <h4>Presentation</h4><br/>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price</label>
+			                  <input type="number" min="1" name="price[]" placeholder="Price" class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group">
+			                  <label for="status">Is Table</label>
+			                  <select name="is_table[]" class="form-control is_table" id="is_table">
+			                  	<option value="0">Yes</option>
+			                  	<option value="1">No</option>
+			                  </select>
+			                </div>
+			            </div>
 		            </div>
 
 		        </div>
@@ -88,11 +132,13 @@
     $('body').on('change','#is_free',function(){
     	var type = $(this).val();
     	if(type == 0){ // free
-    		$('.price-view').addClass('hidden');
-    		$('input[name="price"]').attr('required',false);
+    		$('.paid-section').addClass('hidden');
+    		$('.event_price').attr('required',false);
+    		$('.is_table').attr('required',false);
     	}else{ // paid
-    		$('.price-view').removeClass('hidden');
-    		$('input[name="price"]').attr('required',true);
+    		$('.paid-section').removeClass('hidden');
+    		$('.event_price').attr('required',true);
+    		$('.is_table').attr('required',true);
     	}
     });
   });

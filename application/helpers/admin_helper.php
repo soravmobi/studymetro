@@ -161,6 +161,7 @@ function imgUpload($filename,$subfolder,$ext,$size="",$width="",$height="")
       $config['max_height'] = 76800;  
     }
     $CI->load->library('upload', $config);
+    $CI->upload->initialize($config);
     if (!$CI->upload->do_upload($filename)) {
       $error = array('error' => $CI->upload->display_errors()); 
       return $error;
@@ -193,7 +194,8 @@ function getAllPages()
 				'18' => 'Work As Agent',
 				'19' => 'Pricing',
 				'20' => 'Abroad Courses',
-				'21' => 'Privacy Policy'
+				'21' => 'Privacy Policy',
+				'22' => 'City Events'
 			);
 	return $pages;
 }

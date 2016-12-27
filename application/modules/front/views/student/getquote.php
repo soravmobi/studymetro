@@ -20,7 +20,7 @@
                             <h2>Online Adviser</h2>
                           </div> 
                           <h4>Get courses and package quote and advice from our experts!</h4>
-                          <p>Welcome to the online advisor system at studymetro.com. Let our team of experienced advisors help you navigate the search process and all your options.<br>Our advisors are not working on commission nor paid to recommend any specific programs. Our only goal is to find the best programs that fit your education/skills.<br>We will forward your request to our members who will get back to you shortly with the information you have requested.</p><br><br>
+                          <p>Welcome to the online advisor system at studymetro.com. Let our team of experienced advisors help you navigate the search process and all your options.<br>We will forward your request to our members who will get back to you shortly with the information you have requested.</p><br><br>
                           <div class="profile_content">
                               <div class="form-group">
                                   <label for="name" class="col-sm-3 control-label"> Enter your enquiry below:</label>

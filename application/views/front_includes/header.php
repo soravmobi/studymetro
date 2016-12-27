@@ -11,12 +11,14 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php admin_favicon(); ?>
       <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
       <link href="<?php echo base_url(); ?>assets/css/sweetalert2.min.css" rel="stylesheet">
+      
       <link href="<?php echo base_url(); ?>assets/css/plugin.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>assets/css/featherlight.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>assets/css/featherlight.gallery.css" rel="stylesheet">
-      <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
+      
       <link href="<?php echo base_url(); ?>assets/css/custom.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>assets/css/responsive.css" rel="stylesheet">
       <link href="<?php echo base_url(); ?>assets/css/chosen.min.css" rel="stylesheet">
@@ -26,6 +28,7 @@
       <script src="<?php echo base_url(); ?>assets/js/chosen.jquery.min.js"></script>
       
       <?php
+      if(isset($slug) && $slug != 'city-events'){
         $google_remarking_code = get_option('google_remarking_code');
         $facebook_plugin       = get_option('facebook_plugin');
         $twitter_plugin        = get_option('twitter_plugin');
@@ -71,6 +74,7 @@
         if(!empty($other_plugin)){
             echo $other_plugin;
         }
+      }
       ?>
   </head>
   <body class="hold-transition login-page <?php body_class((!empty($body_class)) ? $body_class : ''); ?>">

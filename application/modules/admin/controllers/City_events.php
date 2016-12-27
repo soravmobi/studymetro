@@ -37,6 +37,12 @@ class City_events extends CI_Controller {
     public function addCityEvent()
     {
 		$data = $_POST;
+		if($data['is_free'] == 1){
+			$data['is_table'] = serialize($data['is_table']);
+			$data['price']    = serialize($data['price']);
+		}else{
+			unset($data['is_table'],$data['price']);
+		}
 		$data['created_date'] = date('Y-m-d H:i:s');
 		$lid = $this->common_model->addRecords(CITY_EVENTS, $data);
 		if($lid){
@@ -74,6 +80,12 @@ class City_events extends CI_Controller {
     public function updateCityEvent()
     {
 		$post_data = $_POST;
+		if($post_data['is_free'] == 1){
+			$post_data['is_table'] = serialize($post_data['is_table']);
+			$post_data['price']    = serialize($post_data['price']);
+		}else{
+			unset($post_data['is_table'],$post_data['price']);
+		}
 		$this->common_model->updateRecords(CITY_EVENTS, $post_data,array('id' => $post_data['id']));
 		$this->session->set_flashdata('item_success', sprintf(ITEM_UPDATE_SUCCESS, 'City Event'));
         redirect('admin/city-events/view-all');

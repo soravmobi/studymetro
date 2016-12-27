@@ -33,6 +33,10 @@
 		                  <input type="text" value="<?php echo $details['name']; ?>" name="name" placeholder="Event Name" required class="form-control margin_bottom10"/>
 		                </div>
 		                <div class="form-group photo_1">
+		                  <label for="photos">Venue</label>
+		                  <input type="text" value="<?php echo $details['venue']; ?>" name="venue" placeholder="Event Venue" required class="form-control margin_bottom10"/>
+		                </div>
+		                <div class="form-group photo_1">
 		                  <label for="photos">City</label>
 		                  <input type="text" value="<?php echo $details['city']; ?>" name="city" placeholder="Event City" required class="form-control margin_bottom10"/>
 		                </div>
@@ -47,26 +51,75 @@
 		                  	<option value="1" <?php if($details['is_free'] == 1) echo "selected"; ?>>No</option>
 		                  </select>
 		                </div>
-		                <div class="form-group photo_1">
-		                  <label for="photos">Registration Type</label>
-		                  <select name="registartion_type" class="form-control" id="registartion_type">
-		                  	<option value="Early Registration Rates (by January 31st, 2017)" <?php if($details['registartion_type'] == 'Early Registration Rates (by January 31st, 2017)') echo "selected"; ?>>Early Registration Rates (by January 31st, 2017)</option>
-		                  	<option value="Regular Registration Rates (by February 24th, 2017)" <?php if($details['registartion_type'] == 'Regular Registration Rates (by February 24th, 2017)') echo "selected"; ?>>Regular Registration Rates (by February 24th, 2017)</option>
-		                  	<option value="Late Registration Rates(After February 24th, 2017)" <?php if($details['registartion_type'] == 'Late Registration Rates(After February 24th, 2017)') echo "selected"; ?>>Late Registration Rates(After February 24th, 2017) </option>
-		                  	<option value="Presentation" <?php if($details['registartion_type'] == 'Presentation') echo "selected"; ?>>Presentation</option>
-		                  </select>
-		                </div>
+		                <div class="paid-section <?php if($details['is_free'] == 0) echo "hidden"; ?>">
+		                <?php 
+		                	if($details['is_free'] == 1){ // paid
+		                		$price_arr    = unserialize($details['price']);
+		                		$is_table_arr = unserialize($details['is_table']);
+		                	}else{ // free
+		                		$price_arr    = array();
+		                		$is_table_arr = array();
+		                	}
+		                ?>
+			                <h4>Early Registration Rates (by January 31st, 2017)</h4><br/>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price</label>
+			                  <input type="number" min="1" value="<?php if(!empty($price_arr)) echo $price_arr[0]; ?>" name="price[]" <?php if($details['is_free'] == 1) echo "required"; ?> placeholder="Price" class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group">
+			                  <label for="status">Is Table</label>
+			                  <select name="is_table[]" class="form-control is_table" id="is_table" <?php if($details['is_free'] == 1) echo "required"; ?> >
+			                  	<option value="0" <?php if(!empty($is_table_arr) && $is_table_arr[0] == 0) echo 'selected'; ?>>Yes</option>
+			                  	<option value="1" <?php if(!empty($is_table_arr) && $is_table_arr[0] == 1) echo 'selected'; ?>>No</option>
+			                  </select>
+			                </div>
+
+			                <h4>Regular Registration Rates (by February 24th, 2017)</h4><br/>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price</label>
+			                  <input type="number" min="1" value="<?php if(!empty($price_arr)) echo $price_arr[1]; ?>" name="price[]" placeholder="Price" <?php if($details['is_free'] == 1) echo "required"; ?> class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group">
+			                  <label for="status">Is Table</label>
+			                  <select name="is_table[]" class="form-control is_table" id="is_table" <?php if($details['is_free'] == 1) echo "required"; ?>>
+			                  	<option value="0" <?php if(!empty($is_table_arr) && $is_table_arr[1] == 0) echo 'selected'; ?>>Yes</option>
+			                  	<option value="1" <?php if(!empty($is_table_arr) && $is_table_arr[1] == 1) echo 'selected'; ?>>No</option>
+			                  </select>
+			                </div>
+
+			                <h4>Late Registration Rates(After February 24th, 2017))</h4><br/>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price</label>
+			                  <input type="number" min="1" value="<?php if(!empty($price_arr)) echo $price_arr[2]; ?>" name="price[]" placeholder="Price" <?php if($details['is_free'] == 1) echo "required"; ?> class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group">
+			                  <label for="status">Is Table</label>
+			                  <select name="is_table[]" class="form-control is_table" id="is_table" <?php if($details['is_free'] == 1) echo "required"; ?>>
+			                  	<option value="0" <?php if(!empty($is_table_arr) && $is_table_arr[2] == 0) echo 'selected'; ?>>Yes</option>
+			                  	<option value="1" <?php if(!empty($is_table_arr) && $is_table_arr[2] == 1) echo 'selected'; ?>>No</option>
+			                  </select>
+			                </div>
+
+			                <h4>Presentation</h4><br/>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price</label>
+			                  <input type="number" min="1" value="<?php if(!empty($price_arr)) echo $price_arr[3]; ?>" name="price[]" placeholder="Price" <?php if($details['is_free'] == 1) echo "required"; ?> class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group">
+			                  <label for="status">Is Table</label>
+			                  <select name="is_table[]" class="form-control is_table" id="is_table" <?php if($details['is_free'] == 1) echo "required"; ?>>
+			                  	<option value="0" <?php if(!empty($is_table_arr) && $is_table_arr[3] == 0) echo 'selected'; ?>>Yes</option>
+			                  	<option value="1" <?php if(!empty($is_table_arr) && $is_table_arr[3] == 1) echo 'selected'; ?>>No</option>
+			                  </select>
+			                </div>
+			            </div>
 		                <input type="hidden" name="id" value="<?php echo $details['id']; ?>">
-		                <div class="form-group price-view <?php if($details['is_free'] == 0) echo "hidden"; ?>">
-		                  <label for="photos">Price</label>
-		                  <input type="number" min="1" value="<?php echo $details['price']; ?>" name="price" placeholder="Price" <?php if($details['is_free'] == 1) echo "required"; ?> class="form-control margin_bottom10"/>
-		                </div>
 		            </div>
 
 		        </div>
 
 	            <div class="box-footer">
-	            <button type="submit" class="btn btn-primary" title="Add City Event">ADD</button>
+	            <button type="submit" class="btn btn-primary" title="Edit City Event">EDIT</button>
 	            <button type="button" onclick="cancelAction()" class="btn btn-danger">Cancel</button>
 	            </div>
 	          </form>
@@ -89,11 +142,13 @@
     $('body').on('change','#is_free',function(){
     	var type = $(this).val();
     	if(type == 0){ // free
-    		$('.price-view').addClass('hidden');
-    		$('input[name="price"]').attr('required',false);
+    		$('.paid-section').addClass('hidden');
+    		$('.event_price').attr('required',false);
+    		$('.is_table').attr('required',false);
     	}else{ // paid
-    		$('.price-view').removeClass('hidden');
-    		$('input[name="price"]').attr('required',true);
+    		$('.paid-section').removeClass('hidden');
+    		$('.event_price').attr('required',true);
+    		$('.is_table').attr('required',true);
     	}
     });
   });

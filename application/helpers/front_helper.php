@@ -449,7 +449,8 @@ if(!function_exists('getPageName')) {
 					'18' => 'Work As Agent',
 					'19' => 'Pricing',
 					'20' => 'Abroad Courses',
-					'21' => 'Privacy Policy'
+					'21' => 'Privacy Policy',
+					'22' => 'City Events'
 				);
 		return $pages[$key];
 	}

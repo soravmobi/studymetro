@@ -273,3 +273,6 @@ if(HTTP_HOST == 'localhost' || HTTP_HOST == 'studymetro.sid.mwdemoserver.com'){
 	define('CITRUS_SECRET_KEY', '2f616053f8837dc11d2a6cb28944873a3cdaaa66');
 	define('CITRUS_VANITY_URL', 'studymetro');
 }
+	
+define('INVALID_LOGIN_SESSION_KEY', 'Invalid user login session key');
+define('NO_CHANGES', 'We didn`t found any changes');

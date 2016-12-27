@@ -23,7 +23,7 @@ class User extends CI_Controller {
     {
         checkUserSession(array('2','3','4','5','6'));
         $where  = array('id' => $this->uid, 'password' => md5($pswd));
-        $result = $this->common_model->getSingleRecordById('users',$where);
+        $result = $this->common_model->getSingleRecordById(USER,$where);
         if(empty($result)){
             return FALSE;
         }else{
@@ -59,7 +59,7 @@ class User extends CI_Controller {
                     $updateArr = array(
                         'password' => md5($data['new_password']),
                     );
-                    if($this->common_model->updateRecords('users',$updateArr,array('id' => $this->uid))){
+                    if($this->common_model->updateRecords(USER,$updateArr,array('id' => $this->uid))){
                         echo json_encode(array('type' => 'success', 'msg' => 'Password successfully changed !'));exit;
                     }else{
                         echo json_encode(array('type' => 'failed', 'msg' => 'You didn`t have any changes !'));exit;
@@ -96,7 +96,7 @@ class User extends CI_Controller {
             if(isset($imgArr['error'])){
                 echo json_encode(array('type' => 'error', 'msg' => $imgArr['error']));die;
             }else if(isset($imgArr['upload_data'])){
-                if($this->common_model->updateRecords('users',array('photo' => $imgArr['upload_data']['file_name']),array('id' => $this->uid))){
+                if($this->common_model->updateRecords(USER,array('photo' => $imgArr['upload_data']['file_name']),array('id' => $this->uid))){
                     echo json_encode(array('type' => 'success', 'msg' => 'Profile image successfully uploaded !','path' => base_url().'uploads/users/'.$imgArr['upload_data']['file_name']));die;
                 }else{
                     echo json_encode(array('type' => 'error', 'msg' => 'Image uploading failed !'));die;
@@ -113,7 +113,7 @@ class User extends CI_Controller {
     {
         checkUserSession(array('2','3','4','5','6'));
         $data = $this->input->post();
-        $this->common_model->updateRecords('users',$data,array('id' => $this->uid));
+        $this->common_model->updateRecords(USER,$data,array('id' => $this->uid));
         $this->session->set_flashdata('success','Profile successfully updated !');
         redirect('user/profile');
     }
@@ -150,7 +150,7 @@ class User extends CI_Controller {
         $data = array();
         $data['meta_title'] = 'Dashboard';
         $data['parent'] = 'dashboard';
-        $data['detail'] = $this->common_model->getAllRecordsById('users',array('id' => $this->uid));
+        $data['detail'] = $this->common_model->getAllRecordsById(USER,array('id' => $this->uid));
         load_front_view('user/dashboard', $data);
     }
 
@@ -657,7 +657,7 @@ class User extends CI_Controller {
     {
         checkUserSession(array('2'));
         $uid = $this->session->userdata("user_id");
-        $email = $this->common_model->getSingleRecordById('users',array('id'=>$uid));
+        $email = $this->common_model->getSingleRecordById(USER,array('id'=>$uid));
         $user_email = $email['email'];
         send_mail($message, $subject, $user_email,$from="");
     }

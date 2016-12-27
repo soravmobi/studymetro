@@ -100,6 +100,23 @@ if ( ! function_exists('null_checker')) {
   }
 }
 
+/**
+ * [To validate login session key]
+ * @param string $LoginSessionKey
+*/
+if ( ! function_exists('validate_login_session_key')) {
+    function validate_login_session_key($LoginSessionKey)
+    {
+        $ci =&get_instance();
+        $result = $ci->common_model->getSingleRecordById(USER,array('login_session_key' => $LoginSessionKey));
+        if(!empty($result)){
+           return $result;
+        }else{
+           return FALSE;
+        }
+    }
+}
+
 
 if(!function_exists('get_user_type_name')) {
     function get_user_type_name($type) {
