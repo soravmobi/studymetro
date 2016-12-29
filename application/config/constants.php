@@ -181,6 +181,7 @@ define('DEFAULT_PROGRAM_FEE', '50');
 /* Database Tables */
 define('ABROAD_COURSES', 'abroad_courses');
 define('CITY_EVENTS', 'city_events');
+define('EVENT_REGISTRATION', 'event_registration');
 define('MENU', 'menus');
 define('COUPONS', 'coupons');
 define('BLOGS', 'blogs');

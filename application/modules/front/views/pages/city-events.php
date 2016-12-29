@@ -662,6 +662,474 @@ a.down_pd {
   margin-top: 80px;
 }
 /*css end for 20-dec-2012*/
+@charset "utf-8";
+/* CSS Document */
+@media (min-width:1200px){
+  
+
+}
+
+
+@media (min-width:992px) and (max-width:1199px){
+.teammember_list li {
+  width: 31%;
+}
+.contct_main {
+  margin-bottom: 0;
+}
+.getstart_bock::after {
+  top: 50%;
+}
+.agenda_sec {
+  margin: 20px 0 20px;
+}
+  
+}
+@media (min-width:768px) and (max-width:991px){
+  .teammember_list li {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 2px;
+  box-shadow: 1px 1px 36px #000;
+  display: inline-block;
+  margin: 10px 6px 10px 0;
+  padding: 10px 4px;
+  text-align: center;
+  vertical-align: top;
+  width: 32.1%;
+}
+.block_list li {
+  float: left;
+  vertical-align: top;
+  width: 33%;
+}
+.getstart_bock p {
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 10px;
+}
+.getstart_bock {
+  padding: 0 20px;
+  text-align: center;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+.table_in_box .table th, .table_in_box .table td {
+  vertical-align: middle;
+  font-size: 13px;
+  padding: 5px;
+}
+.banner {
+  height: 430px;
+}
+.agenda_sec {
+  margin: 10px 0 30px;
+}
+.agenda_right {
+  width: 85%;
+}
+.getstart_bock::after {
+  top: 59%;
+}
+.contct_sec {
+  margin-top: 10px;
+  padding: 0px;
+  position: relative;
+  z-index: 1111111;
+}
+.common_head > h2 {
+  font-size: 28px;
+}
+.contct_main {
+  background-attachment: fixed;
+  background-image: url("../images/contact_banner.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 420px;
+  margin-bottom: 0;
+  position: relative;
+}
+.member_post > span {
+  font-size: 13px !important;
+}
+}
+@media (max-width:767px){
+  .regis_logo > p {
+  margin-top: 15px;
+  font-size: 14px;
+}
+.common_head.footer_head h1 {
+  font-size: 18px;
+  margin-bottom: 14px;
+  margin-top: 15px;
+  text-transform: capitalize;
+}
+.flip-clock-wrapper ul li a div div.inn {
+  background-color: #30acec !important;
+  font-size: 26px !important;
+}
+.flip-clock-wrapper ul li {
+  line-height: 45px;
+}
+.flip-clock-wrapper ul {
+  background: #000 none repeat scroll 0 0;
+  border-radius: 6px;
+  float: left;
+  font-size: 65px;
+  font-weight: bold;
+  height: 45px;
+  line-height: 0;
+  margin: 3px;
+  position: relative;
+  width: 25px;
+}
+.flip-clock-divider .flip-clock-label {
+  right: -50px;
+}
+.flip-clock-dot.bottom {
+  bottom: 35px;
+}
+.flip-clock-dot {
+  background: #323434 none repeat scroll 0 0;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  display: block;
+  height: 5px;
+  left: 3px;
+  position: absolute;
+  width: 5px;
+}
+.flip-clock-divider .flip-clock-label {
+  right: -50px;
+}
+.flip-clock-divider {
+  display: inline-block;
+  float: left;
+  height: 50px;
+  position: relative;
+  width: 10px;
+}
+.flip-clock-wrapper {
+  margin: 0;
+}
+.flip-clock-divider.minutes .flip-clock-label {
+  right: -55px;
+}
+.flip-clock-divider.seconds .flip-clock-label {
+  right: -55px;
+}
+.flip-clock-dot.top {
+  top: 35px;
+}
+.banner {
+  height: 194px;
+}
+.registration_sec .common_head {
+  padding-top: 1rem;
+}
+.R_content {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  margin: 10px auto;
+}
+.top_row h3 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.head_fair > h3 {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+.head_fair > p {
+  line-height: 20px;
+  margin-top: 15px;
+  font-size: 15px;
+}
+.fair_head > h2 {
+  border-bottom: 4px solid #efefef;
+  display: inline-block;
+  font-size: 18px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  position: relative;
+  text-transform: capitalize;
+}
+.fair_head > h3 {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.white-panel {
+  padding: 0;
+  position: absolute;
+}
+.left_sec li, .right_sec li {
+  font-size: 12px;
+  line-height: 18px;
+  margin-bottom: 7px;
+  padding-left: 25px;
+  position: relative;
+  text-align: justify;
+}
+.list_benefit > p {
+  font-size: 12px;
+  margin-top: 5px;
+  padding-left: 20px;
+  text-align: justify;
+   line-height: 18px;
+   margin-bottom: 12px;
+}
+.list_benefit > h4 {
+  font-size: 16px;
+  padding-left: 20px;
+  position: relative;
+}
+.left_sec > p {
+  font-size: 12px;
+  margin-top: 5px;
+  padding-left: 20px;
+  text-align: justify;
+   line-height: 18px;
+   margin-bottom: 12px;
+}
+.agenda_sec {
+  margin: 60px 0 20px;
+}
+.table_in_box tr:nth-child(6) td{
+  padding: 15px;
+}
+
+a.down_pd {
+  display: inline-block;
+  font-size: 16px;
+  text-align: center;
+}
+.footer_head .head_border {
+  margin-top: 30px;
+}
+.accept_terms {
+  font-size: 13px;
+  margin-top: 20px;
+}
+.registration_sec {
+  padding-bottom: 20px;
+}
+.contct_sec h2 {
+  color: #fff;
+  font-size: 16px;
+  margin: 5px 0;
+  text-align: center;
+}
+.contct_main {
+  height: auto;
+  margin-bottom: 0;
+}
+.teammember_list li {
+  width: 100%;
+}
+.common_head > h2 {
+  font-size: 28px;
+}
+.head_border {
+  margin: 70px auto auto;
+  position: relative;
+  width: 100%;
+}
+.agenda_view {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  padding-left: 0;
+  padding-top: 10px;
+  text-align: center;
+}
+.accor_price {
+  border-radius: 4px;
+  display: inline-block;
+  font-weight: bold;
+  margin-left: 0;
+  padding: 5px 10px;
+  position: static;
+  right: 30px;
+  top: 12px;
+}
+.panel-title {
+  color: inherit;
+  font-size: 15px;
+  margin-bottom: 0;
+  margin-top: 0;
+  min-width: 200px;
+  padding-right: 5px;
+}
+.timer_c {
+  margin: 31px auto !important;
+  max-width: 297px;
+  text-align: center;
+}
+.table_in_box .table th, .table_in_box .table td {
+  font-family: "Prompt",sans-serif !important;
+  font-size: 11px;
+  padding: 10px;
+  display: block;
+  position: relative;
+}
+.table_in_box thead {
+  display: none;
+}
+.table_in_box tr {
+  margin-bottom: 15px;
+  display: block;
+   font-family: 'Prompt', sans-serif !important;
+}
+.table_in_box .table td:nth-child(2){
+  position: relative;
+}
+.table_in_box .table td:nth-child(1){
+  font-size: 13px;
+}
+.table_in_box .table td:nth-child(2)::before {
+  content: "CITY/DATE";
+  left: 5px;
+  position: absolute;
+  top: 40%;
+  color: #666;
+}
+.member_post > span {
+  font-size: 13px !important;
+}
+.R_content {
+  padding: 5px 8px 15px;
+}
+.R_sec .commn_btn {
+  font-size: 18px;
+  margin-top: -10px;
+  overflow: hidden;
+  padding: 6px 12px;
+  margin-bottom: 25px;
+}
+.table_in_box .table td:nth-child(3){
+  position: relative;
+}
+.table_in_box .table th, .table_in_box .table td {
+  border-top: none;
+}
+[type="checkbox"] + label::before {
+  border: 2px solid #5a5a5a;
+  border-radius: 1px;
+  content: "";
+  height: 15px;
+  left: 0;
+  margin-top: 2px;
+  position: absolute;
+  top: 1px;
+  transition: all 0.2s ease 0s;
+  width: 15px;
+  z-index: 0;
+}
+[type="checkbox"]:checked + label::before {
+  height: 18px;
+  left: -3px;
+  top: -2px;
+  transform: rotate(40deg);
+  transform-origin: 100% 100% 0;
+  width: 10px;
+}
+[type="checkbox"] + label, [type="radio"]:checked + label, [type="radio"]:not(:checked) + label {
+  padding-left: 15px;
+}
+.table_in_box .table td:nth-child(3)::before {
+  content: "Venue";
+  left: 5px;
+  position: absolute;
+  top: 40%;
+  color: #666;
+  width: 177px;
+    text-align: left;
+}
+.table_in_box .table td:nth-child(4){
+  position: relative;
+}
+.table_in_box .table td:nth-child(4)::before {
+  content: "Early Registration Rates (by January 31st, 2017)";
+  left: 5px;
+  position: absolute;
+  top: 18%;
+  color: #666;
+  width: 177px;
+    text-align: left;
+}
+.table_in_box .table td:nth-child(5){
+  position: relative;
+}
+.table_in_box .table td:nth-child(5)::before {
+  content: "Regular Registration Rates (by February 24th, 2017)";
+  left: 5px;
+  position: absolute;
+  top: 18%;
+  color: #666;
+  width: 177px;
+    text-align: left;
+}
+.table_in_box .table td:nth-child(6){
+  position: relative;
+}
+.table_in_box .table td:nth-child(6)::before {
+  content: "Late Registration Rates(After February 24th, 2017) ";
+  left: 5px;
+  position: absolute;
+  top: 18%;
+  color: #666;
+  width: 177px;
+    text-align: left;
+}
+.table_in_box .table td:nth-child(7){
+  position: relative;
+}
+.table_in_box .table td:nth-child(7)::before {
+  content: "Presentation";
+  left: 5px;
+  position: absolute;
+  top: 18%;
+  color: #666;
+  width: 177px;
+  text-align: left;
+}
+.table_in_box [type="checkbox"] + label {
+  display: inline-block;
+  height: 20px;
+  position: relative;
+  vertical-align: middle;
+}
+.table_in_box td, .table_in_box th {
+  border: 1px solid #ddd;
+  text-align: right;
+}
+.panel-body {
+  padding: 7px;
+}
+.agenda_right {
+  display: block;
+  padding-left: 0;
+  vertical-align: top;
+  width: 100%;
+}
+.agenda_view .date {
+  height: 70px;
+  width: 70px;
+}
+.getstart_bock p {
+  font-size: 13px;
+  line-height: 18px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+.block_list li {
+  float: left;
+  vertical-align: top;
+  width: 49%;
+}
+.common_head > h2 {
+  font-size: 18px;
+}
+} 
 </style>
 
 <!--Main container sec start-->
@@ -682,7 +1150,7 @@ a.down_pd {
                             <div class="common_head footer_head wow fadeInDown" data-wow-delay="0.2s">
                                 <div class="regis_logo">
                                     <img src="<?php echo base_url(); ?>assets/images/logo.png" class="img-responsive">
-                                    <p>India, March 26th - April 3rd 2017</p>
+                                    <p>India, April 2nd - April 10th 2017</p>
                                     <h1>Join us for International Edu Fair 2017 in India </h1>
                                     <p> Prices will increase After</p>
                                 </div>
@@ -695,7 +1163,7 @@ a.down_pd {
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="register_main">
-                                <form class="form-horizontal">
+                                <form class="form-horizontal" method="post" id="event-form">
                                     <div class="R_sec">
                                         <div class="R_content card-block wow animated fadeInLeft" data-wow-duration="2s">
                                             <div class="top_row">
@@ -703,30 +1171,31 @@ a.down_pd {
                                             </div>
                                             <div class="md-form">
                                                 <i class="fa fa-university prefix"></i>
-                                                <input type="text" id="form1" class="form-control">
+                                                <input type="text" id="form1" class="form-control" name="institution">
                                                 <label for="form1">Institution:</label>
                                             </div>
                                             <div class="md-form">
                                                 <i class="fa fa-user prefix"></i>
-                                                <input type="text" id="form2" class="form-control">
+                                                <input type="text" id="form2" class="form-control" name="name">
                                                 <label for="form2"> Contact Name:</label>
                                             </div>
                                             <div class="md-form">
                                                 <i class="fa fa-phone prefix"></i>
-                                                <input type="text" id="form3" class="form-control">
+                                                <input type="text" id="form3" class="form-control" name="phone">
                                                 <label for="form3">Phone:</label>
                                             </div>
                                             <div class="md-form">
                                                 <i class="fa fa-envelope prefix"></i>
-                                                <input type="text" id="form4" class="form-control">
-                                                <label for="form4">Your email</label>
+                                                <input type="text" id="form4" class="form-control" name="email">
+                                                <label for="form4">Your Email</label>
                                             </div>
                                             <div class="form-group">
                                                 <div class=" col-sm-9">
-                                                    <span><button type="button" class="commn_btn sub_btn"> Submit</button></span>
+                                                    <span><button type="button" class="commn_btn sub_btn register-event"> Register</button></span>
                                                 </div>
                                             </div>
                                         </div>
+                                    </form>
                                         <div class="fair_box wow animated fadeInRight" data-wow-duration="2s">
                                             <div class="head_fair">
                                                 <h3>We would like to participate, give a presentation at any of the following
@@ -762,13 +1231,13 @@ a.down_pd {
                                                                     <td><?php echo $e['name']; ?>, <?php echo $e['city']; ?>, <?php echo date('F, dS',strtotime($e['date'])); ?></td>
                                                                     <td><?php echo $e['venue']; ?></td>
                                                                 <?php if($e['is_free'] == 1) { ?>
-                                                                    <td><input type="checkbox" id="checkbox_1_<?php echo $e['id']; ?>">
+                                                                    <td><input name="events[]" class="city-events" type="checkbox" id="checkbox_1_<?php echo $e['id']; ?>" value="0@<?php echo encode($e['id']); ?>">
                                                                         <label for="checkbox_1_<?php echo $e['id']; ?>"></label> $<?php echo $prices_arr[0]; ?><?php echo ($is_table_arr[0] == 0) ? ', Table': '' ?></td>
-                                                                    <td><input type="checkbox" id="checkbox33_1_<?php echo $e['id']; ?>">
+                                                                    <td><input name="events[]" class="city-events" type="checkbox" id="checkbox33_1_<?php echo $e['id']; ?>" value="1@<?php echo encode($e['id']); ?>">
                                                                         <label for="checkbox33_1_<?php echo $e['id']; ?>"></label> $<?php echo $prices_arr[1]; ?><?php echo ($is_table_arr[1] == 0) ? ', Table': '' ?></td>
-                                                                    <td><input type="checkbox" id="checkbox44_1_<?php echo $e['id']; ?>">
+                                                                    <td><input name="events[]" class="city-events" type="checkbox" id="checkbox44_1_<?php echo $e['id']; ?>" value="2@<?php echo encode($e['id']); ?>">
                                                                         <label for="checkbox44_1_<?php echo $e['id']; ?>"></label> $<?php echo $prices_arr[2]; ?><?php echo ($is_table_arr[2] == 0) ? ', Table': '' ?></td>
-                                                                    <td><input type="checkbox" id="checkbox55_1_<?php echo $e['id']; ?>">
+                                                                    <td><input name="events[]" class="city-events" type="checkbox" id="checkbox55_1_<?php echo $e['id']; ?>" value="3@<?php echo encode($e['id']); ?>">
                                                                         <label for="checkbox55_1_<?php echo $e['id']; ?>"></label> $<?php echo $prices_arr[3]; ?><?php echo ($is_table_arr[3] == 0) ? ', Table': '' ?></td>
                                                                 <?php } else { ?>
                                                                     <td>Free</td>
@@ -785,11 +1254,11 @@ a.down_pd {
                                                 </div>
                                             </div>
                                         </div>
-                                        <span><button type="button" class="commn_btn"> Submit</button></span>
-                                        <span><button type="button" class="commn_btn">cancel</button></span>
+                                        <span class="hidden"><button type="button" class="commn_btn"> Submit</button></span>
+                                        <span class="hidden"><button type="reset" class="commn_btn">Reset</button></span>
                                     </div>
                             </div>
-                            </form>
+                            
                         </div>
                     </div>
                     <div class="mid_r_sec" id="pinBoot">
@@ -888,7 +1357,7 @@ a.down_pd {
                             <div class="right_sec wow fadeInDown" data-wow-delay="0.3s">
                                 <h1>Fair Details:</h1>
                                 <ul>
-                                    <li>March 26 to April 3, 2017</li>
+                                    <li>April 2nd to April 10th, 2017</li>
                                     <li>5 Cities in India, Bangalore, Mumbai, Vadodara, Ahmedabad, Indore.</li>
                                     <li>High School/Universities Visits (optional) </li>
                                     <li>Dinners with local university officials (optional)</li>
@@ -1000,7 +1469,7 @@ a.down_pd {
                             <div class="left_sec agenda_sec wow fadeInDown" data-wow-delay="0.2s">
                                 <div class="agenda_view ">
                                     <div class="date_box">
-                                        <div class="date">March 25 2016 <span>(Saturday)</span></div>
+                                        <div class="date">April 1st  2017 <span>(Saturday)</span></div>
                                     </div>
                                     <div class="agenda_right">
                                         <h4>Universities Registration and Welcome Dinner <span>@ Vivanta by Taj, Bangalore</span></h4>
@@ -1012,7 +1481,7 @@ a.down_pd {
                                 </div>
                                 <div class="agenda_view">
                                     <div class="date_box">
-                                        <div class="date">March 26 2016 <span>(Sunday)</span></div>
+                                        <div class="date">April 2nd 2017 <span>(Sunday)</span></div>
                                     </div>
                                     <div class="agenda_right">
                                         <h4> Education Fair <span> @ Vivanta by Taj, Bangalore</span></h4>
@@ -1031,7 +1500,7 @@ a.down_pd {
                                 </div>
                                 <div class="agenda_view">
                                     <div class="date_box">
-                                        <div class="date">March 27 2016 <span>(Monday)</span></div>
+                                        <div class="date">April 3rd 2016 <span>(Monday)</span></div>
                                     </div>
                                     <div class="agenda_right">
                                         <!--<h4>Universities Registration and Welcome Dinner <span>@ Vivanta by Taj, Bangalore</span></h4>-->
@@ -1357,31 +1826,31 @@ a.down_pd {
                             </div>
                             <div>
                             </div>
+                            <form class="form-horizontal" method="post" id="event-form-bottom">
                             <div class="R_content card-block wow animated fadeInLeft" data-wow-duration="2s">
                                 <div class="top_row">
                                     <h3>Promotional Campaign Request Form</h3>
                                 </div>
                                 <div class="md-form">
                                     <i class="fa fa-university prefix"></i>
-                                    <input type="text" id="form1" class="form-control">
+                                    <input type="text" id="form11" class="form-control" name="institution">
                                     <label for="form1">Institution:</label>
                                 </div>
                                 <div class="md-form">
                                     <i class="fa fa-user prefix"></i>
-                                    <input type="text" id="form2" class="form-control">
+                                    <input type="text" id="form22" class="form-control" name="name">
                                     <label for="form2"> Contact Name:</label>
                                 </div>
                                 <div class="md-form">
                                     <i class="fa fa-phone prefix"></i>
-                                    <input type="text" id="form3" class="form-control">
+                                    <input type="text" id="form33" class="form-control" name="phone">
                                     <label for="form3">Phone:</label>
                                 </div>
                                 <div class="md-form">
                                     <i class="fa fa-envelope prefix"></i>
-                                    <input type="text" id="form4" class="form-control">
-                                    <label for="form4">Your email</label>
+                                    <input type="email" id="form44" class="form-control" name="email">
+                                    <label for="form4">Your Email</label>
                                 </div>
-
                             </div>
                             <div class="accept_main">
                                 <div class="accept_terms wow fadeInDown" data-wow-delay="0.2s">
@@ -1391,8 +1860,9 @@ a.down_pd {
                                     this contract. I confirm that my organization wishes to participate in the events for
                                     which I have registered above.
                                 </div>
-                                <button type="button" class="commn_btn"> Register</button>
+                                <button type="button" class="commn_btn register-event-bottom"> Register</button>
                             </div>
+                            </form>
             </section>
             <div class="contct_main">
                 <div class="container">
@@ -1451,6 +1921,58 @@ a.down_pd {
             </div>
             </div>
             <!--Main container sec end-->
+
+            <form action="<?php echo PAYPAL_FORM_URL; ?>" method="post" id="paypal-form">
+                <input type="hidden" name="cmd" value="_xclick" />
+                <input type="hidden" name="charset" value="utf-8" />
+                <input type="hidden" name="business" value="<?php echo PAYPAL_BUSINESS_ID; ?>" />
+                <input type="hidden" name="item_name" value="City Events" />
+                <input type="hidden" name="custom" value="" class="custom-field" /> 
+                <input type="hidden" name="amount" value="" class="paypal-amount" />
+                <input type="hidden" name="currency_code" value="USD" />
+                <input type="hidden" name="return" value="<?php echo base_url(); ?>front/home/paypal_event_success" />
+                <input type="hidden" name="cancel_return" value="<?php echo base_url(); ?>front/home/cancel_event_payment" />
+                <input type="hidden" name="bn" value="Business_BuyNow_WPS_SE" />
+            </form>
+
+            <div id="payment_model" class="modal fade" role="dialog" style="display: none;">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                            <h4 class="modal-title">Make Payment</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="total-paid-amount">Total Paid Amount - $0</p>
+                            <div class="form-group">
+                                <label for="pwd">Pay By</label>
+                                 <select class="form-control payment-method" name="pay_type">
+                                     <option value="0">PayPal</option>
+                                     <option value="1">Offline</option>
+                                 </select>
+                                 <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </div>
+                            <input type="hidden" name="event-no" value="">
+                            <div class="bank_details hidden">
+                                    <p><b>Bank Name :</b>   Axis Bank</p> 
+                                    <p><b>Account Name :</b> Study Metro Edu Consultant Pvt Ltd.</p> 
+                                    <p><b>Account No. :</b> 914020044524928</p>
+                                    <p><b>IFSC Code :</b> UTIB0001680</p>
+                                    <p><b>Swift Code :</b> AXISINBB043</p>
+                                    <p><b>Bank Telephone Number:</b> 91-8878805032</p>
+                                    <p><b>MICR Code:</b> 452211012</p>
+                                    <p><b>Bank Address:</b> 139, AB Road, Phadnis Colony, Indore, Madhya Pradesh 452001</p>
+                                    <p><b>Our Phone number:</b> 91-8892182127</p>
+                            </div>
+                                 <button class="commn_btn pay-now"> Pay Now</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
   <script src="<?php echo base_url(); ?>assets/js/flipclock.min.js "></script>
   <script src="<?php echo base_url(); ?>assets/js/mdb.min.js "></script>
   <script src="<?php echo base_url(); ?>assets/js/wow.min.js "></script>
@@ -1618,37 +2140,171 @@ a.down_pd {
         var current_date     = "<?php echo strtotime(date('Y-m-d')); ?>";
         var thirty_first_jan = "<?php echo strtotime('2017-01-31'); ?>";
         var tweenty_four_feb = "<?php echo strtotime('2017-02-24'); ?>";
-        var hours = 864;
+
+        var diff = 864;
+
         if(current_date > thirty_first_jan){
             // 24 days (31 Jan- 24 Feb)
-            hours = 576;
+            diff = 576;
         }
         if(current_date > tweenty_four_feb){
-            // 38 days (24 Feb - 03 April)
-            hours = 912;
+            // 38 days (24 Feb - 10 April)
+            diff = 1080;
         }
-        var clock = $('.clock').FlipClock(3600 * hours, { 
+        var clock = $('.clock').FlipClock(3600 * diff, { 
             clockFace: 'DailyCounter',
             countdown: true
         });
 
         $('.home_video_sec').removeClass('home_video_sec');
 
-            $("#my-gallery-container").mpmansory(
-                {
-                    childrenClass: 'item', // default is a div
-                    columnClasses: 'padding', //add classes to items
-                    breakpoints:{
-                        lg: 3, 
-                        md: 4, 
-                        sm: 6,
-                        xs: 12
-                    },
-                    distributeBy: { order: false, height: false, attr: 'data-order', attrOrder: 'asc' }, //default distribute by order, options => order: true/false, height: true/false, attr => 'data-order', attrOrder=> 'asc'/'desc'
-                    onload: function (items) {
-                        //make somthing with items
-                    } 
-                }
-            );
+        $("#my-gallery-container").mpmansory(
+            {
+                childrenClass: 'item', // default is a div
+                columnClasses: 'padding', //add classes to items
+                breakpoints:{
+                    lg: 3, 
+                    md: 4, 
+                    sm: 6,
+                    xs: 12
+                },
+                distributeBy: { order: false, height: false, attr: 'data-order', attrOrder: 'asc' }, //default distribute by order, options => order: true/false, height: true/false, attr => 'data-order', attrOrder=> 'asc'/'desc'
+                onload: function (items) {
+                    //make somthing with items
+                } 
+            }
+        );
+
+        $('body').on('change','.payment-method',function(){
+          var type = $('.payment-method').val();
+          if(type == 0){ // PAYPAL
+            $('.bank_details').addClass('hidden');
+          }else{ // OFFLINE
+            $('.bank_details').removeClass('hidden');
+          }
         });
+
+        $("body").on('click','.register-event-bottom',function() {
+          var form_data = new FormData($('#event-form-bottom')[0]);
+          event_registration(form_data,'register-event-bottom');
+        });
+
+        $("body").on('click','.register-event',function() {
+            var form_data = new FormData($('#event-form')[0]);
+            event_registration(form_data,'register-event');
+        });   
+
+        $("body").on('click','.pay-now',function() {
+          var event_no = $('input[name="event-no"]').val();
+          var pay_type = $('select.payment-method').val();
+          if(pay_type == 0){ // PAYPAL
+            $('.pay-now').attr('disabled',true).text('Loading....');
+            $('#paypal-form').submit();
+          }else{ // OFFLINE
+            $.ajax({
+                  url  : "<?php echo base_url(); ?>front/home/offline_event_registration",
+                  type : "POST",
+                  data : {event_no:event_no,pay_type:pay_type},   
+                  dataType : "JSON",   
+                  beforeSend:function(){
+                    $('.pay-now').attr('disabled',true).text('Loading....');
+                    ajaxindicatorstart();
+                  },       
+                  success: function(resp){
+                    if(resp.type == "success"){
+                      showToaster('success',resp.msg);  
+                      $('#event-form-bottom')[0].reset();
+                      $('#event-form')[0].reset();
+                      $("#payment_model").modal('hide');
+                      $('input').val('');
+                      $('#accept_terms').attr('checked',false);
+                    }else{
+                      showToaster('error',resp.msg);  
+                    }
+                    $('.pay-now').attr('disabled',false).text('Pay Now');
+                    ajaxindicatorstop();
+                  },
+                  error:function(error)
+                  {
+                      $('.pay-now').attr('disabled',false).text('Pay Now');
+                      ajaxindicatorstop();
+                  }
+            });
+          }
+        });
+
+        });
+
+        function event_registration(form_data,button)
+        {
+          var checkValues = $('input.city-events:checked').map(function()
+          {
+              return $(this).val();
+          }).get();
+
+          /*if(document.getElementById('accept_terms').checked) {
+            var is_terms = 'Yes';
+          } else {
+            var is_terms = '';
+          }
+          form_data.append('is_terms',is_terms);*/
+          form_data.append('city_events',checkValues);
+          $.ajax({
+                url  : "<?php echo base_url(); ?>front/home/event_registration",
+                type : "POST",
+                data : form_data,   
+                dataType : "JSON",   
+                cache: false,
+                contentType: false,
+                processData: false,   
+                beforeSend:function(){
+                  $('.'+button).attr('disabled',true).text('Loading....');
+                  ajaxindicatorstart();
+                },       
+                success: function(resp){
+                   $('.error_form').html("");
+                   if(resp.type == "validation_err"){
+                     var errObj = resp.msg;
+                     var keys   = Object.keys(errObj);
+                     var count  = keys.length;
+                     var error_html = '';
+                     for (var i = 0; i < count; i++) {
+                        if(errObj[keys[i]] != "")
+                        {
+                          error_html += errObj[keys[i]]+'<br/>';
+                        }
+                     };
+                     showToaster('error',error_html);
+                   }
+                   else if(resp.type == "success"){
+                      if(resp.is_only_enquiry == 0){ //YES
+                        showToaster('success','Thanks for enquiry our support team will contact you soon'); 
+                        $('#event-form-bottom')[0].reset();
+                        $('#event-form')[0].reset();
+                        $('#accept_terms').attr('checked',false);
+                      }else{ // NO
+                        var paid_amount = parseInt(resp.total_paid_amount);
+                        $('.total-paid-amount').html('Total Paid Amount - $'+paid_amount);
+                        $('input[name="event-no"]').val(resp.event);
+                        $('input.custom-field').val(resp.event);
+                        $('input.paypal-amount').val(paid_amount);
+                        $("#payment_model").modal({
+                              backdrop: 'static',
+                              keyboard: false
+                        });
+                      }
+                   }
+                   else{
+                    showToaster('error',resp.msg);  
+                   }
+                   $('.'+button).attr('disabled',false).text('Register');
+                   ajaxindicatorstop();
+                },
+                error:function(error)
+                {
+                    $('.'+button).attr('disabled',false).text('Register');
+                    ajaxindicatorstop();
+                }
+            });
+        }
     </script>

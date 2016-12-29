@@ -26,7 +26,7 @@ if (!function_exists('send_mail')) {
 		$ci->email->to($email_address);
 		$ci->email->subject($subject);
         $ci->email->message($message);
-        
+        $ci->email->set_mailtype("html");
 		if($ci->email->send()) {	
 			return true;
 		} else {
@@ -35,25 +35,29 @@ if (!function_exists('send_mail')) {
 	}
 }
 
-// for notification
+// for send website notification
 
 if (!function_exists('send_notification')) {
-	function send_notification($type,$sender_id,$receiver_id,$table) {
+	function send_notification($type,$sender_id,$receiver_id,$table,$static_content=NULL) {
 	    $ci =&get_instance();
 		$notify = $ci->common_model->getSingleRecordById(NOTIFICATION,array('type'=>$type));
-
-		$notifyData = array(
-                            'notify_id'=>$notify['id'],
-                            'sender_id'=>$sender_id,
-                            'receiver_id'=>$receiver_id,
-                            'sent_datetime'=>datetime(),
-                            'is_read'=>0
+		if(!empty($notify)){
+			$notifyData = array(
+                            'notify_id'    => $notify['id'],
+                            'sender_id'    => $sender_id,
+                            'receiver_id'  => $receiver_id,
+                            'static_content'  => $static_content,
+                            'sent_datetime'=> datetime(),
+                            'is_read'      => 1
                             );
-        $request = $ci->common_model->addRecords($table,$notifyData);
-        if($request!='') {	
-			return 1;
-		} else {
-			return 0;
+        	$lid = $ci->common_model->addRecords($table,$notifyData);
+        	if($lid){
+        		return TRUE;
+        	}else{
+        		return FALSE;
+        	}
+		}else{
+			return FALSE;
 		}
 	}
 }
@@ -119,28 +123,33 @@ if (!function_exists('getNotifyMessage')) {
 	function getNotifyMessage($notify_id) {
 	    $ci =&get_instance();
 		$notifyData = $ci->common_model->getSingleRecordById(NOTIFICATION,array('id'=>$notify_id));
-		
-		return $notifyData['body'];
+		if(!empty($notifyData)){
+			return $notifyData['body'];
+		}else{
+			return array();
+		}
 	}
 }
 
 if (!function_exists('exactNotfiyMessage')) {
-	function exactNotfiyMessage($notify_id,$array) {
-	    $ci =&get_instance();
-	    $msg = '';
-	    $body = getNotifyMessage($notify_id);
-	    if(empty($array))
-	    {
-	    	return $body;
-	    }
-	    else
-	    {   
-	    	foreach($array as $a => $val)
-	    	{   
-	    		$msg=str_replace('{'.$a.'}', $val, $body);
-	    		$body = $msg;
+	function exactNotfiyMessage($id,$array=array()) {
+	    $ci = &get_instance();
+	    $noti_details = $ci->common_model->getSingleRecordById(ADMIN_NOTIFICATION,array('id'=>$id));
+	    if(!empty($noti_details)){
+	    	if($noti_details['sender_id'] == 0){
+	    		return $noti_details['static_content'];
+	    	}else{
+	    		$noti_data_id = $noti_details['notify_id'];
+	    		$sender_id    = $noti_details['sender_id'];
+	    		$body 		  = getNotifyMessage($noti_data_id);
+	    		if(!empty($body)){
+	    			return array();
+	    		}else{
+	    			return array();
+	    		}
 	    	}
-	    	return $body;
+	    }else{
+	    	return array();
 	    }
 	}
 }
@@ -342,7 +351,6 @@ if(!function_exists('add_active_class')) {
 		$ci =&get_instance();
 		$currentMethod = $ci->router->fetch_method();
 		$currentClass = $ci->router->fetch_class();
-
 		if($ccl == $currentClass && $currentMethod == $class) {
 			echo 'active';
 		}

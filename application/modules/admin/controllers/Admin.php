@@ -239,4 +239,10 @@ class Admin extends CI_Controller {
 		/* Load admin view */
 		load_admin_view('dashboard', $data);
 	}
+
+	public function update_notifications()
+	{
+		$this->common_model->updateRecords(ADMIN_NOTIFICATION,array('is_read' => 0),array('receiver_id' => ADMIN_ID));
+		echo "success";
+	}
 }

@@ -35,20 +35,20 @@ if(!function_exists('admin_breadcrumb')) {
 		$ci =&get_instance();
 
 		/* Router Class and Methods */
-		$currentClass = $ci->router->fetch_class();
+		$currentClass  = $ci->router->fetch_class();
 		$currentMethod = $ci->router->fetch_method();
 
 		$html = '';
 		if($currentClass == 'admin') {
 			$html .= '<ol class="breadcrumb">
 		      <li><a href="'.get_cms_url('admin/dashboard').'" title="Home"><i class="fa fa-dashboard"></i> Home</a></li>
-		      <li class="active">'.ucfirst($currentMethod).'</li>
+		      <li class="active">'.ucwords(str_replace("_", " ", $currentMethod)).'</li>
 		    </ol>';
 		} else {
 			$html .= '<ol class="breadcrumb">
 		      <li><a href="'.get_cms_url('admin/dashboard').'" title="Home"><i class="fa fa-dashboard"></i> Home</a></li>
-		      <li class="active"><a href="'.get_cms_url('admin/'.$currentClass).'" title="'.ucfirst($currentClass).'">'.ucfirst($currentClass).'</a></li>
-		      <li class="active">'.ucfirst($currentMethod).'</li>
+		      <li class="active"><a href="'.get_cms_url('admin/'.$currentClass).'" title="'.ucwords(str_replace("_", " ", $currentClass)).'">'.ucwords(str_replace("_", " ", $currentClass)).'</a></li>
+		      <li class="active">'.ucwords(str_replace("_", " ", $currentMethod)).'</li>
 		    </ol>';
 		}
 		return $html;

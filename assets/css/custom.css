@@ -4478,3 +4478,6 @@ select.app_status {
 select.action {
     width: 100px;
 }
+.sweet-alert.showSweetAlert.visible {
+    z-index: 11111111 !important;
+}

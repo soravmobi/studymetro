@@ -190,6 +190,11 @@
               <i class="fa fa-eye"></i> View All Events
             </a>
           </li>
+          <li class="<?php add_active_class('city_events', 'registrationHistory'); ?>">
+            <a href="<?php cms_url('admin/city-events/events-registration-history'); ?>" title="Events Registration History">
+              <i class="fa fa-history"></i> Events Registration History
+            </a>
+          </li>
         </ul>
       </li>
       <!-- Photo gallery -->

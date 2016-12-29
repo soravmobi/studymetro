@@ -107,6 +107,9 @@ $route['admin/testimonials/view-all/(:any)'] = 'admin/testimonials/viewAll/$1';
 $route['admin/city-events/add-new'] = 'admin/city_events/addNew';
 $route['admin/city-events/view-all'] = 'admin/city_events/viewAll';
 $route['admin/city-events/view-all/(:any)'] = 'admin/city_events/viewAll/$1';
+$route['admin/city-events/events-registration-history'] = 'admin/city_events/registrationHistory';
+$route['admin/city-events/events-registration-history/(:any)'] = 'admin/city_events/registrationHistory/$1';
+$route['admin/city-events/view-event-registration-details/(:any)'] = 'admin/city_events/view_registration/$1';
 
 $route['admin/payments/add-new'] = 'admin/payments/addNew';
 $route['admin/payments/view-all'] = 'admin/payments/viewAll';

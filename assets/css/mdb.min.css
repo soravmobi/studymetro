@@ -258,5 +258,122 @@ input[type="date"] + label::after, input[type="datetime-local"] + label::after, 
   padding: 15px;
 }
 
+#payment_model .close {
+  color: #333;
+  float: right;
+  font-size: 25px;
+  line-height: 20px;
+  margin: 0;
+  padding: 2px 7px;
+  text-transform: uppercase;
+  opacity: 1;
+}
+#payment_model{
+ position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+#payment_model .close:hover {
+  background: #000 none repeat scroll 0 0;
+  color: #fff;
+}
+#payment_model .form-control {
+  height: 45px;
+  border-radius: 0;
+  box-shadow: none;
+  -moz-appearance: none;
+   -webkit-appearance: none;
+}
+#payment_model .modal-header {
+  border-bottom: none;
+  padding: 0;
+}
+#payment_model .modal-content {
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+  padding: 20px;
+  text-align: left;
+}
+#payment_model .modal-header h4 {
+  font-size: 24px;
+  line-height: 1.35;
+  margin: 0;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  text-align: center;
+   font-family: "Prompt",sans-serif !important;
+}
+#payment_model .modal-dialog {
+  margin: 30px auto;
+  width: 400px;
+}
+#payment_model .modal-body {
+  padding: 10px 0;
+  position: relative;
+}
 
+#payment_model .commn_btn {
+  background-color: #30acec;
+  border: medium none;
+  border-radius: 0;
+  font-size: 18px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 8px 13px;
+  position: relative;
+  text-transform: capitalize;
+  transition-duration: 0.4s;
+  max-width: 200px;
+  display: block;
+}
+#payment_model .form-group{
+  position: relative;
+}
+#payment_model .fa.fa-caret-down {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  color: #333;
+  pointer-events: none;
+}
+
+.bank_details > p {
+  font-family: "Prompt",sans-serif !important;
+  font-size: 11px;
+  padding-left: 10rem;
+  position: relative;
+  margin-bottom: 8px;
+}
+.bank_details b {
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+.bank_details {
+  margin-bottom: 15px;
+}
+#payment_model .form-group > label {
+  font-size: 14px;
+  font-weight: normal;
+  color: #000;
+  font-family: "Prompt",sans-serif !important;
+}
+
+.modal {
+  transform: scale(0);
+  -webkit-transform: scale(0);
+  opacity: 0;
+  -webkit-transition: all .25s linear;
+  -o-transition: all .25s linear;
+  transition: all .25s linear;
+  z-index: 9999999;
+}
+.modal.in {
+  opacity: 1;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+}
 

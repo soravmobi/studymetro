@@ -96,13 +96,13 @@
               <?php $data['session_data'] = admin_session_data();
                     $data['user_info'] = get_user($data['session_data']['user_id']);
                     $user_id = $data['user_info']['user_id'];
-                    $notification = $this->common_model->getAllRecords(ADMIN_NOTIFICATION);
-                   ?>
+                    $notification = $this->common_model->getAllRecordsOrderById(ADMIN_NOTIFICATION,'id','DESC',array('is_read' => 1));
+              ?>
              
               <li class="dropdown notifications-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning"><?php echo notifyUnreadCount($user_id); ?></span>
+                  <span class="label label-warning"><?php echo count($notification); ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <li class="header"></li>
@@ -112,16 +112,11 @@
                     <?php if(!empty($notification))
                           { 
                             foreach($notification as $val)
-                            {
-                              $name = getUserName($val['sender_id']); ?>
-                      <li> <?php $array = array('NAME'=>$name,'TOPIC'=>'Pollution','AUTHOR'=>'Mathew Headen'); ?>
-                        <a href="javascript:void(0)" title="<?php echo exactNotfiyMessage($val['notify_id'],$array); ?>">
-                          <p><?php 
-                            echo substr(exactNotfiyMessage($val['notify_id'],$array),0,40); ?>
-                          </p>
-                          <p><?php echo time_elapsed_string($val['sent_datetime']); ?></p>
-                        </a>
-                      </li>
+                            { ?>
+                              <li><a href="javascript:void(0)">
+                                <p><?php echo exactNotfiyMessage($val['id']); ?></p>
+                                <p><?php echo time_elapsed_string($val['sent_datetime']); ?></p>
+                              </a></li>
                       <?php } } else{ ?>
                       <li>
                         <a href="#">
@@ -194,3 +189,27 @@
           </div><!-- .navbar-custom-menu -->
         </nav><!-- .navbar-static-top -->
       </header><!-- .main-header -->
+
+      <script type="text/javascript">
+        $(document).ready(function(){
+
+          /* To update all notifications start */
+          $('body').on('click','li.notifications-menu',function(){
+            $.ajax({
+                url  : "<?php echo base_url(); ?>admin/admin/update_notifications",
+                type : "POST",
+                data : {notifications:''},   
+                dataType : "JSON",   
+                success: function(resp){
+                   console.log(resp);
+                },
+                error:function(error)
+                {
+                  console.log(error);
+                }
+            });
+          });
+          /* To update all notifications end */
+
+        });
+      </script>

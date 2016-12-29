@@ -224,6 +224,199 @@ class Home extends CI_Controller {
         }
     }
 
+    public function event_registration()
+    {
+        if($this->input->is_ajax_request())
+        {
+            $this->form_validation->set_rules('institution','Institution','trim|required');
+            $this->form_validation->set_rules('name','Name','trim|required');
+            $this->form_validation->set_rules('phone','Phone','trim|required');
+            $this->form_validation->set_rules('email','Email','trim|required|valid_email');
+            // $this->form_validation->set_rules('is_terms','Terms & Condotion','trim|required');
+            if($this->form_validation->run()==TRUE){
+               $post_data = $this->input->post();
+               /* City events array */
+               if(isset($post_data['events']) && !empty($post_data['events'])){ // FULLY REGISTRATION
+                    $city_event_arr = $post_data['events'];
+                    $is_only_enquiry = 1;
+                    $event_details = array();
+                    foreach($city_event_arr as $ce)
+                    {
+                        $event_arr = explode("@", $ce);
+                        if(count($event_arr) == 2){
+                            $event_period = $event_arr[0];
+                            $event_id     = decode($event_arr[1]);
+
+                            /* Fetch event details */
+                            $details = $this->common_model->getSingleRecordById(CITY_EVENTS,array('id' => $event_id));
+                            if(!empty($details)){
+                                $prices_arr   = unserialize($details['price']);
+                                $is_table_arr = unserialize($details['is_table']);
+
+                                $row = array();
+                                $row['event_name']    = $details['name'];
+                                $row['event_venue']   = $details['venue'];
+                                $row['event_city']    = $details['city'];
+                                $row['event_date']    = $details['date'];
+                                $row['event_is_free'] = ($details['is_free'] == 0) ? 'Yes' : 'No';
+                                $row['event_price']   = $prices_arr[$event_period];
+                                $row['event_is_table']= ($is_table_arr[$event_period] == 0) ? 'Yes' : 'No';
+                                array_push($event_details, $row);
+                            }else{
+                                echo json_encode(array('type' => 'failed','msg' => GENERAL_ERROR));exit;
+                            }
+                        }else{
+                            echo json_encode(array('type' => 'failed','msg' => GENERAL_ERROR));exit;
+                        }
+                    }
+                    $total_paid_amount = 0;
+                    /* Get total paid amount */
+                    foreach($event_details as $ed){
+                        $total_paid_amount += (int) $ed['event_price'];
+                    }
+
+                    $event_details = serialize($event_details);
+               }else{ // ONLY ENQUIRY
+                    $is_only_enquiry   = 0;
+                    $total_paid_amount = 0;
+                    $event_details     = NULL;
+               }
+
+               /* Insert city event registration data */
+               $data_arr = array();
+               $data_arr['institution']       = $post_data['institution'];
+               $data_arr['name']              = $post_data['name'];
+               $data_arr['phone']             = $post_data['phone'];
+               $data_arr['email']             = $post_data['email'];
+               $data_arr['event_details']     = $event_details;
+               $data_arr['total_paid_amount'] = $total_paid_amount;
+               $data_arr['is_only_enquiry']   = $is_only_enquiry;
+               $data_arr['purchase_date']     = datetime();
+               $lid = $this->common_model->addRecords(EVENT_REGISTRATION,$data_arr);
+               if($lid){
+                    if($is_only_enquiry == 0){
+                        /* Send notifications */
+                        $this->send_event_registration_notification($post_data['name'],$post_data['email']);
+                    }
+                    echo json_encode(array('type' => 'success','msg' => 'success', 'is_only_enquiry' => $is_only_enquiry, 'total_paid_amount' => $total_paid_amount, 'event' => encode($lid)));exit;
+               }else{
+                    echo json_encode(array('type' => 'failed','msg' => GENERAL_ERROR));exit;
+               }
+            }else{
+                $error = array(
+                    // 'is_terms'    => form_error('is_terms'),
+                    'institution' => form_error('institution'),
+                    'name'        => form_error('name'),
+                    'phone'       => form_error('phone'),
+                    'email'       => form_error('email')
+                ); 
+                echo json_encode(array('type' => 'validation_err','msg' => $error));exit;
+            }
+        }
+    }
+
+    public function offline_event_registration()
+    {
+        if($this->input->is_ajax_request())
+        {
+            $data = $this->input->post();
+            $event_no = $data['event_no']; // EVENT ID
+            $pay_type = $data['pay_type']; // OFFLINE PAYMENT ONLY
+            if(!empty($event_no) && $pay_type == 1){
+                $event_id = decode($event_no);
+
+                /* Fetch event registration details */
+                $details = $this->common_model->getSingleRecordById(EVENT_REGISTRATION,array('id' => $event_id));
+                if(!empty($details)){
+                    /* Update payment method */
+                    $status = $this->common_model->updateRecords(EVENT_REGISTRATION,array('pay_type' => 1,'pay_status' => 3),array('id' => $event_id));
+                    if($status){
+                        /* Send notifications */
+                        $this->send_event_registration_notification($details['name'],$details['email']);
+                        echo json_encode(array('type' => 'success','msg' => 'Thanks for registration'));exit;
+                    }else{
+                        echo json_encode(array('type' => 'failed','msg' => GENERAL_ERROR));exit;
+                    }
+                }else{
+                   echo json_encode(array('type' => 'failed','msg' => GENERAL_ERROR));exit;
+                }
+            }else{
+                echo json_encode(array('type' => 'failed','msg' => GENERAL_ERROR));exit;
+            }
+        }
+    }
+
+    public function paypal_event_success()
+    {
+        if(!empty($_GET)){
+            $event_id = decode($_GET['cm']);
+            /* Fetch event registration details */
+            $details = $this->common_model->getSingleRecordById(EVENT_REGISTRATION,array('id' => $event_id));
+            if(!empty($details)){
+                if($_GET['st'] == 'Completed' && $details['total_paid_amount'] == $_GET['amt']){
+
+                    /* Update payment details */
+                    $data                     = array();
+                    $data['pay_type']         = 0;
+                    $data['pay_txn_id']       = $_GET['tx'];
+                    $data['pay_status']       = 1;
+                    $data['payment_datetime'] = datetime();
+                    $status = $this->common_model->updateRecords(EVENT_REGISTRATION,$data,array('id' => $event_id));
+                    if($status){
+                        /* Send notifications */
+                        $this->send_event_registration_notification($details['name'],$details['email']);
+                        $this->session->set_flashdata('success', 'Payment successfully done');
+                    }else{
+                        $this->session->set_flashdata('error', 'Payment failed please contact to our support team');
+                    }
+                }else{
+                    /* Update payment details */
+                    $data                     = array();
+                    $data['pay_type']         = 0;
+                    $data['pay_txn_id']       = $_GET['tx'];
+                    $data['pay_status']       = 2;
+                    $data['payment_datetime'] = datetime();
+                    $status = $this->common_model->updateRecords(EVENT_REGISTRATION,$data,array('id' => $event_id));
+                    $this->session->set_flashdata('error', GENERAL_ERROR);
+                }
+            }else{
+                $this->session->set_flashdata('error', 'Payment failed please contact to our support team');
+            }
+        }else{
+            $this->session->set_flashdata('error', 'Payment failed please contact to our support team');
+        }
+        redirect('city-events');
+    }
+
+    public function cancel_event_payment()
+    {
+        $this->session->set_flashdata('error','Paymnet cancelled !!');
+        redirect('city-events');
+    }
+
+    public function send_event_registration_notification($user_name,$user_email)
+    {
+        /* Send email to user */
+        $user_message = '';
+        $user_message .= "<img style='width:90px' src='".base_url()."assets/img/logo.png' class='img-responsive'></br></br>";
+        $user_message .= "<br><br> Hello ".$user_name.", <br/><br/>";
+        $user_message .= "Thanks for ".CMS_NAME." EDU Fair Event registration. <br/><br/>";
+        $user_message .= "Thanks, <br/><br/>";
+        $user_message .= "The ".CMS_NAME." Team <br/>";
+        send_mail($user_message, '['.CMS_NAME.'] EDU Fair Event' , $user_email,SUPPORT_EMAIL);
+
+        /* Send email to admin */
+        $admin_message = '';
+        $admin_message .= "<img style='width:90px' src='".base_url()."assets/img/logo.png' class='img-responsive'></br></br>";
+        $admin_message .= "<br><br> Hello, <br/><br/>";
+        $admin_message .= $user_name." has registered for EDU Fair Event <br/><br/>";
+        send_mail($admin_message, 'New EDU Fair Event Registration' ,SUPPORT_EMAIL,SUPPORT_EMAIL);
+
+        /* Send website notification to admin */
+        $static_content = $user_name.' has registered for EDU Fair Event';
+        send_notification('CITY_EVENT_REGISTRATION',0,ADMIN_ID,ADMIN_NOTIFICATION,$static_content);
+    }
+
 
 }
 ?>
