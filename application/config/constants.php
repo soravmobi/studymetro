@@ -97,7 +97,7 @@ define('FORGOT_PASSWORD_ERROR', 'This email is not exists in our database.');
 define('INVALID_RESET_KEY', 'Invalid reset key, please check it again.');
 define('CHANGE_PASSWORD_SUCCESS', 'Your password has been changed, please login with new password.');
 define('NO_MESSAGE_TEXT', "You have no new message.");
-define('NO_NOTIFICATION_TEXT', "You have no new notifications.");
+define('NO_NOTIFICATION_TEXT', "You have no new notifications");
 define('NO_TASKS_TEXT', "You have no new tasks.");
 define('MESSAGE_TEXT', "You have %s message.");
 define('NOTIFICATION_TEXT', "You have %s notifications.");

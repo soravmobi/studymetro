@@ -115,7 +115,11 @@ if (!function_exists('getUserName')) {
 	function getUserName($user_id) {
 	    $ci =&get_instance();
 		$userData = $ci->common_model->getSingleRecordById(USER,array('id'=>$user_id));
-		return $userData['first_name'].' '.$userData['last_name'];
+		if(!empty($userData)){
+			return $userData['first_name'].' '.$userData['last_name'];
+		}else{
+			return '';			
+		}
 	}
 }
 
@@ -137,13 +141,14 @@ if (!function_exists('exactNotfiyMessage')) {
 	    $noti_details = $ci->common_model->getSingleRecordById(ADMIN_NOTIFICATION,array('id'=>$id));
 	    if(!empty($noti_details)){
 	    	if($noti_details['sender_id'] == 0){
-	    		return $noti_details['static_content'];
+    			return $noti_details['static_content'];
 	    	}else{
 	    		$noti_data_id = $noti_details['notify_id'];
 	    		$sender_id    = $noti_details['sender_id'];
-	    		$body 		  = getNotifyMessage($noti_data_id);
+	    		$body 		  = getNotifyMessage($noti_details['notify_id']);
 	    		if(!empty($body)){
-	    			return array();
+	    			$msg = str_replace("{NAME}", getUserName($sender_id), $body);
+	    			return $msg;
 	    		}else{
 	    			return array();
 	    		}

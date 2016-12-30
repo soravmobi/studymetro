@@ -6,6 +6,9 @@ class User extends CI_Controller {
 	public function __construct() {
         parent::__construct();
         $this->uid = $this->session->userdata("user_id");
+        $this->first_name = $this->session->userdata("first_name");
+        $this->last_name = $this->session->userdata("last_name");
+        $this->user_name = $this->first_name." ".$this->last_name;
         $this->module = $this->router->fetch_module();
         $this->class = $this->router->fetch_class();
         $this->url = $this->module.'/'.$this->class;
@@ -189,7 +192,7 @@ class User extends CI_Controller {
                 $message .= '</ul></body></html>';
                 send_mail($message,'New Feedback',SUPPORT_EMAIL,$data['email']);
 
-                send_notification('FEEDBACK',$from_id,$to_id,ADMIN_NOTIFICATION);
+                send_notification('FEEDBACK',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
                 
                 $this->sendEmailToAdmin('Answers submitted by "'.$from_user_name.'"','Assignments',VISA_EMAIL,$from_email);
 
@@ -235,9 +238,24 @@ class User extends CI_Controller {
                 $data['file'] = base_url().'uploads/documents/'.$document['upload_data']['file_name'];
                 $data['user_id'] = $this->uid;
                 $data['added_date'] = datetime();
-                $this->common_model->addRecords(DOCUMENTS, $data);
-                $this->session->set_flashdata('success', sprintf(ITEM_ADD_SUCCESS, 'Documents'));
-                redirect('user/upload_documents');
+                $lid = $this->common_model->addRecords(DOCUMENTS, $data);
+                if($lid){
+                    /* Send email to admin */
+                    $admin_message = '';
+                    $admin_message .= "<img style='width:90px' src='".base_url()."assets/img/logo.png' class='img-responsive'></br></br>";
+                    $admin_message .= "<br><br> Hello, <br/><br/>";
+                    $admin_message .=  $this->user_name." has uploaded documents <br/><br/>";
+                    send_mail($admin_message, 'Student Uploaded Documents' ,SUPPORT_EMAIL,SUPPORT_EMAIL);
+
+                    /* Send website notification to admin */
+                    send_notification('UPLOAD_DOCUMENT',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
+
+                    $this->session->set_flashdata('success', sprintf(ITEM_ADD_SUCCESS, 'Documents'));
+                    redirect('user/upload_documents');
+                }else{
+                    $this->session->set_flashdata('error', GENERAL_ERROR);
+                    redirect('user/upload_documents');
+                }
             }
         }else{
             $this->session->set_flashdata('error', 'Please select image file !!');
@@ -786,13 +804,13 @@ class User extends CI_Controller {
             $request=$this->common_model->addRecords(COMMENTS,$insertData);
             if($request!='')
             {
-                send_notification('COMMENT',$from_id,$to_id,ADMIN_NOTIFICATION);
                 $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$from_id));
                 $from_email = $fromEmail['email'];
-
                 $this->sendEmailToAdmin('User send a comment to you','Comment',SUPPORT_EMAIL,$from_email);
+
+                /* Send website notification to admin */
+                send_notification('COMMENT',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
                 $this->session->set_flashdata('success', "Comment added succefully");
-                //echo 'yes'; die;
                 redirect('user/my-comments');
             }
             else

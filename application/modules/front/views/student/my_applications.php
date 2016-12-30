@@ -26,10 +26,10 @@
                               <th>Email</th>
                               <th>Phone No</th>
                               <th>Pay Status</th>
-                              <th>Program Status</th>
+                              <!-- <th>Program Status</th> -->
                               <th>Interview Date</th>
                               <th>Apply Date</th>
-                              <th>Action</th>
+                              <!-- <th>Action</th> -->
                             </tr>
                           </thead>
                           <tbody>
@@ -45,7 +45,7 @@
                               <td><?php echo $a['email']; ?></td>
                               <td><?php echo $a['phone_no']; ?></td>
                               <td><?php echo (!empty($a['pay_status'])) ? $a['pay_status'] : 'Pending'; ?></td>
-                              <td>
+                              <td class="hidden">
                               <select user_id="<?php echo $a['user_id']; ?>" app_id="<?php echo $a['id']; ?>" name="app_status" id="app_status" class="app_status form-control">
                                 <option value="0" <?php if($a['program_status']==0) { echo 'selected'; } ?>>Applied</option>
                                 <option value="1" <?php if($a['program_status']==1) { echo 'selected'; } ?>>In Process</option>
@@ -61,7 +61,7 @@
                                   <input type="text" name="interview_date" id="interview_date" class="interview_date" prgrm_id="<?php echo $a['id']; ?>" user_id="<?php echo $a['user_id']; ?>" value="<?php echo $a['interview_date']; ?>"> <?php } ?>
                               </td>
                               <td><?php echo convertDateTime($a['apply_date']); ?></td>
-                              <td>
+                              <td class="hidden">
                                 <select user_id="<?php echo $a['user_id']; ?>" app_id="<?php echo $a['id']; ?>" name="action" id="action" class="action form-control">
                                 <option value="">Please Select</option>
                                 <option value="document">Download Documents</option>

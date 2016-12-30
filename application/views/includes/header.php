@@ -81,14 +81,14 @@
                   <li>
                     <!-- inner menu: contains the actual data -->
                     <ul class="menu">
-                      <li><!-- start message -->
-                        <a href="#">
+                      <li class="text-center"><!-- start message -->
+                        <a href="javascript:void(0);">
                           <p><?php echo NO_MESSAGE_TEXT; ?></p>
                         </a>
                       </li><!-- end message -->
                     </ul>
                   </li>
-                  <li class="footer"><a href="javascript:void(0);"><?php echo SEE_ALL_MESSAGES; ?></a></li>
+                  <li class="footer hidden"><a href="javascript:void(0);"><?php echo SEE_ALL_MESSAGES; ?></a></li>
                 </ul>
               </li>
 
@@ -113,13 +113,15 @@
                           { 
                             foreach($notification as $val)
                             { ?>
-                              <li><a href="javascript:void(0)">
-                                <p><?php echo exactNotfiyMessage($val['id']); ?></p>
-                                <p><?php echo time_elapsed_string($val['sent_datetime']); ?></p>
-                              </a></li>
+                              <li>
+                                <a href="javascript:void(0);">
+                                  <p><?php echo exactNotfiyMessage($val['id']); ?></p>
+                                  <p><?php echo time_elapsed_string($val['sent_datetime']); ?></p>
+                                </a>
+                              </li>
                       <?php } } else{ ?>
-                      <li>
-                        <a href="#">
+                      <li class="text-center">
+                        <a href="javascript:void(0);">
                           <p><?php echo NO_NOTIFICATION_TEXT; ?>
                           </p>
                         </a>
@@ -127,7 +129,7 @@
                       <?php } ?>
                     </ul>
                   </li>
-                  <li class="footer"><a href="javascript:void(0);"><?php echo SEE_ALL_NOTIFICATIONS; ?>l</a></li>
+                  <li class="footer hidden"><a href="javascript:void(0);"><?php echo SEE_ALL_NOTIFICATIONS; ?>l</a></li>
                 </ul>
               </li>
 

@@ -7,6 +7,9 @@ class Student extends CI_Controller {
         parent::__construct();
         checkUserSession(array('2'));
         $this->uid = $this->session->userdata("user_id");
+        $this->first_name = $this->session->userdata("first_name");
+        $this->last_name = $this->session->userdata("last_name");
+        $this->user_name = $this->first_name." ".$this->last_name;
         $this->module = $this->router->fetch_module();
         $this->class = $this->router->fetch_class();
         $this->url = $this->module.'/'.$this->class;
@@ -37,8 +40,10 @@ class Student extends CI_Controller {
                 send_notification('QUOTE',$from_id,$to_id,ADMIN_NOTIFICATION);
                 $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$from_id));
                 $from_email = $fromEmail['email'];
-
                 $this->sendEmailToAdmin('User add a new quote','Quote',SUPPORT_EMAIL,$from_email);
+
+                /* Send website notification to admin */
+                send_notification('QUOTES',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
                 $this->session->set_flashdata('success','Your message has been sent successfully');
                 redirect('student/getquote');
             }else{
@@ -249,6 +254,8 @@ class Student extends CI_Controller {
 
         if($request==1)
         {
+            /* Send website notification to admin */
+            send_notification('SET_INTERVIEW_DATE',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
             echo json_encode(array('type' => 'success', 'msg' => 'Interview Date set successfully'));
         }
         else
