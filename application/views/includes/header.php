@@ -114,7 +114,11 @@
                             foreach($notification as $val)
                             { ?>
                               <li>
+                              <?php if(!empty($val['noti_url'])) { ?>
+                                <a href="<?php echo base_url().$val['noti_url']; ?>">
+                              <?php } else { ?>
                                 <a href="javascript:void(0);">
+                              <?php } ?>
                                   <p><?php echo exactNotfiyMessage($val['id']); ?></p>
                                   <p><?php echo time_elapsed_string($val['sent_datetime']); ?></p>
                                 </a>
@@ -129,7 +133,7 @@
                       <?php } ?>
                     </ul>
                   </li>
-                  <li class="footer hidden"><a href="javascript:void(0);"><?php echo SEE_ALL_NOTIFICATIONS; ?>l</a></li>
+                  <li class="footer"><a href="<?php echo base_url(); ?>admin/notifications/view-all"><?php echo SEE_ALL_NOTIFICATIONS; ?>l</a></li>
                 </ul>
               </li>
 

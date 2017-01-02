@@ -450,7 +450,8 @@ if(!function_exists('getPageName')) {
 					'19' => 'Pricing',
 					'20' => 'Abroad Courses',
 					'21' => 'Privacy Policy',
-					'22' => 'City Events'
+					'22' => 'City Events',
+					'23' => 'Indian University'
 				);
 		return $pages[$key];
 	}
@@ -475,6 +476,20 @@ if(!function_exists('filter_course_types')) {
 			'Pathway' => array('Language', 'Language course', 'Language program')
 		);
 		return $types[$ct];
+	}
+}
+
+if(!function_exists('get_university_detail')) {
+	function get_university_detail($pid,$column)
+	{
+		$ci =&get_instance();
+		$query = "SELECT `u`.".$column." FROM `programs` AS `p` INNER JOIN `universities` AS `u` ON `p`.`university_id` = `u`.`id` WHERE `p`.`id` = ".$pid;
+		$result = $ci->common_model->getCustomSqlRow($query);
+		if(!empty($result)){
+	    	return $result[$column];
+		}else{
+			return "";
+		}
 	}
 }
 

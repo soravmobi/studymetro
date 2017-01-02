@@ -6,6 +6,17 @@
     .top_row h3 {
         font-family: 'Prompt', sans-serif !important;
     }
+   
+    .address_box_describe > p {
+  font-size: inherit;
+}
+.wow {
+   visibility: hidden;
+}
+.accept_main {
+  margin-bottom: 20px;
+}
+h2{margin:0px;}
     
     .footer_head {
         font-family: 'Prompt', sans-serif !important;
@@ -378,7 +389,7 @@
   border: medium none;
 }
 .head_bottom_bar p {
-  color: #a6abab;
+  color: #000;
   font-size: 14px;
 }
 .common_head > h2 {
@@ -691,11 +702,11 @@ a.down_pd {
   border-radius: 2px;
   box-shadow: 1px 1px 36px #000;
   display: inline-block;
-  margin: 10px 6px 10px 0;
+  margin: 10px 2px 10px 0;
   padding: 10px 4px;
   text-align: center;
-  vertical-align: top;
-  width: 32.1%;
+  vertical-align: top;                                                                                                                              
+  width: 32.3%;
 }
 .block_list li {
   float: left;
@@ -703,7 +714,7 @@ a.down_pd {
   width: 33%;
 }
 .getstart_bock p {
-  font-size: 16px;
+  font-size: 15px;
   line-height: 20px;
   margin-top: 10px;
 }
@@ -741,7 +752,7 @@ a.down_pd {
 }
 .contct_main {
   background-attachment: fixed;
-  background-image: url("../images/contact_banner.jpg");
+  /*background-image: url("../images/contact_banner.jpg");*/
   background-repeat: no-repeat;
   background-size: cover;
   height: 420px;
@@ -749,13 +760,39 @@ a.down_pd {
   position: relative;
 }
 .member_post > span {
-  font-size: 13px !important;
+  font-size: 14px !important;
 }
+.agenda_right > h4 {
+  margin-top: 0;
+}
+.getstart_bock::after {
+  display: none;
+}
+.contct_sec h2 {
+  color: #fff;
+  font-size: 18px;
+  margin: 30px 0;
+  text-align: center;
+}
+.accept_main {
+  margin-bottom: 20px;
+}
+
 }
 @media (max-width:767px){
   .regis_logo > p {
   margin-top: 15px;
   font-size: 14px;
+}
+.accept_main {
+  margin-bottom: 20px;
+}
+.agenda_view .date_box {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.accept_main .accept_terms label {
+  margin-right: 10px;
 }
 .common_head.footer_head h1 {
   font-size: 18px;
@@ -1000,10 +1037,12 @@ a.down_pd {
 }
 .R_sec .commn_btn {
   font-size: 18px;
+  margin-bottom: 5px;
   margin-top: -10px;
   overflow: hidden;
   padding: 6px 12px;
-  margin-bottom: 25px;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 .table_in_box .table td:nth-child(3){
   position: relative;
@@ -1129,6 +1168,18 @@ a.down_pd {
 .common_head > h2 {
   font-size: 18px;
 }
+.accor_price {
+  font-size: 11px;
+  padding: 5px 10px;
+  right: 20px;
+  top: 12px;
+}
+.panel-title {
+  color: inherit;
+  font-size: 12px;
+  min-width: 200px;
+  padding-right: 5px;
+}
 } 
 </style>
 
@@ -1160,6 +1211,8 @@ a.down_pd {
                             </div>
                         </div>
                     </div>
+                    </div>
+                    <div class="container">
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="register_main">
@@ -1261,6 +1314,8 @@ a.down_pd {
                             
                         </div>
                     </div>
+                    </div>
+                     <div class="container">
                     <div class="mid_r_sec" id="pinBoot">
                         <article class=" white-panel">
                             <div class="left_sec wow fadeInDown" data-wow-delay="0.3s">
@@ -1358,7 +1413,7 @@ a.down_pd {
                                 <h1>Fair Details:</h1>
                                 <ul>
                                     <li>April 2nd to April 10th, 2017</li>
-                                    <li>5 Cities in India, Bangalore, Mumbai, Vadodara, Ahmedabad, Indore.</li>
+                                    <li>6 Cities in India, Bangalore, Mumbai, Vadodara, Ahmedabad, Indore.</li>
                                     <li>High School/Universities Visits (optional) </li>
                                     <li>Dinners with local university officials (optional)</li>
                                     <li>Education Fairs arranged in international hotels </li>
@@ -1451,6 +1506,8 @@ a.down_pd {
                             </div>
                         </article>
                     </div>
+                    </div>
+                    <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="left_sec agenda_sec wow fadeInDown text-center">
@@ -1458,6 +1515,8 @@ a.down_pd {
                             </div>
                         </div>
                     </div>
+                    </div>
+                    <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="common_head footer_head include_head">
@@ -1515,6 +1574,8 @@ a.down_pd {
                             </div>
                         </div>
                     </div>
+                    </div>
+                    <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="common_head footer_head include_head">
@@ -1567,13 +1628,12 @@ a.down_pd {
                             </div>
                         </div>
                     </div>
-                    <section class="gallery_wrap wow zoomIn" data-wow-duration="2s">
-                        <div class="container">
+                    </div>
+                           
                             <?php if($details['photo_gallery'] == 0) { 
                                 echo getPhotosGallery();
                             } ?>
-                        </div>
-                    </section>
+                   
                     <section class="in_video_sec wow zoomIn" data-wow-duration="2s">
                         <div class="common_head footer_head include_head">
                             <h2>Video gallery</h2>
@@ -1585,7 +1645,7 @@ a.down_pd {
                             echo getVideoGallerySection();
                         } ?>   
                     </section>
-
+                  <div class="container">
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
                             <div class="sponser_box wow zoomIn" data-wow-duration="2s">
@@ -1792,10 +1852,7 @@ a.down_pd {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row terms">
-                        <div class="col-sm-12">
+                    <div class="terms">
                             <div class="common_head footer_head include_head">
                                 <h2>Term and Conditions for Participation:</h2>
                                 <div class="head_border">
@@ -1803,6 +1860,7 @@ a.down_pd {
                                 </div>
                             </div>
                             <div class="right_sec terms  wow fadeInDown" data-wow-delay="0.2s">
+                                
                                 <ul class=" terms ">
                                     <li>An educational institution may choose to send multiple travelers on a tour. Additional
                                         travelers will pay Travel and Accommodations Charges. </li>
@@ -1823,8 +1881,6 @@ a.down_pd {
                                         charges will be billed to the participating University.
                                     </li>
                                 </ul>
-                            </div>
-                            <div>
                             </div>
                             <form class="form-horizontal" method="post" id="event-form-bottom">
                             <div class="R_content card-block wow animated fadeInLeft" data-wow-duration="2s">
@@ -1862,8 +1918,12 @@ a.down_pd {
                                 </div>
                                 <button type="button" class="commn_btn register-event-bottom"> Register</button>
                             </div>
+                             </div>
                             </form>
-            </section>
+                             </div>
+                              </div>
+                            
+            </div>
             <div class="contct_main">
                 <div class="container">
                     <div class="row">
@@ -2137,11 +2197,34 @@ a.down_pd {
 
     jQuery(document).ready(function ( $ ) {
         // 3600 - 1 hour
-        var current_date     = "<?php echo strtotime(date('Y-m-d')); ?>";
-        var thirty_first_jan = "<?php echo strtotime('2017-01-31'); ?>";
-        var tweenty_four_feb = "<?php echo strtotime('2017-02-24'); ?>";
+        var current_date     = parseInt("<?php echo strtotime(date('Y-m-d H:i:s')); ?>");
+        var thirty_first_jan = parseInt("<?php echo strtotime('2017-01-31 23:59:59'); ?>");
+        var tweenty_four_feb = parseInt("<?php echo strtotime('2017-02-24 23:59:59'); ?>");
+        var ten_april        = parseInt("<?php echo strtotime('2017-04-10 23:59:59'); ?>");
 
-        var diff = 864;
+        var countdown = thirty_first_jan - ((new Date().getTime())/1000);
+        countdown = Math.max(1, countdown);
+
+        if(current_date > thirty_first_jan){
+            // 24 days (31 Jan- 24 Feb)
+            var countdown = tweenty_four_feb - ((new Date().getTime())/1000);
+            countdown = Math.max(1, countdown);
+        }
+        if(current_date > tweenty_four_feb){
+            // 38 days (24 Feb - 10 April)
+            var countdown = ten_april - ((new Date().getTime())/1000);
+            countdown = Math.max(1, countdown);
+        }
+
+        var opts =  {
+                      clockFace: 'DailyCounter',
+                      countdown: true
+                    };  
+
+        $('.clock').FlipClock(countdown, opts);
+
+      /*  var diff       = parseInt(thirty_first_jan - current_date)/3600;
+        console.log(diff)
 
         if(current_date > thirty_first_jan){
             // 24 days (31 Jan- 24 Feb)
@@ -2154,7 +2237,7 @@ a.down_pd {
         var clock = $('.clock').FlipClock(3600 * diff, { 
             clockFace: 'DailyCounter',
             countdown: true
-        });
+        });*/
 
         $('.home_video_sec').removeClass('home_video_sec');
 

@@ -36,7 +36,7 @@
                                 <div class="form-group">
                                     <label for="name" class="col-sm-3 control-label"> Browse file:</label>
                                     <div class="col-sm-9">
-                                    <input type="file" class="form-control"  required onchange="readURL(this,'png|jpg|tif|gif','')" name="file">
+                                    <input type="file" class="form-control"  required onchange="readURL(this,'png|jpg|tif|gif|pdf','')" name="file">
                                      <div class="error_form"><?php echo form_error('file'); ?></div>
                                     </div>
                                 </div>
@@ -51,7 +51,10 @@
                         <?php if(!empty($documents)) { foreach($documents as $d) { ?>
                           <div class="box_doc">
                             <a class="cross_btn" href="<?php echo base_url(); ?>front/user/deleteDocument/<?php echo encode($d['id']); ?>" onclick="return confirm('Are you sure ?');" title="Click Here To Delete Document"><i class="fa fa-close"></i></a>
-                            <a href="<?php echo $d['file']; ?>" class="img_doc gallery"><img src="<?php echo $d['file']; ?>"></a>
+                            <a href="<?php echo $d['file']; ?>" class="img_doc gallery">
+                              <!-- <img src="<?php echo $d['file']; ?>"> -->
+                              <embed src="<?php echo $d['file']; ?>" width="111px" height="80px" />
+                            </a>
                             <div class="doc_meta">
                               <p><?php echo date('F d, Y', strtotime($d['added_date'])); ?> <span><?php echo $d['document']; ?></span></p>
                             </div>

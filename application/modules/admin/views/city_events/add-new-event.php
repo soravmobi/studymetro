@@ -54,8 +54,12 @@
 		                <div class="paid-section hidden">
 			                <h4>Early Registration Rates (by January 31st, 2017)</h4><br/>
 			                <div class="form-group price-view">
-			                  <label for="photos">Price</label>
-			                  <input type="number" min="1" name="price[]" placeholder="Price" class="form-control event_price margin_bottom10"/>
+			                  <label for="photos">Price (In USD)</label>
+			                  <input type="number" min="1" name="price[]" placeholder="Price (In USD)" class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price (In INR)</label>
+			                  <input type="number" min="1" name="inr_price[]" placeholder="Price (In INR)" class="form-control event_price margin_bottom10"/>
 			                </div>
 			                <div class="form-group">
 			                  <label for="status">Is Table</label>
@@ -67,8 +71,12 @@
 
 			                <h4>Regular Registration Rates (by February 24th, 2017)</h4><br/>
 			                <div class="form-group price-view">
-			                  <label for="photos">Price</label>
-			                  <input type="number" min="1" name="price[]" placeholder="Price" class="form-control event_price margin_bottom10"/>
+			                  <label for="photos">Price (In USD)</label>
+			                  <input type="number" min="1" name="price[]" placeholder="Price (In USD)" class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price (In INR)</label>
+			                  <input type="number" min="1" name="inr_price[]" placeholder="Price (In INR)" class="form-control event_price margin_bottom10"/>
 			                </div>
 			                <div class="form-group">
 			                  <label for="status">Is Table</label>
@@ -80,8 +88,12 @@
 
 			                <h4>Late Registration Rates(After February 24th, 2017))</h4><br/>
 			                <div class="form-group price-view">
-			                  <label for="photos">Price</label>
-			                  <input type="number" min="1" name="price[]" placeholder="Price" class="form-control event_price margin_bottom10"/>
+			                  <label for="photos">Price (In USD)</label>
+			                  <input type="number" min="1" name="price[]" placeholder="Price (In USD)" class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price (In INR)</label>
+			                  <input type="number" min="0" name="inr_price[]" placeholder="Price (In INR)" value="0" class="form-control event_price margin_bottom10"/>
 			                </div>
 			                <div class="form-group">
 			                  <label for="status">Is Table</label>
@@ -93,8 +105,12 @@
 
 			                <h4>Presentation</h4><br/>
 			                <div class="form-group price-view">
-			                  <label for="photos">Price</label>
-			                  <input type="number" min="1" name="price[]" placeholder="Price" class="form-control event_price margin_bottom10"/>
+			                  <label for="photos">Price (In USD)</label>
+			                  <input type="number" min="1" name="price[]" placeholder="Price (In USD)" class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price (In INR)</label>
+			                  <input type="number" min="1" name="inr_price[]" placeholder="Price (In INR)" class="form-control event_price margin_bottom10"/>
 			                </div>
 			                <div class="form-group">
 			                  <label for="status">Is Table</label>

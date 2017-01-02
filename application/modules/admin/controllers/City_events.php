@@ -39,7 +39,8 @@ class City_events extends CI_Controller {
 		$data = $_POST;
 		if($data['is_free'] == 1){
 			$data['is_table'] = serialize($data['is_table']);
-			$data['price']    = serialize($data['price']);
+			$data['is_table'] = serialize($data['is_table']);
+			$data['inr_price']= serialize($data['inr_price']);
 		}else{
 			unset($data['is_table'],$data['price']);
 		}
@@ -83,6 +84,7 @@ class City_events extends CI_Controller {
 		if($post_data['is_free'] == 1){
 			$post_data['is_table'] = serialize($post_data['is_table']);
 			$post_data['price']    = serialize($post_data['price']);
+			$post_data['inr_price']= serialize($post_data['inr_price']);
 		}else{
 			unset($post_data['is_table'],$post_data['price']);
 		}

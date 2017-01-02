@@ -192,7 +192,7 @@ class User extends CI_Controller {
                 $message .= '</ul></body></html>';
                 send_mail($message,'New Feedback',SUPPORT_EMAIL,$data['email']);
 
-                send_notification('FEEDBACK',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
+                send_notification('FEEDBACK',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION,'',VIEW_ALL_FEEDBACK);
                 
                 $this->sendEmailToAdmin('Answers submitted by "'.$from_user_name.'"','Assignments',VISA_EMAIL,$from_email);
 
@@ -228,7 +228,7 @@ class User extends CI_Controller {
         }
         if($this->form_validation->run()==TRUE){
         if(!empty($_FILES['file']['name'])){
-            $document = imgUpload('file','documents','png|jpg|tif|gif');
+            $document = imgUpload('file','documents','png|jpg|tif|gif|pdf');
             if(isset($document['error'])){
                 $this->session->set_flashdata('error', $document['error']);
                 $data['meta_title'] = 'Upload Documents';
@@ -248,7 +248,8 @@ class User extends CI_Controller {
                     send_mail($admin_message, 'Student Uploaded Documents' ,SUPPORT_EMAIL,SUPPORT_EMAIL);
 
                     /* Send website notification to admin */
-                    send_notification('UPLOAD_DOCUMENT',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
+                    $notify_url = 'admin/documents/viewDocuments/'.$this->uid;
+                    send_notification('UPLOAD_DOCUMENT',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION,'',$notify_url);
 
                     $this->session->set_flashdata('success', sprintf(ITEM_ADD_SUCCESS, 'Documents'));
                     redirect('user/upload_documents');
@@ -306,10 +307,9 @@ class User extends CI_Controller {
             unset($data['id']);
             $lid = $this->common_model->addRecords(NOTES,$data);
             if(!empty($lid)){
-                send_notification('NOTE',$from_id,$to_id,ADMIN_NOTIFICATION);
+                // send_notification('NOTE',$from_id,$to_id,ADMIN_NOTIFICATION);
                 $fromEmail = $this->common_model->getSingleRecordById(USER,array('id'=>$from_id));
                 $from_email = $fromEmail['email'];
-
                 $this->sendEmailToAdmin('User add a new note','Note',SUPPORT_EMAIL,$from_email);
 
                 $this->session->set_flashdata('success','Note successfully added');
@@ -809,7 +809,8 @@ class User extends CI_Controller {
                 $this->sendEmailToAdmin('User send a comment to you','Comment',SUPPORT_EMAIL,$from_email);
 
                 /* Send website notification to admin */
-                send_notification('COMMENT',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
+                $notify_url = 'admin/comments/viewComments/'.$this->uid;
+                send_notification('COMMENT',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION,'',$notify_url);
                 $this->session->set_flashdata('success', "Comment added succefully");
                 redirect('user/my-comments');
             }

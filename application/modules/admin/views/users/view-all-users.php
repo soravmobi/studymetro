@@ -112,6 +112,7 @@
 		              	<select user_id="<?php echo $val['id']; ?>" name="action" id="action" class="form-control action">
 		              		<option value="">Please Select</option>
 		              		<?php if($val['user_type']==2){ ?>
+		              		<option value="allCom">All Comments</option>
 		              		<option value="allDoc">All Documents</option>
 		              		<option value="allPrg">All Programs</option>
 		              		<?php } if($val['user_type']==5){ ?>

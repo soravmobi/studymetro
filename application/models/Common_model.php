@@ -438,4 +438,38 @@ class Common_model extends CI_Model
 	   return $query->result_array();
 	}
 
+	/* ---GET MULTIPLE RECORD--- */
+    function getAllwhere($table, $where = '', $order_fld = '', $order_type = '', $select = 'all', $limit = '', $offset = '',$group_by='') {
+        if ($order_fld != '' && $order_type != '') {
+            $this->db->order_by($order_fld, $order_type);
+        }
+        if ($select == 'all') {
+            $this->db->select('*');
+        } else {
+            $this->db->select($select);
+        }
+        if ($where != '') {
+            $this->db->where($where);
+        }
+        if ($limit != '' && $offset != '') {
+            $this->db->limit($limit, $offset);
+        } else if ($limit != '') {
+            $this->db->limit($limit);
+        }
+
+        if(!empty($group_by)){
+            $this->db->group_by($group_by); 
+        }
+
+        $q = $this->db->get($table);
+        $num_rows = $q->num_rows();
+        if ($num_rows > 0) {
+            foreach ($q->result_array() as $rows) {
+                $data[] = $rows;
+            }
+            $q->free_result();
+            return $data;
+        }
+    }
+
 }

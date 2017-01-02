@@ -38,7 +38,7 @@ if (!function_exists('send_mail')) {
 // for send website notification
 
 if (!function_exists('send_notification')) {
-	function send_notification($type,$sender_id,$receiver_id,$table,$static_content=NULL) {
+	function send_notification($type,$sender_id,$receiver_id,$table,$static_content=NULL,$url=NULL) {
 	    $ci =&get_instance();
 		$notify = $ci->common_model->getSingleRecordById(NOTIFICATION,array('type'=>$type));
 		if(!empty($notify)){
@@ -46,7 +46,8 @@ if (!function_exists('send_notification')) {
                             'notify_id'    => $notify['id'],
                             'sender_id'    => $sender_id,
                             'receiver_id'  => $receiver_id,
-                            'static_content'  => $static_content,
+                            'static_content' => $static_content,
+                            'noti_url'     => $url,
                             'sent_datetime'=> datetime(),
                             'is_read'      => 1
                             );
@@ -116,7 +117,11 @@ if (!function_exists('getUserName')) {
 	    $ci =&get_instance();
 		$userData = $ci->common_model->getSingleRecordById(USER,array('id'=>$user_id));
 		if(!empty($userData)){
-			return $userData['first_name'].' '.$userData['last_name'];
+			if(!empty($userData['first_name'])){
+				return $userData['first_name'].' '.$userData['last_name'];
+			}else{
+				return $userData['username'];
+			}
 		}else{
 			return '';			
 		}
@@ -803,6 +808,12 @@ function getAllCount($table,$where="")
   }
   $q = $CI->db->count_all_results($table);
   return addZero($q);
+}
+
+function get_offsets($page_no = 0)
+{
+   $offset = ($page_no == 0) ? 0 : (int) $page_no * 10 - 10;
+   return $offset;
 }
     
 /* End of file common_helper.php */

@@ -253,6 +253,16 @@ define('DEFAULT_IMG', 'default-148.png');
 define('CRM_ACCESS_KEY', 'u$r5f9d994f80d8e0629cafc38bb0e0446b');
 define('CRM_SECRET_KEY', 'abcc73f9e7a9c54d754dc87bb9e124cfe45c0bcf');
 
+/* URLS constant start */
+
+define('EVENT_REGISTRATION_HISTORY', 'admin/city-events/events-registration-history');
+define('VIEW_ALL_WEBINAR', 'admin/university/view-all-webinar');
+define('VIEW_ALL_APPOINTMENTS', 'admin/university/view-all-appointment');
+define('VIEW_ALL_QUOTES', 'admin/quotes/view-all');
+define('VIEW_ALL_FEEDBACK', 'admin/feedbacks/view-all');
+
+/* URLS constant end */
+
 define('HTTP_HOST', $_SERVER['HTTP_HOST']);
 
 if(HTTP_HOST == 'localhost' || HTTP_HOST == 'studymetro.sid.mwdemoserver.com'){

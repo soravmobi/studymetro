@@ -156,7 +156,7 @@ $route['admin/programs/view-all-summer-programs/(:any)'] = 'admin/programs/viewA
 $route['admin/programs/import-summer-programs'] = 'admin/programs/importSummerPrograms';
 $route['admin/programs/edit-summer-program/(:any)'] = 'admin/programs/editSummerProgram/$1';
 
-$route['admin/notification/view-all'] = 'admin/notification/viewAll';
+$route['admin/notifications/view-all'] = 'admin/notifications/viewAll';
 
 /* Front custom Routing */
 

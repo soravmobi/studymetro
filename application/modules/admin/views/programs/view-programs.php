@@ -30,6 +30,7 @@
                       <th>Program</th>
                       <th>Email</th>
                       <th>Phone No</th>
+                      <th>Interview Date</th>
                       <th>Pay Status</th>
                       <th>Apply Date</th>
                       <th>Status</th>
@@ -42,6 +43,7 @@
                       <td><?php echo getDetailsBy(PROGRAMS,'id',$a['program_id'],'program_name'); ?></td>
                       <td><?php echo $a['email']; ?></td>
                       <td><?php echo $a['phone_no']; ?></td>
+                      <td><?php echo $a['interview_date']; ?></td>
                       <td><?php echo (!empty($a['pay_status'])) ? $a['pay_status'] : 'Pending'; ?></td>
                       <td><?php echo convertDateTime($a['apply_date']); ?></td>
                       <td>

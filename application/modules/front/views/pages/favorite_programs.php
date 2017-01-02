@@ -19,6 +19,7 @@
                         <!-- view events -->
                         <?php if(!empty($programs)) { foreach($programs as $pl){ ?>
                         <div class="univer_box fav_prgrm course_detail" id="remove_row_<?php echo $pl['id']; ?>">
+                            <h4><?php echo get_university_detail($pl['program_id'],'name'); ?></h4>
                             <div class="univ_logo">
                                 <div class="univ_meta">
                                     <a href="javascript:void(0)" title="<?php echo $pl['program_name']; ?>">

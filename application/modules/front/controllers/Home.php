@@ -56,7 +56,7 @@ class Home extends CI_Controller {
             if($page_name == 'blogs'){
                 $data['blogs'] = $this->common_model->getAllRecordsByOrder(BLOGS,'id','DESC');
             }
-            if($page_name == 'city-events'){
+            if($page_name == 'city-events' || $page_name == 'indian-university'){
                 $data['events'] = $this->common_model->getAllRecordsByOrder(CITY_EVENTS,'id','ASC');
             }
             load_front_view('pages/'.$page_name, $data);
@@ -414,7 +414,7 @@ class Home extends CI_Controller {
 
         /* Send website notification to admin */
         $static_content = $user_name.' has registered for EDU Fair Event';
-        send_notification('CITY_EVENT_REGISTRATION',0,ADMIN_ID,ADMIN_NOTIFICATION,$static_content);
+        send_notification('CITY_EVENT_REGISTRATION',0,ADMIN_ID,ADMIN_NOTIFICATION,$static_content,EVENT_REGISTRATION_HISTORY);
     }
 
 

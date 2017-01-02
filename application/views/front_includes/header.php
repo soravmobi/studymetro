@@ -28,7 +28,7 @@
       <script src="<?php echo base_url(); ?>assets/js/chosen.jquery.min.js"></script>
       
       <?php
-      if(isset($slug) && $slug != 'city-events'){
+      if(isset($slug) && !in_array($slug, array('city-events','indian-university'))){
         $google_remarking_code = get_option('google_remarking_code');
         $facebook_plugin       = get_option('facebook_plugin');
         $twitter_plugin        = get_option('twitter_plugin');

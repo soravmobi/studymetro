@@ -36,7 +36,10 @@
 
                     <a download class="download_btn" href="<?php echo $d['file']; ?>" title="Click Here To Download Document"><i class="fa fa-download" aria-hidden="true"></i></a>
 
-                    <a href="<?php echo $d['file']; ?>" class="img_doc gallery"><img src="<?php echo $d['file']; ?>"></a>
+                    <a href="<?php echo $d['file']; ?>" class="img_doc gallery">
+                      <!-- <img src="<?php echo $d['file']; ?>"> -->
+                      <embed src="<?php echo $d['file']; ?>" width="111px" height="80px" />
+                    </a>
                     <div class="doc_meta">
                       <p><?php echo date('F d, Y', strtotime($d['added_date'])); ?> <span><?php echo $d['document']; ?></span></p>
                     </div>

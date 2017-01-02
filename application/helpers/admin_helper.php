@@ -195,7 +195,8 @@ function getAllPages()
 				'19' => 'Pricing',
 				'20' => 'Abroad Courses',
 				'21' => 'Privacy Policy',
-				'22' => 'City Events'
+				'22' => 'City Events',
+				'23' => 'Indian University'
 			);
 	return $pages;
 }

@@ -305,9 +305,10 @@ class Api extends REST_Controller {
     function get_notes_post()
     {
         $return['code'] =   200;
-        $return['response'] = new stdClass();
+        $return['response'] = array();
         $data = $this->input->post();
         $this->form_validation->set_rules('login_session_key', 'Login Session Key', 'trim|required');
+        $this->form_validation->set_rules('page_no', 'Page No', 'trim|numeric');
         if($this->form_validation->run() == FALSE) 
         {
             $error = $this->form_validation->rest_first_error_string(); 
@@ -327,6 +328,7 @@ class Api extends REST_Controller {
                     if($result){
                         /* Return Response */
                         $response = array();
+                        $response['note_id']    = null_checker($result['id']);
                         $response['notes']      = null_checker($result['notes']);
                         $response['added_date'] = null_checker($result['added_date']);
                         $return['status']    =   1; 
@@ -337,12 +339,15 @@ class Api extends REST_Controller {
                         $return['message'] =   'Invalid notes id';
                     }
                }else{ // Get user notes list
-                    $result = $this->common_model->getAllRecordsOrderById(NOTES,'id','DESC',array('user_id' => $check_login_session_key['id']));
+                    $page_no  = extract_value($data,'page_no',0);
+                    $offset   = get_offsets($page_no);
+                    $result = $this->common_model->getAllwhere(NOTES,array('user_id' => $check_login_session_key['id']),'id','DESC','all',10,$offset);
                     if($result){
                         /* Return Response */
                         $response = array();
                         foreach($result as $r)
                         {
+                          $row['note_id']   = null_checker($r['id']);  
                           $row['notes']     = null_checker($r['notes']);  
                           $row['added_date']= null_checker($r['added_date']);  
                           array_push($response, $row);
@@ -411,6 +416,37 @@ class Api extends REST_Controller {
             }else{
                 $return['status']  =   0; 
                 $return['message'] =   INVALID_LOGIN_SESSION_KEY;
+            }
+        }
+        $this->response($return);
+    }
+
+    /**
+     * Function Name: get_static_data
+     * Description:   To Get Static Data
+     */
+    function get_static_data_post()
+    {
+        $return['code'] =   200;
+        $return['response'] = array();
+        $data = $this->input->post();
+        $this->form_validation->set_rules('data_type', 'Type', 'trim|required');
+        if($this->form_validation->run() == FALSE) 
+        {
+            $error = $this->form_validation->rest_first_error_string(); 
+            $return['status']         =   0; 
+            $return['message']        =   $error; 
+        }
+        else
+        {   
+            $data_type = extract_value($data,'data_type',"");
+            if(function_exists($data_type)) {
+                $return['status']   =   1;
+                $return['response'] =   $data_type();
+                $return['message']  =   'Success';
+            }else{
+                $return['status']  =   0; 
+                $return['message'] =   'Invalid data type';
             }
         }
         $this->response($return);

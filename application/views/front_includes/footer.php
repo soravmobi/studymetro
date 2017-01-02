@@ -221,6 +221,7 @@
                   <li><a href="<?php echo base_url(); ?>terms-conditions">Terms & Conditions </a></li>
                   <li><a href="<?php echo base_url(); ?>privacy-policy">Privacy Policy </a></li>
                   <li><a href="<?php echo base_url(); ?>city-events">City Events </a></li>
+                  <!-- <li><a href="<?php echo base_url(); ?>indian-university">Indian University</a></li> -->
                 </ul>
               </div>
                </div>
@@ -501,7 +502,7 @@ $("body").on('click','.password-btn',function() {
 <?php } ?>
 </script>
 <?php
-if(isset($slug) && $slug != 'city-events'){
+if(isset($slug) && !in_array($slug, array('city-events','indian-university'))){
   $olark_plugin = get_option('olark_plugin');
   $vcita_plugin = get_option('vcita_plugin');
   if(!empty($olark_plugin)){

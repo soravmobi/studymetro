@@ -56,15 +56,21 @@
 		                	if($details['is_free'] == 1){ // paid
 		                		$price_arr    = unserialize($details['price']);
 		                		$is_table_arr = unserialize($details['is_table']);
+		                		$inr_price_arr    = unserialize($details['inr_price']);
 		                	}else{ // free
 		                		$price_arr    = array();
 		                		$is_table_arr = array();
+		                		$inr_price_arr = array();
 		                	}
 		                ?>
 			                <h4>Early Registration Rates (by January 31st, 2017)</h4><br/>
 			                <div class="form-group price-view">
-			                  <label for="photos">Price</label>
-			                  <input type="number" min="1" value="<?php if(!empty($price_arr)) echo $price_arr[0]; ?>" name="price[]" <?php if($details['is_free'] == 1) echo "required"; ?> placeholder="Price" class="form-control event_price margin_bottom10"/>
+			                  <label for="photos">Price (In USD)</label>
+			                  <input type="number" min="1" value="<?php if(!empty($price_arr)) echo $price_arr[0]; ?>" name="price[]" <?php if($details['is_free'] == 1) echo "required"; ?> placeholder="Price (In USD)" class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price (In INR)</label>
+			                  <input type="number" min="1" value="<?php if(!empty($inr_price_arr)) echo $inr_price_arr[0]; ?>" name="inr_price[]" placeholder="Price (In INR)" class="form-control event_price margin_bottom10"/>
 			                </div>
 			                <div class="form-group">
 			                  <label for="status">Is Table</label>
@@ -76,8 +82,12 @@
 
 			                <h4>Regular Registration Rates (by February 24th, 2017)</h4><br/>
 			                <div class="form-group price-view">
-			                  <label for="photos">Price</label>
-			                  <input type="number" min="1" value="<?php if(!empty($price_arr)) echo $price_arr[1]; ?>" name="price[]" placeholder="Price" <?php if($details['is_free'] == 1) echo "required"; ?> class="form-control event_price margin_bottom10"/>
+			                  <label for="photos">Price (In USD)</label>
+			                  <input type="number" min="1" value="<?php if(!empty($price_arr)) echo $price_arr[1]; ?>" name="price[]" placeholder="Price (In USD)" <?php if($details['is_free'] == 1) echo "required"; ?> class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price (In INR)</label>
+			                  <input type="number" min="1" value="<?php if(!empty($inr_price_arr)) echo $inr_price_arr[1]; ?>" name="inr_price[]" placeholder="Price (In INR)" class="form-control event_price margin_bottom10"/>
 			                </div>
 			                <div class="form-group">
 			                  <label for="status">Is Table</label>
@@ -89,8 +99,12 @@
 
 			                <h4>Late Registration Rates(After February 24th, 2017))</h4><br/>
 			                <div class="form-group price-view">
-			                  <label for="photos">Price</label>
-			                  <input type="number" min="1" value="<?php if(!empty($price_arr)) echo $price_arr[2]; ?>" name="price[]" placeholder="Price" <?php if($details['is_free'] == 1) echo "required"; ?> class="form-control event_price margin_bottom10"/>
+			                  <label for="photos">Price (In USD)</label>
+			                  <input type="number" min="1" value="<?php if(!empty($price_arr)) echo $price_arr[2]; ?>" name="price[]" placeholder="Price (In USD)" <?php if($details['is_free'] == 1) echo "required"; ?> class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price (In INR)</label>
+			                  <input type="number" min="1" value="<?php if(!empty($inr_price_arr)) echo $inr_price_arr[2]; ?>" name="inr_price[]" placeholder="Price (In INR)" class="form-control event_price margin_bottom10"/>
 			                </div>
 			                <div class="form-group">
 			                  <label for="status">Is Table</label>
@@ -102,8 +116,12 @@
 
 			                <h4>Presentation</h4><br/>
 			                <div class="form-group price-view">
-			                  <label for="photos">Price</label>
-			                  <input type="number" min="1" value="<?php if(!empty($price_arr)) echo $price_arr[3]; ?>" name="price[]" placeholder="Price" <?php if($details['is_free'] == 1) echo "required"; ?> class="form-control event_price margin_bottom10"/>
+			                  <label for="photos">Price (In USD)</label>
+			                  <input type="number" min="1" value="<?php if(!empty($price_arr)) echo $price_arr[3]; ?>" name="price[]" placeholder="Price (In USD)" <?php if($details['is_free'] == 1) echo "required"; ?> class="form-control event_price margin_bottom10"/>
+			                </div>
+			                <div class="form-group price-view">
+			                  <label for="photos">Price (In INR)</label>
+			                  <input type="number" min="0" value="<?php if(!empty($inr_price_arr)) echo $inr_price_arr[3]; ?>" name="inr_price[]" placeholder="Price (In INR)" class="form-control event_price margin_bottom10"/>
 			                </div>
 			                <div class="form-group">
 			                  <label for="status">Is Table</label>

@@ -261,7 +261,8 @@ class University extends CI_Controller {
             if($this->common_model->updateRecords(UNIVERSITIES, $data, array('id' => $id))) {
 
                 /* Send website notification to admin */
-                send_notification('UPDATE_UNIVERSITY',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
+                $noti_url = 'admin/university/edit/'.$id;
+                send_notification('UPDATE_UNIVERSITY',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION,'',$noti_url);
 
                 $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
                 $user_email = $userData['email'];
@@ -361,7 +362,8 @@ class University extends CI_Controller {
             if($request!='')
             {
                 /* Send website notification to admin */
-                send_notification('ADD_PROGRAM',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
+                $noti_url = 'admin/programs/edit/'.$request;
+                send_notification('ADD_PROGRAM',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION,'',$noti_url);
 
                 $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
                 $user_email = $userData['email'];
@@ -408,7 +410,8 @@ class University extends CI_Controller {
             if($request)
             {
                 /* Send website notification to admin */
-                send_notification('UPDATE_PROGRAM',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
+                $noti_url = 'admin/programs/edit/'.$id;
+                send_notification('UPDATE_PROGRAM',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION,'',$noti_url);
 
                 $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
                 $user_email = $userData['email'];
@@ -469,7 +472,7 @@ class University extends CI_Controller {
             if($request!='')
             {
                 /* Send website notification to admin */
-                send_notification('ADD_WEBINAR',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
+                send_notification('ADD_WEBINAR',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION,'',VIEW_ALL_WEBINAR);
 
                 $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
                 $user_email = $userData['email'];
@@ -514,7 +517,7 @@ class University extends CI_Controller {
             if($request)
             {
                 /* Send website notification to admin */
-                send_notification('EDIT_WEBINAR',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
+                send_notification('EDIT_WEBINAR',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION,'',VIEW_ALL_WEBINAR);
 
                 $userData   = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
                 $user_email = $userData['email'];
@@ -539,7 +542,7 @@ class University extends CI_Controller {
         if($request)
         {
             /* Send website notification to admin */
-            send_notification('DELETE_WEBINAR',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
+            send_notification('DELETE_WEBINAR',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION,'',VIEW_ALL_WEBINAR);
 
             $userData   = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
             $user_email = $userData['email'];
@@ -599,7 +602,7 @@ class University extends CI_Controller {
             if($request!='')
             {
                 /* Send website notification to admin */
-                send_notification('ADD_APPOINTMENT',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
+                send_notification('ADD_APPOINTMENT',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION,'',VIEW_ALL_APPOINTMENTS);
 
                 $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
                 $user_email = $userData['email'];
@@ -645,7 +648,7 @@ class University extends CI_Controller {
             if($request)
             {
                 /* Send website notification to admin */
-                send_notification('EDIT_APPOINTMENT',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
+                send_notification('EDIT_APPOINTMENT',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION,'',VIEW_ALL_APPOINTMENTS);
 
                 $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
                 $user_email = $userData['email'];
@@ -670,7 +673,7 @@ class University extends CI_Controller {
         if($request)
         {
             /* Send website notification to admin */
-            send_notification('DELETE_APPOINTMENT',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION);
+            send_notification('DELETE_APPOINTMENT',$this->uid,ADMIN_ID,ADMIN_NOTIFICATION,'',VIEW_ALL_APPOINTMENTS);
 
             $userData = $this->common_model->getSingleRecordById(USER,array('id'=>$this->uid));
             $user_email = $userData['email'];
