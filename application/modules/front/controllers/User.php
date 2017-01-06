@@ -361,7 +361,7 @@ class User extends CI_Controller {
             $this->form_validation->set_rules('message','Message','trim|required');
             if($this->form_validation->run()==TRUE){
                 $data = $this->input->post();
-                $html = '';
+                /*$html = '';
                 $msgArr = explode(PHP_EOL, $data['message']);
                 foreach($msgArr as $m){
                     if(!empty($m)){
@@ -369,53 +369,27 @@ class User extends CI_Controller {
                     }else{
                         $html .= '<div class="m-msz-text">'.$m.'</div>';
                     }
-                }
-                $data['message'] = $html;
-                $result = $this->common_model->getSingleRecordById(USER,array('email' => $data['to_email']));
-                /*if(empty($result)){
-                    echo json_encode(array('type' => 'failed', 'msg' => 'We could not find the user '.$data['to_email']));exit;
                 }*/
                 $data['from_email'] = $this->session->userdata('email');
                 $data['added_date'] = datetime();
+                $attachement = "";
 
-                /* Upload attachment */
-                $attachment = '';
-
-                     $config['file_name'] = $_FILES['attachment']['name']; 
-                     $config['upload_path'] ='uploads/email_attachments/'; 
-                     //$config['allowed_types'] = 'png|jpeg|jpg';
-                     $config['max_size']      = '10000000';
-                     $config['max_width']     = '100024';
-                     $config['max_height']    = '768000';
-                     $config['remove_spaces'] = true;
-                     $config['encrypt_name'] = TRUE;
-                     $this->load->library('upload', $config);
-                     $this->upload->initialize($config);
-                     $this->upload->set_allowed_types('*');
-                     $upload_data['upload_data'] = '';
-                     $attachment = '';
-               
-                  if (!$this->upload->do_upload('attachment'))
-                   {
-                       $upload_data = array('msg' => $this->upload->display_errors());
-                   } 
-                  else 
-                      { 
-                        $upload_data = array('msg' => "Upload success!");
-                        
-                        $upload_data['upload_data'] = $this->upload->data();
-                        //print_r($data['upload_data']['file_name']); die;
-                        $attachment = 'uploads/email_attachments/'.$upload_data['upload_data']['file_name'];
-                        //echo $attachment; die;
-                        $data['attachment'] = $attachment;
-                      }
-                
-                $lid = $this->common_model->addRecords(EMAILS,$data);
-                if(!empty($lid)){
-                    send_mail($data['message'],$data['subject'],$data['to_email'],$data['from_email']);
+                if (!empty($_FILES['attachment']['name']))
+                {
+                    /* Upload attachment */
+                    $attachement = fileUploading('attachment','email_attachments');
+                    if(!empty($attachement)){
+                        $data['attachment'] = $attachement;
+                    }else{
+                        echo json_encode(array('type' => 'failed', 'msg' => 'Attachement failed'));exit;
+                    }
+                }
+                $status = send_mail($data['message'],$data['subject'],$data['to_email'],$data['from_email'],$attachement);
+                if(!empty($status)){
+                    $this->common_model->addRecords(EMAILS,$data);
                     echo json_encode(array('type' => 'success', 'msg' => 'Email send successfully'));exit;
                 }else{
-                    echo json_encode(array('type' => 'failed', 'msg' => GENERAL_ERROR));exit;
+                    echo json_encode(array('type' => 'failed', 'msg' => EMAIL_SEND_FAILED));exit;
                 }
             }else{
                 $error = array(
@@ -436,7 +410,6 @@ class User extends CI_Controller {
             $id   = decode($this->input->post('mail'));
             $type = $this->input->post('type');
             $result = $this->common_model->getSingleRecordById(EMAILS,array('id' => $id));
-            //print_r($result); die;
             if(!empty($result)){
                 if($type == 'inbox'){
                     $user_details = getUserDetailsBy('email',$result['from_email']);
@@ -445,8 +418,10 @@ class User extends CI_Controller {
                 }
                 if(empty($user_details[0]['photo'])){
                   $file = base_url().'uploads/users/default.jpg';
+                  $uname = 'Unknown';
                 }else{
                   $file = base_url().'uploads/users/'.$user_details[0]['photo'];
+                  $uname = $user_details[0]['first_name']." ".$user_details[0]['last_name'];
                 }
                 if($result['attachment']!='')
                 {
@@ -456,7 +431,7 @@ class User extends CI_Controller {
                 {
                     $attachment = '';
                 }
-                echo json_encode(array('type' => 'success', 'mail' => $result, 'username' => $user_details[0]['first_name']." ".$user_details[0]['last_name'],'attachment'=>$attachment,'userimg' => $file,'datetime' => date('d M, Y',strtotime($result['added_date']))));exit;
+                echo json_encode(array('type' => 'success', 'mail' => $result, 'username' => $uname,'attachment'=>$attachment,'userimg' => $file,'datetime' => date('d M, Y',strtotime($result['added_date']))));exit;
             }else{
                 echo json_encode(array('type' => 'failed', 'msg' => GENERAL_ERROR));exit;
             }

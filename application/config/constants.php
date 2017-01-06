@@ -157,7 +157,7 @@ define('PHONE_NOT_VERIFIED', 'Your phone number is not verified yet, please ente
 
 /* Basic site settings attributes */
 define('CMS_ABR', 'sm');
-define('CMS_NAME', 'Studymetro');
+define('CMS_NAME', 'Study Metro');
 define('ADMIN_PANEL_HEADING', 'Admin Panel');
 define('ADMIN_USER_ID', 1);
 define('SUPER_ADMIN_USER_TYPE', 1);
@@ -252,6 +252,7 @@ define('SITE_NAME', 'Study Metro');
 define('DEFAULT_IMG', 'default-148.png');
 define('CRM_ACCESS_KEY', 'u$r5f9d994f80d8e0629cafc38bb0e0446b');
 define('CRM_SECRET_KEY', 'abcc73f9e7a9c54d754dc87bb9e124cfe45c0bcf');
+define('TINIFY_KEY', 'lCUcrXxZu_127H_fP_21hv89o9qinl4l');
 
 /* URLS constant start */
 
@@ -265,7 +266,7 @@ define('VIEW_ALL_FEEDBACK', 'admin/feedbacks/view-all');
 
 define('HTTP_HOST', $_SERVER['HTTP_HOST']);
 
-if(HTTP_HOST == 'localhost' || HTTP_HOST == 'studymetro.sid.mwdemoserver.com'){
+if(HTTP_HOST == 'localhost' || HTTP_HOST == 'studymetro.sid.mwdemoserver.com' || HTTP_HOST == 'studymetro.mobi96.com'){
 	/* Paypal Details */
 	define('PAYPAL_BUSINESS_ID', 'sourav-facilitator@mobiwebtech.com');
 	define('PAYPAL_FORM_URL', 'https://www.sandbox.paypal.com/cgi-bin/webscr');
@@ -274,6 +275,20 @@ if(HTTP_HOST == 'localhost' || HTTP_HOST == 'studymetro.sid.mwdemoserver.com'){
 	define('CITRUS_FORM_URL', 'https://sandbox.citruspay.com/uycuxzlzv2');
 	define('CITRUS_SECRET_KEY', 'cbce9048aab88acabb0fc1e0d3d0b1b88d275001');
 	define('CITRUS_VANITY_URL', 'uycuxzlzv2');
+
+	switch (HTTP_HOST) {
+		case 'localhost':
+			define('SUB_DOMAIN_BASE_URL', 'http://localhost/study_metro/');
+			break;
+		case 'studymetro.sid.mwdemoserver.com':
+			define('SUB_DOMAIN_BASE_URL', 'http://studymetro.sid.mwdemoserver.com/');
+			break;
+		case 'studymetro.mobi96.com':
+			define('SUB_DOMAIN_BASE_URL', 'http://studymetro.mobi96.com/');
+			break;
+		default:
+			break;
+	}
 }else{
 	/* Paypal Details */
 	define('PAYPAL_BUSINESS_ID', 'abhishekbajaj01@gmail.com');
@@ -283,7 +298,10 @@ if(HTTP_HOST == 'localhost' || HTTP_HOST == 'studymetro.sid.mwdemoserver.com'){
 	define('CITRUS_FORM_URL', 'https://www.citruspay.com/studymetro');
 	define('CITRUS_SECRET_KEY', '2f616053f8837dc11d2a6cb28944873a3cdaaa66');
 	define('CITRUS_VANITY_URL', 'studymetro');
+
+	define('SUB_DOMAIN_BASE_URL', 'http://www.static.studymetro.com/');
 }
 	
 define('INVALID_LOGIN_SESSION_KEY', 'Invalid user login session key');
+define('EMAIL_SEND_FAILED', 'Email sending failed');
 define('NO_CHANGES', 'We didn`t found any changes');

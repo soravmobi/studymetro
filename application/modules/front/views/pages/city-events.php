@@ -1,6 +1,6 @@
-<link href="<?php echo base_url(); ?>assets/css/mdb.min.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>assets/css/animate.min.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>assets/css/flipclock.css" rel="stylesheet">
+<link href="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/css/mdb.min.css" rel="stylesheet">
+<link href="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/css/animate.min.css" rel="stylesheet">
+<link href="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/css/flipclock.css" rel="stylesheet">
 
 <style type="text/css">
     .top_row h3 {
@@ -169,9 +169,9 @@ h2{margin:0px;}
 .commn_btn:hover{
   color: #fff !important;
 }
-.registration_sec {
+/*.registration_sec {
   padding-bottom: 60px;
-}
+}*/
 .accor_price {
   border-radius: 4px;
   display: inline-block;
@@ -360,7 +360,7 @@ h2{margin:0px;}
 }
 .contct_main {
   background-attachment: fixed;
-  background-image: url("<?php echo base_url(); ?>assets/images/contact_banner.jpg");
+  background-image: url("<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/contact_banner.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 485px;
@@ -1016,18 +1016,19 @@ a.down_pd {
   display: block;
    font-family: 'Prompt', sans-serif !important;
 }
-.table_in_box .table td:nth-child(2){
+.table_in_box .table td:nth-child(1){
   position: relative;
 }
-.table_in_box .table td:nth-child(1){
-  font-size: 13px;
+.table_in_box .table td:nth-child(1) {
+  font-size: 12px;
+  padding-left: 80px;
 }
-.table_in_box .table td:nth-child(2)::before {
+.table_in_box .table td:nth-child(1)::before {
   content: "CITY/DATE";
   left: 5px;
   position: absolute;
   top: 40%;
-  color: #666;
+  color: #fff;
 }
 .member_post > span {
   font-size: 13px !important;
@@ -1044,7 +1045,7 @@ a.down_pd {
   margin-left: 10px;
   margin-top: 10px;
 }
-.table_in_box .table td:nth-child(3){
+.table_in_box .table td:nth-child(2){
   position: relative;
 }
 .table_in_box .table th, .table_in_box .table td {
@@ -1074,7 +1075,7 @@ a.down_pd {
 [type="checkbox"] + label, [type="radio"]:checked + label, [type="radio"]:not(:checked) + label {
   padding-left: 15px;
 }
-.table_in_box .table td:nth-child(3)::before {
+.table_in_box .table td:nth-child(2)::before {
   content: "Venue";
   left: 5px;
   position: absolute;
@@ -1083,11 +1084,23 @@ a.down_pd {
   width: 177px;
     text-align: left;
 }
+.table_in_box .table td:nth-child(3){
+  position: relative;
+}
+.table_in_box .table td:nth-child(3)::before {
+  content: "Early Registration Rates (by January 31st, 2017)";
+  left: 5px;
+  position: absolute;
+  top: 18%;
+  color: #666;
+  width: 177px;
+    text-align: left;
+}
 .table_in_box .table td:nth-child(4){
   position: relative;
 }
 .table_in_box .table td:nth-child(4)::before {
-  content: "Early Registration Rates (by January 31st, 2017)";
+  content: "Regular Registration Rates (by February 24th, 2017)";
   left: 5px;
   position: absolute;
   top: 18%;
@@ -1099,7 +1112,7 @@ a.down_pd {
   position: relative;
 }
 .table_in_box .table td:nth-child(5)::before {
-  content: "Regular Registration Rates (by February 24th, 2017)";
+  content: "Late Registration Rates(After February 24th, 2017) ";
   left: 5px;
   position: absolute;
   top: 18%;
@@ -1111,18 +1124,6 @@ a.down_pd {
   position: relative;
 }
 .table_in_box .table td:nth-child(6)::before {
-  content: "Late Registration Rates(After February 24th, 2017) ";
-  left: 5px;
-  position: absolute;
-  top: 18%;
-  color: #666;
-  width: 177px;
-    text-align: left;
-}
-.table_in_box .table td:nth-child(7){
-  position: relative;
-}
-.table_in_box .table td:nth-child(7)::before {
   content: "Presentation";
   left: 5px;
   position: absolute;
@@ -1200,7 +1201,7 @@ a.down_pd {
                         <div class="col-md-12 col-sm-12">
                             <div class="common_head footer_head wow fadeInDown" data-wow-delay="0.2s">
                                 <div class="regis_logo">
-                                    <img src="<?php echo base_url(); ?>assets/images/logo.png" class="img-responsive">
+                                    <img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/logo.png" class="img-responsive">
                                     <p>India, April 2nd - April 10th 2017</p>
                                     <h1>Join us for International Edu Fair 2017 in India </h1>
                                     <p> Prices will increase After</p>
@@ -1258,7 +1259,7 @@ a.down_pd {
                                             <div class="fair_content">
                                                 <div class="fair_head">
                                                     <h2>City Events & Registration Details</h2>
-                                                    <h3>Great Offers: Pay for 3 cities and explore 2 more Cities for free. Thus,
+                                                    <h3 class="animated bounce infinite">Great Offers: Pay for 3 cities and explore 2 more Cities for free. Thus,
                                                         visit overall 5 Cities </h3>
                                                     <p> Contact <a href="mailto:support@studymetro.com">support@studymetro.com </a></p>
                                                 </div>
@@ -1282,7 +1283,7 @@ a.down_pd {
                                                               ?>
                                                                 <tr>
                                                                     <td><?php echo $e['name']; ?>, <?php echo $e['city']; ?>, <?php echo date('F, dS',strtotime($e['date'])); ?></td>
-                                                                    <td><?php echo $e['venue']; ?></td>
+                                                                    <td><a href="<?php echo (!empty($e['hotel_url'])) ? $e['hotel_url'] : 'javascript:void(0)'; ?>" target="_blank"><?php echo $e['venue']; ?></a></td>
                                                                 <?php if($e['is_free'] == 1) { ?>
                                                                     <td><input name="events[]" class="city-events" type="checkbox" id="checkbox_1_<?php echo $e['id']; ?>" value="0@<?php echo encode($e['id']); ?>">
                                                                         <label for="checkbox_1_<?php echo $e['id']; ?>"></label> $<?php echo $prices_arr[0]; ?><?php echo ($is_table_arr[0] == 0) ? ', Table': '' ?></td>
@@ -1511,7 +1512,7 @@ a.down_pd {
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="left_sec agenda_sec wow fadeInDown text-center">
-                                <a href="<?php echo base_url(); ?>assets/images/down.pdf" download class="down_pd">International Student EDU Fair 2017</a>
+                                <a href="<?php echo base_url(); ?>assets/images/International-Student-EDU-Fair-2017.pdf" download class="down_pd">International Student EDU Fair 2017</a>
                             </div>
                         </div>
                     </div>
@@ -1588,39 +1589,39 @@ a.down_pd {
                                 <ul class="block_list clearfix">
                                     <li>
                                         <div class="getstart_bock">
-                                            <div class="circle_icon"><span class=""><img class="wow zoomIn" data-wow-delay="0.3s" src="<?php echo base_url(); ?>assets/images/hotel-1.png"></span></div>
+                                            <div class="circle_icon"><span class=""><img class="wow zoomIn" width="42" height="42" data-wow-delay="0.3s" src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/hotel-1.png"></span></div>
                                             <p class="wow fadeInDown" data-wow-delay="0.3s">Reservation in 5/7 Star Leading Hotels.</p>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="getstart_bock">
 
-                                            <div class="circle_icon"><span class=""><img class="wow zoomIn" data-wow-delay="0.4s"  src="<?php echo base_url(); ?>assets/images/hotel-2.png"></span></div>
+                                            <div class="circle_icon"><span class=""><img class="wow zoomIn" width="42" height="42" data-wow-delay="0.4s"  src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/hotel-2.png"></span></div>
                                             <p class="wow fadeInDown" data-wow-delay="0.4s">Possibilities are (Vivanta By Taj, Oberoi, Grand Hyatt)</p>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="getstart_bock">
-                                            <div class="circle_icon"><span class=""><img class="wow zoomIn" data-wow-delay="0.5s" src="<?php echo base_url(); ?>assets/images/dessert.png"></span></div>
+                                            <div class="circle_icon"><span class=""><img class="wow zoomIn" width="42" height="42" data-wow-delay="0.5s" src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/dessert.png"></span></div>
                                             <p class="wow fadeInDown" data-wow-delay="0.5s">Includes international Breakfast</p>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="getstart_bock">
-                                            <div class="circle_icon"><span class=""><img class="wow zoomIn" data-wow-delay="0.6s" src="<?php echo base_url(); ?>assets/images/dinner-1.png"></span></div>
+                                            <div class="circle_icon"><span class=""><img class="wow zoomIn" width="42" height="42" data-wow-delay="0.6s" src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/dinner-1.png"></span></div>
                                             <p class="wow fadeInDown" data-wow-delay="0.6s">Lunch served during Events and School Visits</p>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="getstart_bock">
-                                            <div class="circle_icon"><span class=""><img class="wow zoomIn" data-wow-delay="0.7s" src="<?php echo base_url(); ?>assets/images/table.png"></span></div>
+                                            <div class="circle_icon"><span class=""><img class="wow zoomIn" width="42" height="42" data-wow-delay="0.7s" src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/table.png"></span></div>
                                             <p class="wow fadeInDown" data-wow-delay="0.7s">Dinners with Indian universities/School Representatives</p>
                                         </div>
                                     </li>
 
                                     <li>
                                         <div class="getstart_bock">
-                                            <div class="circle_icon"><span class=""><img class="wow zoomIn" data-wow-delay="0.8s" src="<?php echo base_url(); ?>assets/images/calendar.png"></span></div>
+                                            <div class="circle_icon"><span class=""><img class="wow zoomIn" width="42" height="42" data-wow-delay="0.8s" src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/calendar.png"></span></div>
                                             <p class="wow fadeInDown" data-wow-delay="0.8s">Banner/Poster/Bulk Email/SMS through out events</p>
                                         </div>
                                     </li>
@@ -1650,7 +1651,7 @@ a.down_pd {
                         <div class="col-sm-12 col-md-12">
                             <div class="sponser_box wow zoomIn" data-wow-duration="2s">
                                 <div class="common_head footer_head">
-                                    <h2>Sponshership Opportunities</h2>
+                                    <h2>Sponsorship Opportunities</h2>
                                     <div class="head_border">
                                         <span><i class="fa fa-ioxhost" aria-hidden="true"></i></span>
                                     </div>
@@ -1662,7 +1663,7 @@ a.down_pd {
                                                 <h4 class="panel-title">
                                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
                                                         class="">
-                                                PLATINUM SPONSORS
+                                                Platinum Sponsors
                                                 <span class="accor_price">10,000 USD</span>
                                                <i class="indicator glyphicon pull-right glyphicon-minus"></i>
                                                 </a>
@@ -1689,7 +1690,7 @@ a.down_pd {
                                                 <h4 class="panel-title">
                                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
                                                         aria-controls="collapseTwo">
-                                                GOLD SPONSORS <span class="accor_price">8,000 USD</span>
+                                                Gold Sponsors <span class="accor_price">8,000 USD</span>
                                                 <i class="indicator glyphicon pull-right glyphicon-plus"></i>
                                                 </a>
                                                 </h4>
@@ -1714,7 +1715,7 @@ a.down_pd {
                                                 <h4 class="panel-title">
                                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"
                                                         aria-controls="collapseThree">
-                                                SILVER SPONSORS <span class="accor_price">6,000 USD</span>
+                                                Silver Sponsors <span class="accor_price">6,000 USD</span>
                                                 <i class="indicator glyphicon glyphicon-plus pull-right"></i>
                                                 </a>
                                                 </h4>
@@ -1762,7 +1763,7 @@ a.down_pd {
                                                 <h4 class="panel-title">
                                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#blogcollapse1" aria-expanded="false"
                                                         aria-controls="blog1">
-                                                PROMOTIONAL/MARKETING MATERIAL SPONSOR <span class="accor_price">3,000 USD</span>
+                                                Promotional/Marketing Material Sponsors <span class="accor_price">3,000 USD</span>
                                                 <i class="indicator glyphicon glyphicon-plus pull-right"></i>
                                                 </a>
                                                 </h4>
@@ -1784,7 +1785,7 @@ a.down_pd {
                                                 <h4 class="panel-title">
                                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#blogcollapse2" aria-expanded="false"
                                                         aria-controls="blog2">
-                                                GALA DINNER SPONSOR <span class="accor_price">2,500 USD</span>
+                                                Gala Dinner Sponsors <span class="accor_price">2,500 USD</span>
                                                 <i class="indicator glyphicon glyphicon-plus pull-right"></i>
                                                 </a>
                                                 </h4>
@@ -1807,7 +1808,7 @@ a.down_pd {
                                                 <h4 class="panel-title">
                                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#blogcollapse3" aria-expanded="false"
                                                         aria-controls="blog3">
-                                                Lunch Sponsor <span class="accor_price">2,000 USD</span>
+                                                Lunch Sponsors <span class="accor_price">2,000 USD</span>
                                                 <i class="indicator glyphicon glyphicon-plus pull-right"></i>
                                                 </a>
                                                 </h4>
@@ -1830,7 +1831,7 @@ a.down_pd {
                                                 <h4 class="panel-title">
                                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#blogcollapse4" aria-expanded="false"
                                                         aria-controls="blog4">
-                                                Tea/Coffee Sponsor <span class="accor_price">1,000 USD</span>
+                                                Tea/Coffee Sponsors <span class="accor_price">1,000 USD</span>
                                                 <i class="indicator glyphicon glyphicon-plus pull-right"></i>
                                                 </a>
                                                 </h4>
@@ -1854,7 +1855,7 @@ a.down_pd {
                             </div>
                     <div class="terms">
                             <div class="common_head footer_head include_head">
-                                <h2>Term and Conditions for Participation:</h2>
+                                <h2>Terms and Conditions for Participation:</h2>
                                 <div class="head_border">
                                     <span><i class="fa fa-ioxhost" aria-hidden="true"></i></span>
                                 </div>
@@ -1912,8 +1913,8 @@ a.down_pd {
                                 <div class="accept_terms wow fadeInDown" data-wow-delay="0.2s">
                                     <input id="accept_terms" type="checkbox">
                                     <label for="accept_terms"></label>I confirm that I have read and understood the event
-                                    Terms and Conditions. I hereby agree to abide by these Terms and Conditions, which form
-                                    this contract. I confirm that my organization wishes to participate in the events for
+                                    Terms and Conditions. I hereby agree to abide by these Terms and Conditions, which are
+                                    stipulated in this contract. I confirm that my organization wishes to participate in the events for
                                     which I have registered above.
                                 </div>
                                 <button type="button" class="commn_btn register-event-bottom"> Register</button>
@@ -1929,12 +1930,12 @@ a.down_pd {
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="contct_sec">
-                                <h2>Looking forward to See you in India Contact us our below team for any Assistance </h2>
+                                <h2>Looking forward to See you in India. Contact us our below team for any Assistance </h2>
                                 <ul class="clearfix teammember_list">
                                     <li class="wow fadeInLeft" data-wow-duration="1s">
                                         <div class="member_img_hover">
                                             <div class="member_img">
-                                                <img src="<?php echo base_url(); ?>assets/images/michel_img.jpg" class="img-responsive">
+                                                <img width="100" height="100" src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/michel_img.jpg" class="img-responsive">
                                             </div>
                                         </div>
                                         <h5 class="member_name">Michael Iacovazzi-Pau </h5>
@@ -1947,7 +1948,7 @@ a.down_pd {
                                     <li class="wow fadeInDown" data-wow-duration="1s">
                                         <div class="member_img_hover">
                                             <div class="member_img">
-                                                <img src="<?php echo base_url(); ?>assets/images/michel_img2.jpg" class="img-responsive">
+                                                <img width="100" height="100" src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/michel_img2.jpg" class="img-responsive">
                                             </div>
                                         </div>
                                         <h5 class="member_name">Abhishek Bajaj</h5>
@@ -1962,7 +1963,7 @@ a.down_pd {
                                     <li class="wow fadeInRight" data-wow-duration="1s">
                                         <div class="member_img_hover">
                                             <div class="member_img">
-                                                <img src="<?php echo base_url(); ?>assets/images/michel_img1.jpg" class="img-responsive">
+                                                <img width="100" height="100" src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/michel_img1.jpg" class="img-responsive">
                                             </div>
                                         </div>
                                         <h5 class="member_name">Abhinav Bajaj </h5>
@@ -2033,9 +2034,9 @@ a.down_pd {
                 </div>
             </div>
 
-  <script src="<?php echo base_url(); ?>assets/js/flipclock.min.js "></script>
-  <script src="<?php echo base_url(); ?>assets/js/mdb.min.js "></script>
-  <script src="<?php echo base_url(); ?>assets/js/wow.min.js "></script>
+  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/flipclock.min.js"></script>
+  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/mdb.min.js"></script>
+  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/wow.min.js"></script>
                 <script>
 
       $(document).ready(function(){

@@ -36,12 +36,14 @@ class Photos extends CI_Controller {
 
     public function addphotos()
     {
+    	require_once("vendor/autoload.php");
     	$files = $_FILES['photos'];
-    	$config['upload_path']   = 'uploads/photos/'; 
+    	/*$config['upload_path']   = 'uploads/photos/'; 
 		$config['allowed_types'] = 'jpg|jpeg|png|gif'; 
 		$this->load->library('upload', $config);
+		$this->upload->initialize($config);*/
 		for ($i=0; $i < count($_FILES['photos']['name']); $i++) { 
-			$_FILES['photos[]']['name']     = $_FILES['photos']['name'][$i];
+			/*$_FILES['photos[]']['name']     = $_FILES['photos']['name'][$i];
 	        $_FILES['photos[]']['type']     = $_FILES['photos']['type'][$i];
 	        $_FILES['photos[]']['tmp_name'] = $_FILES['photos']['tmp_name'][$i];
 	        $_FILES['photos[]']['error']    = $_FILES['photos']['error'][$i];
@@ -51,6 +53,19 @@ class Photos extends CI_Controller {
 	        	$photos_arr[] = $photos_files['upload_data']['file_name'];
 	        }else{
 	        	$error[] = $this->upload->display_errors();
+	        }*/
+	        try{
+	        	$tmp_name = $_FILES['photos']['tmp_name'][$i];
+				$compressed_file_name = 'min-sm-'.time().$_FILES['photos']['name'][$i];
+			    $compressed_file_path = 'uploads/photos/'.$compressed_file_name;
+				Tinify\setKey(TINIFY_KEY);
+			    Tinify\fromFile($tmp_name)->toFile($compressed_file_path);
+			    chmod($compressed_file_path, 0777);
+			    $photos_arr[] = $compressed_file_name;
+	        }catch (Exception $e) {
+	        	$Msg = $e->getMessage();
+                $this->session->set_flashdata('general_error', $Msg);
+                redirect($this->url.'/add-new');
 	        }
 		}
 		if(isset($error) && !empty($error)){

@@ -103,8 +103,10 @@
                                             $user_details = getUserDetailsBy('email',$s['to_email']);
                                             if(empty($user_details[0]['photo'])){
                                               $file = base_url().'uploads/users/default.jpg';
+                                              $name = 'Unknown';
                                             }else{
                                               $file = base_url().'uploads/users/'.$user_details[0]['photo'];
+                                              $name = $user_details[0]['first_name']." ".$user_details[0]['last_name'];
                                             }
                                         ?>
                                         <tr>
@@ -122,7 +124,7 @@
                                                 </div>
                                                 <div class="message_sub">
                                                     <h4 class="view-mail" type="sent" main="<?php echo encode($s['id']); ?>"><?php echo $s['subject']; ?></h4>
-                                                    <p class="view-mail" type="sent"  main="<?php echo encode($s['id']); ?>"><?php echo $user_details[0]['first_name']." ".$user_details[0]['last_name']; ?></p>
+                                                    <p class="view-mail" type="sent"  main="<?php echo encode($s['id']); ?>"><?php echo $name; ?></p>
                                                 </div>
                                             </td>
                                             <td>
@@ -290,22 +292,18 @@ $('body').on('click','.view-mail',function(){
         success: function(resp){
            if(resp.type == "success"){
             var mail_data = resp.mail;
-            //alert(mail_data);
             $('.mail-content').html(mail_data.message);
             $('.user-name').text(resp.username);
             $('.user-img-show').attr('src',resp.userimg);
             $('.mail-subject-time').html(mail_data.subject+' <span>'+resp.datetime+'</span>');
             if($.trim(resp.attachment)!='')
             {
-                //alert(mail_data.attachment);
-                $('.mail-attachment').html('Download Attachment<a download class="download_btn" href="<?php echo base_url() ?>'+resp.attachment+'" title="Click Here To Download Document"><i class="fa fa-download" aria-hidden="true"></i></a> ');
+                $('.mail-attachment').html('<a download class="" href="<?php echo base_url() ?>'+resp.attachment+'" title="Click Here To Download Attachment">Download Attachment</a> ');
             }
             else
             {
                 $('.mail-attachment').html('');
             }
-            
-
             $('#title').modal('show');
            }
            else{

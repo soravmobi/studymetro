@@ -139,11 +139,18 @@ function fileUploading($name,$subfolder)
     $f_extension1 = strtolower(end($f_extension1)); 
     $f_newfile1="";
     if($f_name1){
-    $f_newfile1 = "SM_".uniqid().'.'.$f_extension1; 
-    $store1 = "uploads/".$subfolder."/". $f_newfile1;
-    $image2 =  move_uploaded_file($f_tmp1,$store1);
+	    $f_newfile1 = get_seo_str($f_name1)."-SM-".time().'.'.$f_extension1; 
+	    $store1 = "uploads/".$subfolder."/". $f_newfile1;
+	    if(move_uploaded_file($f_tmp1,$store1)){
+	    	chmod($store1, 0777);
+	    	return $store1;
+	    }else{
+    		return "";
+	    }
+    }else{
+    	return "";
     }
-    return "uploads/".$subfolder."/". $f_newfile1;
+    
 }
 
 function imgUpload($filename,$subfolder,$ext,$size="",$width="",$height="")

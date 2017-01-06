@@ -246,6 +246,17 @@ $('body').on('click','.frt_toggle1', function (e) {
       
 });
 
+/* $("img").each(function() {
+    var src      = $(this).attr('src');
+    var src_arr  = src.split('/');
+    if(src_arr){
+        var img_name = src_arr.slice(-1)[0];
+        var name_arr = img_name.split('.');
+        if(name_arr){
+            $(this).attr('alt',name_arr[0]);
+        }
+    }
+ });*/
 
 
  $(".contact_list li a").click(function(){
@@ -365,12 +376,11 @@ function toggler(target, relatedtarget) {
     $(relatedtarget).addClass('hidden');
 }
 
-document.write("\<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCz7Bo_xQIywAxLvk5BRR5xz70VY2VhLPk&libraries=places&callback=initMap' type='text/javascript'>\<\/script>");
-
 var autocomplete;
 function initMap() {
     var check_class = $('input').hasClass('google_autocomplete');
     if (check_class == true) {
+        document.write("\<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCz7Bo_xQIywAxLvk5BRR5xz70VY2VhLPk&libraries=places&callback=initMap' type='text/javascript'>\<\/script>");
         autocomplete = new google.maps.places.Autocomplete(
               /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
             { types: ['geocode'] });
@@ -383,7 +393,8 @@ window.onload = function () {
     initMap();
 };
 
-function getUniversities(country, indecator, selectedValue = '') {
+function getUniversities(country, indecator, selectedValue) {
+    if (typeof(selectedValue)==='undefined') selectedValue = '';
     var appendHTML = '<option value="">Choose a university</option>';
     if (country == '') {
         $('.select_university').html(appendHTML);

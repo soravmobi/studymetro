@@ -119,7 +119,15 @@ class Pages extends CI_Controller {
 
                 if(!empty($_FILES['media_file']['name'])){
                     if($_POST['media'] == 0){
-                        $logo = imgUpload('media_file','pages','jpg|jpeg|png|gif');
+                        // $logo = imgUpload('media_file','pages','jpg|jpeg|png|gif');
+                        try{
+                            /* Compress image */
+                            $logo = tinify_compress_img('media_file','pages');
+                        }catch (Exception $e) {
+                            $Msg = $e->getMessage();
+                            $this->session->set_flashdata('general_error', $Msg);
+                            redirect($this->url.'/add-new');
+                        }
                     }else{
                         $logo = imgUpload('media_file','pages','mp4');
                     }
@@ -127,7 +135,11 @@ class Pages extends CI_Controller {
                         $this->session->set_flashdata('general_error', $logo['error']);
                         redirect($this->url.'/add-new');
                     }else{
-                        $_POST['media_file'] = $logo['upload_data']['file_name'];
+                        if($_POST['media'] == 0){
+                            $_POST['media_file'] = $logo;
+                        }else{
+                            $_POST['media_file'] = $logo['upload_data']['file_name'];
+                        }
                     }
                 }else{
                     $this->session->set_flashdata('general_error', 'Please select file !!');
@@ -189,7 +201,15 @@ class Pages extends CI_Controller {
 
                     if(!empty($_FILES['media_file']['name'])){
                         if($_POST['media'] == 0){
-                            $logo = imgUpload('media_file','pages','jpg|jpeg|png|gif');
+                            // $logo = imgUpload('media_file','pages','jpg|jpeg|png|gif');
+                            try{
+                            /* Compress image */
+                                $logo = tinify_compress_img('media_file','pages');
+                            }catch (Exception $e) {
+                                $Msg = $e->getMessage();
+                                $this->session->set_flashdata('general_error', $Msg);
+                                redirect($this->url.'/add-new');
+                            }
                         }else{
                             $logo = imgUpload('media_file','pages','mp4');
                         }
@@ -197,7 +217,11 @@ class Pages extends CI_Controller {
                             $this->session->set_flashdata('general_error', $logo['error']);
                             redirect($this->url.'/add-new');
                         }else{
-                            $_POST['media_file'] = $logo['upload_data']['file_name'];
+                             if($_POST['media'] == 0){
+                                $_POST['media_file'] = $logo;
+                            }else{
+                                $_POST['media_file'] = $logo['upload_data']['file_name'];
+                            }
                         }
                     }
                     

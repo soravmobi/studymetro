@@ -54,7 +54,12 @@ class Videos extends CI_Controller {
 					);
 				$thumb = parseVideos($data['name']);
 				if(!empty($thumb)) {
-					$data['video_thumb'] = $thumb[0]['fullsize'];
+					$thumb = save_file_from_server($thumb[0]['fullsize'],'videos');
+					if(!empty($thumb)){
+						$data['video_thumb'] = base_url().'uploads/videos/'.$thumb;
+					}else{
+						$data['video_thumb'] = base_url().'assets/images/no_img_video.jpg';
+					}
 				}
 				$this->common_model->addRecords(PHOTOS, $data);
 			}

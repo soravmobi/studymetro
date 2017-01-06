@@ -219,7 +219,7 @@ class City_events extends CI_Controller {
         		$details = $this->common_model->getSingleRecordById(EVENT_REGISTRATION,array('id' => $uId));
         		/* Send email to user */
 		        $user_message = '';
-		        $user_message .= "<img style='width:90px' src='".base_url()."assets/img/logo.png' class='img-responsive'></br></br>";
+		        $user_message .= "<img style='width:200px' src='".base_url()."assets/img/logo.png' class='img-responsive'></br></br>";
 		        $user_message .= "<br><br> Hello ".$details['name'].", <br/><br/>";
 		        $user_message .= "We received your payment successfully for ".CMS_NAME." EDU Fair Event <br/><br/>";
 		        $user_message .= "Thanks, <br/><br/>";

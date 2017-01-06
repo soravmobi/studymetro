@@ -51,43 +51,31 @@ class Api extends REST_Controller {
             $dataArr['device_id']   = extract_value($data,'device_id','');
             $dataArr['device_key']  = extract_value($data,'device_key','');
             $dataArr['is_blocked']  = 0;
-            $dataArr['is_email_verified'] = 1;
+            $dataArr['is_email_verified'] = 0;
             $dataArr['username']     = $dataArr['first_name'].$dataArr['last_name'];
-            if($dataArr['user_type']== 5)
-            {
-                $dataArr['user_status'] = 0;
-            }
-            else
-            {
-                $dataArr['user_status'] = 1;
-            }
+            $dataArr['user_status'] = 0;
             $dataArr['date_created'] = datetime();
 
             /* Insert User Data Into Users Table */
             $lid = $this->common_model->addRecords(USER,$dataArr);
         	if($lid){
-                /* Send verification mail to user
-                $email    = $dataArr['EmailId'];
-                $token    = ci_enc($email."-".$Status);
-                $link     = base_url().'verify/user?email='.$email.'&token='.$token;
+                /* Send verification mail to user */
+                $email = $dataArr['email'];
+                $token = encode($email."-".$lid);
+                $tokenArr = array('verification_key' => $token);
+                $this->common_model->updateRecords(USER,$tokenArr,array('id' => $lid));
+                $link = base_url().'front/front/verifyuser?email='.$email.'&token='.$token;
                 $message  = "";
+                $message .= "<img style='width:200px' src='".base_url()."assets/img/logo.png' class='img-responsive'></br></br>";
                 $message .= "<br><br> Hello, <br/><br/>";
-                $message .= "Your ".SITE_NAME." profile has been created. Please click on the link below to complete your registration. <br/><br/>";
-                $message .= "<a href='".$link."'>Verify Your Email</a>  <br/><br/>";
-                $message .= "Thanks, <br/><br/>";
-                $message .= "The ".SITE_NAME." Team <br/>";
-                $message .= "contactus@nolimit.com";
+                $message .= "Your ".SITE_NAME." profile has been created. Please click on below link to verify your account. <br/><br/>";
+                $message .= "Click here : <a href='".$link."'>Verify Your Email</a>";
                 $this->email->to($email);
-                $this->email->from(FROM_EMAIL,FROM_NAME);
+                $this->email->from(FROM_EMAIL,SITE_NAME);
                 $this->email->subject('['.SITE_NAME.'] Thank you for registering with us');
                 $this->email->message($message);
                 $this->email->set_mailtype("html");
                 $this->email->send();
-
-                /* Update mail notification token 
-                $this->Common_model->updateFields('users',array('TokenID' => $token),array('UserID' => $Status));
-                */
-
                 /* Return success response */
                 $return['status']         =   1; 
 	            $return['message']        =   'User registered successfully'; 
@@ -339,12 +327,22 @@ class Api extends REST_Controller {
                         $return['message'] =   'Invalid notes id';
                     }
                }else{ // Get user notes list
-                    $page_no  = extract_value($data,'page_no',0);
+                    $page_no  = extract_value($data,'page_no',1);
                     $offset   = get_offsets($page_no);
+
                     $result = $this->common_model->getAllwhere(NOTES,array('user_id' => $check_login_session_key['id']),'id','DESC','all',10,$offset);
                     if($result){
                         /* Return Response */
                         $response = array();
+                        /* Get total records */
+                        $total_requested = (int) $page_no * 10;
+                        $total_records   = getAllCount(NOTES,array('user_id' => $check_login_session_key['id']));
+                        if($total_records > $total_requested){
+                            $has_next = TRUE;
+                        }else{
+                            $has_next = FALSE;
+                        }
+
                         foreach($result as $r)
                         {
                           $row['note_id']   = null_checker($r['id']);  
@@ -354,10 +352,11 @@ class Api extends REST_Controller {
                         }
                         $return['status']    =   1; 
                         $return['response']  =   $response; 
+                        $return['has_next']  =   $has_next; 
                         $return['message']   =   'success';
                     }else{
                         $return['status']  =   0; 
-                        $return['message'] =   'Notes data not found';
+                        $return['message'] =   'Please Add Note';
                     }
                }
             }else{

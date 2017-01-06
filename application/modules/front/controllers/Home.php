@@ -398,16 +398,20 @@ class Home extends CI_Controller {
     {
         /* Send email to user */
         $user_message = '';
-        $user_message .= "<img style='width:90px' src='".base_url()."assets/img/logo.png' class='img-responsive'></br></br>";
+        $user_message .= "<img style='width:200px' src='".base_url()."assets/img/logo.png' class='img-responsive'></br></br>";
         $user_message .= "<br><br> Hello ".$user_name.", <br/><br/>";
-        $user_message .= "Thanks for ".CMS_NAME." EDU Fair Event registration. <br/><br/>";
-        $user_message .= "Thanks, <br/><br/>";
-        $user_message .= "The ".CMS_NAME." Team <br/>";
-        send_mail($user_message, '['.CMS_NAME.'] EDU Fair Event' , $user_email,SUPPORT_EMAIL);
+        $user_message .= "Thanks for registering in International Student Edu Fair 2017 – Biggest International Students Recruitment & Workshops in india. <br/><br/>";
+        $user_message .= "We look forward to see you in our event. If you have any questions feel free to reach our team at Michael@studymetro.com or Call +1-312-218-8883 and abhishek@studymetro.com or Call +91-88921-82127 <br/><br/>";
+        $user_message .= "Regards, <br/>";
+        $user_message .= CMS_NAME."-An AIRC Certified Company  <br/>";
+        $user_message .= "www.studymetro.com <br/>";
+        $user_message .= "8088-867-867, 7722-867-867 <br/>";
+        $user_message .= "Skype:abbie.studymetro <br/>";
+        send_mail($user_message, 'International Students Edu Fair 2017' , $user_email,SUPPORT_EMAIL);
 
         /* Send email to admin */
         $admin_message = '';
-        $admin_message .= "<img style='width:90px' src='".base_url()."assets/img/logo.png' class='img-responsive'></br></br>";
+        $admin_message .= "<img style='width:200px' src='".base_url()."assets/img/logo.png' class='img-responsive'></br></br>";
         $admin_message .= "<br><br> Hello, <br/><br/>";
         $admin_message .= $user_name." has registered for EDU Fair Event <br/><br/>";
         send_mail($admin_message, 'New EDU Fair Event Registration' ,SUPPORT_EMAIL,SUPPORT_EMAIL);

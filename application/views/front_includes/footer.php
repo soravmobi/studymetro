@@ -158,22 +158,22 @@
               </div>
               <ul class="brand_list">
                 <li>
-                  <a href="javascript:void(0);"><img class="accreditation-img" src="<?php echo base_url(); ?>assets/images/EAIE.png"></a>
+                  <a href="javascript:void(0);"><img class="accreditation-img" width="135" height="85" src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/EAIE.png"></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0);"><img class="accreditation-img" src="<?php echo base_url(); ?>assets/images/ICEF.png"></a>
+                  <a href="javascript:void(0);"><img class="accreditation-img" width="135" height="85" src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/ICEF.png"></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0);"><img class="accreditation-img" src="<?php echo base_url(); ?>assets/images/NAFSA.png"></a>
+                  <a href="javascript:void(0);"><img class="accreditation-img" width="135" height="85" src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/NAFSA.png"></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0);"><img class="accreditation-img" src="<?php echo base_url(); ?>assets/images/QISAN.jpeg"></a>
+                  <a href="javascript:void(0);"><img class="accreditation-img" width="135" height="85" src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/QISAN.jpeg"></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0);"><img class="accreditation-img" src="<?php echo base_url(); ?>assets/images/AIRC.png"></a>
+                  <a href="javascript:void(0);"><img class="accreditation-img" width="135" height="85" src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/AIRC.png"></a>
                 </li>
                 <li>
-                  <a href="javascript:void(0);"><img class="accreditation-img" src="<?php echo base_url(); ?>assets/images/AIEA.png"></a>
+                  <a href="javascript:void(0);"><img class="accreditation-img" width="135" height="85" src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/AIEA.png"></a>
                 </li>
               </ul>
             </div> 
@@ -280,16 +280,16 @@
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   
   <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/plugin.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/jquery.bootstrap.wizard.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/sweetalert2.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/featherlight.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/featherlight.gallery.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/jquery.twbsPagination.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/jquery.zclip.js"></script>
+  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/bootstrap.min.js"></script>
+  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/plugin.js"></script>
+  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/jquery.bootstrap.wizard.min.js"></script>
+  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/sweetalert2.min.js"></script>
+  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/featherlight.js"></script>
+  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/featherlight.gallery.js"></script>
+  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/bootstrap-datepicker.min.js"></script>
+  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/jquery.twbsPagination.min.js"></script>
+  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/custom.js"></script>
+  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/jquery.zclip.js"></script>
   
   <script type="text/javascript">
     function getQueryStringValue(key)
@@ -514,7 +514,6 @@ if(isset($slug) && !in_array($slug, array('city-events','indian-university'))){
 }
 ?>
 
-<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script type="text/javascript">
       window.onload = function() {
         initEditor();
@@ -523,6 +522,7 @@ if(isset($slug) && !in_array($slug, array('city-events','indian-university'))){
       function initEditor() {
           var class_exist = $('textarea').hasClass('mceEditor');
           if (class_exist == true) {
+              document.write("\<script src='//cdn.tinymce.com/4/tinymce.min.js' type='text/javascript'>\<\/script>");
               tinymce.init({
                   mode: "textareas",
                   editor_selector: "mceEditor",

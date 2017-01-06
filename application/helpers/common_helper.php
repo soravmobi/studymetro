@@ -13,19 +13,22 @@
 * @return true OR false
 */
 if (!function_exists('send_mail')) {
-	function send_mail($message, $subject, $email_address,$from="") {
+	function send_mail($message, $subject, $email_address,$from="",$attach="") {
 	    $ci =&get_instance();
 		$ci->load->library('email');
 		$config['mailtype'] = 'html';
 		$ci->email->initialize($config);
 		if(!empty($from)){
-			$ci->email->from($from);
+			$ci->email->from($from,CMS_NAME);
 		}else{
-			$ci->email->from(get_option('site_email'));
+			$ci->email->from(get_option('site_email'),CMS_NAME);
 		}	
 		$ci->email->to($email_address);
 		$ci->email->subject($subject);
         $ci->email->message($message);
+        if(!empty($attach)){
+        	$ci->email->attach($attach);
+        }
         $ci->email->set_mailtype("html");
 		if($ci->email->send()) {	
 			return true;
@@ -807,13 +810,72 @@ function getAllCount($table,$where="")
     $CI->db->where($where);
   }
   $q = $CI->db->count_all_results($table);
-  return addZero($q);
+  return (int) $q;
 }
 
 function get_offsets($page_no = 0)
 {
    $offset = ($page_no == 0) ? 0 : (int) $page_no * 10 - 10;
    return $offset;
+}
+
+
+function get_seo_str($str){
+	if($str !== mb_convert_encoding( mb_convert_encoding($str, 'UTF-32', 'UTF-8'), 'UTF-8', 'UTF-32') )
+	$str = mb_convert_encoding($str, 'UTF-8', mb_detect_encoding($str));
+	$str = htmlentities($str, ENT_NOQUOTES, 'UTF-8');
+	$str = preg_replace('`&([a-z]{1,2})(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', '\1', $str);
+	$str = html_entity_decode($str, ENT_NOQUOTES, 'UTF-8');
+	$str = preg_replace(array('`[^a-z0-9]`i','`[-]+`'), '-', $str);
+	$str = strtolower( trim($str, '-') );
+	return $str;
+}
+
+function tinify_compress_img($filename,$subfolder){
+	$tmp_name = $_FILES[$filename]['tmp_name'];
+	$compressed_file_name = 'min-sm-'.time().$_FILES[$filename]['name'];
+    $compressed_file_path = 'uploads/'.$subfolder.'/'.$compressed_file_name;
+
+	/* Load Tinify Library */
+    require_once("vendor/autoload.php");
+	Tinify\setKey(TINIFY_KEY);
+    Tinify\fromFile($tmp_name)->toFile($compressed_file_path);
+    chmod($compressed_file_path, 0777);
+    return $compressed_file_name;
+}
+
+function is_404($url) {
+    $handle = curl_init($url);
+    curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
+
+    /* Get the HTML or whatever is linked in $url. */
+    $response = curl_exec($handle);
+
+    /* Check for 404 (file not found). */
+    $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+    curl_close($handle);
+
+    /* If the document has loaded successfully without any redirection or error */
+    if ($httpCode >= 200 && $httpCode < 300) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function save_file_from_server($file,$subfolder){
+	$explode_file = explode(".", $file);
+	if(!empty($explode_file) && !is_404($file)){
+		$ext      = end($explode_file);
+		$pic      = file_get_contents($file);
+	    $filename = time().uniqid().'.'.$ext;
+	    $path     = "uploads/".$subfolder."/".$filename;
+	    file_put_contents($path, $pic);
+	    chmod($path, 0777);
+	    return $filename;
+	}else{
+		return "";
+	}
 }
     
 /* End of file common_helper.php */

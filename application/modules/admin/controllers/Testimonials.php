@@ -43,12 +43,21 @@ class Testimonials extends CI_Controller {
 					'added_date' => date('Y-m-d H:i:s')
 				);
 		if(!empty($_FILES['image']['name'])){
-			$logo = imgUpload('image','testimonials','jpg|jpeg|png|gif');
-			if(isset($logo['error'])){
+			// $logo = imgUpload('image','testimonials','jpg|jpeg|png|gif');
+			try{
+                /* Compress image */
+                $logo = tinify_compress_img('image','testimonials');
+            }catch (Exception $e) {
+                $Msg = $e->getMessage();
+                $this->session->set_flashdata('general_error', $Msg);
+                redirect($this->url.'/add-new');
+            }
+		if(isset($logo['error'])){
 				$this->session->set_flashdata('general_error', $logo['error']);
             	redirect($this->url.'/add-new');
 			}else{
-				$data['image'] = base_url().'uploads/testimonials/'.$logo['upload_data']['file_name'];
+				// $data['image'] = base_url().'uploads/testimonials/'.$logo['upload_data']['file_name'];
+				$data['image'] = base_url().'uploads/testimonials/'.$logo;
 				$this->common_model->addRecords(TESTIMONIALS, $data);
 				$this->session->set_flashdata('item_success', sprintf(ITEM_ADD_SUCCESS, 'Testimonials'));
 		        redirect($this->url.'/view-all');
@@ -90,12 +99,21 @@ class Testimonials extends CI_Controller {
 					'given_by' => $post_data['given_by'],
 				);
 		if(!empty($_FILES['image']['name'])){
-			$logo = imgUpload('image','testimonials','jpg|jpeg|png|gif');
+			// $logo = imgUpload('image','testimonials','jpg|jpeg|png|gif');
+			try{
+                /* Compress image */
+                $logo = tinify_compress_img('image','testimonials');
+            }catch (Exception $e) {
+                $Msg = $e->getMessage();
+                $this->session->set_flashdata('general_error', $Msg);
+                redirect($this->url.'/add-new');
+            }
 			if(isset($logo['error'])){
 				$this->session->set_flashdata('general_error', $logo['error']);
             	redirect($this->url.'/add-new');
 			}else{
-				$data['image'] = base_url().'uploads/testimonials/'.$logo['upload_data']['file_name'];
+				// $data['image'] = base_url().'uploads/testimonials/'.$logo['upload_data']['file_name'];
+				$data['image'] = base_url().'uploads/testimonials/'.$logo;
 			}
 		}
 		$this->common_model->updateRecords(TESTIMONIALS, $data,array('id' => $post_data['id']));

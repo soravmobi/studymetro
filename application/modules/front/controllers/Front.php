@@ -74,42 +74,30 @@ class Front extends CI_Controller {
 				unset($data['confm_pswd']);
 				$data['password'] = md5($data['password']);
 				$data['username'] = $data['first_name'].$data['last_name'];
-				if($data['user_type']==5)
-				{
-					$data['user_status']=0;
-				}
-				else
-				{
-					$data['user_status']=1;
-				}
+				$data['user_status']=0;
 				$data['user_type']  = $data['user_type'];
 				$data['is_blocked'] = 0;
-				$data['is_email_verified'] = 1;
+				$data['is_email_verified'] = 0;
 				$data['date_created'] = datetime();
 				$email = $data['email'];
-				$lid = $this->common_model->addRecords('users',$data);
+				$lid = $this->common_model->addRecords(USER,$data);
 				if(!empty($lid)){
-					/*$token = encode($email."-".$lid);
+					$token = encode($email."-".$lid);
 					$tokenArr = array('verification_key' => $token);
-					$this->common_model->updateRecords('users',$tokenArr,array('id' => $lid));
-					$link = base_url().'front/home/verifyuser?email='.$email.'&token='.$token;
+					$this->common_model->updateRecords(USER,$tokenArr,array('id' => $lid));
+					$link = base_url().'front/front/verifyuser?email='.$email.'&token='.$token;
 					$message  = "";
-					$message .= "<img style='width:90px' src='".base_url()."assets/img/logo.png' class='img-responsive'></br></br>";
+					$message .= "<img style='width:200px' src='".base_url()."assets/img/logo.png' class='img-responsive'></br></br>";
 					$message .= "<br><br> Hello, <br/><br/>";
-					$message .= "Your study metro profile has been created. Please click on below link to verify your account. <br/><br/>";
+					$message .= "Your ".SITE_NAME." profile has been created. Please click on below link to verify your account. <br/><br/>";
 					$message .= "Click here : <a href='".$link."'>Verify Your Email</a>";
 					$this->email->to($email);
 				    $this->email->from(FROM_EMAIL,SITE_NAME);
-				    $this->email->subject('[Study metro] Thank you for registering with us');
+				    $this->email->subject('['.SITE_NAME.'] Thank you for registering with us');
 				    $this->email->message($message);
 				    $this->email->set_mailtype("html");
-				    if ($this->email->send()) {
-		                $data['message_display'] = 'Email Successfully Send !';
-		            } else {
-		                $data['message_display'] = '<p class="error_msg">Invalid Gmail Account or Password !</p>';
-		            }*/
-				    // echo json_encode(array('type' => 'success','msg' => 'User registered successfully, please check your mail to verify account !'));
-				    echo json_encode(array('type' => 'success','msg' => 'User registered successfully !'));
+				    $this->email->send();
+				    echo json_encode(array('type' => 'success','msg' => 'User registered successfully, please check your mail to verify account !'));
 				}else{
 					echo json_encode(array('type' => 'failed','msg' => 'Failed please try again !'));					
 				}
@@ -133,7 +121,7 @@ class Front extends CI_Controller {
 			$email = $this->input->get('email');
 			$token = $this->input->get('token');
 			$where = array('email' => $email, 'verification_key' => $token);
-			$result = $this->Common_model->getSingleRecordById('users',$where);
+			$result = $this->common_model->getSingleRecordById(USER,$where);
 			if(!empty($result)){
 				$status = $result['is_email_verified'];
 				if($status == 1){
@@ -146,12 +134,14 @@ class Front extends CI_Controller {
 									'is_blocked' => 0,
 									'verification_key' => NULL
 								);
-					$this->Common_model->updateRecords('users',$updateData,array('id' => $result['id']));
-					$this->session->set_userdata('userid',$result['id']);
+					$this->common_model->updateRecords(USER,$updateData,array('id' => $result['id']));
+					$this->session->set_userdata('user_id',$result['id']);
 					$this->session->set_userdata('email',$result['email']);
 					$this->session->set_userdata('first_name',$result['first_name']);
 					$this->session->set_userdata('last_name',$result['last_name']);
-					redirect($this->url.'/users');
+					$this->session->set_userdata('user_type',$result['user_type']);
+					$this->session->set_flashdata('success','Congratulation your account successfully verified !');
+					redirect('/');
 				}
 			}else{
 				$this->session->set_flashdata('error','Invalid Token !');
@@ -169,7 +159,7 @@ class Front extends CI_Controller {
 			$redirect_url = base_url().'user/dashboard';
 			$password = md5($data['password']);
 			$where  = array('password' => $password,'email' => $data['email']);
-			$result = $this->common_model->getSingleRecordById('users',$where);
+			$result = $this->common_model->getSingleRecordById(USER,$where);
 			if(empty($result)){
 				echo json_encode(array('type' => 'failed', 'msg' => 'Invalid email-id or password !'));exit;
 			}else{
@@ -184,7 +174,7 @@ class Front extends CI_Controller {
 					$cookie= array(
 					      'name'   => 'study_metro',
 					      'value'  => encode($data['email']."_".$result['id']),
-					      'expire' => '86500',
+					      'expire' => '86500', // 3 days
 					  );
 				  	$this->input->set_cookie($cookie);
 				  	}

@@ -37,6 +37,10 @@
 		                  <input type="text" value="<?php echo $details['venue']; ?>" name="venue" placeholder="Event Venue" required class="form-control margin_bottom10"/>
 		                </div>
 		                <div class="form-group photo_1">
+		                  <label for="photos">Hotel URL</label>
+		                  <input type="text" name="hotel_url" value="<?php echo $details['hotel_url']; ?>" placeholder="Hotel URL" class="form-control margin_bottom10"/>
+		                </div>
+		                <div class="form-group photo_1">
 		                  <label for="photos">City</label>
 		                  <input type="text" value="<?php echo $details['city']; ?>" name="city" placeholder="Event City" required class="form-control margin_bottom10"/>
 		                </div>

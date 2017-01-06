@@ -374,7 +374,7 @@ if(!function_exists('getPhotosGallery')) {
 		$html = '';
 		$html .= '<section class="gallery_wrap"><div class="container"><div class="common_head footer_head"><h2>Photo Gallery</h2><div class="head_border"><span><i class="fa fa-ioxhost" aria-hidden="true"></i></span></div></div><div class="gallery_content clearfix"><div id="my-gallery-container" class="">';
 		foreach(getphotogallery() as $p) {
-			$html .= '<div class="item"><a href="'.$p['name'].'" class="gallery"> <img src="'.$p['name'].'"></a></div>';
+			$html .= '<div class="item"><a href="'.$p['name'].'" class="gallery"> <img src="'.display_timuthumb($p['name'],228,150).'" width="228" height="150"></a></div>';
 		}
 		$html .= '</div></div></div></section>';
 		return $html;
@@ -417,7 +417,7 @@ if(!function_exists('getVideoGallerySection')) {
 				$video = parseVideos($v['name']);
 				$img = $video[0]['fullsize'];
 			}
-			$html .= '<div class="item"><div class="video_box"><a class="videoOverlapper" href="'.$v['name'].'" data-featherlight="iframe"><i class="playIcon fa fa-play-circle-o"></i><img src="'.$img.'"/></a><div class="more_video_box"><a class="more_photo more_video" href="'.$v['name'].'" data-featherlight="iframe">Watch Now </a></div></div></div>';
+			$html .= '<div class="item"><div class="video_box"><a class="videoOverlapper" href="'.$v['name'].'" data-featherlight="iframe"><i class="playIcon fa fa-play-circle-o"></i><img width="224" height="226" src="'.display_timuthumb($img,224,226).'"/></a><div class="more_video_box"><a class="more_photo more_video" href="'.$v['name'].'" data-featherlight="iframe">Watch Now </a></div></div></div>';
 			//$html .= '<div class="item"><div class="video_box"><iframe width="100%" height="200" frameborder="0" allowfullscreen="" id="video'.$v['id'].'" src="'.$v['name'].'"></iframe><div class="more_video_box"><a class="more_photo more_video" href="javascript:void(0);" data-featherlight="#video'.$v['id'].'">Watch Now </a></div></div></div>';
 		}
 		$html .= '</div></div></section>';
@@ -490,6 +490,30 @@ if(!function_exists('get_university_detail')) {
 		}else{
 			return "";
 		}
+	}
+}
+
+if(!function_exists('minimized_redirects')) {
+	function minimized_redirects($url)
+	{
+		if(HTTP_HOST == 'localhost' || HTTP_HOST == 'studymetro.sid.mwdemoserver.com'){
+			return $url;
+		}else{
+			$www   = strpos($url, 'www.');
+			if($www !== FALSE){
+				return $url;
+			}else{
+				return str_replace("http://", "http://www.", $url);
+			}
+			
+		}
+	}
+}
+
+if(!function_exists('display_timuthumb')) {
+	function display_timuthumb($path,$width,$height)
+	{
+		return base_url().'timthumb/timthumb.php?src='.urlencode($path).'&zc=1&a=t&w='.$width.'&h='.$height.'&time='.time();
 	}
 }
 

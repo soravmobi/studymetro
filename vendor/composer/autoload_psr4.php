@@ -6,4 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Tinify\\' => array($vendorDir . '/tinify/tinify/lib/Tinify'),
 );
