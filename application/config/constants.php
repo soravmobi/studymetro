@@ -264,6 +264,10 @@ define('VIEW_ALL_FEEDBACK', 'admin/feedbacks/view-all');
 
 /* URLS constant end */
 
+define('UPLOAD_PREFIX', 'static/uploads/');
+
+define('SUB_DIR', 'static/');
+
 define('HTTP_HOST', $_SERVER['HTTP_HOST']);
 
 if(HTTP_HOST == 'localhost' || HTTP_HOST == 'studymetro.sid.mwdemoserver.com' || HTTP_HOST == 'studymetro.mobi96.com'){
@@ -278,7 +282,7 @@ if(HTTP_HOST == 'localhost' || HTTP_HOST == 'studymetro.sid.mwdemoserver.com' ||
 
 	switch (HTTP_HOST) {
 		case 'localhost':
-			define('SUB_DOMAIN_BASE_URL', 'http://localhost/study_metro/');
+			define('SUB_DOMAIN_BASE_URL', 'http://localhost/study_metro/static/');
 			break;
 		case 'studymetro.sid.mwdemoserver.com':
 			define('SUB_DOMAIN_BASE_URL', 'http://studymetro.sid.mwdemoserver.com/');

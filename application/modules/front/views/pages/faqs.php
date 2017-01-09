@@ -22,17 +22,17 @@
                                     <div class="list_faq_main">
                                         <ul>
                                             <li><a href="<?php echo base_url(); ?>faqs/General">General FAQ</a></li>
-                                            <li><a href="<?php echo base_url(); ?>faqs/UK"><span><img src="<?php echo base_url(); ?>assets/images/uk_flag_thumb.png"></span> UK FAQ</a></li>
-                                            <li><a href="<?php echo base_url(); ?>faqs/Canada"><span><img src="<?php echo base_url(); ?>assets/images/canada_flag.png"></span> canada  FAQ</a></li>
-                                            <li><a href="<?php echo base_url(); ?>faqs/New Zealand"><span><img src="<?php echo base_url(); ?>assets/images/New_zealand_flag.png"></span> New Zealand FAQ</a></li>
-                                            <li><a href="<?php echo base_url(); ?>faqs/Ireland"><span><img src="<?php echo base_url(); ?>assets/images/Ireland_flag.png"></span> Ireland FAQ</a></li>
-                                            <li><a href="<?php echo base_url(); ?>faqs/France"><span><img src="<?php echo base_url(); ?>assets/images/Flag_of_France.png"></span> France FAQ</a></li>
-                                            <li><a href="<?php echo base_url(); ?>faqs/Germany"><span><img src="<?php echo base_url(); ?>assets/images/germony_flag.png"></span> Germany FAQ</a></li>
-                                            <li><a href="<?php echo base_url(); ?>faqs/Australia"><span><img src="<?php echo base_url(); ?>assets/images/aus_flag.png"></span> Australia FAQ</a></li>
-                                            <li><a href="<?php echo base_url(); ?>faqs/Europe"><span><img src="<?php echo base_url(); ?>assets/images/europe_flag.png"></span> Europe FAQ</a></li>
-                                            <li><a href="<?php echo base_url(); ?>faqs/USA"><span><img src="<?php echo base_url(); ?>assets/images/usa_flag.png"></span> USA FAQ</a></li>
-                                            <li><a href="<?php echo base_url(); ?>faqs/Signapore"><span><img src="<?php echo base_url(); ?>assets/images/singapore.jpg"></span> Signapore FAQ</a></li>
-                                            <li><a href="<?php echo base_url(); ?>faqs/Malaysia"><span><img src="<?php echo base_url(); ?>assets/images/Malaysia_flag.png"></span> Malaysia FAQ</a></li>
+                                            <li><a href="<?php echo base_url(); ?>faqs/UK"><span><img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/uk_flag_thumb.png"></span> UK FAQ</a></li>
+                                            <li><a href="<?php echo base_url(); ?>faqs/Canada"><span><img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/canada_flag.png"></span> canada  FAQ</a></li>
+                                            <li><a href="<?php echo base_url(); ?>faqs/New Zealand"><span><img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/New_zealand_flag.png"></span> New Zealand FAQ</a></li>
+                                            <li><a href="<?php echo base_url(); ?>faqs/Ireland"><span><img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/Ireland_flag.png"></span> Ireland FAQ</a></li>
+                                            <li><a href="<?php echo base_url(); ?>faqs/France"><span><img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/Flag_of_France.png"></span> France FAQ</a></li>
+                                            <li><a href="<?php echo base_url(); ?>faqs/Germany"><span><img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/germony_flag.png"></span> Germany FAQ</a></li>
+                                            <li><a href="<?php echo base_url(); ?>faqs/Australia"><span><img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/aus_flag.png"></span> Australia FAQ</a></li>
+                                            <li><a href="<?php echo base_url(); ?>faqs/Europe"><span><img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/europe_flag.png"></span> Europe FAQ</a></li>
+                                            <li><a href="<?php echo base_url(); ?>faqs/USA"><span><img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/usa_flag.png"></span> USA FAQ</a></li>
+                                            <li><a href="<?php echo base_url(); ?>faqs/Signapore"><span><img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/singapore.jpg"></span> Signapore FAQ</a></li>
+                                            <li><a href="<?php echo base_url(); ?>faqs/Malaysia"><span><img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/Malaysia_flag.png"></span> Malaysia FAQ</a></li>
                                         </ul>
                                     </div>
                                 </div>

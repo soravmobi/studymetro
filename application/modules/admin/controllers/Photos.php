@@ -38,26 +38,11 @@ class Photos extends CI_Controller {
     {
     	require_once("vendor/autoload.php");
     	$files = $_FILES['photos'];
-    	/*$config['upload_path']   = 'uploads/photos/'; 
-		$config['allowed_types'] = 'jpg|jpeg|png|gif'; 
-		$this->load->library('upload', $config);
-		$this->upload->initialize($config);*/
 		for ($i=0; $i < count($_FILES['photos']['name']); $i++) { 
-			/*$_FILES['photos[]']['name']     = $_FILES['photos']['name'][$i];
-	        $_FILES['photos[]']['type']     = $_FILES['photos']['type'][$i];
-	        $_FILES['photos[]']['tmp_name'] = $_FILES['photos']['tmp_name'][$i];
-	        $_FILES['photos[]']['error']    = $_FILES['photos']['error'][$i];
-	        $_FILES['photos[]']['size']     = $_FILES['photos']['size'][$i]; 
-	        if ($this->upload->do_upload('photos[]')) {
-	        	$photos_files = array('upload_data' => $this->upload->data()); 
-	        	$photos_arr[] = $photos_files['upload_data']['file_name'];
-	        }else{
-	        	$error[] = $this->upload->display_errors();
-	        }*/
 	        try{
 	        	$tmp_name = $_FILES['photos']['tmp_name'][$i];
 				$compressed_file_name = 'min-sm-'.time().$_FILES['photos']['name'][$i];
-			    $compressed_file_path = 'uploads/photos/'.$compressed_file_name;
+			    $compressed_file_path = UPLOAD_PREFIX.'photos/'.$compressed_file_name;
 				Tinify\setKey(TINIFY_KEY);
 			    Tinify\fromFile($tmp_name)->toFile($compressed_file_path);
 			    chmod($compressed_file_path, 0777);
@@ -73,8 +58,11 @@ class Photos extends CI_Controller {
             redirect($this->url.'/add-new');
 		}else{
 			foreach($photos_arr as $p){
+				$file  = UPLOAD_PREFIX.'photos/'.$p;
+				$thumb = get_image_thumb($file,'photos',228,150);
 				$data = array(
-							'name' => base_url().'uploads/photos/'.$p,
+							'name' => 'uploads/photos/'.$p,
+							'thumb'=> $thumb,
 							'types'=> 0,
 							'added_date' => date('Y-m-d H:i:s')
 						);
@@ -140,6 +128,9 @@ class Photos extends CI_Controller {
         $uId = $this->uri->segment(4);
         if($uId) {
             /* Delete Records */
+            /*$get_data = $this->common_model->getSingleRecordById(PHOTOS,array('id' => $uId));
+            @unlink(SUB_DIR.$get_data['name']);
+            @unlink(SUB_DIR.$get_data['thumb']);*/
             $this->common_model->deleteRecords(PHOTOS, 'id', $uId);
             $this->session->set_flashdata('item_success', sprintf(ITEM_DELETE_SUCCESS, 'Photo'));
             redirect($this->url.'/view-all');

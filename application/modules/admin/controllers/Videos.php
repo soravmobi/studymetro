@@ -56,9 +56,9 @@ class Videos extends CI_Controller {
 				if(!empty($thumb)) {
 					$thumb = save_file_from_server($thumb[0]['fullsize'],'videos');
 					if(!empty($thumb)){
-						$data['video_thumb'] = base_url().'uploads/videos/'.$thumb;
+						$data['thumb'] = 'uploads/videos/'.$thumb;
 					}else{
-						$data['video_thumb'] = base_url().'assets/images/no_img_video.jpg';
+						$data['thumb'] = 'assets/images/no_img_video.jpg';
 					}
 				}
 				$this->common_model->addRecords(PHOTOS, $data);
@@ -123,6 +123,8 @@ class Videos extends CI_Controller {
         $uId = $this->uri->segment(4);
         if($uId) {
             /* Delete Records */
+            /*$get_data = $this->common_model->getSingleRecordById(PHOTOS,array('id' => $uId));
+            @unlink(SUB_DIR.$get_data['thumb']);*/
             $this->common_model->deleteRecords(PHOTOS, 'id', $uId);
             $this->session->set_flashdata('item_success', sprintf(ITEM_DELETE_SUCCESS, 'Video'));
             redirect($this->url.'/view-all');

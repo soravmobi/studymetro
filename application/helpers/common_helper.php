@@ -303,7 +303,7 @@ if(!function_exists('check_required_value')) {
 */
 if(!function_exists('admin_assets')) {
 	function admin_assets() {
-		echo base_url().'assets/admin/';
+		echo SUB_DOMAIN_BASE_URL.'assets/admin/';
 	}
 }
 
@@ -834,7 +834,7 @@ function get_seo_str($str){
 function tinify_compress_img($filename,$subfolder){
 	$tmp_name = $_FILES[$filename]['tmp_name'];
 	$compressed_file_name = 'min-sm-'.time().$_FILES[$filename]['name'];
-    $compressed_file_path = 'uploads/'.$subfolder.'/'.$compressed_file_name;
+    $compressed_file_path = UPLOAD_PREFIX.$subfolder.'/'.$compressed_file_name;
 
 	/* Load Tinify Library */
     require_once("vendor/autoload.php");
@@ -869,7 +869,7 @@ function save_file_from_server($file,$subfolder){
 		$ext      = end($explode_file);
 		$pic      = file_get_contents($file);
 	    $filename = time().uniqid().'.'.$ext;
-	    $path     = "uploads/".$subfolder."/".$filename;
+	    $path     = UPLOAD_PREFIX.$subfolder."/".$filename;
 	    file_put_contents($path, $pic);
 	    chmod($path, 0777);
 	    return $filename;

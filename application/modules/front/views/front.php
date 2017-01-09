@@ -93,7 +93,7 @@
               <div class="clearfix"></div>
             </div>
             <div class="work_block_content">
-              <img src="<?php echo base_url(); ?>assets/images/img1.jpg" class="img-responsive">
+              <img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/img1.jpg" class="img-responsive">
               <span class="meta_work_img">Call us   8088-867-867</span>
             </div>
           </div>
@@ -111,7 +111,7 @@
               <div class="clearfix"></div>
             </div>
             <div class="work_block_content">
-              <img src="<?php echo base_url(); ?>assets/images/img2.jpg" class="img-responsive">
+              <img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/img2.jpg" class="img-responsive">
               <span class="meta_work_img">Get Advice for Work and Study in Abroad </span>
             </div>
           </div>
@@ -129,7 +129,7 @@
               <div class="clearfix"></div>
             </div>
             <div class="work_block_content">
-              <img src="<?php echo base_url(); ?>assets/images/img3.jpg" class="img-responsive">
+              <img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/img3.jpg" class="img-responsive">
               <span class="meta_work_img">Apply for Visa and Study at your Preferred University</span>
             </div>
           </div>
@@ -182,13 +182,3 @@
 
 <!--Main container sec end-->
 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/waypoints.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.counterup.min.js"></script>
-<script type="text/javascript">
-  jQuery(document).ready(function() {
-      $('.no-counter').counterUp({
-          delay: 10,
-          time: 1000
-      });
-  });
-</script>

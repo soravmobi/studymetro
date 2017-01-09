@@ -57,7 +57,10 @@ class Testimonials extends CI_Controller {
             	redirect($this->url.'/add-new');
 			}else{
 				// $data['image'] = base_url().'uploads/testimonials/'.$logo['upload_data']['file_name'];
-				$data['image'] = base_url().'uploads/testimonials/'.$logo;
+				$file  = UPLOAD_PREFIX.'testimonials/'.$logo;
+				$thumb = get_image_thumb($file,'testimonials',170,170);
+				$data['image'] = 'uploads/testimonials/'.$logo;
+				$data['thumb'] = $thumb;
 				$this->common_model->addRecords(TESTIMONIALS, $data);
 				$this->session->set_flashdata('item_success', sprintf(ITEM_ADD_SUCCESS, 'Testimonials'));
 		        redirect($this->url.'/view-all');
@@ -113,7 +116,10 @@ class Testimonials extends CI_Controller {
             	redirect($this->url.'/add-new');
 			}else{
 				// $data['image'] = base_url().'uploads/testimonials/'.$logo['upload_data']['file_name'];
-				$data['image'] = base_url().'uploads/testimonials/'.$logo;
+				$file  = UPLOAD_PREFIX.'testimonials/'.$logo;
+				$thumb = get_image_thumb($file,'testimonials',170,170);
+				$data['image'] = 'uploads/testimonials/'.$logo;
+				$data['thumb'] = $thumb;
 			}
 		}
 		$this->common_model->updateRecords(TESTIMONIALS, $data,array('id' => $post_data['id']));

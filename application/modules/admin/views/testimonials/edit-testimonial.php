@@ -37,7 +37,7 @@
 		                  <label for="photos">Photos</label>
 		                  <input type="file" onchange="readURL(this,'jpg|jpeg|png|gif','')" name="image" class="form-control margin_bottom10"/>
 		                </div>
-		                <img src="<?php echo $details['image']; ?>" class="viewAdminLogo img-responsive thumbnail">
+		                <img src="<?php echo SUB_DOMAIN_BASE_URL.$details['image']; ?>" class="viewAdminLogo img-responsive thumbnail">
 		                <div class="form-group">
 		                  <label for="photos">Content</label>
 		                  <textarea required rows="6" name="content" class="form-control"><?php echo $details['content']; ?></textarea>

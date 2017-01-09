@@ -54,7 +54,7 @@
 		              <td><?php echo $offset++; ?></td>
 		              <td><?php echo $val['given_by']; ?></td>
 		              <td><?php echo $val['content']; ?></td>
-		              <td><img style="width:100px;" src="<?php echo $val['image']; ?>" class="img-responsive thmbnail"></td>
+		              <td><img style="width:100px;" src="<?php echo SUB_DOMAIN_BASE_URL.$val['thumb']; ?>" class="img-responsive thmbnail"></td>
 		              <td><?php echo convertDateTime($val['added_date']); ?></td>
 		              <td>
 		              	<a href="<?php cms_url('admin/testimonials/edit/'.$val['id']); ?>" title="Edit Testimonial">

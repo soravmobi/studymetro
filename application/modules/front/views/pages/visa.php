@@ -37,17 +37,17 @@
                             <div class="left_wrap_visa">
                                 <div class="item_wrap">
                                     <div class="item_level">
-                                        <img src="<?php echo base_url(); ?>assets/images/certificate_icon.png">
+                                        <img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/certificate_icon.png">
                                         <a href="javascript:void(0);" class="name_item">Certificate</a>
                                         <span class="level_stu">no</span>
                                     </div>
                                     <div class="item_level">
-                                        <img src="<?php echo base_url(); ?>assets/images/icon-students.png">
+                                        <img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/icon-students.png">
                                         <a href="javascript:void(0);" class="name_item">Level</a>
                                         <span class="level_stu">Beginner</span>
                                     </div>
                                     <div class="item_level">
-                                        <img src="<?php echo base_url(); ?>assets/images/icon-lauguage.png">
+                                        <img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/icon-lauguage.png">
                                         <a href="javascript:void(0);" class="name_item">Language</a>
                                         <span>English (US)</span>
                                     </div>
@@ -55,7 +55,7 @@
                                 <div class="instructor_wrap">
                                     <h4>About Instructor</h4>
                                     <div class="instructor_content">
-                                        <img src="<?php echo base_url(); ?>assets/images/instructor.jpg">
+                                        <img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/instructor.jpg">
                                         <h3>Abhishek</h3> The Course is designed by Immigration Lawyer and Our visa team will
                                         closely look for Visa assignment and will provide you Mock interview similar like
                                         real Interview. Which will help you to increase 80% of chances to get USA Visa. Call

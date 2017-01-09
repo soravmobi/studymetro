@@ -1,4 +1,4 @@
-  <?php $user = $this->session->userdata('userid');
+  <?php $user = $this->session->userdata('user_id');
     if(empty($user)){ 
   ?>
     <!-- Modal  for login start-->
@@ -13,19 +13,21 @@
             <form method="post" id="login-form">
               <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" name="email" class="form-control email" id="exampleInputEmail1" placeholder="Email Address">
+                <input type="email" name="email" class="form-control email login-email" id="exampleInputEmail1" placeholder="Email Address">
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" name="password" class="form-control password" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" name="password" class="form-control password login-password" id="exampleInputPassword1" placeholder="Password">
               </div>
 
               <div class="checkbox">
                 <label>
-                <input type="checkbox" checked value="1" name="remeber_me"> Remember me
+                <input type="checkbox" checked value="1" id="remeber_me" name="remeber_me"> Remember me
               </label>
-                <span class="pull-right"><a href="javascript:void(0);" data-dismiss="modal" data-toggle="modal" data-target="#register" data-keyboard="false" data-backdrop="static">Register here</a></span>
               </div>
+                <span class="pull-left"><a href="javascript:void(0);" data-dismiss="modal" data-toggle="modal" data-target="#register" data-keyboard="false" data-backdrop="static">Register here</a></span>
+                <span class="pull-right"><a href="javascript:void(0);" data-dismiss="modal" data-toggle="modal" data-target="#forgot_pswd" data-keyboard="false" data-backdrop="static">Forgot password</a></span>
+              
               <div class="login_button">
                 <button type="button" class="btn btn-default login-btn">Log in</button>
               </div>
@@ -35,6 +37,59 @@
       </div>
     </div>
     <!-- Modal  for login end-->
+    <!-- Modal  for forgot password start-->
+    <div class="modal fade login" id="forgot_pswd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Forgot Password</h4>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" name="email" class="form-control email forgot-email" id="exampleInputEmail1" placeholder="Email Address">
+              </div>
+                <span class="pull-right"><a href="javascript:void(0);" data-dismiss="modal" data-toggle="modal" data-target="#login" data-keyboard="false" data-backdrop="static">Login here</a></span>
+              <div class="login_button">
+                <button type="button" class="btn btn-default forgot-btn">Submit</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal  for forgot password end-->
+    <!-- Modal  for reset password start-->
+    <div class="modal fade login" id="resetpassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Reset Password</h4>
+          </div>
+          <div class="modal-body">
+            <form method="post" id="reset-form">
+              <input type="hidden" name="reset_pswd_token" required value="<?php echo $this->session->flashdata('reset_pswd_token') ?>">
+              <div class="form-group">
+                <label for="exampleInputPassword1">New Password</label>
+                <input type="password" name="new_password" class="form-control password reset-new-password" id="exampleInputPassword1" placeholder="New Password">
+                <span class="error_form new_password"></span>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Confirm Password</label>
+                <input type="password" name="confirm_password" class="form-control password reset-confirm-password" id="exampleInputPassword1" placeholder="Confirm Password">
+                <span class="error_form confirm_password"></span>
+              </div>
+                <span class="pull-right"><a href="javascript:void(0);" data-dismiss="modal" data-toggle="modal" data-target="#login" data-keyboard="false" data-backdrop="static">Login here</a></span>
+              <div class="login_button">
+                <button type="button" class="btn btn-default reset-pswd-btn">Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal  for reset password end-->
     <!-- Modal  for register start-->
     <div class="modal fade login register_mod" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -280,81 +335,32 @@
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   
   <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/bootstrap.min.js"></script>
-  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/plugin.js"></script>
-  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/jquery.bootstrap.wizard.min.js"></script>
-  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/sweetalert2.min.js"></script>
-  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/featherlight.js"></script>
-  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/featherlight.gallery.js"></script>
-  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/bootstrap-datepicker.min.js"></script>
-  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/jquery.twbsPagination.min.js"></script>
+
+  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/app.js"></script>
   <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/custom.js"></script>
-  <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/jquery.zclip.js"></script>
   
-  <script type="text/javascript">
-    function getQueryStringValue(key)
-    {  
-      return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
-    }
 
-    jQuery(document).ready(function ( $ ) {
-
-      var check_login = "<?php echo $this->session->userdata('login_error'); ?>";
-      if(check_login == "you need to login"){
-        jQuery('#register').modal('show');
-        <?php echo $this->session->unset_userdata('login_error'); ?>
-      }
-      $("#my-gallery-container").mpmansory(
-        {
-          childrenClass: 'item', // default is a div
-          columnClasses: 'padding', //add classes to items
-          breakpoints:{
-            lg: 3, 
-            md: 4, 
-            sm: 6,
-            xs: 12
-          },
-          distributeBy: { order: false, height: false, attr: 'data-order', attrOrder: 'asc' }, //default distribute by order, options => order: true/false, height: true/false, attr => 'data-order', attrOrder=> 'asc'/'desc'
-          onload: function (items) {
-            //make somthing with items
-          } 
-        }
-      );
-      $('.gallery').featherlightGallery({
-          gallery: {
-            fadeIn: 300,
-            fadeOut: 300
-          },
-          openSpeed:    300,
-          closeSpeed:   300
-      });
-      /*$.featherlight({
-        iframe: 'editor.html',
-        iframeMaxWidth: '80%',
-        iframeWidth: 500,
-        iframeHeight: 300
-      });*/
-    });
-  </script>
 <script type="text/javascript">
 function base_url()
 {
    site_url = '<?php echo base_url(); ?>';
    return site_url;
 }
-user_id  = "<?php echo $this->session->userdata('userid'); ?>";
+
+user_id  = "<?php echo $this->session->userdata('user_id'); ?>";
 $(document).ready(function(){
 
-$("#thechoices").change(function(){
-    $("#" + this.value).show().siblings().hide();
-});
-
-$("#thechoices").change();
-
-$('#rootwizard').bootstrapWizard();
-window.prettyPrint && prettyPrint()
+var check_login = "<?php echo $this->session->userdata('login_error'); ?>";
+if(check_login == "you need to login"){
+  jQuery('#register').modal('show');
+  <?php echo $this->session->unset_userdata('login_error'); ?>
+}
 
 if(user_id == ""){
+
+<?php if($this->session->flashdata('reset_pswd_token')){ ?>
+    $('#resetpassword').modal({backdrop:'static',keyboard:false, show:true});
+<?php } ?>
 
 $("body").on('click','.signup-btn',function() {
   var form_data = new FormData($('#signup-form')[0]);
@@ -396,6 +402,17 @@ $("body").on('click','.signup-btn',function() {
     });
 });
 
+$('#login').on('show.bs.modal', function (e) {
+    var e = localStorage.getItem('study_metro_e');
+    var p = localStorage.getItem('study_metro_p');
+    if(e != "" && e != null && e != undefined){
+      $('.login-email').val(atob(e));
+    }
+    if(p != "" && p != null && p != undefined){
+      $('.login-password').val(atob(p));
+    }
+})
+
 $("body").on('click','.login-btn',function() {
   var form_data = new FormData($('#login-form')[0]);
   var email = $('form#login-form input.email').val();
@@ -424,6 +441,13 @@ $("body").on('click','.login-btn',function() {
         success: function(resp){
           if(resp.type == "success"){
             showToaster('success',resp.msg);
+            if(document.getElementById('remeber_me').checked) {
+              localStorage.setItem('study_metro_e', btoa(email));
+              localStorage.setItem('study_metro_p', btoa(password));
+            } else {
+              localStorage.removeItem('study_metro_e');
+              localStorage.removeItem('study_metro_p');
+            }
             setTimeout(function(){
                 window.location.href= resp.redirect_url;
             },1000);
@@ -438,7 +462,79 @@ $("body").on('click','.login-btn',function() {
             $('.login-btn').attr('disabled',false).text('Log in');
         }
     });
-});  
+}); 
+
+$("body").on('click','.forgot-btn',function() {
+  var email = $('.forgot-email').val();
+  if(email == ""){
+      showToaster('success','Please enter email address');
+      return false;
+  }
+  $.ajax({
+        url  : "<?php echo base_url(); ?>front/front/forgot_pswd",
+        type : "POST",
+        data : {email:email},   
+        dataType : "JSON",   
+        beforeSend:function(){
+          $('.forgot-btn').attr('disabled',true).text('Loading....');
+        },       
+        success: function(resp){
+          if(resp.type == "success"){
+            $('.forgot-email').val("");
+            $('#forgot_pswd').modal('hide');
+            showToaster('success',resp.msg);
+           }
+           else{
+            showToaster('error',resp.msg);  
+           }
+           $('.forgot-btn').attr('disabled',false).text('Submit');
+        },
+        error:function(error)
+        {
+            $('.forgot-btn').attr('disabled',false).text('Submit');
+        }
+    });
+}); 
+
+$("body").on('click','.reset-pswd-btn',function() {
+  var form_data = new FormData($('#reset-form')[0]);
+  $.ajax({
+        url  : "<?php echo base_url(); ?>front/front/do_reset_pswd",
+        type : "POST",
+        data : form_data,   
+        dataType : "JSON",   
+        cache: false,
+        contentType: false,
+        processData: false,   
+        beforeSend:function(){
+          $('.reset-pswd-btn').attr('disabled',true).text('Loading....');
+        },       
+        success: function(resp){
+           $('.error_form').html("");
+           if(resp.type == "validation_err"){
+             var errObj = resp.msg;
+             var keys   = Object.keys(errObj);
+             var count  = keys.length;
+             for (var i = 0; i < count; i++) {
+                 $('.'+keys[i]).html(errObj[keys[i]]);
+             };
+           }
+           else if(resp.type == "success"){
+            $('#reset-form')[0].reset();
+            $('#resetpassword').modal('hide');
+            showToaster('success',resp.msg);
+           }
+           else{
+            showToaster('error',resp.msg);  
+           }
+           $('.reset-pswd-btn').attr('disabled',false).text('Reset');
+        },
+        error:function(error)
+        {
+            $('.reset-pswd-btn').attr('disabled',false).text('Reset');
+        }
+    });
+}); 
 
 $(".email, .password").keyup(function(event){
     if(event.keyCode == 13){
@@ -513,63 +609,6 @@ if(isset($slug) && !in_array($slug, array('city-events','indian-university'))){
   }
 }
 ?>
-
-    <script type="text/javascript">
-      window.onload = function() {
-        initEditor();
-      };
-
-      function initEditor() {
-          var class_exist = $('textarea').hasClass('mceEditor');
-          if (class_exist == true) {
-              document.write("\<script src='//cdn.tinymce.com/4/tinymce.min.js' type='text/javascript'>\<\/script>");
-              tinymce.init({
-                  mode: "textareas",
-                  editor_selector: "mceEditor",
-                  theme: "modern",
-                  font_size_classes: "fontSize1, fontSize2, fontSize3, fontSize4, fontSize5, fontSize6",
-                  plugins: [
-                      "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-                      "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-                      "save table contextmenu directionality emoticons template paste textcolor"
-                  ],
-
-                  toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons | sizeselect | fontselect | fontsize | fontsizeselect",
-                  style_formats: [{
-                      title: 'Bold text',
-                      inline: 'b'
-                  }, {
-                      title: 'Red text',
-                      inline: 'span',
-                      styles: {
-                          color: '#ff0000'
-                      }
-                  }, {
-                      title: 'Red header',
-                      block: 'h1',
-                      styles: {
-                          color: '#ff0000'
-                      }
-                  }, {
-                      title: 'Example 1',
-                      inline: 'span',
-                      classes: 'example1'
-                  }, {
-                      title: 'Example 2',
-                      inline: 'span',
-                      classes: 'example2'
-                  }, {
-                      title: 'Table styles'
-                  }, {
-                      title: 'Table row 1',
-                      selector: 'tr',
-                      classes: 'tablerow1'
-                  }]
-              });
-          }
-      }
-    </script>
-
 
 </body>
 </html>

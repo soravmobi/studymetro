@@ -50,7 +50,7 @@
 	            ?>
 	            	<tr>
 		              <td><?php echo $offset++; ?></td>
-		              <td><img style="width:100px;" src="<?php echo $val['name']; ?>" class="img-responsive thmbnail"></td>
+		              <td><img style="width:100px;" src="<?php echo SUB_DOMAIN_BASE_URL.$val['thumb']; ?>" class="img-responsive thmbnail"></td>
 		              <td><?php echo convertDateTime($val['added_date']); ?></td>
 		              <td>
 		              	<span>&nbsp;</span>

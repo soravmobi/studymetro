@@ -39,7 +39,7 @@
 	          <table class="table table-hover">
 	            <tr>
 	              <th>ID</th>
-	              <th>Photo</th>
+	              <th>Video</th>
 	              <th>Added Date</th>
 	              <th>Action</th>
 	            </tr>

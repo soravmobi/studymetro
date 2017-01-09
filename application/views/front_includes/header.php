@@ -6,26 +6,12 @@
     <meta name="keywords" content="<?php echo (!empty($meta_keywords)) ? $meta_keywords : ''; ?>">
     <meta name="description" content="<?php echo (!empty($meta_description)) ? $meta_description : ''; ?>">
     <title><?php echo (!empty($meta_title)) ? $meta_title : 'Study Metro Overseas Education Consultant'; ?></title>
-    <!-- <title><?php admin_meta_title((!empty($meta_title)) ? $meta_title : ''); ?></title> -->
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php admin_favicon(); ?>
-      <link href="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/css/bootstrap.min.css" rel="stylesheet">
+      <link href="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/css/bundle.css" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
-      <link href="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/css/sweetalert2.min.css" rel="stylesheet">
-      
-      <link href="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/css/plugin.css" rel="stylesheet">
-      <link href="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/css/font-awesome.min.css" rel="stylesheet">
-      <link href="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/css/featherlight.css" rel="stylesheet">
-      <link href="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/css/featherlight.gallery.css" rel="stylesheet">
-      
-      <link href="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/css/custom.css" rel="stylesheet">
-      <link href="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/css/responsive.css" rel="stylesheet">
-      <link href="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/css/chosen.min.css" rel="stylesheet">
-      <link href="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/css/bootstrap-datepicker.css" rel="stylesheet">
-      <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/modernizr-custom.js"></script>
       <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/jquery.min.js"></script>
-      <script src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/js/chosen.jquery.min.js"></script>
       
       <?php
       if(isset($slug) && !in_array($slug, array('city-events','indian-university'))){

@@ -3,7 +3,7 @@
                 <div class="row">
                     <div class="col-md-8 col-sm-8">
                         <div class="top_summer_bg">
-                            <a href="#"> <img src="<?php echo base_url(); ?>assets/images/top_bg_summer.jpg"></a>
+                            <a href="#"> <img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/top_bg_summer.jpg"></a>
                             <span>Call 8088-867-867 , 7722-867-867 Email: admission@studymetro.com</span>
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                         <li><a href="#">apply for franchaisee </a></li>
                     </ul>
                     <div class="bg_join">
-                        <img src="<?php echo base_url(); ?>assets/images/FlyerFront.jpg" style="width:100%">
+                        <img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/FlyerFront.jpg" style="width:100%">
                         <div class="bg_join_data">
                             <p>As part of STUDY METRO International Summer Programs, you'll have the unique opportunity to relish
                                 your desire, while you gain experience with Global Education Leaders.The STUDY METRO international
@@ -155,9 +155,9 @@
                         </div>
                     </div>
                     <div class="internation_summer_bg">
-                        <img src="<?php echo base_url(); ?>assets/images/FlyerBack.jpg">
-                        <img src="<?php echo base_url(); ?>assets/images/internationa_summer_bg.jpg">
-                        <img src="<?php echo base_url(); ?>assets/images/STUDY METRO_Advertorial.jpg">
+                        <img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/FlyerBack.jpg">
+                        <img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/internationa_summer_bg.jpg">
+                        <img src="<?php echo SUB_DOMAIN_BASE_URL; ?>assets/images/STUDY METRO_Advertorial.jpg">
                     </div>
                 </div>
             </div>
